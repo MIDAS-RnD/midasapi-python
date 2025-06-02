@@ -29,7 +29,7 @@ pip install midasapi
 
 
 ## Documentation
-Python Documentation: [midas python](https://sumit-shekhar.github.io/midasapi-python/)   
+Python Documentation: [midas python](https://midas-rnd.github.io/midasapi-python/)   
 API Reference: [Manual](https://support.midasuser.com/hc/en-us/articles/33016922742937-MIDAS-API-Online-Manual)
 
 
