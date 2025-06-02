@@ -23,12 +23,6 @@ Creates elastic links between two nodes with specified spring properties and beh
 * `func_id (default=1)`: Function ID for specialized link types
 * `distance_ratio (default=0)`: Distance ratio for specialized link types
 
-
-### Class Attributes
-*Boundary.ElasticLink.links* -> List of all elastic link instances.
-
-
-
 ### Link Types
 * **"GEN"**: General elastic link with full stiffness matrix
 * **"RIGID"**: Rigid connection (infinite stiffness)
@@ -38,9 +32,29 @@ Creates elastic links between two nodes with specified spring properties and beh
 * **"SADDLE"**: Saddle-type connection
 * **"RAIL INTERACT"**: Rail track interaction link
 
+### Class Attributes
+*Boundary.ElasticLink.links* -> List of all elastic link instances.
 
 
-
+### Object Attributes
+* `I_NODE` (int): The first node ID of the link.
+* `J_NODE` (int): The second node ID of the link.
+* `GROUP_NAME` (str): The name of the boundary group.
+* `LINK_TYPE` (str): The type of elastic link (e.g., "GEN", "RIGID", "TENS").
+* `ANGLE` (float): The beta angle (rotation) in degrees.
+* `SDx` (float): Spring stiffness in the X direction.
+* `SDy` (float): Spring stiffness in the Y direction.
+* `SDz` (float): Spring stiffness in the Z direction.
+* `SRx` (float): Rotational stiffness about the X axis.
+* `SRy` (float): Rotational stiffness about the Y axis.
+* `SRz` (float): Rotational stiffness about the Z axis.
+* `bSHEAR` (bool): Flag to consider shear effects.
+* `DR_Y` (float): Distance ratio for shear effects in the Y direction.
+* `DR_Z` (float): Distance ratio for shear effects in the Z direction.
+* `Direction` (str): Direction for "MULTI LINEAR" or "RAIL INTERACT" links (e.g., "Dy").
+* `Function_ID` (int): Function ID for "MULTI LINEAR" or "RAIL INTERACT" links.
+* `Distance_ratio` (float): Distance ratio for "MULTI LINEAR" or "RAIL INTERACT" links.
+* `ID` (int): The ID of the elastic link.
 
 
 ## Methods

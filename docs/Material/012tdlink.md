@@ -5,6 +5,11 @@ The TDLink class links materials with their time-dependent properties (creep/shr
 ### Class Attributes
 *TDLink.mats* -> Dictionary of all material links.
 
+### Conceptual Object Attributes (per linked material ID)
+* `matID` (int): The ID of the base material to which time-dependent properties are linked.
+* `CnSName` (str): The name of the CreepShrinkage definition to link.
+* `CompName` (str): The name of the CompStrength definition to link.
+
 ### Methods
 
 #### json

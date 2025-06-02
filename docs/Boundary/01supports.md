@@ -12,7 +12,8 @@ Creates support conditions at specified nodes with defined constraints.
 * `constraint`: Constraint definition (string of 1s and 0s, or predefined keywords)
 * `group (default="")`: Boundary group name
 
-### Constraint Options
+#### Constraint Options
+
 * **String format**: "1110000" (7 characters for DOF: DX, DY, DZ, RX, RY, RZ, WARP)
 * **Predefined keywords**:
   - `"pin"`: Pinned support (translational constraints only)
@@ -21,6 +22,12 @@ Creates support conditions at specified nodes with defined constraints.
 
 ### Class Attributes
 *Boundary.Support.sups* -> List of all support instances.
+
+### Object Attributes
+* `NODE` (int): The node number where the support is applied.
+* `CONST` (str): A 7-character string representing the constraint conditions (Dx, Dy, Dz, Rx, Ry, Rz, Rw). '1' for fixed, '0' for free.
+* `GROUP` (str): The name of the boundary group.
+* `ID` (int): The ID of the support entry.
 
 ## Methods
 

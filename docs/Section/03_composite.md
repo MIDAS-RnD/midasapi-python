@@ -28,6 +28,36 @@ Creates composite PSC I-sections with concrete slab.
 * `use7Dof (default=False)`: Enable warping effect
 * `id (default=0)`: Section ID
 
+
+### Object Attributes
+
+* `ID` (int): Section ID.
+* `NAME` (str): Section name.
+* `SHAPE` (str): Section shape, defaults to 'CI'.
+* `TYPE` (str): Type of section, defaults to 'COMPOSITE'.
+* `SYMM` (bool): Flag indicating if the section is symmetric.
+* `BC` (float): Slab width.
+* `TC` (float): Slab thickness.
+* `HH` (float): Haunch height.
+* `MATL_ELAST` (float): Modular ratio (Egirder/Eslab).
+* `MATL_DENS` (float): Density ratio (Dgirder/Dslab).
+* `MATL_POIS_S` (float): Poisson's ratio for girder.
+* `MATL_POIS_C` (float): Poisson's ratio for slab.
+* `MATL_THERMAL` (float): Thermal coefficient ratio.
+* `USE_MULTI_ELAST` (bool): Flag for multi-modulus analysis.
+* `LONGTERM_ESEC` (float): Creep E-ratio.
+* `SHRINK_ESEC` (float): Shrinkage E-ratio.
+* `J1, JL1, JL2, JL3, JL4` (bool): Joint connectivity flags for the left side (and right side if symmetric).
+* `JR1, JR2, JR3, JR4` (bool): Joint connectivity flags for the right side (if not symmetric).
+* `OFFSET` (Offset): An `Offset` object defining the section's offset.
+* `USESHEAR` (bool): Flag to indicate if shear deformation is considered.
+* `USE7DOF` (bool): Flag to indicate if warping effect (7th DOF) is considered.
+* `H1` (float): Height parameter.
+* `HL1, HL2, HL21, HL22, HL3, HL4, HL41, HL42, HL5` (float): Left flange dimensional parameters.
+* `BL1, BL2, BL21, BL22, BL4, BL41, BL42` (float): Left flange dimensional parameters.
+* `HR1, HR2, HR21, HR22, HR3, HR4, HR41, HR42, HR5` (float): Right flange dimensional parameters (values are mirrored from Left if `SYMM` is True, otherwise independently set).
+* `BR1, BR2, BR21, BR22, BR4, BR41, BR42` (float): Right flange dimensional parameters (values are mirrored from Left if `SYMM` is True, otherwise independently set).
+
 #### Examples
 ```py
 # Composite PSC I-Section Example
@@ -106,6 +136,34 @@ Creates composite steel I-sections with concrete slab.
 * `useShear (default=True)`: Enable shear deformation
 * `use7Dof (default=False)`: Enable warping effect
 * `id (default=0)`: Section ID
+
+
+### Object Attributes
+
+* `ID` (int): Section ID.
+* `NAME` (str): Section name.
+* `SHAPE` (str): Section shape, defaults to 'I'.
+* `TYPE` (str): Type of section, defaults to 'COMPOSITE'.
+* `BC` (float): Slab width.
+* `TC` (float): Slab thickness.
+* `HH` (float): Haunch height.
+* `HW` (float): Steel web height.
+* `B1` (float): Steel top flange width.
+* `TF1` (float): Steel top flange thickness.
+* `TW` (float): Steel web thickness.
+* `B2` (float): Steel bottom flange width.
+* `TF2` (float): Steel bottom flange thickness.
+* `MATL_ELAST` (float): Modular ratio (E<sub>steel</sub>/E<sub>concrete</sub>).
+* `MATL_DENS` (float): Density ratio (D<sub>steel</sub>/D<sub>concrete</sub>).
+* `MATL_POIS_S` (float): Poisson's ratio for steel.
+* `MATL_POIS_C` (float): Poisson's ratio for concrete.
+* `MATL_THERMAL` (float): Thermal coefficient ratio.
+* `USE_MULTI_ELAST` (bool): Flag for multi-modulus analysis.
+* `LONGTERM_ESEC` (float): Creep E-ratio.
+* `SHRINK_ESEC` (float): Shrinkage E-ratio.
+* `OFFSET` (Offset): An `Offset` object defining the section's offset.
+* `USESHEAR` (bool): Flag to indicate if shear deformation is considered.
+* `USE7DOF` (bool): Flag to indicate if warping effect (7th DOF) is considered.
 
 #### Examples
 ```py

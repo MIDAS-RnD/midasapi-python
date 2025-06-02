@@ -5,6 +5,7 @@ The CompStrength class manages time-dependent compressive strength properties fo
 ## Class Attributes
 *CompStrength.mats* -> List of all compressive strength instances.   
 
+
 ## Methods
 
 ### json
@@ -66,6 +67,16 @@ Creates IRC standard compressive strength properties.
 * `typeAggregate (default=0)`: Type of aggregate (0=Normal, 1=Lightweight)
 * `id (default=0)`: Manual ID assignment
 
+### Object Attributes
+
+* `ID` (int): The ID of the compressive strength definition.
+* `DATA` (dict): A dictionary containing the compressive strength properties. Specific keys include:
+* `NAME` (str): Name of the compressive strength definition.
+* `TYPE` (str): "CODE"
+* `CODENAME` (str): Code standard (e.g., "INDIA(IRC:112-2020)").
+* `STRENGTH` (float): Concrete characteristic compressive strength fck (delta fck).
+* `iCTYPE` (int): Type of cement.
+* `nAGGRE` (int): Type of aggregate.
 #### Examples
 ```py
 # Create IRC compressive strength properties

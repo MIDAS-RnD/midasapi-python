@@ -137,5 +137,5 @@ Dictionary with selected `'NODE'` and `'ELEM'` IDs.
 
 
 ```py
-Model.select()
+nodes = Model.select('X',0,0)['NODE']
 ```

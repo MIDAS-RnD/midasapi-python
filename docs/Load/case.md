@@ -25,6 +25,12 @@ Creates load cases with specified type and names.
 ### Class Attributes
 *Load_Case.cases* -> List of all load cases.   
 
+### Object Attributes
+
+* `TYPE` (str): The type of load case (e.g., "USER", "D", "L").
+* `NAME` (tuple): A tuple containing the names of the load cases.
+* `ID` (list): A list of integer IDs assigned to the load cases.
+
 ```py
 # Create load cases
 lc1 = Load_Case("D", "Dead Load", "Additional Dead")

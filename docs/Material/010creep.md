@@ -67,6 +67,17 @@ Creates IRC standard creep and shrinkage properties.
 * `typeCement (default='NR')`: Type of cement ('R' for Rapid, 'NR' for Normal)
 * `id (default=0)`: Manual ID assignment
 
+### Object Attributes
+* `ID` (int): The ID of the creep/shrinkage definition.
+* `DATA` (dict): A dictionary containing the creep/shrinkage properties. Specific keys include:
+* `NAME` (str): Name of the creep/shrinkage definition.
+* `CODE` (str): Code standard (e.g., "INDIA_IRC_112_2011").
+* `STR` (float): Characteristic compressive cylinder strength fck .
+* `HU` (float): Relative humidity (%).
+* `AGE` (float): Age of concrete at beginning of shrinkage (days).
+* `MSIZE` (float): Notional size of member.
+* `CTYPE` (str): Type of cement (e.g., "NR").
+
 #### Examples
 ```py
 # Create IRC creep and shrinkage properties

@@ -16,6 +16,19 @@ Creates a generic user-defined material with custom properties.
 * `therm (default=0)`: Thermal expansion coefficient
 * `id (default=0)`: Manual ID assignment
 
+### Object Attributes
+* `ID` (int): The ID of the material.
+* `DATA` (dict): A dictionary containing the material properties. Specific keys include:
+* `TYPE` (str): "USER"
+* `NAME` (str): Name of the material.
+* `PARAM` (list): List containing a dictionary with:
+* `P_TYPE` (int): 2 (for user-defined).
+* `ELAST` (float): Modulus of elasticity.
+* `POISN` (float): Poisson's ratio.
+* `THERMAL` (float): Thermal coefficient.
+* `DEN` (float): Density.
+* `MASS` (float): Mass (if density is not provided).
+
 ### Examples
 ```py
 # Create generic user material

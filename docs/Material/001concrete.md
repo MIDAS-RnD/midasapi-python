@@ -13,6 +13,16 @@ Creates a concrete material from database with specified standard and database c
 * `db (default='')`: Database material code
 * `id (default=0)`: Manual ID assignment
 
+### Object Attributes
+* `ID` (int): The ID of the material.
+* `DATA` (dict): A dictionary containing the material properties. Specific keys include:
+* `TYPE` (str): "CONC"
+* `NAME` (str): Name of the material.
+* `PARAM` (list): List containing a dictionary with:
+* `P_TYPE` (int): 1 (for DB material).
+* `STANDARD` (str): Name of the standard (e.g., "IS(RC)").
+* `DB` (str): Name of the material in the database (e.g., "M30").
+
 ### Examples
 ```py
 # Create concrete material from database
@@ -35,6 +45,19 @@ Creates a user-defined concrete material with custom properties.
 * `mass (default=0)`: Mass density
 * `therm (default=0)`: Thermal expansion coefficient
 * `id (default=0)`: Manual ID assignment
+
+### Object Attributes
+* `ID` (int): The ID of the material.
+* `DATA` (dict): A dictionary containing the material properties. Specific keys include:
+* `TYPE` (str): "CONC"
+* `NAME` (str): Name of the material.
+* `PARAM` (list): List containing a dictionary with:
+* `P_TYPE` (int): 2 (for user-defined).
+* `ELAST` (float): Modulus of elasticity.
+* `POISN` (float): Poisson's ratio.
+* `THERMAL` (float): Thermal coefficient.
+* `DEN` (float): Density.
+* `MASS` (float): Mass (if density is not provided).
 
 ### Examples
 ```py

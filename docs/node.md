@@ -20,7 +20,7 @@ MAPI_KEY('eyJ1ciI6InN1bWl0QG1pZGFzaXQuY29tIiwicGciO252a81571d')
 * `merge (default=1)`: If enabled, checks for existing nodes and return their IDs.  No additional/duplicate node will be created.
 
 
-## Attributes
+### Object Attributes
 
 `X, Y, Z`: Coordinates of the node.
 

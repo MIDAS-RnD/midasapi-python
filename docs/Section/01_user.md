@@ -41,6 +41,17 @@ Creates user-defined sections with specified shape and parameters.
 * `use7Dof (default=False)`: Enable warping (7DOF)
 * `id (default=0)`: Section ID (auto-assigned if 0)
 
+### Object Attributes
+* `ID` (int): Section ID.
+* `NAME` (str): Section name.
+* `TYPE` (str): Type of section, defaults to 'DBUSER'.
+* `SHAPE` (str): Shape code for the section (e.g., 'SB', 'SR').
+* `PARAMS` (list): List of dimensional parameters defining the section's geometry.
+* `OFFSET` (Offset): An `Offset` object defining the section's offset.
+* `USESHEAR` (bool): Flag to indicate if shear deformation is considered (True/False).
+* `USE7DOF` (bool): Flag to indicate if warping effect (7th Degree of Freedom) is considered (True/False).
+* `DATATYPE` (int): Data type for the section, defaults to 2 for standard user-defined sections.
+
 ### Examples
 ```py
 # Rectangular Section Example

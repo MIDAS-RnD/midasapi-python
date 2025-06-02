@@ -22,6 +22,22 @@ Creates PSC 1-cell or 2-cell box sections.
 * `use7Dof (default=False)`: Enable warping effect
 * `id (default=0)`: Section ID
 
+
+### Object Attributes
+
+* `ID` (int): Section ID.
+* `NAME` (str): Section name.
+* `SHAPE` (str): Section shape, '1CEL' or '2CEL'.
+* `TYPE` (str): Type of section, defaults to 'PSC'.
+* `JO1` to `JI5` (bool): Joint connectivity.
+* `OFFSET` (Offset): An `Offset` object defining the section's offset.
+* `USESHEAR` (bool): Flag to indicate if shear deformation is considered.
+* `USE7DOF` (bool): Flag to indicate if warping effect (7th DOF) is considered.
+* `HO1, HO2, HO21, HO22, HO3, HO31` (float): Outer dimensions of the section.
+* `BO1, BO11, BO12, BO2, BO21, BO3` (float): Outer dimensions of the section.
+* `HI1, HI2, HI21, HI22, HI3, HI31, HI4, HI41, HI42, HI5` (float): Inner dimensions of the section.
+* `BI1, BI11, BI12, BI21, BI3, BI31, BI32, BI4` (float): Inner dimensions of the section.
+
 #### Examples    
 
 ##### PSC Cell Sections (1-Cell, 2-Cell) Section
@@ -92,6 +108,24 @@ Creates PSC I-sections with symmetric or asymmetric flanges.
 * `useShear (default=True)`: Enable shear deformation
 * `use7Dof (default=False)`: Enable warping effect
 * `id (default=0)`: Section ID
+
+### Object Attributes
+
+* `ID` (int): Section ID.
+* `NAME` (str): Section name.
+* `SHAPE` (str): Section shape, defaults to 'PSCI'.
+* `TYPE` (str): Type of section, defaults to 'PSC'.
+* `SYMM` (bool): Flag indicating if the section is symmetric.
+* `J1, JL1, JL2, JL3, JL4` (bool): Joint connectivity flags for the left side (and right side if symmetric).
+* `JR1, JR2, JR3, JR4` (bool): Joint connectivity flags for the right side (if not symmetric).
+* `OFFSET` (Offset): An `Offset` object defining the section's offset.
+* `USESHEAR` (bool): Flag to indicate if shear deformation is considered.
+* `USE7DOF` (bool): Flag to indicate if warping effect (7th DOF) is considered.
+* `H1` (float): Height parameter.
+* `HL1, HL2, HL21, HL22, HL3, HL4, HL41, HL42, HL5` (float): Left flange dimensional parameters.
+* `BL1, BL2, BL21, BL22, BL4, BL41, BL42` (float): Left flange dimensional parameters.
+* `HR1, HR2, HR21, HR22, HR3, HR4, HR41, HR42, HR5` (float): Right flange dimensional parameters (values are mirrored from Left if `SYMM` is True, otherwise independently set).
+* `BR1, BR2, BR21, BR22, BR4, BR41, BR42` (float): Right flange dimensional parameters (values are mirrored from Left if `SYMM` is True, otherwise independently set).
 
 #### Examples
 

@@ -26,7 +26,28 @@ Creates beam loads with various distribution patterns and advanced options.
 * `adnl_h (default=False)`: Consider additional height for pressure loads
 * `adnl_h_i, adnl_h_j (default=0, 0.0000195)`: Additional height values at ends
 
-
+### Object Attributes
+* `ELEMENT` (int): The element number to which the load is applied.
+* `LCN` (str): The name of the load case.
+* `LDGR` (str): The name of the load group.
+* `VALUE` (float): The magnitude of the load.
+* `DIRECTION` (str): The direction of the load (e.g., "GZ", "LX").
+* `CMD` (str): The command type for the load (e.g., "BEAM", "LINE").
+* `TYPE` (str): The type of load (e.g., "UNILOAD", "CONLOAD").
+* `USE_PROJECTION` (bool): Flag to indicate if projection is used.
+* `USE_ECCEN` (bool): Flag to indicate if eccentricity is used.
+* `ECCEN_TYPE` (int): Eccentricity type (0 for centroid, 1 for offset).
+* `ECCEN_DIR` (str): Direction of eccentricity.
+* `IECC` (float): Eccentricity value at the i-end of the element.
+* `JECC` (float): Eccentricity value at the j-end of the element.
+* `USE_JECC` (bool): Flag to indicate if j-end eccentricity is used.
+* `D` (list): List of four floats representing relative distances along the element for varying loads.
+* `P` (list): List of four floats representing load magnitudes at the corresponding 'D' positions.
+* `USE_H` (bool): Flag to indicate if additional H is considered for pressure loads.
+* `I_H` (float): Additional H value at the i-end for pressure loads.
+* `USE_JH` (bool): Flag to indicate if additional H at j-end is used.
+* `J_H` (float): Additional H value at the j-end for pressure loads.
+* `ID` (int): The ID of the beam load entry.
 
 
 ## Methods

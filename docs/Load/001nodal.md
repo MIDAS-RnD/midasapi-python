@@ -15,7 +15,17 @@ Creates nodal loads (forces and moments) at specified nodes.
 * `MX, MY, MZ (default=0)`: Moment components about X, Y, Z axes
 * `id (default="")`: Manual ID assignment (auto-assigned if empty)
 
-
+### Object Attributes
+* `NODE` (int): The node number where the load is applied.
+* `LCN` (str): The name of the load case.
+* `LDGR` (str): The name of the load group.
+* `FX` (float): Force in the global X direction.
+* `FY` (float): Force in the global Y direction.
+* `FZ` (float): Force in the global Z direction.
+* `MX` (float): Moment about the global X axis.
+* `MY` (float): Moment about the global Y axis.
+* `MZ` (float): Moment about the global Z axis.
+* `ID` (int): The ID of the nodal load entry.
 
 ## Methods
 
