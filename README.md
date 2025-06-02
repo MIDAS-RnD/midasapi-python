@@ -1,7 +1,7 @@
 # MIDAS CIVIL NX Python
 
 
-**`midasapi`** is a Python library that provides an interface to interact with MIDAS Civil NX using Python scripts.  
+**`midas-civil`** is a Python library that provides an interface to interact with MIDAS Civil NX using Python scripts.  
 This library allows engineers and developers to automate tasks, extract structural analysis results, manipulate model data, and integrate MIDAS Civil NX with other tools or pipelines using Python.
 
 ---
