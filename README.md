@@ -35,7 +35,6 @@ You can use the library using import * command:
 from midas_civil import *
 ```
 
-
 ## Documentation
 Python Documentation: [Documentation](https://midas-rnd.github.io/midasapi-python/)   
 API Reference: [JSON Manual](https://support.midasuser.com/hc/en-us/articles/33016922742937-MIDAS-API-Online-Manual)

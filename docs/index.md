@@ -45,7 +45,7 @@ from midas_civil import *
 Handles and stores the MIDAS API key used for authenticating requests.
 
 ```py
-#Importing the midasapi package
+#Importing the midas-civil package
 from midas_civil import * 
 
 #Sets the MAPI Key for Python interface
@@ -64,7 +64,7 @@ MAPI_KEY('eyJ1ciI6InN1bWl0QG1pZGFzaXQuY29tIiwicGciO.252a81571d')
 
 
 
-### midasAPI
+### midas-civil
 Send requests to MIDAS Civil NX.
 
 #### Parameters :
@@ -78,14 +78,14 @@ Send requests to MIDAS Civil NX.
 
 #### Example :
 ```py
-#Importing the midasapi package
+#Importing the midas-civil package
 from midas_civil import * 
 
 #Sets the MAPI Key for Python interface
 MAPI_KEY('eyJ1ciI6InN1bWl0QG1pZGFzaXQuY29tIiwicGciO252a81571d')
 
 # Create a node
-MidasAPI("PUT","/db/NODE",{{"Assign":{{"1":{{'X':0, 'Y':0, 'Z':0}}}}}})
+midas-civil("PUT","/db/NODE",{{"Assign":{{"1":{{'X':0, 'Y':0, 'Z':0}}}}}})
 ```
 
 ---
