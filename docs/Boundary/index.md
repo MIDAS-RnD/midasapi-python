@@ -5,7 +5,7 @@ The module provides functionality to create, manage, and synchronize boundary co
     All the codes below assumes the initial import and MAPI Key definition.
 
 ```py
-from midasapi import *
+from midas_civil import *
 MAPI_KEY('eyJ1ciI6InN1bWl0QG1pZGFzaXQuY29tIiwicmciO252k81571d')
 ```
 
@@ -41,7 +41,7 @@ Boundary.sync()
 ## Complete Example
 
 ```py
-from midasapi import *
+from midas_civil import *
 
 MAPI_KEY("eyJ1ciI6IklOMjQwN0ZZVDIiLCJwZyI6ImNpdmlsIiwi") # Paste your MAPI Key
 

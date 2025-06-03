@@ -15,7 +15,7 @@ Load.create()
 ## Complete Example
 
 ```py
-from midasapi import*
+from midas_civil import*
 
 MAPI_KEY("eyJ1ciI6IklOMjQwN0ZZVDIiLCJwZyI6ImNpdmlsIiwi") #Paste your Mapi Key
 
@@ -41,14 +41,10 @@ Load_Case.create()  #Create Load Case in Civil NX
 
 Load.SW("SW","Z",-1)
 
-Load.SW.create() #Apply Self weight Load in Civil NX
-
-
 #Nodal Load
 
 Load.Nodal(1,"Nodal Load","",FX=10,FY=20,FZ=-50,id=1)
 Load.Nodal(3,"Nodal Load","",MX=100,MY=20,MZ=-5,id=2)
-Load.Nodal.create() #Apply Nodal Load in Civil NX
 
 #Concentrated Load
 
@@ -74,7 +70,8 @@ Load.Beam(5,"Test Load 5",0,"","GZ","",[0,1],[-20,-20],"BEAM","UNIMOMENT")
 
 Load.Beam(6,"Test Load 6",0,"","GZ","",[0.3,0.7],[-30,-50],"BEAM","UNIMOMENT")
 
-#Create this Beam load in Civil NX
-Load.Beam.create()
+#Create All load in Civil NX
+Load.create()
+
 
 ```

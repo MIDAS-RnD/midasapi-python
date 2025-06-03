@@ -59,6 +59,9 @@ nav:
     - ‎ ‎ ‎ Boundary Group : Group/002bg.md
     - ‎ ‎ ‎ Load Group: Group/003lg.md
     - ‎ ‎ ‎ Tendon Group: Group/004tg.md
+    
+  - CS:
+    - Construction Stage: 200cs.md
 
 plugins:
   - search # put it first to inject out custom code

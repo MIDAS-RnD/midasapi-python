@@ -10,11 +10,11 @@ This module provides a Python interface to interact with the MIDAS Civil NX API 
 
 ## Installation
 
-Make sure you have Python 3 installed.
+Make sure you have Python 3 installed.  
 Install the MIDAS Python interface via Pip command.
 
 ```py
-pip install midasapi
+pip install midas-civil
 ```
 Additional libraries required by the modules are
 
@@ -27,7 +27,7 @@ Additional libraries required by the modules are
 To import the package use the import *
 
 ```py
-from midasapi import *
+from midas_civil import *
 ```
 
 ---
@@ -46,7 +46,7 @@ Handles and stores the MIDAS API key used for authenticating requests.
 
 ```py
 #Importing the midasapi package
-from midasapi import * 
+from midas_civil import * 
 
 #Sets the MAPI Key for Python interface
 MAPI_KEY('eyJ1ciI6InN1bWl0QG1pZGFzaXQuY29tIiwicGciO.252a81571d')
@@ -79,7 +79,7 @@ Send requests to MIDAS Civil NX.
 #### Example :
 ```py
 #Importing the midasapi package
-from midasapi import * 
+from midas_civil import * 
 
 #Sets the MAPI Key for Python interface
 MAPI_KEY('eyJ1ciI6InN1bWl0QG1pZGFzaXQuY29tIiwicGciO252a81571d')
@@ -108,7 +108,7 @@ Return ID of objects(Node,Element,Section,Material)
 
 #### Example :
 ```py
-from midasapi import *
+from midas_civil import *
 MAPI_KEY('eyJ1ciI6InN1bWl0QG1pZGFzaXQuY29tIiwicGciO252a81571d')
 
 Node(0,0,0,id=1)    # Create Node at 0,0,0 with ID = 1
@@ -148,7 +148,7 @@ Return Node ID of Element objects
 
 #### Example :
 ```py
-from midasapi import *
+from midas_civil import *
 MAPI_KEY('eyJ1ciI6InN1bWl0QG1pZGFzaXQuY29tIiwicGciO252a81571d')
 
 Node(0,0,0,id=1)    # Create Node at 0,0,0 with ID = 1

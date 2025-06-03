@@ -6,7 +6,7 @@ It facilitates node creation, synchronization, and deletion.
     All the codes below assumes the initial import and MAPI Key definition.
 
 ```py
-from midasapi import *
+from midas_civil import *
 MAPI_KEY('eyJ1ciI6InN1bWl0QG1pZGFzaXQuY29tIiwicGciO252a81571d')
 ```
 

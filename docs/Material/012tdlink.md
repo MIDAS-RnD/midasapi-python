@@ -64,7 +64,7 @@ TDLink.create()
 ## Complete Example
 
 ```py
-from midasapi import *
+from midas_civil import *
 
 MAPI_KEY("eyJ1ciI6IklOMjQwN0ZZVDIiLCJwZyI6ImNpdmlsIiwi") #Paste your MAPI Key
 

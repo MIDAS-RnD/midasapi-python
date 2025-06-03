@@ -5,7 +5,7 @@ The module provides functionality to create, manage, and synchronize materials i
     All the codes below assumes the initial import and MAPI Key definition.
 
 ```py
-from midasapi import *
+from midas_civil import *
 MAPI_KEY('eyJ1ciI6InN1bWl0QG1pZGFzaXQuY29tIiwicGciO252k81571d')
 ```
 
@@ -78,7 +78,7 @@ Material.delete()
 ## Complete Example
 
 ```py
-from midasapi import *
+from midas_civil import *
 
 MAPI_KEY("eyJ1ciI6IklOMjQwN0ZZVDIiLCJwZyI6ImNpdmlsIiwi") #Paste your MAPI Key
 

@@ -21,7 +21,7 @@ This library allows engineers and developers to automate tasks, extract structur
 You can install the library using pip:
 
 ```py
-pip install midasapi
+pip install midas-civil
 ```
 **Requirements:**
 * Python 3+
@@ -29,8 +29,8 @@ pip install midasapi
 
 
 ## Documentation
-Python Documentation: [midas python](https://midas-rnd.github.io/midasapi-python/)   
-API Reference: [Manual](https://support.midasuser.com/hc/en-us/articles/33016922742937-MIDAS-API-Online-Manual)
+Python Documentation: [Documentation](https://midas-rnd.github.io/midasapi-python/)   
+API Reference: [JSON Manual](https://support.midasuser.com/hc/en-us/articles/33016922742937-MIDAS-API-Online-Manual)
 
 
 ## License
