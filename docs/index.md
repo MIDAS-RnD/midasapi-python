@@ -64,7 +64,7 @@ MAPI_KEY('eyJ1ciI6InN1bWl0QG1pZGFzaXQuY29tIiwicGciO.252a81571d')
 
 
 
-### midasAPI
+### MidasAPI
 Send requests to MIDAS Civil NX.
 
 #### Parameters :
@@ -84,7 +84,7 @@ from midas_civil import*
 MAPI_KEY("eyJ1ciI6IklOMjQwN0ZZVDIiLCJw") #Paste your Mapi Key
 
 # Create a node
-midasAPI("PUT","/db/NODE",{"Assign": {"1": {"X": -1,"Y": -1,"Z": -1}}})
+MidasAPI("PUT","/db/NODE",{"Assign": {"1": {"X": -1,"Y": -1,"Z": -1}}})
  
 ```
 
