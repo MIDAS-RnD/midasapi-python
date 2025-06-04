@@ -64,7 +64,7 @@ MAPI_KEY('eyJ1ciI6InN1bWl0QG1pZGFzaXQuY29tIiwicGciO.252a81571d')
 
 
 
-### midas-civil
+### midasAPI
 Send requests to MIDAS Civil NX.
 
 #### Parameters :
@@ -78,14 +78,14 @@ Send requests to MIDAS Civil NX.
 
 #### Example :
 ```py
-#Importing the midas-civil package
-from midas_civil import * 
 
-#Sets the MAPI Key for Python interface
-MAPI_KEY('eyJ1ciI6InN1bWl0QG1pZGFzaXQuY29tIiwicGciO252a81571d')
+from midas_civil import*
+
+MAPI_KEY("eyJ1ciI6IklOMjQwN0ZZVDIiLCJw") #Paste your Mapi Key
 
 # Create a node
-midas-civil("PUT","/db/NODE",{{"Assign":{{"1":{{'X':0, 'Y':0, 'Z':0}}}}}})
+midasAPI("PUT","/db/NODE",{"Assign": {"1": {"X": -1,"Y": -1,"Z": -1}}})
+ 
 ```
 
 ---
