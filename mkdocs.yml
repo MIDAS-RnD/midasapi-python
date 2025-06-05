@@ -67,8 +67,19 @@ plugins:
   - search # put it first to inject out custom code
 
 markdown_extensions:
-  - admonition
-  - pymdownx.details
-  - codehilite
-  - fenced_code
-  - pymdownx.blocks.details
+  admonition:
+  codehilite:
+  fenced_code:
+  extra:
+  pymdownx.blocks.details:
+  pymdownx.tabbed:
+  pymdownx.blocks.tab:
+    combine_header_slug: true
+    separator: ___
+    slugify:
+      !!python/object/apply:pymdownx.slugs.slugify { kwds: { case: lower } }
+  pymdownx.progressbar:
+  pymdownx.snippets:
+  pymdownx.arithmatex:
+    generic: true
+  shadcn.extensions.echarts.alpha:
