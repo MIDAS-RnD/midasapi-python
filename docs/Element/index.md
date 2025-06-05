@@ -65,6 +65,7 @@ Node(2,2,2,id=3)    # Create Node at 2,2,2 with ID = 3
 beam_1 = Element.Beam(1,2)  # Create Beam connecting Node 1 and Node 2 (default ID = 1)
 beam_2 = Element.Beam(2,3)  # Create Beam connecting Node 2 and Node 3 (default ID = 2)
 
+Node.create()
 Element.create()
 
 ```
