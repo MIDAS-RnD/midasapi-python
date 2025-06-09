@@ -74,9 +74,9 @@ cs2 = CreepShrinkage.IRC("CS_C30", "INDIA_IRC_112_2011", fck=30, notionalSize=20
 cs3 = CreepShrinkage.IRC("CS_M40", "INDIA_IRC_112_2011", fck=40, notionalSize=250, relHumidity=65, ageShrinkage=28, typeCement='R', id=3)
 
 # Create IRC compressive strength properties
-comp1 = CompStrength.IRC("Comp_M25", "INDIA(IRC:112-2020)", fckDelta=5, typeCement=1, typeAggregate=0, id=1)
-comp2 = CompStrength.IRC("Comp_C30", "INDIA(IRC:112-2020)", fckDelta=5, typeCement=2, typeAggregate=1, id=2)
-comp3 = CompStrength.IRC("Comp_M40", "INDIA(IRC:112-2020)", fckDelta=5, typeCement=1, typeAggregate=0, id=3)
+comp1 = CompStrength.IRC("Comp_M25", "INDIA(IRC:112-2020)", fckDelta=33, typeCement=1, typeAggregate=0, id=1)
+comp2 = CompStrength.IRC("Comp_C30", "INDIA(IRC:112-2020)", fckDelta=38, typeCement=2, typeAggregate=1, id=2)
+comp3 = CompStrength.IRC("Comp_M40", "INDIA(IRC:112-2020)", fckDelta=48, typeCement=1, typeAggregate=0, id=3)
 
 # Link materials with time-dependent properties
 # Assuming materials with IDs 1, 2, 3 exist
