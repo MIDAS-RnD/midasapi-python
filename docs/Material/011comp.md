@@ -80,8 +80,8 @@ Creates IRC standard compressive strength properties.
 #### Examples
 ```py
 # Create IRC compressive strength properties
-comp1 = CompStrength.IRC("Comp_M25", "INDIA(IRC:112-2020)", fckDelta=5, typeCement=1, typeAggregate=0, id=1)
-comp2 = CompStrength.IRC("Comp_C30", "INDIA(IRC:112-2020)", fckDelta=5, typeCement=2, typeAggregate=1, id=2)
+comp1 = CompStrength.IRC("Comp_M25", "INDIA(IRC:112-2020)", fckDelta=33, typeCement=1, typeAggregate=0, id=1)
+comp2 = CompStrength.IRC("Comp_C30", "INDIA(IRC:112-2020)", fckDelta=38, typeCement=2, typeAggregate=1, id=2)
 
 CompStrength.create()
 ```
