@@ -16,6 +16,12 @@ Install the MIDAS Python interface via Pip command.
 ```py
 pip install midas-civil
 ```
+
+If already installed, upgrade the package to latest version.
+```py
+pip install midas-civil --upgrade
+```
+
 Additional libraries required by the modules are
 
 * Numpy
