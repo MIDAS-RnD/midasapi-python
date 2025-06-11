@@ -21,6 +21,7 @@ nav:
     - Element: Element/index.md
     - ‎ ‎ ‎ 1D Elements: Element/1D.md
     - ‎ ‎ ‎ 2D Elements: Element/2D.md
+    - ‎ ‎ ‎ 3D Elements: Element/3D.md
 
   - Section Properties:
     - Section : Section/index.md
@@ -45,6 +46,8 @@ nav:
     - ‎ ‎ ‎ Supports : Boundary/01supports.md
     - ‎ ‎ ‎ Elastic Link: Boundary/02elink.md
     - ‎ ‎ ‎ Rigid Link : Boundary/03rlink.md
+    - ‎ ‎ ‎ Point Spring : Boundary/04PointSpring.md
+    - ‎ ‎ ‎ Multi Linear Function : Boundary/05MLFC.md
 
   - Load:
     - Load : Load/index.md
