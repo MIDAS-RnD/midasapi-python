@@ -68,21 +68,19 @@ from midas_civil import *
 
 MAPI_KEY("eyJ1ciI6IklOMjQwN0ZZVDIiLCJwZyI6ImNpdmlsIiwi") #Paste your MAPI Key
 
-# Create IRC creep and shrinkage properties
-cs1 = CreepShrinkage.IRC("CS_M25", "INDIA_IRC_112_2011", fck=25, notionalSize=150, relHumidity=75, ageShrinkage=7, typeCement='R', id=1)
-cs2 = CreepShrinkage.IRC("CS_C30", "INDIA_IRC_112_2011", fck=30, notionalSize=200, relHumidity=70, ageShrinkage=3, typeCement='NR', id=2)
-cs3 = CreepShrinkage.IRC("CS_M40", "INDIA_IRC_112_2011", fck=40, notionalSize=250, relHumidity=65, ageShrinkage=28, typeCement='R', id=3)
+# Create IRC compressive CreepShrinkage properties
+
+cs1 = CreepShrinkage.IRC("CS_C30", code_year=2011, fck=30, notional_size=150, relative_humidity=75, age_shrinkage=7, type_cement='R', id=1)
+cs2 = CreepShrinkage.IRC("CS_M25", code_year=2000, fck=25, notional_size=200, relative_humidity=70, age_shrinkage=3, type_cement='NR', id=2)
 
 # Create IRC compressive strength properties
-comp1 = CompStrength.IRC("Comp_M25", "INDIA(IRC:112-2020)", fckDelta=33, typeCement=1, typeAggregate=0, id=1)
-comp2 = CompStrength.IRC("Comp_C30", "INDIA(IRC:112-2020)", fckDelta=38, typeCement=2, typeAggregate=1, id=2)
-comp3 = CompStrength.IRC("Comp_M40", "INDIA(IRC:112-2020)", fckDelta=48, typeCement=1, typeAggregate=0, id=3)
+CompStrength.IRC("Comp_C30", code_year=2020, fck_delta=30000, cement_type=2)
+CompStrength.IRC("Comp_M25", code_year=2000, fck_delta=25000)
 
 # Link materials with time-dependent properties
-# Assuming materials with IDs 1, 2, 3 exist
+
 link1 = TDLink(1, "CS_M25", "Comp_M25")  # Link material 1 with M25 properties
 link2 = TDLink(2, "CS_C30", "Comp_C30")  # Link material 2 with C30 properties
-link3 = TDLink(3, "CS_M40", "Comp_M40")  # Link material 3 with M40 properties
 
 # Create all time-dependent properties in Civil NX
 CreepShrinkage.create()
