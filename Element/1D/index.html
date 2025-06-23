@@ -1,0 +1,1735 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script>
+        // for search plugin notably
+        const base_url = "None";
+    </script>
+    <script>
+        const darkTheme = window.matchMedia("(prefers-color-scheme: dark)");
+        darkTheme.onchange = (e) => {
+            if (e.matches) {
+                document.documentElement.classList.add("dark")
+                localStorage.theme = 'dark';
+            } else {
+                document.documentElement.classList.remove("dark")
+                localStorage.removeItem("theme")
+            }
+        };
+
+        // On page load. Priotiry to lcaolStorage
+        if (localStorage.theme === "dark") {
+            document.documentElement.classList.add("dark")
+        } else if (localStorage.theme === "light") {
+            document.documentElement.classList.remove("dark")
+        } else if (darkTheme.matches) {
+            document.documentElement.classList.add("dark")
+        } else {
+            document.documentElement.classList.remove("dark")
+        }
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>‎ ‎ ‎ 1D Elements - MIDAS Python</title>
+    
+
+
+<title>‎ ‎ ‎ 1D Elements</title>
+
+
+
+
+
+
+
+
+
+
+<!-- Open Graph (Facebook, LinkedIn) -->
+
+<meta property="og:title" content="‎ ‎ ‎ 1D Elements">
+
+
+
+
+
+
+
+
+
+
+<!-- Twitter Card -->
+
+<meta name="twitter:title" content="‎ ‎ ‎ 1D Elements">
+
+
+
+
+
+
+<!-- JSON-LD Structured Data -->
+
+
+
+    <link rel="icon" href="../../img/favicon.ico">
+    <link href="../../css/base.css" rel="stylesheet">
+    <link href="../../css/geist.css" rel="stylesheet">
+    
+    <link href="../../css/pygments/dracula.css" rel="stylesheet">
+    
+
+    <script src="../../js/callbacks.js"></script>
+
+    
+    <!-- katex -->
+<link rel="stylesheet" href="../../css/katex.min.css">
+<!-- The loading of KaTeX is deferred to speed up page rendering -->
+<script defer src="../../js/katex.min.js"></script>
+<!-- To automatically render math in text elements, include the auto-render extension: -->
+<script defer src="../../js/auto-render.min.js" onload="renderMathInElement(document.body);"></script>
+    
+
+    
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.6.0/dist/echarts.js"></script>
+<script>
+    const waitForECharts = () => {
+        if (typeof echarts !== 'undefined') {
+            console.log('ECharts is loaded');
+            echarts.registerTheme('shadcn', {
+                "seriesCnt": "5",
+                "backgroundColor": "rgba(0,0,0,0)",
+                "titleColor": "#0a0a0a",
+                "subtitleColor": "#737373",
+                "textColorShow": false,
+                "textColor": "#333",
+                "textStyle": {
+                    "fontFamily": "Geist"
+                },
+                "markTextColor": "#ffffff",
+                "color": [
+                    "hsl(173,58%,39%)",
+                    "hsl(12,76%,61%)",
+                    "hsl(197,37%,24%)",
+                    "hsl(43,74%,66%)",
+                    "hsl(27,87%,67%)"
+                ],
+                "borderColor": "#e5e5e5",
+                "borderWidth": 0,
+                "visualMapColor": [
+                    "#09090b",
+                    "#18181b",
+                    "#27272a",
+                    "#3f3f46",
+                    "#52525b",
+                    "#71717a",
+                    "#a1a1aa",
+                    "#d4d4d8",
+                    "#e4e4e7",
+                    "#f4f4f5",
+                    "#fafafa"
+                ],
+                "legendTextColor": "#0a0a0a",
+                "kColor": "#eb5454",
+                "kColor0": "#47b262",
+                "kBorderColor": "#eb5454",
+                "kBorderColor0": "#47b262",
+                "kBorderWidth": 1,
+                "lineWidth": 2,
+                "symbolSize": 4,
+                "symbol": "emptyCircle",
+                "symbolBorderWidth": 1,
+                "lineSmooth": true,
+                "graphLineWidth": 1,
+                "graphLineColor": "#aaaaaa",
+                "mapLabelColor": "#000",
+                "mapLabelColorE": "rgb(100,0,0)",
+                "mapBorderColor": "#444",
+                "mapBorderColorE": "#444",
+                "mapBorderWidth": 0.5,
+                "mapBorderWidthE": 1,
+                "mapAreaColor": "#eee",
+                "mapAreaColorE": "rgba(255,215,0,0.8)",
+                "axes": [
+                    {
+                        "type": "all",
+                        "name": "通用坐标轴",
+                        "axisLineShow": true,
+                        "axisLineColor": "#6E7079",
+                        "axisTickShow": true,
+                        "axisTickColor": "#6E7079",
+                        "axisLabelShow": true,
+                        "axisLabelColor": "#6E7079",
+                        "splitLineShow": true,
+                        "splitLineColor": [
+                            "#E0E6F1"
+                        ],
+                        "splitAreaShow": false,
+                        "splitAreaColor": [
+                            "rgba(250,250,250,0.2)",
+                            "rgba(210,219,238,0.2)"
+                        ]
+                    },
+                    {
+                        "type": "category",
+                        "name": "类目坐标轴",
+                        "axisLineShow": true,
+                        "axisLineColor": "#6e7079",
+                        "axisTickShow": true,
+                        "axisTickColor": "#6e7079",
+                        "axisLabelShow": true,
+                        "axisLabelColor": "#6e7079",
+                        "splitLineShow": false,
+                        "splitLineColor": [
+                            "#E0E6F1"
+                        ],
+                        "splitAreaShow": false,
+                        "splitAreaColor": [
+                            "rgba(250,250,250,0.2)",
+                            "rgba(210,219,238,0.2)"
+                        ]
+                    },
+                    {
+                        "type": "value",
+                        "name": "数值坐标轴",
+                        "axisLineShow": false,
+                        "axisLineColor": "#6e7079",
+                        "axisTickShow": false,
+                        "axisTickColor": "#6e7079",
+                        "axisLabelShow": true,
+                        "axisLabelColor": "#6e7079",
+                        "splitLineShow": true,
+                        "splitLineColor": [
+                            "#E0E6F1"
+                        ],
+                        "splitAreaShow": false,
+                        "splitAreaColor": [
+                            "rgba(250,250,250,0.2)",
+                            "rgba(210,219,238,0.2)"
+                        ]
+                    },
+                    {
+                        "type": "log",
+                        "name": "对数坐标轴",
+                        "axisLineShow": false,
+                        "axisLineColor": "#6e7079",
+                        "axisTickShow": false,
+                        "axisTickColor": "#6e7079",
+                        "axisLabelShow": true,
+                        "axisLabelColor": "#6e7079",
+                        "splitLineShow": true,
+                        "splitLineColor": [
+                            "#E0E6F1"
+                        ],
+                        "splitAreaShow": false,
+                        "splitAreaColor": [
+                            "rgba(250,250,250,0.2)",
+                            "rgba(210,219,238,0.2)"
+                        ]
+                    },
+                    {
+                        "type": "time",
+                        "name": "时间坐标轴",
+                        "axisLineShow": true,
+                        "axisLineColor": "#6e7079",
+                        "axisTickShow": true,
+                        "axisTickColor": "#6e7079",
+                        "axisLabelShow": true,
+                        "axisLabelColor": "#6e7079",
+                        "splitLineShow": false,
+                        "splitLineColor": [
+                            "#E0E6F1"
+                        ],
+                        "splitAreaShow": false,
+                        "splitAreaColor": [
+                            "rgba(250,250,250,0.2)",
+                            "rgba(210,219,238,0.2)"
+                        ]
+                    }
+                ],
+                "axisSeperateSetting": true,
+                "toolboxColor": "#999999",
+                "toolboxEmphasisColor": "#666666",
+                "tooltipAxisColor": "#cccccc",
+                "tooltipAxisWidth": 1,
+                "timelineLineColor": "#e5e5e5",
+                "timelineLineWidth": 2,
+                "timelineItemColor": "#e5e5e5",
+                "timelineItemColorE": "#ffffff",
+                "timelineCheckColor": "#171717",
+                "timelineCheckBorderColor": "#ffffff",
+                "timelineItemBorderWidth": 1,
+                "timelineControlColor": "#737373",
+                "timelineControlBorderColor": "#171717",
+                "timelineControlBorderWidth": "0.0",
+                "timelineLabelColor": "#737373"
+            })
+        } else {
+            setTimeout(waitForECharts, 300);
+        }
+    }
+
+    waitForECharts();
+
+</script>
+    
+
+    
+
+</head>
+
+<body class="w-screen overflow-x-hidden bg-foreground md:bg-background text-foreground scroll-smooth m-0 p-0">
+    <div id="inner-body"
+        class="min-h-screen bg-background origin-[top_center_0px] transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)]">
+        <header
+    class="border-grid sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <div class="w-full mx-auto 3xl:max-w-8xl">
+        <div
+            class="xl:px-6 h-14 w-full max-w-8xl mx-auto px-4 border-x border-grid flex flex-row justify-between items-center">
+            <div class="mr-4 hidden md:flex">
+                <a href="/" class="mr-4 flex items-center gap-2 lg:mr-6">
+                    
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"
+    class="h-6 w-6">
+    <rect width="256" height="256" fill="none"></rect>
+    <line x1="208" y1="128" x2="128" y2="208" fill="none" stroke="currentColor" stroke-linecap="round"
+        stroke-linejoin="round" stroke-width="32"></line>
+    <line x1="192" y1="40" x2="40" y2="192" fill="none" stroke="currentColor" stroke-linecap="round"
+        stroke-linejoin="round" stroke-width="32"></line>
+</svg>
+
+                    <h1 class="hidden lg:inline-block font-bold text-md">
+                        
+                        MIDAS Python
+                        
+                    </h1>
+                </a>
+            </div>
+            <button
+                class="cursor-pointer inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md font-medium transition-colors focus-visible:outline-none focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 hover:text-accent-foreground py-2 -ml-2 mr-2 h-8 w-8 px-0 text-base hover:bg-transparent focus-visible:bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0 md:hidden"
+                type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="radix-:R15u6ja:"
+                data-state="closed" onclick="onMobileMenuButtonClick(event)">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                    stroke="currentColor" class="!size-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 9h16.5m-16.5 6.75h16.5"></path>
+                </svg>
+                <span class="sr-only">Toggle Menu</span>
+            </button>
+            <div class="flex flex-1 items-center justify-between gap-2 md:justify-end">
+                <button onclick="onSearchBarClick(event)"
+    class="cursor-pointer inline-flex items-center gap-2 whitespace-nowrap transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 border border-input hover:bg-accent hover:text-accent-foreground px-4 py-2 relative h-8 w-full justify-start rounded-[0.5rem] bg-muted/50 text-sm font-normal text-muted-foreground shadow-none sm:pr-12 md:w-40 lg:w-56 xl:w-64">
+    <span class="hidden lg:inline-flex">Search documentation...</span>
+    <span class="inline-flex lg:hidden">Search...</span>
+    <kbd
+        class="pointer-events-none absolute right-[0.3rem] top-[0.3rem] hidden h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] font-medium opacity-100 sm:flex">
+        <span class="text-xs">⌘</span>K
+    </kbd>
+</button>
+<dialog id="search-dialog" onclick="onSearchDialogClick(event)"
+    class="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-background rounded-lg shadow-lg border overflow-hidden p-0">
+    <div class="w-lg gap-4">
+        <div class="flex h-full w-full flex-col overflow-hidden rounded-md bg-popover text-popover-foreground">
+            <div class="w-full flex items-center border-b px-3" cmdk-input-wrapper="">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="mr-2 h-4 w-4 shrink-0 opacity-50">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <path d="m21 21-4.3-4.3"></path>
+                </svg>
+                <!-- <script>
+                    let debounceTimer;
+                    const onInputHandler = function (event) {
+                        const query = event.target.value;
+                        clearTimeout(debounceTimer);
+                        debounceTimer = setTimeout(() => {
+                            if (searchWorker && (query.length > 2)) {
+                                console.log(`Posting message { "query": "${query}" }`)
+                                // https://lunrjs.com/guides/searching.html
+                                // we should append a wilcard and also a boost on exact term
+                                const lunrQuery = `${query}^10 ${query}* ${query}~1`;
+                                searchWorker.postMessage({ "query": lunrQuery });
+                            } else if (query.length > 2) {
+                                console.warn("searchWorker is not defined")
+                            } else {
+                                const results = document.getElementById("mkdocs-search-results");
+                                if (results) {
+                                    while (results.firstChild) {
+                                        results.removeChild(results.firstChild);
+                                    }
+                                }
+                            }
+                        }, 300);
+                    };
+                </script> -->
+                <input
+                    class="flex h-10 w-full rounded-md bg-transparent py-3 text-sm outline-none placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50"
+                    placeholder="Type a command or search..." autocomplete="off" autocorrect="off" spellcheck="false"
+                    aria-autocomplete="list" role="combobox" aria-expanded="true" type="text" value=""
+                    oninput="onInputHandler(event)">
+            </div>
+        </div>
+        <div id="mkdocs-search-results" class="max-h-[300px] overflow-y-auto overflow-x-hidden">
+            <!-- search results go there -->
+        </div>
+    </div>
+</dialog>
+<script>
+    document.removeEventListener("keydown", searchShortcutHandler);
+    document.addEventListener("keydown", searchShortcutHandler);
+</script>
+                <div class="flex items-center gap-0.5">
+                    
+                    <button
+                        class="cursor-pointer inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 hover:bg-accent hover:text-accent-foreground py-2 group/toggle h-8 w-8 px-0"
+                        onclick="onThemeSwitch(event)">
+                        
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+    stroke-linecap="round" stroke-linejoin="round"
+    class="h-4 w-4 dark:hidden not-dark:block">
+    <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" />
+</svg>
+                        
+                        
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+    stroke-linecap="round" stroke-linejoin="round"
+    class="h-4 w-4 not-dark:hidden dark:block">
+    <circle cx="12" cy="12" r="4" />
+    <path d="M12 2v2" />
+    <path d="M12 20v2" />
+    <path d="m4.93 4.93 1.41 1.41" />
+    <path d="m17.66 17.66 1.41 1.41" />
+    <path d="M2 12h2" />
+    <path d="M20 12h2" />
+    <path d="m6.34 17.66-1.41 1.41" />
+    <path d="m19.07 4.93-1.41 1.41" />
+</svg>
+                        
+                        <span class="sr-only">Toggle theme</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="border-grid flex flex-1 flex-col">
+            <div class="w-full mx-auto 3xl:max-w-8xl">
+                <div
+                    class="px-4 w-full max-w-8xl mx-auto xl:px-6 flex-1 items-start md:grid md:grid-cols-[220px_minmax(0,1fr)] md:gap-6 lg:grid-cols-[240px_minmax(0,1fr)] lg:gap-10">
+                    <aside
+                        class="border-grid fixed top-14 z-30 hidden h-[calc(100vh-3.55rem)] w-full shrink-0 border-r md:sticky md:block">
+                        <div
+    class="no-scrollbar [&::-webkit-scrollbar]:hidden h-full overflow-auto py-6 pr-4 lg:py-8 flex flex-col gap-[.125rem]">
+    
+    
+    
+
+    
+    
+    <a href="../.." 
+    class="text-sm flex shrink-0 h-8 w-full items-center rounded-lg px-2 text-foreground underline-offset-2 font-normal hover:bg-accent hover:text-accent-foreground data-active:bg-accent data-active:font-medium data-active:text-accent-foreground">
+    
+    Introduction
+    
+
+    
+
+    
+
+    
+</a>
+    
+    
+    
+    <a href="../../model/" 
+    class="text-sm flex shrink-0 h-8 w-full items-center rounded-lg px-2 text-foreground underline-offset-2 font-normal hover:bg-accent hover:text-accent-foreground data-active:bg-accent data-active:font-medium data-active:text-accent-foreground">
+    
+    Model
+    
+
+    
+
+    
+
+    
+</a>
+    
+    
+    
+    <a href="../../node/" 
+    class="text-sm flex shrink-0 h-8 w-full items-center rounded-lg px-2 text-foreground underline-offset-2 font-normal hover:bg-accent hover:text-accent-foreground data-active:bg-accent data-active:font-medium data-active:text-accent-foreground">
+    
+    Node
+    
+
+    
+
+    
+
+    
+</a>
+    
+    
+
+
+    
+    
+    <div class="flex flex-col gap-1 mt-5 first:mt-0">
+        <h4 class="rounded-md px-2 py-1 text-sm font-semibold">Element</h4>
+        <div class="grid grid-flow-row auto-rows-max gap-[.125rem]">
+            
+            <a href="../" 
+    class="text-sm flex shrink-0 h-8 w-full items-center rounded-lg px-2 text-foreground underline-offset-2 font-normal hover:bg-accent hover:text-accent-foreground data-active:bg-accent data-active:font-medium data-active:text-accent-foreground">
+    
+    Element
+    
+
+    
+
+    
+
+    
+</a>
+            
+            <a href="./" data-active 
+    class="text-sm flex shrink-0 h-8 w-full items-center rounded-lg px-2 text-foreground underline-offset-2 font-normal hover:bg-accent hover:text-accent-foreground data-active:bg-accent data-active:font-medium data-active:text-accent-foreground">
+    
+    ‎ ‎ ‎ 1D Elements
+    
+
+    
+
+    
+
+    
+</a>
+            
+            <a href="../2D/" 
+    class="text-sm flex shrink-0 h-8 w-full items-center rounded-lg px-2 text-foreground underline-offset-2 font-normal hover:bg-accent hover:text-accent-foreground data-active:bg-accent data-active:font-medium data-active:text-accent-foreground">
+    
+    ‎ ‎ ‎ 2D Elements
+    
+
+    
+
+    
+
+    
+</a>
+            
+            <a href="../3D/" 
+    class="text-sm flex shrink-0 h-8 w-full items-center rounded-lg px-2 text-foreground underline-offset-2 font-normal hover:bg-accent hover:text-accent-foreground data-active:bg-accent data-active:font-medium data-active:text-accent-foreground">
+    
+    ‎ ‎ ‎ 3D Elements
+    
+
+    
+
+    
+
+    
+</a>
+            
+        </div>
+    </div>
+    
+    
+    
+    <div class="flex flex-col gap-1 mt-5 first:mt-0">
+        <h4 class="rounded-md px-2 py-1 text-sm font-semibold">Section Properties</h4>
+        <div class="grid grid-flow-row auto-rows-max gap-[.125rem]">
+            
+            <a href="../../Section/" 
+    class="text-sm flex shrink-0 h-8 w-full items-center rounded-lg px-2 text-foreground underline-offset-2 font-normal hover:bg-accent hover:text-accent-foreground data-active:bg-accent data-active:font-medium data-active:text-accent-foreground">
+    
+    Section
+    
+
+    
+
+    
+
+    
+</a>
+            
+            <a href="../../Section/01_user/" 
+    class="text-sm flex shrink-0 h-8 w-full items-center rounded-lg px-2 text-foreground underline-offset-2 font-normal hover:bg-accent hover:text-accent-foreground data-active:bg-accent data-active:font-medium data-active:text-accent-foreground">
+    
+    ‎ ‎ ‎ Standard Section
+    
+
+    
+
+    
+
+    
+</a>
+            
+            <a href="../../Section/02_psc/" 
+    class="text-sm flex shrink-0 h-8 w-full items-center rounded-lg px-2 text-foreground underline-offset-2 font-normal hover:bg-accent hover:text-accent-foreground data-active:bg-accent data-active:font-medium data-active:text-accent-foreground">
+    
+    ‎ ‎ ‎ PSC Section
+    
+
+    
+
+    
+
+    
+</a>
+            
+            <a href="../../Section/03_composite/" 
+    class="text-sm flex shrink-0 h-8 w-full items-center rounded-lg px-2 text-foreground underline-offset-2 font-normal hover:bg-accent hover:text-accent-foreground data-active:bg-accent data-active:font-medium data-active:text-accent-foreground">
+    
+    ‎ ‎ ‎ Composite Section
+    
+
+    
+
+    
+
+    
+</a>
+            
+            <a href="../../Section/09_thickness/" 
+    class="text-sm flex shrink-0 h-8 w-full items-center rounded-lg px-2 text-foreground underline-offset-2 font-normal hover:bg-accent hover:text-accent-foreground data-active:bg-accent data-active:font-medium data-active:text-accent-foreground">
+    
+    Thickness
+    
+
+    
+
+    
+
+    
+</a>
+            
+        </div>
+    </div>
+    
+    
+    
+    <div class="flex flex-col gap-1 mt-5 first:mt-0">
+        <h4 class="rounded-md px-2 py-1 text-sm font-semibold">Material Properties</h4>
+        <div class="grid grid-flow-row auto-rows-max gap-[.125rem]">
+            
+            <a href="../../Material/" 
+    class="text-sm flex shrink-0 h-8 w-full items-center rounded-lg px-2 text-foreground underline-offset-2 font-normal hover:bg-accent hover:text-accent-foreground data-active:bg-accent data-active:font-medium data-active:text-accent-foreground">
+    
+    Material
+    
+
+    
+
+    
+
+    
+</a>
+            
+            <a href="../../Material/001concrete/" 
+    class="text-sm flex shrink-0 h-8 w-full items-center rounded-lg px-2 text-foreground underline-offset-2 font-normal hover:bg-accent hover:text-accent-foreground data-active:bg-accent data-active:font-medium data-active:text-accent-foreground">
+    
+    ‎ ‎ ‎ Concrete
+    
+
+    
+
+    
+
+    
+</a>
+            
+            <a href="../../Material/002steel/" 
+    class="text-sm flex shrink-0 h-8 w-full items-center rounded-lg px-2 text-foreground underline-offset-2 font-normal hover:bg-accent hover:text-accent-foreground data-active:bg-accent data-active:font-medium data-active:text-accent-foreground">
+    
+    ‎ ‎ ‎ Steel
+    
+
+    
+
+    
+
+    
+</a>
+            
+            <a href="../../Material/003usermat/" 
+    class="text-sm flex shrink-0 h-8 w-full items-center rounded-lg px-2 text-foreground underline-offset-2 font-normal hover:bg-accent hover:text-accent-foreground data-active:bg-accent data-active:font-medium data-active:text-accent-foreground">
+    
+    ‎ ‎ ‎ User-defined
+    
+
+    
+
+    
+
+    
+</a>
+            
+            <a href="../../Material/010creep/" 
+    class="text-sm flex shrink-0 h-8 w-full items-center rounded-lg px-2 text-foreground underline-offset-2 font-normal hover:bg-accent hover:text-accent-foreground data-active:bg-accent data-active:font-medium data-active:text-accent-foreground">
+    
+    Creep Shrinkage
+    
+
+    
+
+    
+
+    
+</a>
+            
+            <a href="../../Material/011comp/" 
+    class="text-sm flex shrink-0 h-8 w-full items-center rounded-lg px-2 text-foreground underline-offset-2 font-normal hover:bg-accent hover:text-accent-foreground data-active:bg-accent data-active:font-medium data-active:text-accent-foreground">
+    
+    Compressive Strength
+    
+
+    
+
+    
+
+    
+</a>
+            
+            <a href="../../Material/012tdlink/" 
+    class="text-sm flex shrink-0 h-8 w-full items-center rounded-lg px-2 text-foreground underline-offset-2 font-normal hover:bg-accent hover:text-accent-foreground data-active:bg-accent data-active:font-medium data-active:text-accent-foreground">
+    
+    Time Dependent Link
+    
+
+    
+
+    
+
+    
+</a>
+            
+        </div>
+    </div>
+    
+    
+    
+    <div class="flex flex-col gap-1 mt-5 first:mt-0">
+        <h4 class="rounded-md px-2 py-1 text-sm font-semibold">Boundary Conditions</h4>
+        <div class="grid grid-flow-row auto-rows-max gap-[.125rem]">
+            
+            <a href="../../Boundary/" 
+    class="text-sm flex shrink-0 h-8 w-full items-center rounded-lg px-2 text-foreground underline-offset-2 font-normal hover:bg-accent hover:text-accent-foreground data-active:bg-accent data-active:font-medium data-active:text-accent-foreground">
+    
+    Boundary
+    
+
+    
+
+    
+
+    
+</a>
+            
+            <a href="../../Boundary/01supports/" 
+    class="text-sm flex shrink-0 h-8 w-full items-center rounded-lg px-2 text-foreground underline-offset-2 font-normal hover:bg-accent hover:text-accent-foreground data-active:bg-accent data-active:font-medium data-active:text-accent-foreground">
+    
+    ‎ ‎ ‎ Supports
+    
+
+    
+
+    
+
+    
+</a>
+            
+            <a href="../../Boundary/02elink/" 
+    class="text-sm flex shrink-0 h-8 w-full items-center rounded-lg px-2 text-foreground underline-offset-2 font-normal hover:bg-accent hover:text-accent-foreground data-active:bg-accent data-active:font-medium data-active:text-accent-foreground">
+    
+    ‎ ‎ ‎ Elastic Link
+    
+
+    
+
+    
+
+    
+</a>
+            
+            <a href="../../Boundary/03rlink/" 
+    class="text-sm flex shrink-0 h-8 w-full items-center rounded-lg px-2 text-foreground underline-offset-2 font-normal hover:bg-accent hover:text-accent-foreground data-active:bg-accent data-active:font-medium data-active:text-accent-foreground">
+    
+    ‎ ‎ ‎ Rigid Link
+    
+
+    
+
+    
+
+    
+</a>
+            
+            <a href="../../Boundary/04PointSpring/" 
+    class="text-sm flex shrink-0 h-8 w-full items-center rounded-lg px-2 text-foreground underline-offset-2 font-normal hover:bg-accent hover:text-accent-foreground data-active:bg-accent data-active:font-medium data-active:text-accent-foreground">
+    
+    ‎ ‎ ‎ Point Spring
+    
+
+    
+
+    
+
+    
+</a>
+            
+            <a href="../../Boundary/05MLFC/" 
+    class="text-sm flex shrink-0 h-8 w-full items-center rounded-lg px-2 text-foreground underline-offset-2 font-normal hover:bg-accent hover:text-accent-foreground data-active:bg-accent data-active:font-medium data-active:text-accent-foreground">
+    
+    ‎ ‎ ‎ Multi Linear Function
+    
+
+    
+
+    
+
+    
+</a>
+            
+        </div>
+    </div>
+    
+    
+    
+    <div class="flex flex-col gap-1 mt-5 first:mt-0">
+        <h4 class="rounded-md px-2 py-1 text-sm font-semibold">Load</h4>
+        <div class="grid grid-flow-row auto-rows-max gap-[.125rem]">
+            
+            <a href="../../Load/" 
+    class="text-sm flex shrink-0 h-8 w-full items-center rounded-lg px-2 text-foreground underline-offset-2 font-normal hover:bg-accent hover:text-accent-foreground data-active:bg-accent data-active:font-medium data-active:text-accent-foreground">
+    
+    Load
+    
+
+    
+
+    
+
+    
+</a>
+            
+            <a href="../../Load/000sw/" 
+    class="text-sm flex shrink-0 h-8 w-full items-center rounded-lg px-2 text-foreground underline-offset-2 font-normal hover:bg-accent hover:text-accent-foreground data-active:bg-accent data-active:font-medium data-active:text-accent-foreground">
+    
+    ‎ ‎ ‎ Self Weight
+    
+
+    
+
+    
+
+    
+</a>
+            
+            <a href="../../Load/001nodal/" 
+    class="text-sm flex shrink-0 h-8 w-full items-center rounded-lg px-2 text-foreground underline-offset-2 font-normal hover:bg-accent hover:text-accent-foreground data-active:bg-accent data-active:font-medium data-active:text-accent-foreground">
+    
+    ‎ ‎ ‎ Nodal Load
+    
+
+    
+
+    
+
+    
+</a>
+            
+            <a href="../../Load/002beam/" 
+    class="text-sm flex shrink-0 h-8 w-full items-center rounded-lg px-2 text-foreground underline-offset-2 font-normal hover:bg-accent hover:text-accent-foreground data-active:bg-accent data-active:font-medium data-active:text-accent-foreground">
+    
+    ‎ ‎ ‎ Beam Load
+    
+
+    
+
+    
+
+    
+</a>
+            
+            <a href="../../Load/case/" 
+    class="text-sm flex shrink-0 h-8 w-full items-center rounded-lg px-2 text-foreground underline-offset-2 font-normal hover:bg-accent hover:text-accent-foreground data-active:bg-accent data-active:font-medium data-active:text-accent-foreground">
+    
+    Load Case
+    
+
+    
+
+    
+
+    
+</a>
+            
+        </div>
+    </div>
+    
+    
+    
+    <div class="flex flex-col gap-1 mt-5 first:mt-0">
+        <h4 class="rounded-md px-2 py-1 text-sm font-semibold">Group</h4>
+        <div class="grid grid-flow-row auto-rows-max gap-[.125rem]">
+            
+            <a href="../../Group/" 
+    class="text-sm flex shrink-0 h-8 w-full items-center rounded-lg px-2 text-foreground underline-offset-2 font-normal hover:bg-accent hover:text-accent-foreground data-active:bg-accent data-active:font-medium data-active:text-accent-foreground">
+    
+    Group
+    
+
+    
+
+    
+
+    
+</a>
+            
+            <a href="../../Group/001sg/" 
+    class="text-sm flex shrink-0 h-8 w-full items-center rounded-lg px-2 text-foreground underline-offset-2 font-normal hover:bg-accent hover:text-accent-foreground data-active:bg-accent data-active:font-medium data-active:text-accent-foreground">
+    
+    ‎ ‎ ‎ Structure Group
+    
+
+    
+
+    
+
+    
+</a>
+            
+            <a href="../../Group/002bg/" 
+    class="text-sm flex shrink-0 h-8 w-full items-center rounded-lg px-2 text-foreground underline-offset-2 font-normal hover:bg-accent hover:text-accent-foreground data-active:bg-accent data-active:font-medium data-active:text-accent-foreground">
+    
+    ‎ ‎ ‎ Boundary Group
+    
+
+    
+
+    
+
+    
+</a>
+            
+            <a href="../../Group/003lg/" 
+    class="text-sm flex shrink-0 h-8 w-full items-center rounded-lg px-2 text-foreground underline-offset-2 font-normal hover:bg-accent hover:text-accent-foreground data-active:bg-accent data-active:font-medium data-active:text-accent-foreground">
+    
+    ‎ ‎ ‎ Load Group
+    
+
+    
+
+    
+
+    
+</a>
+            
+            <a href="../../Group/004tg/" 
+    class="text-sm flex shrink-0 h-8 w-full items-center rounded-lg px-2 text-foreground underline-offset-2 font-normal hover:bg-accent hover:text-accent-foreground data-active:bg-accent data-active:font-medium data-active:text-accent-foreground">
+    
+    ‎ ‎ ‎ Tendon Group
+    
+
+    
+
+    
+
+    
+</a>
+            
+        </div>
+    </div>
+    
+    
+    
+    <div class="flex flex-col gap-1 mt-5 first:mt-0">
+        <h4 class="rounded-md px-2 py-1 text-sm font-semibold">CS</h4>
+        <div class="grid grid-flow-row auto-rows-max gap-[.125rem]">
+            
+            <a href="../../200cs/" 
+    class="text-sm flex shrink-0 h-8 w-full items-center rounded-lg px-2 text-foreground underline-offset-2 font-normal hover:bg-accent hover:text-accent-foreground data-active:bg-accent data-active:font-medium data-active:text-accent-foreground">
+    
+    Construction Stage
+    
+
+    
+
+    
+
+    
+</a>
+            
+        </div>
+    </div>
+    
+    
+    
+</div>
+                    </aside>
+                    <main class="relative py-6 lg:gap-10 lg:py-8 xl:grid xl:grid-cols-[1fr_300px]">
+                        <div class="mx-auto w-full min-w-0 xl:max-w-2xl">
+                            <article class="typography w-full">
+    
+    <div class="mb-4 flex items-center space-x-1 text-sm leading-none text-muted-foreground">
+    
+
+
+<span class="truncate">Element</span>
+
+
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-right h-3.5 w-3.5">
+    <path d="m9 18 6-6-6-6"></path>
+</svg>
+<div class="text-foreground">‎ ‎ ‎ 1D Elements</div>
+
+</div>
+    
+    
+    
+    <h1 id="1d-elements">1D Elements</h1>
+<p><img alt="MIDAS PYTHON" src="../1D_banner.png" /></p>
+<h4 id="creation-methods">Creation Methods</h4>
+<p>There are three methods available to create 1D elements:</p>
+<ul>
+<li>
+<p>Single Element (Main Class) :  eg. <code>Truss</code> , <code>Beam</code><br />
+    Creates one element connecting two nodes by their IDs:<code>i</code> and <code>j</code>.<br />
+    Use this when we know the specific node IDs to connect.</p>
+</li>
+<li>
+<p>Start and End location (<code>SE</code>method) :  eg. <code>Truss.SE</code> , <code>Beam.SE</code><br />
+    Creates multiple equally spaced elements between a given start and end location.
+http://localhost:8000/Element/1D/</p>
+</li>
+<li>Start, Direction and Length (<code>SDL</code> method) :  eg. <code>Truss.SDL</code> , <code>Beam.SDL</code><br />
+    It creates equally divided elements at Start location along the the direction with given total length.</li>
+</ul>
+<p><img alt="SS" src="../elem_1D_create.png" /></p>
+<h2 id="truss">TRUSS</h2>
+<p>A nested class within Element used to create truss elements.</p>
+<h3 id="object-attributes">Object Attributes</h3>
+<p><code>ID</code>: Element ID<br />
+<code>TYPE</code>: Element type = <font color="red">'TRUSS'</font><br />
+<code>MATL</code>: Material ID of the truss element<br />
+<code>SECT</code>: Section ID of the truss element<br />
+<code>NODE</code>: Nodes of element in list. eg: [1,2] <br />
+<code>ANGLE</code>: Beta angle of the truss element  </p>
+<p>To create truss element we have total 3 methods :  </p>
+<h3 id="1-truss">1. Truss</h3>
+<p><strong><font color="green"><code>Element.Truss(i:int, j:int, mat = 1, sect = 1, angle = 0, id = 0)</code></font></strong><br />
+Creates a truss between nodes <code>i</code> and <code>j</code>.</p>
+<h4 id="parameters">Parameters</h4>
+<ul>
+<li><code>i</code>: Node ID of i-th end</li>
+<li><code>j</code>: Node ID of j-th end</li>
+<li><code>mat (default=1</code>: Material ID of the truss element</li>
+<li><code>sect (default=1)</code>: Section ID of the truss element</li>
+<li><code>angle (default=0)</code>: Beta angle of the truss element</li>
+<li><code>id (default=0)</code>: Manually assign an ID.   If <strong>0</strong>, ID will be auto-assigned.</li>
+</ul>
+<h4 id="examples">Examples</h4>
+<div class="codehilite"><pre><span></span><code><span class="n">Node</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>    <span class="c1"># Create Node at 0,0,0 with ID = 1(default)</span>
+<span class="n">Node</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>    <span class="c1"># Create Node at 1,1,1 with ID = 2(default)</span>
+
+<span class="n">beam1</span> <span class="o">=</span> <span class="n">Element</span><span class="o">.</span><span class="n">Truss</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>  <span class="c1"># Create Truss connecting Node 1 and Node 2 (default ID = 1)</span>
+
+<span class="n">Node</span><span class="o">.</span><span class="n">create</span><span class="p">()</span>
+<span class="n">Element</span><span class="o">.</span><span class="n">create</span><span class="p">()</span>
+</code></pre></div>
+
+<h3 id="2-trussse">2. Truss.SE</h3>
+<p><strong><font color="green"><code>Element.Truss.SE(s_loc: list, e_loc: list, n: int = 1, mat, sect, angle, id)</code></font></strong><br />
+Creates <code>n</code> truss elements between start and end location.</p>
+<h4 id="parameters_1">Parameters</h4>
+<ul>
+<li><code>s_loc</code>: Start location. [x,y,z]</li>
+<li><code>e_loc</code>: End location. [x,y,z]</li>
+<li><code>n (default=1)</code>: Number of elements</li>
+<li><code>mat,sect,angle,id</code> : Same as Element.Truss() method</li>
+</ul>
+<h4 id="examples_1">Examples</h4>
+<div class="codehilite"><pre><span></span><code><span class="n">Element</span><span class="o">.</span><span class="n">Truss</span><span class="o">.</span><span class="n">SE</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],[</span><span class="mi">10</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span><span class="mi">10</span><span class="p">)</span> <span class="c1"># Create 10 truss between (0,0,0) and (10,0,0) </span>
+
+<span class="n">Node</span><span class="o">.</span><span class="n">create</span><span class="p">()</span>
+<span class="n">Element</span><span class="o">.</span><span class="n">create</span><span class="p">()</span>
+</code></pre></div>
+
+<h3 id="3-trusssdl">3. Truss.SDL</h3>
+<p><strong><font color="green"><code>Element.Truss.SDL(s_loc: list, dir: list, l: float, n: int = 1, mat, sect, angle, id)</code></font></strong><br />
+Creates <code>n</code> truss elements along a straight line defined by direction <code>dir</code> and length <code>l</code> starting at <code>s_loc</code>.</p>
+<h4 id="parameters_2">Parameters</h4>
+<ul>
+<li><code>s_loc</code>: Starting location [x, y, z]</li>
+<li><code>dir</code>: Direction vector [dx, dy, dz]</li>
+<li><code>l</code>: Total length of element</li>
+<li><code>n (default=1)</code>: Number of elements</li>
+<li><code>mat,sect,angle,id</code> : Same as Element.Truss() method</li>
+</ul>
+<h4 id="examples_2">Examples</h4>
+<div class="codehilite"><pre><span></span><code><span class="n">Element</span><span class="o">.</span><span class="n">Truss</span><span class="o">.</span><span class="n">SDL</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span><span class="mi">10</span><span class="p">)</span> <span class="c1"># Create a vertical truss of length 10 at (0,0,0)</span>
+
+<span class="n">Node</span><span class="o">.</span><span class="n">create</span><span class="p">()</span>
+<span class="n">Element</span><span class="o">.</span><span class="n">create</span><span class="p">()</span>
+</code></pre></div>
+
+<hr />
+<h2 id="beam">BEAM</h2>
+<p>A nested class within Element used to create Beam elements.</p>
+<h3 id="object-attributes_1">Object Attributes</h3>
+<p><code>ID</code>: Element ID<br />
+<code>TYPE</code>: Element type = <font color="red">'BEAM'</font><br />
+<code>MATL</code>: Material ID of the beam element<br />
+<code>SECT</code>: Section ID of the beam element<br />
+<code>NODE</code>: Nodes of element in list. eg: [1,2] <br />
+<code>ANGLE</code>: Beta angle of the beam element  </p>
+<p>To create Beam element we have total 3 methods :  </p>
+<h3 id="1-beam">1. Beam</h3>
+<p><strong><font color="green"><code>Element.Beam(i:int, j:int, mat = 1, sect = 1, angle = 0, id = 0)</code></font></strong><br />
+Creates a Beam between nodes <code>i</code> and <code>j</code>.</p>
+<h4 id="parameters_3">Parameters</h4>
+<ul>
+<li><code>i</code>: Node ID of i-th end</li>
+<li><code>j</code>: Node ID of j-th end</li>
+<li><code>mat (default=1</code>: Material ID of the Beam element</li>
+<li><code>sect (default=1)</code>: Section ID of the Beam element</li>
+<li><code>angle (default=0)</code>: Beta angle of the Beam element</li>
+<li><code>id (default=0)</code>: Manually assign an ID.   If <strong>0</strong>, ID will be auto-assigned.</li>
+</ul>
+<h4 id="examples_3">Examples</h4>
+<div class="codehilite"><pre><span></span><code><span class="n">Node</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>    <span class="c1"># Create Node at 0,0,0 with ID = 1(default)</span>
+<span class="n">Node</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>    <span class="c1"># Create Node at 1,1,1 with ID = 2(default)</span>
+
+<span class="n">beam1</span> <span class="o">=</span> <span class="n">Element</span><span class="o">.</span><span class="n">Beam</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>  <span class="c1"># Create Beam connecting Node 1 and Node 2 (default ID = 1)</span>
+
+<span class="n">Node</span><span class="o">.</span><span class="n">create</span><span class="p">()</span>
+<span class="n">Element</span><span class="o">.</span><span class="n">create</span><span class="p">()</span>
+</code></pre></div>
+
+<h3 id="2-beamse">2. Beam.SE</h3>
+<p><strong><font color="green"><code>Element.Beam.SE(s_loc: list, e_loc: list, n: int = 1, mat, sect, angle, id)</code></font></strong><br />
+Creates <code>n</code> Beam elements between start and end location.</p>
+<h4 id="parameters_4">Parameters</h4>
+<ul>
+<li><code>s_loc</code>: Start location. [x,y,z]</li>
+<li><code>e_loc</code>: End location. [x,y,z]</li>
+<li><code>n (default=1)</code>: Number of elements</li>
+<li><code>mat,sect,angle,id</code> : Same as Element.Beam() method</li>
+</ul>
+<h4 id="examples_4">Examples</h4>
+<div class="codehilite"><pre><span></span><code><span class="n">Element</span><span class="o">.</span><span class="n">Beam</span><span class="o">.</span><span class="n">SE</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],[</span><span class="mi">10</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span><span class="mi">10</span><span class="p">)</span> <span class="c1"># Create 10 Beam between (0,0,0) and (10,0,0) </span>
+
+<span class="n">Node</span><span class="o">.</span><span class="n">create</span><span class="p">()</span>
+<span class="n">Element</span><span class="o">.</span><span class="n">create</span><span class="p">()</span>
+</code></pre></div>
+
+<h3 id="3-beamsdl">3. Beam.SDL</h3>
+<p><strong><font color="green"><code>Element.Beam.SDL(s_loc: list, dir: list, l: float, n: int = 1, mat, sect, angle, id)</code></font></strong><br />
+Creates <code>n</code> Beam elements along a straight line defined by direction <code>dir</code> and length <code>l</code> starting at <code>s_loc</code>.</p>
+<h4 id="parameters_5">Parameters</h4>
+<ul>
+<li><code>s_loc</code>: Starting location [x, y, z]</li>
+<li><code>dir</code>: Direction vector [dx, dy, dz]</li>
+<li><code>l</code>: Total length of element</li>
+<li><code>n (default=1)</code>: Number of elements</li>
+<li><code>mat,sect,angle,id</code> : Same as Element.Beam() method</li>
+</ul>
+<h4 id="examples_5">Examples</h4>
+<div class="codehilite"><pre><span></span><code><span class="n">Element</span><span class="o">.</span><span class="n">Beam</span><span class="o">.</span><span class="n">SDL</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span><span class="mi">10</span><span class="p">)</span> <span class="c1"># Create a vertical beam of length 10 at (0,0,0)</span>
+
+<span class="n">Node</span><span class="o">.</span><span class="n">create</span><span class="p">()</span>
+<span class="n">Element</span><span class="o">.</span><span class="n">create</span><span class="p">()</span>
+</code></pre></div>
+
+<hr />
+<h2 id="tension">TENSION</h2>
+<p>A nested class within Element used to create tension-only elements, hooks, and cables.</p>
+<h3 id="object-attributes_2">Object Attributes</h3>
+<p><code>ID</code>: Element ID<br />
+<code>TYPE</code>: Element type = <font color="red">'COMPTR'</font><br />
+<code>MATL</code>: Material ID of the compression element<br />
+<code>SECT</code>: Section ID of the compression element<br />
+<code>NODE</code>: Nodes of element in list. eg: [1,2] <br />
+<code>ANGLE</code>: Beta angle of the compression element<br />
+<code>STYPE</code>: Subtype of compression element (1=Compression-only, 2=Gap)<br />
+<code>TENS</code>: Allowable tension or initial compression force<br />
+<code>T_LIMIT</code>: Compression limit value<br />
+<code>T_bLMT</code>: Compression limit flag (automatically set when T_LIMIT is provided)<br />
+<code>NON_LEN</code>: Non-linear length parameter (for Gap subtype)  </p>
+<h3 id="tension-element">Tension Element</h3>
+<p><strong><font color="green"><code>Element.Tension(i:int, j:int, stype:int, mat = 1, sect = 1, angle = 0, id = 0, non_len = None, cable_type = None, tens = None, t_limit = None)</code></font></strong><br />
+Creates a tension element between nodes <code>i</code> and <code>j</code>.</p>
+<h4 id="parameters_6">Parameters</h4>
+<ul>
+<li><code>i</code>: Node ID of i-th end</li>
+<li><code>j</code>: Node ID of j-th end</li>
+<li><code>stype</code>: Tension element subtype (1=Tension-only, 2=Hook, 3=Cable)</li>
+<li><code>mat (default=1)</code>: Material ID of the tension element</li>
+<li><code>sect (default=1)</code>: Section ID of the tension element</li>
+<li><code>angle (default=0)</code>: Beta angle of the tension element</li>
+<li><code>id (default=0)</code>: Manually assign an ID. If <strong>0</strong>, ID will be auto-assigned.</li>
+<li><code>non_len (default=None)</code>: Non-linear length parameter for Hook/Cable</li>
+<li><code>cable_type (default=None)</code>: Cable type for stype=3 (1=Pretension, 2=Horizontal, 3=Lu)</li>
+<li><code>tens (default=None)</code>: Initial tension force or allowable compression</li>
+<li><code>t_limit (default=None)</code>: Tension limit value</li>
+</ul>
+<h4 id="examples_6">Examples</h4>
+<div class="codehilite"><pre><span></span><code><span class="n">Node</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>    <span class="c1"># Create Node at 0,0,0 with ID = 1(default)</span>
+<span class="n">Node</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>    <span class="c1"># Create Node at 1,1,1 with ID = 2(default)</span>
+
+<span class="c1"># Simple tension-only member</span>
+<span class="n">tension1</span> <span class="o">=</span> <span class="n">Element</span><span class="o">.</span><span class="n">Tension</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="n">stype</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Tension-only with allowable compression and tension limit</span>
+<span class="n">tension2</span> <span class="o">=</span> <span class="n">Element</span><span class="o">.</span><span class="n">Tension</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="n">stype</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">tens</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span><span class="n">t_limit</span><span class="o">=-</span><span class="mi">15</span><span class="p">)</span>
+
+<span class="c1"># Hook element with slack length</span>
+<span class="n">hook1</span> <span class="o">=</span> <span class="n">Element</span><span class="o">.</span><span class="n">Tension</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="n">stype</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="n">non_len</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+
+<span class="c1"># Cable with initial tension and catenary effects</span>
+<span class="n">cable1</span> <span class="o">=</span> <span class="n">Element</span><span class="o">.</span><span class="n">Tension</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="n">stype</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="n">cable_type</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="n">tens</span><span class="o">=</span><span class="mf">1000.0</span><span class="p">,</span><span class="n">non_len</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+
+<span class="n">Node</span><span class="o">.</span><span class="n">create</span><span class="p">()</span>
+<span class="n">Element</span><span class="o">.</span><span class="n">create</span><span class="p">()</span>
+</code></pre></div>
+
+<h3 id="subtypes">Subtypes</h3>
+<h4 id="1-tension-only-stype1">1. Tension-only (stype=1)</h4>
+<ul>
+<li>Transfers tension forces only</li>
+<li>Can have allowable compression (<code>tens</code> parameter)</li>
+<li>Can have tension limit (<code>t_limit</code> parameter)</li>
+</ul>
+<h4 id="2-hook-stype2">2. Hook (stype=2)</h4>
+<ul>
+<li>Has slack length defined by <code>non_len</code> parameter</li>
+<li>Only active when stretched beyond slack length</li>
+</ul>
+<h4 id="3-cable-stype3">3. Cable (stype=3)</h4>
+<ul>
+<li>Supports catenary analysis</li>
+<li>Requires <code>cable_type</code> parameter</li>
+<li>Can have initial tension and slack length</li>
+</ul>
+<hr />
+<h2 id="compression">COMPRESSION</h2>
+<p>A nested class within Element used to create compression-only elements and gaps.</p>
+<h3 id="object-attributes_3">Object Attributes</h3>
+<p><code>ID</code>: Element ID<br />
+<code>TYPE</code>: Element type = <font color="red">'COMPTR'</font><br />
+<code>MATL</code>: Material ID of the compression element<br />
+<code>SECT</code>: Section ID of the compression element<br />
+<code>NODE</code>: Nodes of element in list. eg: [1,2] <br />
+<code>ANGLE</code>: Beta angle of the compression element<br />
+<code>STYPE</code>: Subtype of compression element (1=Compression-only, 2=Gap)<br />
+<code>TENS</code>: Allowable tension or initial compression force<br />
+<code>T_LIMIT</code>: Compression limit value<br />
+<code>T_bLMT</code>: Compression limit flag (automatically set when T_LIMIT is provided)<br />
+<code>NON_LEN</code>: Non-linear length parameter (for Gap subtype)  </p>
+<h3 id="compression-element">Compression Element</h3>
+<p><strong><font color="green"><code>Element.Compression(i:int, j:int, stype:int, mat = 1, sect = 1, angle = 0, id = 0, tens = None, t_limit = None, non_len = None)</code></font></strong><br />
+Creates a compression element between nodes <code>i</code> and <code>j</code>.</p>
+<h4 id="parameters_7">Parameters</h4>
+<ul>
+<li><code>i</code>: Node ID of i-th end</li>
+<li><code>j</code>: Node ID of j-th end</li>
+<li><code>stype</code>: Compression element subtype (1=Compression-only, 2=Gap)</li>
+<li><code>mat (default=1)</code>: Material ID of the compression element</li>
+<li><code>sect (default=1)</code>: Section ID of the compression element</li>
+<li><code>angle (default=0)</code>: Beta angle of the compression element</li>
+<li><code>id (default=0)</code>: Manually assign an ID. If <strong>0</strong>, ID will be auto-assigned.</li>
+<li><code>tens (default=None)</code>: Allowable tension or initial compression force</li>
+<li><code>t_limit (default=None)</code>: Compression limit value</li>
+<li><code>non_len (default=None)</code>: Non-linear length parameter for gap</li>
+</ul>
+<h4 id="examples_7">Examples</h4>
+<div class="codehilite"><pre><span></span><code><span class="n">Node</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>    <span class="c1"># Create Node at 0,0,0 with ID = 1(default)</span>
+<span class="n">Node</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>    <span class="c1"># Create Node at 1,1,1 with ID = 2(default)</span>
+
+<span class="c1"># Simple compression-only member</span>
+<span class="n">comp1</span> <span class="o">=</span> <span class="n">Element</span><span class="o">.</span><span class="n">Compression</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="n">stype</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Compression-only with tension limit and buckling limit</span>
+<span class="n">comp2</span> <span class="o">=</span> <span class="n">Element</span><span class="o">.</span><span class="n">Compression</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="n">stype</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">tens</span><span class="o">=</span><span class="mi">27</span><span class="p">,</span><span class="n">t_limit</span><span class="o">=-</span><span class="mi">15</span><span class="p">)</span>
+
+<span class="c1"># Gap element with initial gap</span>
+<span class="n">gap1</span> <span class="o">=</span> <span class="n">Element</span><span class="o">.</span><span class="n">Compression</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="n">stype</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="n">non_len</span><span class="o">=</span><span class="mf">0.25</span><span class="p">)</span>
+
+<span class="n">Node</span><span class="o">.</span><span class="n">create</span><span class="p">()</span>
+<span class="n">Element</span><span class="o">.</span><span class="n">create</span><span class="p">()</span>
+</code></pre></div>
+
+<h3 id="subtypes_1">Subtypes</h3>
+<h4 id="1-compression-only-stype1">1. Compression-only (stype=1)</h4>
+<ul>
+<li>Transfers compression forces only</li>
+<li>Can have allowable tension (<code>tens</code> parameter)</li>
+<li>Can have compression limit (<code>t_limit</code> parameter)</li>
+</ul>
+<h4 id="2-gap-stype2">2. Gap (stype=2)</h4>
+<ul>
+<li>Has initial gap defined by <code>non_len</code> parameter</li>
+<li>Only active when compressed beyond gap length</li>
+</ul>
+<hr />
+<h2 id="examples_8">Examples</h2>
+<h3 id="1-portal-frame">1. Portal Frame</h3>
+<div class="codehilite"><pre><span></span><code><span class="n">h</span> <span class="o">=</span> <span class="mf">3.5</span>        <span class="c1"># Height of each storey</span>
+<span class="n">w</span> <span class="o">=</span> <span class="mf">4.0</span>       <span class="c1"># Width of each Bay</span>
+
+<span class="n">n_storey</span> <span class="o">=</span> <span class="mi">10</span> <span class="c1"># Total no. of storey</span>
+<span class="n">n_bay</span> <span class="o">=</span> <span class="mi">5</span>      <span class="c1"># Total no. of bay</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_bay</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_storey</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">i</span><span class="o">!=</span><span class="n">n_bay</span><span class="p">:</span>
+            <span class="n">Element</span><span class="o">.</span><span class="n">Beam</span><span class="o">.</span><span class="n">SDL</span><span class="p">([</span><span class="n">i</span><span class="o">*</span><span class="n">w</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="n">j</span><span class="o">*</span><span class="n">h</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span><span class="n">h</span><span class="p">,</span><span class="n">sect</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># Column -&gt; Sect ID = 1</span>
+            <span class="n">Element</span><span class="o">.</span><span class="n">Beam</span><span class="o">.</span><span class="n">SDL</span><span class="p">([</span><span class="n">i</span><span class="o">*</span><span class="n">w</span><span class="p">,</span><span class="mi">0</span><span class="p">,(</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">h</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span><span class="n">w</span><span class="p">,</span><span class="n">sect</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span> <span class="c1"># Beam -&gt; Sect ID = 5</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">Element</span><span class="o">.</span><span class="n">Beam</span><span class="o">.</span><span class="n">SDL</span><span class="p">([</span><span class="n">i</span><span class="o">*</span><span class="n">w</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="n">j</span><span class="o">*</span><span class="n">h</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span><span class="n">h</span><span class="p">,</span><span class="n">sect</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># Column -&gt; Sect ID = 1</span>
+
+<span class="n">Node</span><span class="o">.</span><span class="n">create</span><span class="p">()</span>
+<span class="n">Element</span><span class="o">.</span><span class="n">create</span><span class="p">()</span>
+</code></pre></div>
+
+<p><img alt="NODE GRID" src="../elem_portal.png" /></p>
+<hr />
+<h3 id="2-warren-truss">2. Warren Truss</h3>
+<div class="codehilite"><pre><span></span><code><span class="n">span</span> <span class="o">=</span> <span class="mf">20.5</span>  <span class="c1"># Span of truss</span>
+<span class="n">n_div</span> <span class="o">=</span> <span class="mi">8</span>    <span class="c1"># No. of bottom divisions</span>
+<span class="n">h</span> <span class="o">=</span> <span class="mf">2.5</span>      <span class="c1"># Height of truss</span>
+
+<span class="n">dx</span> <span class="o">=</span> <span class="mf">0.5</span><span class="o">*</span><span class="n">span</span><span class="o">/</span><span class="n">n_div</span>
+
+<span class="n">Element</span><span class="o">.</span><span class="n">Truss</span><span class="o">.</span><span class="n">SDL</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span><span class="n">span</span><span class="p">,</span><span class="n">n_div</span><span class="p">)</span>
+
+<span class="n">Element</span><span class="o">.</span><span class="n">Truss</span><span class="o">.</span><span class="n">SDL</span><span class="p">([</span><span class="n">dx</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="n">h</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span><span class="n">span</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">dx</span><span class="p">,</span><span class="n">n_div</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_div</span><span class="p">):</span>
+    <span class="n">Element</span><span class="o">.</span><span class="n">Truss</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">i</span><span class="o">+</span><span class="mi">2</span><span class="o">+</span><span class="n">n_div</span><span class="p">)</span>
+    <span class="n">Element</span><span class="o">.</span><span class="n">Truss</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">2</span><span class="p">,</span><span class="n">i</span><span class="o">+</span><span class="mi">2</span><span class="o">+</span><span class="n">n_div</span><span class="p">)</span>
+
+<span class="n">Node</span><span class="o">.</span><span class="n">create</span><span class="p">()</span>
+<span class="n">Element</span><span class="o">.</span><span class="n">create</span><span class="p">()</span>
+</code></pre></div>
+
+<p><img alt="NODE GRID" src="../elem_truss.png" /></p>
+<hr />
+</article>
+                        </div>
+                        <div class="hidden text-sm xl:block">
+                            <div class="sticky top-20 -mt-6 pt-4">
+    <div class="no-scrollbar h-full overflow-auto pb-10">
+        <div class="space-y-2">
+            <p class="font-medium">On This Page</p>
+            <ul class="m-0 list-none">
+                
+                
+                
+                
+                <li class="mt-0 pt-2">
+                    <a class="inline-block no-underline transition-colors hover:text-foreground text-muted-foreground"
+                        href="#creation-methods">Creation Methods</a>
+                    
+                </li>
+                
+                <li class="mt-0 pt-2">
+                    <a class="inline-block no-underline transition-colors hover:text-foreground text-muted-foreground"
+                        href="#truss">TRUSS</a>
+                    
+                    <ul class="m-0 list-none pl-4">
+                        
+                        <li class="mt-0 pt-2">
+                            <a class="inline-block no-underline transition-colors hover:text-foreground text-muted-foreground"
+                                href="#object-attributes">Object Attributes</a>
+                        </li>
+                        
+                        <li class="mt-0 pt-2">
+                            <a class="inline-block no-underline transition-colors hover:text-foreground text-muted-foreground"
+                                href="#1-truss">1. Truss</a>
+                        </li>
+                        
+                        <li class="mt-0 pt-2">
+                            <a class="inline-block no-underline transition-colors hover:text-foreground text-muted-foreground"
+                                href="#2-trussse">2. Truss.SE</a>
+                        </li>
+                        
+                        <li class="mt-0 pt-2">
+                            <a class="inline-block no-underline transition-colors hover:text-foreground text-muted-foreground"
+                                href="#3-trusssdl">3. Truss.SDL</a>
+                        </li>
+                        
+                    </ul>
+                    
+                </li>
+                
+                <li class="mt-0 pt-2">
+                    <a class="inline-block no-underline transition-colors hover:text-foreground text-muted-foreground"
+                        href="#beam">BEAM</a>
+                    
+                    <ul class="m-0 list-none pl-4">
+                        
+                        <li class="mt-0 pt-2">
+                            <a class="inline-block no-underline transition-colors hover:text-foreground text-muted-foreground"
+                                href="#object-attributes_1">Object Attributes</a>
+                        </li>
+                        
+                        <li class="mt-0 pt-2">
+                            <a class="inline-block no-underline transition-colors hover:text-foreground text-muted-foreground"
+                                href="#1-beam">1. Beam</a>
+                        </li>
+                        
+                        <li class="mt-0 pt-2">
+                            <a class="inline-block no-underline transition-colors hover:text-foreground text-muted-foreground"
+                                href="#2-beamse">2. Beam.SE</a>
+                        </li>
+                        
+                        <li class="mt-0 pt-2">
+                            <a class="inline-block no-underline transition-colors hover:text-foreground text-muted-foreground"
+                                href="#3-beamsdl">3. Beam.SDL</a>
+                        </li>
+                        
+                    </ul>
+                    
+                </li>
+                
+                <li class="mt-0 pt-2">
+                    <a class="inline-block no-underline transition-colors hover:text-foreground text-muted-foreground"
+                        href="#tension">TENSION</a>
+                    
+                    <ul class="m-0 list-none pl-4">
+                        
+                        <li class="mt-0 pt-2">
+                            <a class="inline-block no-underline transition-colors hover:text-foreground text-muted-foreground"
+                                href="#object-attributes_2">Object Attributes</a>
+                        </li>
+                        
+                        <li class="mt-0 pt-2">
+                            <a class="inline-block no-underline transition-colors hover:text-foreground text-muted-foreground"
+                                href="#tension-element">Tension Element</a>
+                        </li>
+                        
+                        <li class="mt-0 pt-2">
+                            <a class="inline-block no-underline transition-colors hover:text-foreground text-muted-foreground"
+                                href="#subtypes">Subtypes</a>
+                        </li>
+                        
+                    </ul>
+                    
+                </li>
+                
+                <li class="mt-0 pt-2">
+                    <a class="inline-block no-underline transition-colors hover:text-foreground text-muted-foreground"
+                        href="#compression">COMPRESSION</a>
+                    
+                    <ul class="m-0 list-none pl-4">
+                        
+                        <li class="mt-0 pt-2">
+                            <a class="inline-block no-underline transition-colors hover:text-foreground text-muted-foreground"
+                                href="#object-attributes_3">Object Attributes</a>
+                        </li>
+                        
+                        <li class="mt-0 pt-2">
+                            <a class="inline-block no-underline transition-colors hover:text-foreground text-muted-foreground"
+                                href="#compression-element">Compression Element</a>
+                        </li>
+                        
+                        <li class="mt-0 pt-2">
+                            <a class="inline-block no-underline transition-colors hover:text-foreground text-muted-foreground"
+                                href="#subtypes_1">Subtypes</a>
+                        </li>
+                        
+                    </ul>
+                    
+                </li>
+                
+                <li class="mt-0 pt-2">
+                    <a class="inline-block no-underline transition-colors hover:text-foreground text-muted-foreground"
+                        href="#examples_8">Examples</a>
+                    
+                    <ul class="m-0 list-none pl-4">
+                        
+                        <li class="mt-0 pt-2">
+                            <a class="inline-block no-underline transition-colors hover:text-foreground text-muted-foreground"
+                                href="#1-portal-frame">1. Portal Frame</a>
+                        </li>
+                        
+                        <li class="mt-0 pt-2">
+                            <a class="inline-block no-underline transition-colors hover:text-foreground text-muted-foreground"
+                                href="#2-warren-truss">2. Warren Truss</a>
+                        </li>
+                        
+                    </ul>
+                    
+                </li>
+                
+                
+                
+                
+            </ul>
+        </div>
+    </div>
+</div>
+                        </div>
+                    </main>
+                </div>
+            </div>
+            <dialog id="bottom-sidebar" data-closing="0"
+    class="backdrop:bg-black backdrop:opacity-80 backdrop:transition-all backdrop:duration-500 text-foreground"
+    onclick="onBottomSidebarDialogClick(event)">
+    <div
+        class="fixed inset-x-0 bottom-0 z-50 mt-24 flex h-auto flex-col rounded-t-[10px] border bg-background max-h-[60svh] p-0 transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)]">
+        <div class="mx-auto mt-4 h-2 w-[100px] rounded-full bg-muted"></div>
+        <div class="overflow-auto p-6 space-y-3">
+            
+            
+
+            <div class="flex flex-col">
+                
+                
+                <a href="../.." class="text-base shrink-0">
+    Introduction
+</a>
+                
+                
+            </div>
+            
+
+            <div class="flex flex-col">
+                
+                
+                <a href="../../model/" class="text-base shrink-0">
+    Model
+</a>
+                
+                
+            </div>
+            
+
+            <div class="flex flex-col">
+                
+                
+                <a href="../../node/" class="text-base shrink-0">
+    Node
+</a>
+                
+                
+            </div>
+            
+
+            <div class="flex flex-col">
+                
+                <div class="flex flex-col space-y-3 pt-4">
+                    <h4 class="font-medium">Element </h4>
+                    
+                    <a href="../" class="text-base shrink-0">
+    Element
+</a>
+                    
+                    <a href="./" class="text-base shrink-0">
+    ‎ ‎ ‎ 1D Elements
+</a>
+                    
+                    <a href="../2D/" class="text-base shrink-0">
+    ‎ ‎ ‎ 2D Elements
+</a>
+                    
+                    <a href="../3D/" class="text-base shrink-0">
+    ‎ ‎ ‎ 3D Elements
+</a>
+                    
+                </div>
+                
+            </div>
+            
+
+            <div class="flex flex-col">
+                
+                <div class="flex flex-col space-y-3 pt-4">
+                    <h4 class="font-medium">Section Properties </h4>
+                    
+                    <a href="../../Section/" class="text-base shrink-0">
+    Section
+</a>
+                    
+                    <a href="../../Section/01_user/" class="text-base shrink-0">
+    ‎ ‎ ‎ Standard Section
+</a>
+                    
+                    <a href="../../Section/02_psc/" class="text-base shrink-0">
+    ‎ ‎ ‎ PSC Section
+</a>
+                    
+                    <a href="../../Section/03_composite/" class="text-base shrink-0">
+    ‎ ‎ ‎ Composite Section
+</a>
+                    
+                    <a href="../../Section/09_thickness/" class="text-base shrink-0">
+    Thickness
+</a>
+                    
+                </div>
+                
+            </div>
+            
+
+            <div class="flex flex-col">
+                
+                <div class="flex flex-col space-y-3 pt-4">
+                    <h4 class="font-medium">Material Properties </h4>
+                    
+                    <a href="../../Material/" class="text-base shrink-0">
+    Material
+</a>
+                    
+                    <a href="../../Material/001concrete/" class="text-base shrink-0">
+    ‎ ‎ ‎ Concrete
+</a>
+                    
+                    <a href="../../Material/002steel/" class="text-base shrink-0">
+    ‎ ‎ ‎ Steel
+</a>
+                    
+                    <a href="../../Material/003usermat/" class="text-base shrink-0">
+    ‎ ‎ ‎ User-defined
+</a>
+                    
+                    <a href="../../Material/010creep/" class="text-base shrink-0">
+    Creep Shrinkage
+</a>
+                    
+                    <a href="../../Material/011comp/" class="text-base shrink-0">
+    Compressive Strength
+</a>
+                    
+                    <a href="../../Material/012tdlink/" class="text-base shrink-0">
+    Time Dependent Link
+</a>
+                    
+                </div>
+                
+            </div>
+            
+
+            <div class="flex flex-col">
+                
+                <div class="flex flex-col space-y-3 pt-4">
+                    <h4 class="font-medium">Boundary Conditions </h4>
+                    
+                    <a href="../../Boundary/" class="text-base shrink-0">
+    Boundary
+</a>
+                    
+                    <a href="../../Boundary/01supports/" class="text-base shrink-0">
+    ‎ ‎ ‎ Supports
+</a>
+                    
+                    <a href="../../Boundary/02elink/" class="text-base shrink-0">
+    ‎ ‎ ‎ Elastic Link
+</a>
+                    
+                    <a href="../../Boundary/03rlink/" class="text-base shrink-0">
+    ‎ ‎ ‎ Rigid Link
+</a>
+                    
+                    <a href="../../Boundary/04PointSpring/" class="text-base shrink-0">
+    ‎ ‎ ‎ Point Spring
+</a>
+                    
+                    <a href="../../Boundary/05MLFC/" class="text-base shrink-0">
+    ‎ ‎ ‎ Multi Linear Function
+</a>
+                    
+                </div>
+                
+            </div>
+            
+
+            <div class="flex flex-col">
+                
+                <div class="flex flex-col space-y-3 pt-4">
+                    <h4 class="font-medium">Load </h4>
+                    
+                    <a href="../../Load/" class="text-base shrink-0">
+    Load
+</a>
+                    
+                    <a href="../../Load/000sw/" class="text-base shrink-0">
+    ‎ ‎ ‎ Self Weight
+</a>
+                    
+                    <a href="../../Load/001nodal/" class="text-base shrink-0">
+    ‎ ‎ ‎ Nodal Load
+</a>
+                    
+                    <a href="../../Load/002beam/" class="text-base shrink-0">
+    ‎ ‎ ‎ Beam Load
+</a>
+                    
+                    <a href="../../Load/case/" class="text-base shrink-0">
+    Load Case
+</a>
+                    
+                </div>
+                
+            </div>
+            
+
+            <div class="flex flex-col">
+                
+                <div class="flex flex-col space-y-3 pt-4">
+                    <h4 class="font-medium">Group </h4>
+                    
+                    <a href="../../Group/" class="text-base shrink-0">
+    Group
+</a>
+                    
+                    <a href="../../Group/001sg/" class="text-base shrink-0">
+    ‎ ‎ ‎ Structure Group
+</a>
+                    
+                    <a href="../../Group/002bg/" class="text-base shrink-0">
+    ‎ ‎ ‎ Boundary Group
+</a>
+                    
+                    <a href="../../Group/003lg/" class="text-base shrink-0">
+    ‎ ‎ ‎ Load Group
+</a>
+                    
+                    <a href="../../Group/004tg/" class="text-base shrink-0">
+    ‎ ‎ ‎ Tendon Group
+</a>
+                    
+                </div>
+                
+            </div>
+            
+
+            <div class="flex flex-col">
+                
+                <div class="flex flex-col space-y-3 pt-4">
+                    <h4 class="font-medium">CS </h4>
+                    
+                    <a href="../../200cs/" class="text-base shrink-0">
+    Construction Stage
+</a>
+                    
+                </div>
+                
+            </div>
+            
+            
+        </div>
+    </div>
+</dialog>
+        </div>
+    </div> 
+    
+    <script src="../../search/main.js"></script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/iconify-icon@2.3.0/dist/iconify-icon.min.js"></script>
+    <script src="../../js/copy-button.js"></script>
+</body>
+
+</html>
