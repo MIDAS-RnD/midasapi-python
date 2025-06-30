@@ -5,13 +5,13 @@ The TDLink class links materials with their time-dependent properties (creep/shr
 ### Class Attributes
 *TDLink.mats* -> Dictionary of all material links.
 
-### Conceptual Object Attributes (per linked material ID)
+### Object Attributes
 * `matID` (int): The ID of the base material to which time-dependent properties are linked.
 * `CnSName` (str): The name of the CreepShrinkage definition to link.
 * `CompName` (str): The name of the CompStrength definition to link.
 
-### Methods
-
+## Methods
+---
 #### json
 Returns a JSON representation of all Time-Dependent Material Links defined in python.
 
@@ -49,7 +49,8 @@ Deletes all material links from both Python and Civil NX.
 TDLink.delete()
 ```
 
-#### Examples
+## Examples
+---
 ```py
 # Link materials with their time-dependent properties
 link1 = TDLink(1, "CS_M25", "Comp_M25")  # Link material ID 1 with M25 properties
@@ -62,7 +63,7 @@ TDLink.create()
 ---
 
 ## Complete Example
-
+---
 ```py
 from midas_civil import *
 
@@ -89,6 +90,6 @@ TDLink.create()
 
 print("All time-dependent properties and links created successfully!")
 
-# You can also create them all at once using Material.createAll() if materials exist
-# Material.createAll()  # This creates materials, creep/shrinkage, compressive strength, and links
+# You can also create them all at once using Material.create() if materials exist
+# Material.create()  # This creates materials, creep/shrinkage, compressive strength, and links
 ```

@@ -1,8 +1,9 @@
-# SUPPORT
+# Support
 
 A nested class within Boundary used to create nodal supports with various constraint conditions.
 
 ## Constructor
+---
 **<font color="green">`Boundary.Support(node, constraint, group = "")`</font>**
 
 Creates support conditions at specified nodes with defined constraints.
@@ -12,7 +13,7 @@ Creates support conditions at specified nodes with defined constraints.
 * `constraint`: Constraint definition (string of 1s and 0s, or predefined keywords)
 * `group (default="")`: Boundary group name
 
-#### Constraint Options
+### Constraint Options
 
 * **String format**: "1110000" (7 characters for DOF: DX, DY, DZ, RX, RY, RZ, WARP)
 * **Predefined keywords**:
@@ -30,7 +31,7 @@ Creates support conditions at specified nodes with defined constraints.
 * `ID` (int): The ID of the support entry.
 
 ## Methods
-
+---
 #### json
 Returns JSON representation of all supports.
 
@@ -67,10 +68,9 @@ Deletes all supports from both Python and Civil NX.
 Boundary.Support.delete()
 ```
 
----
-
 
 ## Examples
+---
 ```py
 
 #Create Beam

@@ -1,8 +1,9 @@
-# CONCRETE
-
+# Concrete Material
+ 
 A nested class within Material used to create concrete materials.
 
 ## Standard
+---
 **<font color="green">`Material.CONC(name='', standard='', db='', id=0)`</font>**
 
 Creates a concrete material from database with specified standard and database code.
@@ -33,6 +34,7 @@ Material.create()
 ```
 
 ## User-Defined
+---
 **<font color="green">`Material.CONC.User(name='', E=0, pois=0, den=0, mass=0, therm=0, id=0)`</font>**
 
 Creates a user-defined concrete material with custom properties.

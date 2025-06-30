@@ -3,7 +3,7 @@
 This manual provides detailed documentation of the Model class methods used for managing structural analysis models via Midas API.
 
 ## Methods
-
+---
 ### <font style="font-size:0px">Model.</font>new
 Creates a new model file.
 ```py
@@ -36,6 +36,42 @@ Saves the model to the specified file path.
 ```py
 Model.saveAs("D://model.mcb")
 ```
+
+
+### <font style="font-size:0px">Model.</font>importMCT
+Imports MCT data file in MIDAS CIVIL NX.
+
+```py
+Model.importMCT('D:\\model.mct')
+```
+
+
+### <font style="font-size:0px">Model.</font>importJSON
+Imports JSON data file in MIDAS CIVIL NX.
+
+```py
+Model.importJSON('D:\\model.json')
+```
+
+
+### <font style="font-size:0px">Model.</font>exportMCT
+Exports MIDAS CIVIL NX model as MCT file.
+
+```py
+Model.exportMCT('D:\\model.mct')
+```
+
+
+### <font style="font-size:0px">Model.</font>exportJSON
+Exports MIDAS CIVIL NX model as JSON file.
+
+```py
+Model.exportJSON('D:\\model.json')
+```
+
+
+
+
 
 
 ### <font style="font-size:0px">Model.</font>info

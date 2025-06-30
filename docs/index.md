@@ -9,6 +9,7 @@ This module provides a Python interface to interact with the MIDAS Civil NX API 
 
 
 ## Installation
+---
 
 Make sure you have Python 3 installed.  
 Install the MIDAS Python interface via Pip command.
@@ -36,15 +37,13 @@ To import the package use the import *
 from midas_civil import *
 ```
 
----
-
 
 
 
 
 ## Functions available
 
-
+---
 
 
 ### MAPI_KEY
@@ -65,7 +64,6 @@ MAPI_KEY('eyJ1ciI6InN1bWl0QG1pZGFzaXQuY29tIiwicGciO.252a81571d')
     * Ensure your MIDAS Civil NX application is open and connected.
     * The MAPI key used in your Python script must match the key in the Civil NX application.
 
----
 
 
 

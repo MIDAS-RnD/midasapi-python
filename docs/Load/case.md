@@ -12,6 +12,7 @@ MAPI_KEY('eyJ1ciI6InN1bWl0QG1pZGFzaXQuY29tIiwicGciO252a81571d')
 
 
 ## Constructor
+---
 To create load cases, use the Load_Case constructor.
 
 **<font color="green">`Load_Case(type, *name)`</font>**
@@ -45,7 +46,7 @@ for lc in Load_Case.cases:
 ```
 
 ## Methods
-
+---
 #### json
 Returns a JSON representation of all Load Cases defined in python.
 

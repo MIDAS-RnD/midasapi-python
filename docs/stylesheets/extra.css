@@ -1,0 +1,52 @@
+.md-grid {
+  max-width: 1440px; 
+}
+
+.md-typeset p {
+  line-height: 1.8; /* default is ~1.5 */
+  font-size: 17px;
+  font-weight:200;
+}
+
+.md-typeset h1 {
+  color: #2c2c2c;
+  margin-bottom: 0;
+  font-weight: 900;
+  font-size: 40px;
+}
+
+.md-typeset h2 {
+  color: #2c2c2c;
+  margin-bottom: 0;
+  font-weight: 600;
+  font-size: 30px;
+}
+
+.md-typeset h3 {
+  color: #2c2c2c;
+  margin-bottom: 0;
+  font-weight: 600;
+  font-size: 25px;
+}
+
+.md-typeset h4 {
+  color: #2c2c2c;
+  margin-bottom: 0;
+  font-weight: 600;
+  font-size: 25px;
+}
+
+
+.md-typeset .admonition.sumit_block,
+.md-typeset details.sumit_block {
+  border-color: rgb(211, 211, 211);
+}
+.md-typeset .sumit_block > .admonition-title,
+.md-typeset .sumit_block > summary {
+  background-color: rgb(255, 255, 255);
+}
+.md-typeset .sumit_block > summary::before {
+  background-color: rgb(0, 153, 255);
+  -webkit-mask-image: var(--md-admonition-icon--abstract);
+          mask-image: var(--md-admonition-icon--abstract);
+}

@@ -27,7 +27,8 @@ Details of all available sections can be found [here](https://support.midasuser.
 
 
 
-### Constructor
+## Constructor
+---
 **<font color="green">`Section.DBUSER(Name='', Shape='', parameters:list=[], Offset:Offset=Offset.CC(), useShear=True, use7Dof=False, id:int=0)`</font>**
 
 Creates user-defined sections with specified shape and parameters.
@@ -52,7 +53,8 @@ Creates user-defined sections with specified shape and parameters.
 * `USE7DOF` (bool): Flag to indicate if warping effect (7th Degree of Freedom) is considered (True/False).
 * `DATATYPE` (int): Data type for the section, defaults to 2 for standard user-defined sections.
 
-### Examples
+## Examples
+---
 ```py
 # Rectangular Section Example
 for i in range(2):

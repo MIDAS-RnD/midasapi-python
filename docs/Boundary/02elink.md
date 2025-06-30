@@ -1,8 +1,9 @@
-# ELASTIC LINK
+# Elastic Link
 
 A nested class within Boundary used to create elastic connections between nodes with various spring properties and link types.
 
 ## Constructor
+---
 **<font color="green">`Boundary.ElasticLink(i_node, j_node, group = "", id = None, link_type = "GEN", sdx = 0, sdy = 0, sdz = 0, srx = 0, sry = 0, srz = 0, shear = False, dr_y = 0.5, dr_z = 0.5, beta_angle = 0, dir = "Dy", func_id = 1, distance_ratio = 0)`</font>**
 
 Creates elastic links between two nodes with specified spring properties and behavior.
@@ -58,7 +59,7 @@ Creates elastic links between two nodes with specified spring properties and beh
 
 
 ## Methods
-
+---
 #### json
 Returns JSON representation of all elastic links.
 
@@ -95,7 +96,6 @@ Deletes all elastic links from both Python and Civil NX.
 Boundary.ElasticLink.delete()
 ```
 
----
 
 
 
@@ -106,7 +106,7 @@ Boundary.ElasticLink.delete()
 
 
 ## Examples
-
+---
 #### General Elastic Link
 ```py
 #General Elastic Link Example

@@ -9,17 +9,7 @@ from midas_civil import *
 MAPI_KEY('eyJ1ciI6InN1bWl0QG1pZGFzaXQuY29tIiwicGciO252k81571d')
 ```
 
-## Material
-
-### Constructor
-**<font color="green">`Material(data, id=0)`</font>**
-
-Creates a material with specified data and optional ID.
-
-#### Parameters
-* `data`: Material data dictionary containing material properties
-* `id (default=0)`: Manual ID assignment (auto-assigned if 0 or ID already exists)
-
+---
 #### Class Attributes
 *Material.mats* -> List of all material instances.   
 *Material.ids* -> List of all material IDs.
@@ -34,8 +24,8 @@ mat3 = Material.USER("Timber", E=12000, pois=0.4, den=6, mass=6, therm=5e-6, id=
 Material.create()
 ```
 
-### Methods
-
+## Methods
+---
 #### json
 Returns a JSON representation of all Materials defined in python.
 
@@ -46,7 +36,7 @@ print(Material.json())
 ```
 
 #### create
-Sends the current material list to Civil NX using a PUT request.
+Sends the current materials, creep shrinkage, compressive strength and time-dependent material links to Civil NX using a PUT request.
 
 ```py
 Material.create()
@@ -73,10 +63,9 @@ Deletes all material data from both Python and Civil NX.
 Material.delete()
 ```
 
----
 
 ## Complete Example
-
+---
 ```py
 from midas_civil import *
 

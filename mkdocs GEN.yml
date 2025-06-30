@@ -10,8 +10,7 @@ extra_css:
 theme:
   # name: shadcn
   name : material
-  favicon: assets/favicon.ico
-
+  # custom_dir: overrides
   palette: 
     scheme: default
     primary: black
@@ -29,7 +28,6 @@ theme:
     - search.suggest
     - navigation.path
     - content.code.copy
-    - header.autohide
 
 plugins:
   - search # put it first to inject out custom code
@@ -43,7 +41,6 @@ markdown_extensions:
  - pymdownx.inlinehilite
  - pymdownx.superfences
  - pymdownx.snippets
- - pymdownx.details
      
 
 
@@ -93,9 +90,9 @@ nav:
     - ‎ ‎ ‎ Self Weight : Load/000sw.md
     - ‎ ‎ ‎ Nodal Load : Load/001nodal.md
     - ‎ ‎ ‎ Beam Load: Load/002beam.md
-    - ‎ ‎ ‎ Load To Mass: Load/003LoadToMass.md
-    - ‎ ‎ ‎ Nodal Mass: Load/004NodalMass.md
-    - ‎ ‎ ‎ Specified Displacement: Load/005spDisp.md
+    - ‎ ‎ ‎ LoadToMass: Load/003LoadToMass.md
+    - ‎ ‎ ‎ NodalMass: Load/004NodalMass.md
+    - ‎ ‎ ‎ SpDisp: Load/005spDisp.md
     - Load Case : Load/case.md
   
   - Temperature:
@@ -112,5 +109,5 @@ nav:
     - ‎ ‎ ‎ Tendon Group: Group/004tg.md
     
   - CS:
-    - Construction Stage: CS/001stage.md
+    - Construction Stage: 200cs.md
 

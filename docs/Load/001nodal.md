@@ -1,8 +1,9 @@
-# NODAL LOADS
+# Nodal Load
 
 A nested class within Load used to create nodal loads.
 
 ## Constructor
+---
 **<font color="green">`Load.Nodal(node, load_case, load_group = "", FX = 0, FY = 0, FZ = 0, MX = 0, MY = 0, MZ = 0, id = "")`</font>**
 
 Creates nodal loads (forces and moments) at specified nodes.
@@ -28,7 +29,7 @@ Creates nodal loads (forces and moments) at specified nodes.
 * `ID` (int): The ID of the nodal load entry.
 
 ## Methods
-
+---
 #### json
 Returns JSON representation of all nodal loads.
 
@@ -68,7 +69,9 @@ Load.Nodal.delete()
 
 
 
+
 ## Examples
+---
 ```py
 #Nodal Load Example
 for i in range(2):

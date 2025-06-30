@@ -3,6 +3,7 @@
 A nested class within Boundary used to create Multi Linear functions for multi-linear behavior in elastic links and point springs.
 
 ## Constructor
+---
 **<font color="green">`Boundary.MLFC(name, type = "FORCE", symm = True, data = [[0,0],[1,1]], id = None)`</font>**
 
 Creates force-deformation functions that define non-linear relationships between force/moment and displacement/rotation.
@@ -35,7 +36,7 @@ Creates force-deformation functions that define non-linear relationships between
 * `ID` (int): The unique ID of the function.
 
 ## Methods
-
+---
 #### json
 Returns JSON representation of all MLFC functions.
 
@@ -72,10 +73,10 @@ Deletes all MLFC functions from both Python and Civil NX.
 Boundary.MLFC.delete()
 ```
 
----
+
 
 ## Examples
-
+---
 #### Basic Force-Displacement Function
 ```py
 # Basic Force-Displacement Function Example

@@ -3,7 +3,7 @@
 The Load class provides a unified interface to create different types of loads and includes nested classes for specific load types.
 
 ## Methods
-
+---
 ### create
 Creates all defined load cases and loads (Self-Weight, Nodal, and Beam loads) in Civil NX.
 
@@ -13,7 +13,7 @@ Load.create()
 
 
 ## Complete Example
-
+---
 ```py
 from midas_civil import*
 

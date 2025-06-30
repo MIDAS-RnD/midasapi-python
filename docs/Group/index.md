@@ -9,12 +9,8 @@ from midas_civil import *
 MAPI_KEY('eyJ1ciI6InN1bWl0QG1pZGFzaXQuY29tIiwicGciO252k81571d')
 ```
 
-## Group Class
-
-The Group class provides a unified interface to create different types of groups and includes nested classes for specific group types.
-
-### Methods
-
+## Methods
+---
 #### <font style="font-size:0px">Group.</font>create
 Creates all defined groups (Structure, Boundary, Load, and Tendon groups) in Civil NX.
 
@@ -36,11 +32,11 @@ Deletes all group data from both Python and Civil NX.
 Group.delete()
 ```
 
----
+
 
 
 ## Complete Example
-
+---
 ```py
 from midas_civil import *
 

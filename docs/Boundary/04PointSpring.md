@@ -1,8 +1,9 @@
-# POINT SPRING
+# Point Spring
 
 A nested class within Boundary used to create point springs at nodes with various spring properties and behaviors.
 
 ## Constructor
+---
 **<font color="green">`Boundary.PointSpring(node, spring_type = "LINEAR", group = "", id = None, stiffness = None, fixed_option = None, damping = None, direction = "Dx+", normal_vector = None, function_id = 1)`</font>**
 
 Creates point springs at specified nodes with defined spring properties and behavior types.
@@ -59,7 +60,7 @@ Creates point springs at specified nodes with defined spring properties and beha
 * `FUNCTION` (int): Function ID for multi-linear behavior.
 
 ## Methods
-
+---
 #### json
 Returns JSON representation of all point springs.
 
@@ -96,10 +97,9 @@ Deletes all point springs from both Python and Civil NX.
 Boundary.PointSpring.delete()
 ```
 
----
 
 ## Examples
-
+---
 #### Linear Spring
 ```py
 # Linear Spring Example

@@ -1,8 +1,9 @@
-# BEAM LOADS
+# Beam Load
 
 A nested class within Load used to create beam loads with comprehensive options for distributed loads, concentrated loads, and eccentricity.
 
 ## Constructor
+---
 **<font color="green">`Load.Beam(element, load_case, value, load_group = "", direction = "GZ", id = "", D = [0, 1, 0, 0], P = [0, 0, 0, 0], cmd = "BEAM", typ = "UNILOAD", use_ecc = False, use_proj = False, eccn_dir = "LZ", eccn_type = 1, ieccn = 0, jeccn = 0.0000195, adnl_h = False, adnl_h_i = 0, adnl_h_j = 0.0000195)`</font>**
 
 Creates beam loads with various distribution patterns and advanced options.
@@ -51,7 +52,7 @@ Creates beam loads with various distribution patterns and advanced options.
 
 
 ## Methods
-
+---
 #### json
 Returns JSON representation of all beam loads.
 
@@ -98,7 +99,7 @@ Load.Beam.delete()
 
 
 ## Examples
-
+---
 #### Uniform Distributed Load
 ```py
 #UDL Load Example

@@ -1,4 +1,4 @@
-# Construction Stage (CS)
+# Construction Stage
 The module provides functionality to create, manage, and synchronize construction stages for staged construction analysis in the model. It handles activation and deactivation of structure groups, boundary groups, and load groups across different construction phases.
 
 !!! info "Note."
@@ -9,10 +9,10 @@ from midas_civil import *
 MAPI_KEY('eyJ1ciI6InN1bWl0QG1pZGFzaXQuY29tIiwicGciO252k81571d')
 ```
 
-## Construction Stage
 
-### Constructor
-**<font color="green">`CS(name, duration=0, s_group=None, s_age=None, s_type=None, b_group=None, b_pos=None, b_type=None, l_group=None, l_day=None, l_type=None, id=None, sr_stage=True, ad_stage=False, load_in=False, nl=5, addstp=None)`</font>**
+## Constructor
+---
+**<font color="green">`CS.STAGE(name, duration=0, s_group=None, s_age=None, s_type=None, b_group=None, b_pos=None, b_type=None, l_group=None, l_day=None, l_type=None, id=None, sr_stage=True, ad_stage=False, load_in=False, nl=5, addstp=None)`</font>**
 
 Creates a construction stage with specified parameters for structure, boundary, and load group management.
 
@@ -29,16 +29,85 @@ Creates a construction stage with specified parameters for structure, boundary, 
 * `l_day (default=None)`: Load activation day - "FIRST" or "LAST"
 * `l_type (default=None)`: Load activation type - "A" to activate, "D" to deactivate
 * `id (default=None)`: Manual construction stage ID assignment (auto-assigned if None)
-* `sr_stage (default=True)`: Save results of this stage
-* `ad_stage (default=False)`: Add additional step results
+* `sv_result (default=True)`: Save results of this stage
+* `sv_step (default=False)`: Add additional step results
 * `load_in (default=False)`: Load incremental steps for material nonlinear analysis
 * `nl (default=5)`: Number of load incremental steps
 * `addstp (default=None)`: List of additional steps
 
 #### Class Attributes
-*CS.CSA* -> List of all construction stages.
+*CS.STAGE.stages* -> List of all construction stages.
 
-### Examples
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Methods
+---
+#### json
+Returns a JSON representation of all Construction Stages defined in python.
+
+```py
+cs1 = CS.STAGE("Stage 1", 7, "Main Girder", 7, "A")
+cs2 = CS.STAGE("Stage 2", 14, "Side Girder", 14, "A")
+
+print(CS.STAGE.json())
+
+# Output will show detailed JSON structure for all stages
+```
+
+#### create
+Sends the current construction stage list to Civil NX using a PUT request.
+
+```py
+cs1 = CS.STAGE("Stage 1", 7, "Main Girder", 7, "A")
+cs2 = CS.STAGE("Stage 2", 14, "Side Girder", 14, "A")
+
+CS.STAGE.create()
+```
+
+#### get
+Fetches construction stages from Civil NX and returns the JSON representation.
+
+```py
+print(CS.STAGE.get())
+# Output will show all construction stages from Civil NX database
+```
+
+#### sync
+Retrieves Construction Stage data from Civil NX and rebuilds the internal stage list.
+
+```py
+CS.STAGE.sync()
+for stage in CS.STAGE.stages:
+    print(f'Stage: {stage.NAME} | Duration: {stage.DURATION} days')
+    print(f'  Active Structure Groups: {len(stage.act_structure_groups)}')
+    print(f'  Active Boundary Groups: {len(stage.act_boundary_groups)}')
+    print(f'  Active Load Groups: {len(stage.act_load_groups)}')
+```
+
+#### delete
+Deletes all construction stage data from both Python and Civil NX.
+
+```py
+CS.STAGE.delete()
+
+```
+
+
+
+
+## Examples
+---
 
 #### Single Group Activation
 ```py
@@ -69,8 +138,8 @@ Group.Load("Load group 2")
 Group.create()
 
 #Create Stage
-CS("Stage 1",7,"CS1",10,"A","BG1","DEFORMED","A","Load Group 1","FIRST","A")
-CS.create()
+CS.STAGE("Stage 1",7,"CS1",10,"A","BG1","DEFORMED","A","Load Group 1","FIRST","A")
+CS.STAGE.create()
 ```
 
 #### Multiple Group Activation
@@ -102,8 +171,8 @@ Group.Load("Load group 2")
 Group.create()
 
 #Create Stage
-CS("Stage 1",17,["CS1","CS2"],[10,7],"A",["BG1","BG2"],["DEFORMED","ORIGINAL"],"A","Load Group 1","FIRST","A")
-CS.create()
+CS.STAGE("Stage 1",17,["CS1","CS2"],[10,7],"A",["BG1","BG2"],["DEFORMED","ORIGINAL"],"A","Load Group 1","FIRST","A")
+CS.STAGE.create()
 ```
 
 #### Mixed Activation and Deactivation
@@ -135,9 +204,9 @@ Group.Load("Load group 2")
 Group.create()
 
 #Create Stage
-CS("Stage 1",17,["CS1","CS2"],[10,7],"A",["BG1","BG2"],["DEFORMED","ORIGINAL"],"A","Load Group 1","FIRST","A")
-CS("Stage 2",10,["CS2","CS3"],[7,7],["D","A"],["BG2"],["ORIGINAL"],"D")
-CS.create()
+CS.STAGE("Stage 1",17,["CS1","CS2"],[10,7],"A",["BG1","BG2"],["DEFORMED","ORIGINAL"],"A","Load Group 1","FIRST","A")
+CS.STAGE("Stage 2",10,["CS2","CS3"],[7,7],["D","A"],["BG2"],["ORIGINAL"],"D")
+CS.STAGE.create()
 ```
 
 #### Advanced Options
@@ -169,65 +238,16 @@ Group.Load("Load group 2")
 Group.create()
 
 #Create Stage
-CS("Stage 1",7,"CS1",10,"A","BG1","DEFORMED","A","Load Group 1","FIRST","A")
-CS("Stage 2",20,"CS2",10,"A","BG2","DEFORMED","A",sr_stage=True, ad_stage=True, load_in=True, nl=6, addstp=[1, 2, 3])
-CS.create
-CS.create()
+CS.STAGE("Stage 1",7,"CS1",10,"A","BG1","DEFORMED","A","Load Group 1","FIRST","A")
+CS.STAGE("Stage 2",20,"CS2",10,"A","BG2","DEFORMED","A",sr_stage=True, ad_stage=True, load_in=True, nl=6, addstp=[1, 2, 3])
+CS.STAGE.create
+CS.STAGE.create()
 ```
 
-### Methods
 
-#### json
-Returns a JSON representation of all Construction Stages defined in python.
 
-```py
-cs1 = CS("Stage 1", 7, "Main Girder", 7, "A")
-cs2 = CS("Stage 2", 14, "Side Girder", 14, "A")
 
-print(CS.json())
 
-# Output will show detailed JSON structure for all stages
-```
-
-#### create
-Sends the current construction stage list to Civil NX using a PUT request.
-
-```py
-cs1 = CS("Stage 1", 7, "Main Girder", 7, "A")
-cs2 = CS("Stage 2", 14, "Side Girder", 14, "A")
-
-CS.create()
-```
-
-#### get
-Fetches construction stages from Civil NX and returns the JSON representation.
-
-```py
-print(CS.get())
-# Output will show all construction stages from Civil NX database
-```
-
-#### sync
-Retrieves Construction Stage data from Civil NX and rebuilds the internal stage list.
-
-```py
-CS.sync()
-for cs in CS.CSA:
-    print(f'Stage: {cs.NAME} | Duration: {cs.DURATION} days')
-    print(f'  Active Structure Groups: {len(cs.act_structure_groups)}')
-    print(f'  Active Boundary Groups: {len(cs.act_boundary_groups)}')
-    print(f'  Active Load Groups: {len(cs.act_load_groups)}')
-```
-
-#### delete
-Deletes all construction stage data from both Python and Civil NX.
-
-```py
-CS.delete()
-
-```
-
----
 
 ## Complete Example
 
@@ -290,7 +310,7 @@ print("\nCreating Construction Stages...")
 
 # CASE 1: Single Group Activation
 # Stage 1: Activate only CS1 
-CS("Stage 1 - Single Group", 
+CS.STAGE("Stage 1 - Single Group", 
    duration=7, 
    s_group="CS1", 
    s_age=10, 
@@ -306,7 +326,7 @@ print("Stage 1: Single Group Activation - CS1")
 
 # CASE 2: Multiple Group Activation  
 # Stage 2: Activate multiple groups BG2 and BG3 simultaneously
-CS("Stage 2 - Multiple Groups", 
+CS.STAGE("Stage 2 - Multiple Groups", 
    duration=17, 
    s_group="CS2", 
    s_age=10, 
@@ -322,7 +342,7 @@ print("Stage 2: Multiple Group Activation - BG2 & BG3")
 
 # CASE 3: Mixed Activation and Deactivation
 # Stage 3: Deactivate CS2, Activate CS3 (mixed operations)
-CS("Stage 3 - Mixed Operations", 
+CS.STAGE("Stage 3 - Mixed Operations", 
    duration=10, 
    s_group=["CS2", "CS3"], 
    s_age=[7, 7], 
@@ -335,7 +355,7 @@ print("Stage 3: Mixed Operations - Deactivate CS2, Activate CS3")
 
 # CASE 4: Advanced Options with Special Parameters
 # Stage 4: Advanced staging with additional control parameters
-CS("Stage 4 - Advanced Options", 
+CS.STAGE("Stage 4 - Advanced Options", 
    duration=20,  
    l_group=["Construction Load"], 
    l_day=["FIRST"], 
@@ -348,5 +368,5 @@ CS("Stage 4 - Advanced Options",
 print("Stage 4: Advanced Options - Full parameter control")
 
 # Create all construction stages
-CS.create()
+CS.STAGE.create()
 ```

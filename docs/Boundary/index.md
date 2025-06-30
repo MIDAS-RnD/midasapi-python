@@ -9,28 +9,24 @@ from midas_civil import *
 MAPI_KEY('eyJ1ciI6InN1bWl0QG1pZGFzaXQuY29tIiwicmciO252k81571d')
 ```
 
-## Boundary Class
-
-The Boundary class provides a unified interface to create different types of boundary conditions and includes nested classes for specific boundary types.
-
-### Methods
-
+## Methods
+---
 #### <font style="font-size:0px">Boundary.</font>create
-Creates all defined boundary conditions (Supports, Elastic Links, and Rigid Links) in Civil NX.
+Creates all defined boundary conditions (Supports, Elastic Links, Rigid Links, Points springs and Multi-Linear functions) in Civil NX.
 
 ```py
 Boundary.create()
 ```
 
 #### <font style="font-size:0px">Boundary.</font>delete
-Deletes all boundary conditions from both Python and Civil NX.
+Deletes all boundary conditions (Supports, Elastic Links, Rigid Links, Points springs and Multi-Linear functions) from both Python and Civil NX.
 
 ```py
 Boundary.delete()
 ```
 
 #### <font style="font-size:0px">Boundary.</font>sync
-Synchronizes all boundary conditions from Civil NX to Python.
+Synchronizes all boundary conditions (Supports, Elastic Links, Rigid Links, Points springs and Multi-Linear functions) from Civil NX to Python.
 
 ```py
 Boundary.sync()
@@ -39,7 +35,7 @@ Boundary.sync()
 ---
 
 ## Complete Example
-
+---
 ```py
 from midas_civil import *
 

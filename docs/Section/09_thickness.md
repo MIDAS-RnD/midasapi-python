@@ -3,6 +3,7 @@
 The Thickness class is used to manage and synchronize thickness data with MIDAS Civil NX.
 
 ## Constructor
+---
 **<font color="green">`Thickness(thick=0.0,thick_out=-1,offset=0,off_type='rat',name="",id=0)`</font>**
 
 Creates thickness with specified parameters.
@@ -35,7 +36,7 @@ Creates thickness with specified parameters.
 
 
 ## Methods
-
+---
 #### create
 Create all thickness section in Civil NX .
 ```py

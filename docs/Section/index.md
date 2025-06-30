@@ -9,15 +9,11 @@ from midas_civil import *
 MAPI_KEY('eyJ1ciI6InN1bWl0QG1pZGFzaXQuY29tIiwicGciO252k81571d')
 ```
 
-## Section
-
-The Section class provides a unified interface to create different types of cross-sections and includes nested classes for specific section types.
-
 ### Class Attributes
 *Section.sect* -> List of all sections.   
 
-### Methods
-
+## Methods
+---
 #### create
 Creates all defined sections (User-defined, PSC, and Composite sections) in Civil NX.
 
@@ -66,8 +62,8 @@ Section.delete()
 
 
 ## Offset
-
-### Constructor
+---
+#### Constructor
 To create section offset parameters, use the Offset constructor.
 
 **<font color="green">`Offset(OffsetPoint='CC', CenterLocation=0, HOffset=0, HOffOpt=0, VOffset=0, VOffOpt=0, UsrOffOpt=0)`</font>**
@@ -127,7 +123,7 @@ Section.create()
 ```
 
 ## Complete Example
-
+---
 ```py
 from midas_civil import *
 

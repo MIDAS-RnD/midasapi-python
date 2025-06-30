@@ -3,52 +3,11 @@ site_name: "MIDAS Python"
 # site_description: "Documentation"
 site_author: "Sumit Shekhar"
 # repo_url: "https://github.com/Sumit-Shekhar/midasapi-python"
-
-extra_css:
-  - stylesheets/extra.css
-
 theme:
-  # name: shadcn
-  name : material
-  favicon: assets/favicon.ico
-
-  palette: 
-    scheme: default
-    primary: black
-    accent: blue
-
-  font:
-    text: Roboto Flex
-    code: Fragment Mono
+  name: shadcn
 
   features:
     - navigation.indexes
-    - navigation.instant
-    - toc.follow
-    - navigation.top
-    - search.suggest
-    - navigation.path
-    - content.code.copy
-    - header.autohide
-
-plugins:
-  - search # put it first to inject out custom code
-
-markdown_extensions:
- - admonition
- - toc:
-      toc_depth: 3
- - tables
- - pymdownx.highlight
- - pymdownx.inlinehilite
- - pymdownx.superfences
- - pymdownx.snippets
- - pymdownx.details
-     
-
-
-copyright: Created by Midas India RnD - midas python interface
-
 
 nav:
 
@@ -93,9 +52,9 @@ nav:
     - ‎ ‎ ‎ Self Weight : Load/000sw.md
     - ‎ ‎ ‎ Nodal Load : Load/001nodal.md
     - ‎ ‎ ‎ Beam Load: Load/002beam.md
-    - ‎ ‎ ‎ Load To Mass: Load/003LoadToMass.md
-    - ‎ ‎ ‎ Nodal Mass: Load/004NodalMass.md
-    - ‎ ‎ ‎ Specified Displacement: Load/005spDisp.md
+    - ‎ ‎ ‎ LoadToMass: Load/003LoadToMass.md
+    - ‎ ‎ ‎ NodalMass: Load/004NodalMass.md
+    - ‎ ‎ ‎ SpDisp: Load/005spDisp.md
     - Load Case : Load/case.md
   
   - Temperature:
@@ -112,5 +71,25 @@ nav:
     - ‎ ‎ ‎ Tendon Group: Group/004tg.md
     
   - CS:
-    - Construction Stage: CS/001stage.md
+    - Construction Stage: 200cs.md
 
+plugins:
+  - search # put it first to inject out custom code
+
+markdown_extensions:
+  admonition:
+  codehilite:
+  fenced_code:
+  extra:
+  pymdownx.blocks.details:
+  pymdownx.tabbed:
+  pymdownx.blocks.tab:
+    combine_header_slug: true
+    separator: ___
+    slugify:
+      !!python/object/apply:pymdownx.slugs.slugify { kwds: { case: lower } }
+  pymdownx.progressbar:
+  pymdownx.snippets:
+  pymdownx.arithmatex:
+    generic: true
+  shadcn.extensions.echarts.alpha:

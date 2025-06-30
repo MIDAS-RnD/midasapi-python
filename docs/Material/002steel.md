@@ -1,8 +1,8 @@
-# STEEL
-
+# Steel Material
 A nested class within Material used to create steel materials.
 
 ## Standard
+---
 **<font color="green">`Material.STEEL(name='', standard='', db='', id=0)`</font>**
 
 Creates a steel material from database with specified standard and database code.
@@ -33,6 +33,7 @@ Material.create()
 ```
 
 ## User-Defined
+---
 **<font color="green">`Material.STEEL.User(name='', E=0, pois=0, den=0, mass=0, therm=0, id=0)`</font>**
 
 Creates a user-defined steel material with custom properties.

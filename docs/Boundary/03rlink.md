@@ -1,8 +1,9 @@
-# RIGID LINK
+# Rigid Link
 
 A nested class within Boundary used to create rigid connections between a master node and multiple slave nodes.
 
 ## Constructor
+---
 **<font color="green">`Boundary.RigidLink(master_node, slave_nodes, group = "", id = None, dof = 111111)`</font>**
 
 Creates rigid links connecting a master node to one or more slave nodes with specified degrees of freedom.
@@ -34,6 +35,7 @@ Creates rigid links connecting a master node to one or more slave nodes with spe
 
 
 ## Methods
+---
 
 #### json
 Returns JSON representation of all rigid links.
@@ -73,7 +75,7 @@ Boundary.RigidLink.delete()
 
 
 ## Examples
-
+---
 #### Single Slave Node
 ```py
 # Create nodes

@@ -12,6 +12,7 @@ MAPI_KEY('eyJ1ciI6InN1bWl0QG1pZGFzaXQuY29tIiwicGciO252a81571d')
 
 
 ## Constructor
+---
 **Node(`x , y , z , id = 0 , merge = 1`)**
 
 ### Parameters
@@ -45,7 +46,7 @@ for n in Node.nodes:
 
 
 ## Methods
-
+---
 ### <font style="font-size:0px">Node.</font>json 
 Returns a JSON representation of all Nodes defined in python.
 
@@ -104,7 +105,7 @@ Node.delete()
 ```
 
 ## Examples
-
+---
 ### 1. Sine Grid
 
 ```py
