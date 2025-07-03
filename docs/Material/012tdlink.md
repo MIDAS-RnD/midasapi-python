@@ -1,9 +1,9 @@
 # Time-Dependent Material Link
 
-The TDLink class links materials with their time-dependent properties (creep/shrinkage and compressive strength).
+The TDMatLink class links materials with their time-dependent properties (creep/shrinkage and compressive strength).
 
 ### Class Attributes
-*TDLink.mats* -> Dictionary of all material links.
+*TDMatLink.mats* -> Dictionary of all material links.
 
 ### Object Attributes
 * `matID` (int): The ID of the base material to which time-dependent properties are linked.
@@ -16,7 +16,7 @@ The TDLink class links materials with their time-dependent properties (creep/shr
 Returns a JSON representation of all Time-Dependent Material Links defined in python.
 
 ```py
-print(TDLink.json())
+print(TDMatLink.json())
 # Output:
 # {'Assign': {'1': {'TDMT_NAME': 'CS_M25', 'TDME_NAME': 'Comp_M25'}, ...}}
 ```
@@ -25,39 +25,39 @@ print(TDLink.json())
 Sends material links to Civil NX using a PUT request.
 
 ```py
-TDLink.create()
+TDMatLink.create()
 ```
 
 #### get
 Fetches material links from Civil NX and returns the JSON representation.
 
 ```py
-print(TDLink.get())
+print(TDMatLink.get())
 ```
 
 #### sync
 Retrieves Time-Dependent Material Link data from Civil NX and rebuilds the internal dictionary.
 
 ```py
-TDLink.sync()
+TDMatLink.sync()
 ```
 
 #### delete
 Deletes all material links from both Python and Civil NX.
 
 ```py
-TDLink.delete()
+TDMatLink.delete()
 ```
 
 ## Examples
 ---
 ```py
 # Link materials with their time-dependent properties
-link1 = TDLink(1, "CS_M25", "Comp_M25")  # Link material ID 1 with M25 properties
-link2 = TDLink(2, "CS_C30", "Comp_C30")  # Link material ID 2 with C30 properties
-link3 = TDLink(3, "CS_M25", "")          # Link material ID 3 with only creep/shrinkage
+link1 = TDMatLink(1, "CS_M25", "Comp_M25")  # Link material ID 1 with M25 properties
+link2 = TDMatLink(2, "CS_C30", "Comp_C30")  # Link material ID 2 with C30 properties
+link3 = TDMatLink(3, "CS_M25", "")          # Link material ID 3 with only creep/shrinkage
 
-TDLink.create()
+TDMatLink.create()
 ```
 
 ---
@@ -80,13 +80,13 @@ CompStrength.IRC("Comp_M25", code_year=2000, fck_delta=25000)
 
 # Link materials with time-dependent properties
 
-link1 = TDLink(1, "CS_M25", "Comp_M25")  # Link material 1 with M25 properties
-link2 = TDLink(2, "CS_C30", "Comp_C30")  # Link material 2 with C30 properties
+link1 = TDMatLink(1, "CS_M25", "Comp_M25")  # Link material 1 with M25 properties
+link2 = TDMatLink(2, "CS_C30", "Comp_C30")  # Link material 2 with C30 properties
 
 # Create all time-dependent properties in Civil NX
 CreepShrinkage.create()
 CompStrength.create()
-TDLink.create()
+TDMatLink.create()
 
 print("All time-dependent properties and links created successfully!")
 
