@@ -37,8 +37,10 @@ To import the package use the import *
 from midas_civil import *
 ```
 
+### Video Guide
+---
 
-
+<iframe width="900" height="480" src="https://www.youtube.com/embed/1MSzdb2IX1c" title="How to Install MIDAS Civil Python Library | MIDAS API" allowfullscreen></iframe>
 
 
 ## Functions available
