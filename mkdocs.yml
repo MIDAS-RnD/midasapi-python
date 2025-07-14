@@ -20,7 +20,6 @@ theme:
   font:
     text: Roboto Flex
     code: Fragment Mono
-
   features:
     - navigation.indexes
     - navigation.instant
@@ -113,4 +112,9 @@ nav:
     
   - CS:
     - Construction Stage: CS/001stage.md
+
+  - Results:
+    - ‎ ‎ ‎ Load Combination : Result/01_loadCombination.md
+    - ‎ ‎ ‎ Result Table : Result/02_resultTable.md
+    - ‎ ‎ ‎ User Defined Table : Result/03_userResultTable.md
 
