@@ -21,7 +21,7 @@ Fetches result tables like reactions or displacements for given elements and loa
 Details of all available tables can be found [here](https://support.midasuser.com/hc/en-us/articles/33016922742937-MIDAS-API-Online-Manual).
 
 
-- `elements` (`list[int]`): Optional. Element IDs (Default : All).
+- `keys` (`list[int] or str`): Optional. Element or Node IDs (Default : All) | list[int] -> IDs or str -> Group Name.
 - `loadcase` (`list[str]`): Optional. Load case names (Default : All).
 - `cs_stage` (`list` or `'all'`): Construction stages.
 - `force_unit` (`str`): Force unit (KN, N, KGF, TONF, LBF, KIPS).

@@ -102,6 +102,20 @@ nav:
     - ‎ ‎ ‎ System : Temperature/001System.md
     - ‎ ‎ ‎ Element: Temperature/002Element.md
     - ‎ ‎ ‎ Gradient: Temperature/003Gradient.md
+    - ‎ ‎ ‎ Nodal: Temperature/004Nodal.md
+    - ‎ ‎ ‎ Beam Section: Temperature/005Beamsection.md
+
+  - Moving Load:
+    - Moving Load : MovingLoad/index.md
+    - ‎ ‎ ‎ Code: MovingLoad/000Code.md
+    - ‎ ‎ ‎ Vehicle: MovingLoad/001Vehicle.md
+    - ‎ ‎ ‎ Line Lane: MovingLoad/002LineLane.md
+    - ‎ ‎ ‎ Case: MovingLoad/003VHCase.md
+  
+  - Settlement:
+    - Settlement : Settlement/index.md
+    - ‎ ‎ ‎ Group: Settlement/01Group.md
+    - ‎ ‎ ‎ Case: Settlement/02Case.md
   
   - Group:
     - Group  : Group/index.md
