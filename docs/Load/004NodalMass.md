@@ -4,11 +4,12 @@ A nested class within Load used to create nodal mass properties for dynamic anal
 
 ## Constructor
 ---
-**<font color="green">`Load.NodalMass(mX, mY=0, mZ=0, rmX=0, rmY=0, rmZ=0)`</font>**
+**<font color="green">`Load.NodalMass(node_id, mX, mY=0, mZ=0, rmX=0, rmY=0, rmZ=0)`</font>**
 
 Creates nodal mass and converts to JSON format for lumped mass modeling in dynamic analysis.
 
 ### Parameters
+* `node_id (int)`: Node ID where the mass is applied (Required)
 * `mX`: Translational Lumped Mass in GCS X-direction (Required)
 * `mY (default=0)`: Translational Lumped Mass in GCS Y-direction
 * `mZ (default=0)`: Translational Lumped Mass in GCS Z-direction
@@ -17,6 +18,7 @@ Creates nodal mass and converts to JSON format for lumped mass modeling in dynam
 * `rmZ (default=0)`: Rotational Mass Moment of Inertia about GCS Z-axis
 
 ### Object Attributes
+* `NODE_ID` (int): Node ID where the mass is applied
 * `MX` (float): Translational lumped mass in the global X direction.
 * `MY` (float): Translational lumped mass in the global Y direction.
 * `MZ` (float): Translational lumped mass in the global Z direction.
@@ -30,7 +32,7 @@ Creates nodal mass and converts to JSON format for lumped mass modeling in dynam
 Returns JSON representation of nodal mass properties.
 
 ```py
-nm1 = Load.NodalMass(1.5, 2.0, 3.0, 0.1, 0.2, 0.3)
+nm1 = Load.NodalMass(1,1.5, 2.0, 3.0, 0.1, 0.2, 0.3)
 print(Load.NodalMass.json())
 ```
 
@@ -67,20 +69,20 @@ Load.NodalMass.delete()
 ```py
 # Nodal Mass Example
 # Create nodes first
-for i in range(2):
+for i in range(5):
     Node(i*10, 0, 0)
 Node.create()
 
 # Define Nodal Mass - Translational only
-Load.NodalMass(1.5)  # Only X-direction mass
+Load.NodalMass(1,1.5)  # Only X-direction mass
 Load.NodalMass.create()
 
 # Define Nodal Mass - All translational components
-Load.NodalMass(1.5, 2.0, 3.0)
+Load.NodalMass(2,1.5, 2.0, 3.0)
 Load.NodalMass.create()
 
 # Define Nodal Mass - With rotational inertia
-Load.NodalMass(1.5, 2.0, 3.0, 0.1, 0.2, 0.3)
+Load.NodalMass(3,1.5, 2.0, 3.0, 0.1, 0.2, 0.3)
 Load.NodalMass.create()
 
 ```

@@ -4,15 +4,15 @@ A nested class within Load used to create beam loads with comprehensive options 
 
 ## Constructor
 ---
-**<font color="green">`Load.Beam(element, load_case, value, load_group = "", direction = "GZ", id = "", D = [0, 1, 0, 0], P = [0, 0, 0, 0], cmd = "BEAM", typ = "UNILOAD", use_ecc = False, use_proj = False, eccn_dir = "LZ", eccn_type = 1, ieccn = 0, jeccn = 0.0000195, adnl_h = False, adnl_h_i = 0, adnl_h_j = 0.0000195)`</font>**
+**<font color="green">`Load.Beam(element, load_case, load_group = "", value, direction = "GZ", id = "", D = [0, 1, 0, 0], P = [0, 0, 0, 0], cmd = "BEAM", typ = "UNILOAD", use_ecc = False, use_proj = False, eccn_dir = "LZ", eccn_type = 1, ieccn = 0, jeccn = 0.0000195, adnl_h = False, adnl_h_i = 0, adnl_h_j = 0.0000195)`</font>**
 
 Creates beam loads with various distribution patterns and advanced options.
 
 ### Parameters
 * `element`: Element number where load is applied
 * `load_case`: Load case name
-* `value`: Load magnitude
 * `load_group (default="")`: Load group name
+* `value`: Load magnitude
 * `direction (default="GZ")`: Load direction ("GX", "GY", "GZ", "LX", "LY", "LZ")
 * `id (default="")`: Manual ID assignment (auto-assigned if empty)
 * `D (default=[0, 1, 0, 0])`: Relative distance array (4 values based on element length)

@@ -59,13 +59,15 @@ nav:
     - Element: Element/index.md
     - ‎ ‎ ‎ 1D Elements: Element/1D.md
     - ‎ ‎ ‎ 2D Elements: Element/2D.md
-    - ‎ ‎ ‎ 3D Elements: Element/3D.md
+    - ‎ ‎ ‎ 3D Elements: Element/3D.md 
+    - ‎ ‎ ‎ Stiffness Scale Factor: Element/ElemetScaleFactor.md
 
   - Section Properties:
     - Section : Section/index.md
     - ‎ ‎ ‎ Standard Section : Section/01_user.md
     - ‎ ‎ ‎ PSC Section: Section/02_psc.md
     - ‎ ‎ ‎ Composite Section : Section/03_composite.md
+    - ‎ ‎ ‎ Tapered Group : Section/04_taperedgroup.md
     - Thickness : Section/09_thickness.md
 
   - Material Properties:
@@ -97,8 +99,15 @@ nav:
     - ‎ ‎ ‎ Specified Displacement: Load/005spDisp.md
     - Load Case : Load/case.md
   
+  - Group:
+    - Group  : Group/index.md
+    - ‎ ‎ ‎ Structure Group : Group/001sg.md
+    - ‎ ‎ ‎ Boundary Group : Group/002bg.md
+    - ‎ ‎ ‎ Load Group: Group/003lg.md
+    - ‎ ‎ ‎ Tendon Group: Group/004tg.md
+
   - Temperature:
-    - Temperature : Temperature/index.md
+    - Temperature Load: Temperature/index.md
     - ‎ ‎ ‎ System : Temperature/001System.md
     - ‎ ‎ ‎ Element: Temperature/002Element.md
     - ‎ ‎ ‎ Gradient: Temperature/003Gradient.md
@@ -117,18 +126,21 @@ nav:
     - ‎ ‎ ‎ Group: Settlement/01Group.md
     - ‎ ‎ ‎ Case: Settlement/02Case.md
   
-  - Group:
-    - Group  : Group/index.md
-    - ‎ ‎ ‎ Structure Group : Group/001sg.md
-    - ‎ ‎ ‎ Boundary Group : Group/002bg.md
-    - ‎ ‎ ‎ Load Group: Group/003lg.md
-    - ‎ ‎ ‎ Tendon Group: Group/004tg.md
     
-  - CS:
-    - Construction Stage: CS/001stage.md
+  - Construction Stage:
+    - Define Construction Stage: CS/001stage.md
+    - Composite Section for CS: CS/002compsec.md
+    - TIme Loads for CS: CS/003timeloads.md
+    - Creep Coefficient for CS: CS/004creepcoeffcs.md
+    - Camber for CS: CS/005cambercs.md
 
   - Results:
     - ‎ ‎ ‎ Load Combination : Result/01_loadCombination.md
     - ‎ ‎ ‎ Result Table : Result/02_resultTable.md
     - ‎ ‎ ‎ User Defined Table : Result/03_userResultTable.md
+
+  # - Tendon:
+  #   - ‎ ‎ ‎ Tendon Property : Tendon/001Property.md
+  #   - ‎ ‎ ‎ Tendon Profile : Result/02_resultTable.md
+  #   - ‎ ‎ ‎ Tendon Prestress Load : Result/03_userResultTable.md
 

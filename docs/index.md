@@ -67,6 +67,33 @@ MAPI_KEY('eyJ1ciI6InN1bWl0QG1pZGFzaXQuY29tIiwicGciO.252a81571d')
     * The MAPI key used in your Python script must match the key in the Civil NX application.
 
 
+### MAPI_BASEURL
+Handles and stores the MIDAS API Base URL used for sending requests.
+
+```py
+#Importing the midas-civil package
+from midas_civil import * 
+
+#Sets the Base URL for Python interface
+MAPI_BASEURL('https://moa-engineers.midasit.com:443/civil')
+```
+
+### MAPI_COUNTRY
+The `MAPI_COUNTRY `function allows users to define the country of CIVIL NX version, which in turn automatically retrieves and sets the appropriate MAPI Key and Base URL from the system registry. 
+
+```py
+#Importing the midas-civil package
+from midas_civil import * 
+
+
+MAPI_COUNTRY('CN') # For Chinese version
+MAPI_COUNTRY('US') # For US / English version
+```
+
+!!! info "NOTE :"
+    * If retriving Base URL and MAPI-Key from registry fails, then :    
+    a.   Define Base URL using **MAPI_BASEURL( )**   
+    b.   Define MAPI Key using **MAPI_KEY( )**
 
 
 

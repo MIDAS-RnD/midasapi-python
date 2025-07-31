@@ -1,4 +1,4 @@
-# Construction Stage
+# Define Construction Stage
 The module provides functionality to create, manage, and synchronize construction stages for staged construction analysis in the model. It handles activation and deactivation of structure groups, boundary groups, and load groups across different construction phases.
 
 !!! info "Note."
