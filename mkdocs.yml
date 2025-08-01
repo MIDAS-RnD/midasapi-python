@@ -32,6 +32,20 @@ theme:
 
 plugins:
   - search # put it first to inject out custom code
+  - glightbox:
+      touchNavigation: true
+      loop: false
+      effect: zoom
+      slide_effect: zoom
+      width: auto
+      height: auto
+      zoomable: true
+      draggable: true
+      auto_caption: false
+      caption_position: bottom
+      background: white
+      shadow: true
+      manual: false
 
 markdown_extensions:
  - admonition
@@ -43,6 +57,9 @@ markdown_extensions:
  - pymdownx.superfences
  - pymdownx.snippets
  - pymdownx.details
+ - md_in_html
+ - attr_list
+ - pymdownx.blocks.caption
      
 
 
@@ -134,13 +151,13 @@ nav:
     - Creep Coefficient for CS: CS/004creepcoeffcs.md
     - Camber for CS: CS/005cambercs.md
 
-  - Results:
+  - Results :
     - ‎ ‎ ‎ Load Combination : Result/01_loadCombination.md
     - ‎ ‎ ‎ Result Table : Result/02_resultTable.md
     - ‎ ‎ ‎ User Defined Table : Result/03_userResultTable.md
 
-  # - Tendon:
-  #   - ‎ ‎ ‎ Tendon Property : Tendon/001Property.md
-  #   - ‎ ‎ ‎ Tendon Profile : Result/02_resultTable.md
-  #   - ‎ ‎ ‎ Tendon Prestress Load : Result/03_userResultTable.md
+  - Tendon ✨:
+    - ‎ ‎ ‎ Tendon Property : Tendon/001Property.md
+    # - ‎ ‎ ‎ Tendon Profile : Result/02_resultTable.md
+    # - ‎ ‎ ‎ Tendon Prestress Load : Result/03_userResultTable.md
 

@@ -2,27 +2,30 @@
 
 Manages tendon properties and integrates relaxation models.
 
-![NODE GRID](tendon_property.png)
+<figure markdown>
+![NODE GRID](tendon_property.png){ width="400"}
+</figure>
 
 > Property highlighted in the box is defined through Relaxation defintion.
 
 ## Constructor
 ---
-**<font color="green">`Tendon.Property(load_case, dir = "Z", value = -1, load_group = "")`</font>**
+**`Tendon.Property(name, type, matID: int, tdn_area, duct_dia, relaxation, ext_mom_mag=0, anch_slip_begin=0, anch_slip_end=0, bond_type: bool=True, id=0)`**
+
 
 Creates a tendon property
 
 ### Parameters
 * `name` (str): Name for the tendon property.
 * `type` (int): 1=Internal (Pre-tension) |  2=Internal (Post-tension) |  3=External.
-* `matID` (int): Material ID.
+* `matID` (int): Steel Material ID.
 * `tdn_area` (float): Area of tendon.
 * `duct_dia` (float): Duct diameter.
 * `relaxation`: Relaxation definition.
-* `ext_mom_mag` (float, default=0): External moment magnitude.
+* `ext_mom_mag` (float, default=0): External moment magnifier.
 * `anch_slip_begin` (float, default=0): Anchorage slip at begin.
 * `anch_slip_end` (float, default=0): Anchorage slip at end.
-* `bond_type` (bool, default=True): Whether the tendon is bonded.
+* `bond_type` (bool, default=True): Whether the tendon is bonded or unbonded.
 * `id` (int, default=0): Optional ID for tendon property.
 
 ### Object Attributes
@@ -37,42 +40,63 @@ Creates a tendon property
 * `EXT_MOM_MAG`: External moment magnitude
 * `ANC_SLIP_B`: Anchor slip at beginning
 * `ANC_SLIP_E`: Anchor slip at end
-* `BOND_TYP`E: Bonded (True) or unbonded (False)
+* `BOND_TYP`: Bonded (True) or unbonded (False)
 
+#### Class Attributes
+*Tendon.Property.properties* -> List of all tendon properties defined.
 
+```py
+Tendon.Property('TD_Prop',2,1,1700,100,Tendon.Relaxation.Null(1800,1500))
+Tendon.Property('TD_Prop 2',1,1,1700,100,Tendon.Relaxation.CEBFIP_2010(0,2,1800,1500))
+
+for prop in Tendon.Property.properties:
+    print(f'NAME : {prop.NAME}  | TYPE: {prop.TYPE} {prop.TENS} TENSION ')
+
+# Output:
+# NAME : TD_Prop  | TYPE: INTERNAL POST TENSION
+# NAME : TD_Prop 2  | TYPE: INTERNAL PRE TENSION
+```
 ## Methods
 ---
 #### json
-Returns JSON representation of all self-weight loads.
+Returns a JSON representation of all Tendon Properties defined in python.
 
 ```py
-sw1 = Tendon.Property("Dead Load", "Z", -1)
+Tendon.Property('TD_Prop',2,1,1700,100,Tendon.Relaxation.Null(1800,1500))
 print(Tendon.Property.json())
+
+# Output:
+# {'Assign': {1: {'NAME': 'TD_Prop', 'TYPE': 'INTERNAL', 'LT': 'POST', 'MATL': 1, 'AREA': 1700, 'D_AREA': 100, 'ASB': 0, 'ASE': 0, 'bBONDED': True, 'ALPHA': 0, 'RM': 0, 'RV': 0, 'US': 1800, 'YS': 1500, 'FF': 0, 'WF': 0, 'bRELAX': False}}}
 ```
 
 #### create
-Sends self-weight loads to Civil NX.
+Sends the current tendon properties defined to the Civil NX using a PUT request.   
+New properties are created and existing property(same ID) in Civil NX will be updated.
 
 ```py
+Tendon.Property('TD_Prop',2,1,1700,100,Tendon.Relaxation.Null(1800,1500)) # Assumes Material with ID=1
 Tendon.Property.create()
 ```
 
 #### get
-Fetches self-weight loads from Civil NX.
+Fetches tendon properties from the Civil NX and return the JSON representation.
 
 ```py
 print(Tendon.Property.get())
+# Output:
+# {'TDNT': {'1': {'NAME': 'TD_Prop', 'TYPE': 'INTERNAL', 'MATL': 1, 'AREA': 1700, 'D_AREA': 100, 'RM': 0, 'RV': 0, 'US': 1800, 'YS': 1500, 'LT': 'POST', 'ASB': 0, 'ASE': 0, 'bBONDED': True, 'ALPHA': 0, 'bRELAX': False, 'TDMFK': 0, 'FF': 0, 'WF': 0}}}
+
 ```
 
 #### sync
-Synchronizes self-weight loads from Civil NX.
+Retrieves Tendon property data from the Civil NX and rebuilds the internal tendon property list.
 
 ```py
 Tendon.Property.sync()
 ```
 
 #### delete
-Deletes all self-weight loads from both Python and Civil NX.
+Deletes all tendon properties from both Python and Civil NX.
 
 ```py
 Tendon.Property.delete()
@@ -86,58 +110,186 @@ Tendon.Property.delete()
 
 
 ## Relaxation
+---
+The Relaxation class contains several code-specific inner classes to define tendon relaxation properties for different standards.   
+Each standard/code has its own constructor parameters and object attributes.
 
-The Relaxation class acts as container for multiple relaxation models, each implemented as an inner class. 
-These correspond to different design codes.
+If no relaxation if required, Tendon.Relaxation.Null() can be used.
 
 
+??? sumit_block "Null - No Relaxation"
+    ### Null
+    #### Constructor  
+    **`Tendon.Relaxation.Null(    ult_st,    yield_st,    curv_fric_fac=0,    wob_fric_fac=0)`**
 
+    #### Parameters  
+    * `ult_st` (float): Ultimate strength.  
+    * `yield_st` (float): Yield strength.  
+    * `curv_fric_fac` (float, optional): Curvature friction factor (default is 0).  
+    * `wob_fric_fac` (float, optional): Wobble friction factor (default is 0).  
 
-### IRC
-**<font color="green">`CreepShrinkage.IRC(name='', code_year=2011, fck=0, notional_size=1, relative_humidity=70, age_shrinkage=3, type_cement='NR', id=0)`</font>**
-
-Creates IRC standard creep and shrinkage properties.
-
-#### Parameters
-* `name (str)`: Property name
-* `code_year (int, optional)`: The year of the IRC code. Can be 2000 or 2011. Defaults to 2011.
-* `fck (float)`: 28-day characteristic compressive strength
-* `notional_size (float, optional)`: The notional size of the member. Defaults to 1.
-* `relative_humidity (float, optional)`: Relative humidity (40-99%). Defaults to 70.
-* `age_shrinkage (int, optional)`: Age at start of shrinkage (days). Defaults to 3.
-* `type_cement (str, optional)`: Type of cement ('SL'= Slow Setting cement, 'NR'= Normal cement, 'RS'=Rapid hardening cement). Only for IRC:112-2011. Defaults to 'NR'.
-* `id (int, optional)`: Manual ID assignment. Defaults to 0.
-
-#### Object Attributes
-* `ID` (int): The ID of the creep/shrinkage definition.
-* `DATA` (dict): A dictionary containing the creep/shrinkage properties. Specific keys include:
-    * `NAME` (str): Name of the creep/shrinkage definition.
-    * `CODE` (str): Code standard (e.g., "INDIA_IRC_112_2011").
-    * `STR` (float): Characteristic compressive cylinder strength fck.
-    * `HU` (float): Relative humidity (%).
-    * `AGE` (float): Age of concrete at beginning of shrinkage (days).
-    * `MSIZE` (float): Notional size of member.
-    * `CTYPE` (str): Type of cement (e.g., "NR").
-
-#### Examples
-```py
-# Create IRC:112-2011 creep and shrinkage properties
-cs1 = CreepShrinkage.IRC("IRC_M30_2011", code_year=2011, fck=30, notional_size=150, relative_humidity=75, age_shrinkage=7, type_cement='R', id=1)
-
-# Create IRC:18-2000 creep and shrinkage properties
-cs2 = CreepShrinkage.IRC("IRC_M25_2000", code_year=2000, fck=25, notional_size=200, relative_humidity=70, age_shrinkage=3, type_cement='NR', id=2)
-
-CreepShrinkage.create()
-```
+    #### Object Attributes  
+    * `CODE` (str): 'No Relaxation'  
+    * `ULT_ST` (float): Ultimate strength.  
+    * `YIELD_ST` (float): Yield strength.  
+    * `CURV_FF` (float): Curvature friction factor.  
+    * `WOBBLE_FF` (float): Wobble friction factor.  
 
 
 
+??? sumit_block "CEB-FIP Code (2010)"
+    ### CEBFIP_2010
+    #### Constructor
+
+    **`Tendon.Relaxation.CEBFIP_2010(    rho,    rel_class,    ult_st,    yield_st,    curv_fric_fac=0,    wob_fric_fac=0,    unint_ang_disp=0)`**
 
 
+    #### Parameters
+    * `rho` (float): Relative relaxation loss after 1000 hours.   
+    * `rel_class` (int): Relaxation class (1: Slow, 2: Mean, 3: Rapid).   
+    * `ult_st` (float): Ultimate strength .   
+    * `yield_st` (float): Yield strength.   
+    * `curv_fric_fac` (float, optional): Curvature friction factor (default: 0).   
+    * `wob_fric_fac` (float, optional): Wobble friction factor (default: 0).   
+    * `unint_ang_disp` (float, optional): Unintentional angular displacement (default: 0).   
+
+    #### Object Attributes
+    * `CODE` (str): 'CEB FIP-2010'   
+    * `RHO` (float): Relative relaxation value.   
+    * `CLASS` (int): Relaxation class.   
+    * `ULT_ST` (float): Ultimate strength.   
+    * `YIELD_ST` (float): Yield strength.   
+    * `CURV_FF` (float): Curvature friction factor.   
+    * `WOBBLE_FF` (float): Wobble friction factor.   
+    * `UNINT_AD` (float): Unintentional angular displacement.   
 
 
+??? sumit_block "CEB-FIP Code (1978)"
+    ### CEBFIP_1978
+    #### Constructor  
+    **`Tendon.Relaxation.CEBFIP_1978(    rho,    ult_st,    yield_st,    curv_fric_fac=0,    wob_fric_fac=0,    unint_ang_disp=0)`**
+
+    #### Parameters  
+    * `rho` (float): Relative relaxation value.  
+    * `ult_st` (float): Ultimate strength.  
+    * `yield_st` (float): Yield strength.  
+    * `curv_fric_fac` (float, optional): Curvature friction factor (default: 0).  
+    * `wob_fric_fac` (float, optional): Wobble friction factor (default: 0).  
+    * `unint_ang_disp` (float, optional): Unintentional angular displacement (default: 0).  
+
+    #### Object Attributes  
+    * `CODE` (str): 'CEB FIP-1978'  
+    * `RHO` (float): Relative relaxation value.  
+    * `ULT_ST` (float): Ultimate strength.  
+    * `YIELD_ST` (float): Yield strength.  
+    * `CURV_FF` (float): Curvature friction factor.  
+    * `WOBBLE_FF` (float): Wobble friction factor.  
+    * `UNINT_AD` (float): Unintentional angular displacement.  
 
 
+??? sumit_block "CEB-FIP Code (1990)"
+    ### CEBFIP_1990
+    #### Constructor  
+    **`Tendon.Relaxation.CEBFIP_1990(    rho,    ult_st,    yield_st,    curv_fric_fac=0,    wob_fric_fac=0,    unint_ang_disp=0)`**
+
+    #### Parameters  
+    * `rho` (float): Relative relaxation value.  
+    * `ult_st` (float): Ultimate strength.  
+    * `yield_st` (float): Yield strength.  
+    * `curv_fric_fac` (float, optional): Curvature friction factor (default: 0).  
+    * `wob_fric_fac` (float, optional): Wobble friction factor (default: 0).  
+    * `unint_ang_disp` (float, optional): Unintentional angular displacement (default: 0).  
+
+    #### Object Attributes  
+    * `CODE` (str): 'CEB FIP-1990'  
+    * `RHO` (float): Relative relaxation value.  
+    * `ULT_ST` (float): Ultimate strength.  
+    * `YIELD_ST` (float): Yield strength.  
+    * `CURV_FF` (float): Curvature friction factor.  
+    * `WOBBLE_FF` (float): Wobble friction factor.  
+    * `UNINT_AD` (float): Unintentional angular displacement.  
+
+??? sumit_block "European"
+    ### European
+    #### Constructor  
+    **`Tendon.Relaxation.European(    rel_class,    ult_st,    yield_st,    curv_fric_fac=0,    wob_fric_fac=0,    unint_ang_disp=0)`**
+
+    #### Parameters  
+    * `rel_class` (int): Relaxation class (1: Ordinary, 2: Low, 3: HotRolled).  
+    * `ult_st` (float): Ultimate strength.  
+    * `yield_st` (float): Yield strength.  
+    * `curv_fric_fac` (float, optional): Curvature friction factor (default: 0).  
+    * `wob_fric_fac` (float, optional): Wobble friction factor (default: 0).  
+    * `unint_ang_disp` (float, optional): Unintentional angular displacement (default: 0).  
+
+    #### Object Attributes  
+    * `CODE` (str): 'European'  
+    * `CLASS` (int): Relaxation class.  
+    * `ULT_ST` (float): Ultimate strength.  
+    * `YIELD_ST` (float): Yield strength.  
+    * `CURV_FF` (float): Curvature friction factor.  
+    * `WOBBLE_FF` (float): Wobble friction factor.  
+    * `UNINT_AD` (float): Unintentional angular displacement.  
+
+??? sumit_block "IRC 18 - 2000"
+    ### IRC_18
+    #### Constructor  
+    **`Tendon.Relaxation.IRC_18(    factor,    ult_st,    yield_st,    curv_fric_fac=0,    wob_fric_fac=0)`**
+
+    #### Parameters  
+    * `factor` (float): Relaxation factor.  
+    * `ult_st` (float): Ultimate strength.  
+    * `yield_st` (float): Yield strength.  
+    * `curv_fric_fac` (float, optional): Curvature friction factor (default: 0).  
+    * `wob_fric_fac` (float, optional): Wobble friction factor (default: 0).  
+
+    #### Object Attributes  
+    * `CODE` (str): 'IRC:18-2000'  
+    * `FACTOR` (float): Relaxation factor.  
+    * `ULT_ST` (float): Ultimate strength.  
+    * `YIELD_ST` (float): Yield strength.  
+    * `CURV_FF` (float): Curvature friction factor.  
+    * `WOBBLE_FF` (float): Wobble friction factor.  
+
+??? sumit_block "IRC 112 - 2020"
+    ### IRC_112
+    #### Constructor  
+    **`Tendon.Relaxation.IRC_112(    factor,    ult_st,    yield_st,    curv_fric_fac=0,    wob_fric_fac=0)`**
+
+    #### Parameters  
+    * `factor` (float): Relaxation factor (code-specific parameter).  
+    * `ult_st` (float): Ultimate strength.  
+    * `yield_st` (float): Yield strength.  
+    * `curv_fric_fac` (float, optional): Curvature friction factor (default is 0).  
+    * `wob_fric_fac` (float, optional): Wobble friction factor (default is 0).  
+
+    #### Object Attributes  
+    * `CODE` (str): 'IRC:112-2011'  
+    * `FACTOR` (float): Relaxation factor.  
+    * `ULT_ST` (float): Ultimate strength.  
+    * `YIELD_ST` (float): Yield strength.  
+    * `CURV_FF` (float): Curvature friction factor.  
+    * `WOBBLE_FF` (float): Wobble friction factor.  
+
+??? sumit_block "Magura et al. 1964"
+    ### Magura
+    #### Constructor  
+    **`Tendon.Relaxation.Magura(    factor,    ult_st,    yield_st,    curv_fric_fac=0,    wob_fric_fac=0)`**
+
+    #### Parameters  
+    * `factor` (int): Relaxation factor; must be either 10 or 45. If not, defaults to 45.  
+    * `ult_st` (float): Ultimate strength.  
+    * `yield_st` (float): Yield strength.  
+    * `curv_fric_fac` (float, optional): Curvature friction factor (default is 0).  
+    * `wob_fric_fac` (float, optional): Wobble friction factor (default is 0).  
+
+    #### Object Attributes  
+    * `CODE` (str): 'Magura'  
+    * `FACTOR` (int): Relaxation factor (either 10 or 45).  
+    * `ULT_ST` (float): Ultimate strength.  
+    * `YIELD_ST` (float): Yield strength.  
+    * `CURV_FF` (float): Curvature friction factor.  
+    * `WOBBLE_FF` (float): Wobble friction factor.
 
 
 
@@ -153,21 +305,18 @@ CreepShrinkage.create()
 ## Examples
 ---
 ```py
-# Simple self-weight in Z direction
-for i in range(2):
-    Node(i*10,0,0)
-    Node.create()
 
-Element.Beam(1,2)
-Element.create()
-    
-#Load Case
-Load_Case("D","SW Load")
-Load_Case.create()
+from midas_civil import *
 
-Tendon.Property("SW Load","Z",-1)
-Tendon.Property.create()
+Material.STEEL('TD_steel','IS(S)','E450')
+Tendon.Property('TD_Prop',2,1,1700,100,Tendon.Relaxation.Null(1800,1500))
+Tendon.Property('TD_Prop 2',1,1,1700,100,Tendon.Relaxation.CEBFIP_2010(0,2,1800,1500))
+
+Model.create()
 
 ```
+
+
+
 
 

@@ -11,7 +11,7 @@ MAPI_KEY('eyJ1ciI6InN1bWl0QG1pZGFzaXQuY29tIiwicGciO252k81571d')
 
 ## Constructor
 ---
-**<font color="green">`CS.TimeLoads(element_id, day, group="", id=None)`</font>**
+**<font color="green">`CS.TimeLoad(element_id, day, group="", id=None)`</font>**
 
 Creates time loads for Construction Stage with specified parameters for element assignment, timing, and load grouping.
 
@@ -22,7 +22,7 @@ Creates time loads for Construction Stage with specified parameters for element 
 * `id (default=None)`: Manual time loads ID assignment (auto-assigned if None)
 
 #### Class Attributes
-*CS.TimeLoads.timeloads* -> List of all time loads defined.
+*CS.TimeLoad.timeloads* -> List of all time loads defined.
 
 ## Methods
 ---
@@ -30,10 +30,10 @@ Creates time loads for Construction Stage with specified parameters for element 
 Returns a JSON representation of all Time Loads defined in python.
 
 ```py
-CS.TimeLoads(10, 35, "DL")
-CS.TimeLoads(11, 25, "DL")
+CS.TimeLoad(10, 35, "DL")
+CS.TimeLoad(11, 25, "DL")
 
-print(CS.TimeLoads.json())
+print(CS.TimeLoad.json())
 
 # Output will show detailed JSON structure for all time loads
 ```
@@ -42,17 +42,17 @@ print(CS.TimeLoads.json())
 Sends the current time loads list to Civil NX using a PUT request.
 
 ```py
-CS.TimeLoads(10, 35, "DL")
-CS.TimeLoads(11, 25, "DL")
+CS.TimeLoad(10, 35, "DL")
+CS.TimeLoad(11, 25, "DL")
 
-CS.TimeLoads.create()
+CS.TimeLoad.create()
 ```
 
 #### get
 Fetches time loads from Civil NX and returns the JSON representation.
 
 ```py
-print(CS.TimeLoads.get())
+print(CS.TimeLoad.get())
 # Output will show all time loads from Civil NX database
 ```
 
@@ -60,8 +60,8 @@ print(CS.TimeLoads.get())
 Retrieves Time Loads data from Civil NX and rebuilds the internal time loads list.
 
 ```py
-CS.TimeLoads.sync()
-for timeload in CS.TimeLoads.timeloads:
+CS.TimeLoad.sync()
+for timeload in CS.TimeLoad.timeloads:
     print(f'Element ID: {timeload.ELEMENT_ID} | Days: {timeload.DAY}')
     print(f'  Group: {timeload.GROUP_NAME} | ID: {timeload.ID}')
 ```
@@ -70,7 +70,7 @@ for timeload in CS.TimeLoads.timeloads:
 Deletes all time loads data from both Python and Civil NX.
 
 ```py
-CS.TimeLoads.delete()
+CS.TimeLoad.delete()
 ```
 
 ## Examples
@@ -79,24 +79,24 @@ CS.TimeLoads.delete()
 #### Basic Time Loads
 ```py
 # Create basic time loads without group name
-CS.TimeLoads(12, 30)
+CS.TimeLoad(12, 30)
 
-CS.TimeLoads.create()
+CS.TimeLoad.create()
 ```
 
 #### Time Loads with Group
 ```py
 # Create time loads with load group specification
-CS.TimeLoads(10, 35, "DL")
-CS.TimeLoads(11, 25, "DL")
+CS.TimeLoad(10, 35, "DL")
+CS.TimeLoad(11, 25, "DL")
 
-CS.TimeLoads.create()
+CS.TimeLoad.create()
 ```
 
 #### Time Loads with Specific ID
 ```py
 # Create time loads with manual ID assignment
-CS.TimeLoads(11, 25, "DL", id=2)
+CS.TimeLoad(11, 25, "DL", id=2)
 
-CS.TimeLoads.create()
+CS.TimeLoad.create()
 ```

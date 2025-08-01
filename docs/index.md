@@ -2,7 +2,7 @@ title: Introduction
 summary: to MIDAS Python interface
 
 
-![MIDAS PYTHON](assets/banner.png)
+![MIDAS PYTHON](assets/banner.png){ .off-glb }
 
 This module provides a Python interface to interact with the MIDAS Civil NX API using HTTP requests. It includes functionality to manage the MAPI key required for authentication and to send API requests using various HTTP methods.
 
