@@ -59,6 +59,14 @@
   font-size: 25px;
 }
 
+.md-typeset h5 {
+  color: #3c3c3c;
+  margin-bottom: 0;
+  font-weight: 600;
+  font-size: 17px;
+  text-transform: none;
+}
+
 
 .md-typeset .admonition.sumit_block,
 .md-typeset details.sumit_block {

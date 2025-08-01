@@ -111,10 +111,10 @@ Tendon.Property.delete()
 
 ## Relaxation
 ---
-The Relaxation class contains several code-specific inner classes to define tendon relaxation properties for different standards.   
+The Relaxation class contains several code-specific inner classes to define tendon relaxation properties.   
 Each standard/code has its own constructor parameters and object attributes.
 
-If no relaxation if required, Tendon.Relaxation.Null() can be used.
+If no relaxation is required, Tendon.Relaxation.Null( ) should be used.
 
 
 ??? sumit_block "Null - No Relaxation"

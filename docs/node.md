@@ -25,8 +25,11 @@ MAPI_KEY('eyJ1ciI6InN1bWl0QG1pZGFzaXQuY29tIiwicGciO252a81571d')
 ### Object Attributes
 
 `X, Y, Z`: Coordinates of the node.
-
 `ID`: Unique identifier.
+
+### Retrieve Node by ID
+
+`nodeByID(id:int)` : Returns `NODE` object with given ID.
 
 #### Class Attributes
 

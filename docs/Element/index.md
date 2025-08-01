@@ -17,6 +17,11 @@ To create elements function corresponding to element type should be used.
 * **Plate** : Element.Plate( )   
 
 
+### Retrieve Element by ID
+
+`elemByID(id:int)` : Returns `ELEMENT` object with given ID.
+
+
 #### Class Attributes
 
 *Element.elements* -> List of all elements.
