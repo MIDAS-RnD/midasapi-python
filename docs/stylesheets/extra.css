@@ -2,7 +2,7 @@
   max-width: 98%;
 }
 
-@media (min-width: 1220px) {
+@media (min-width: 1400px) {
   .md-main__inner {
     margin-top: 0;
   }
