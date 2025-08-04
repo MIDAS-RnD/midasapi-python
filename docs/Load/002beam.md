@@ -57,7 +57,7 @@ Creates beam loads with various distribution patterns and advanced options.
 Returns JSON representation of all beam loads.
 
 ```py
-bl1 = Load.Beam(115, "Live Load", -50.0)
+bl1 = Load.Beam(115, "Live Load","", -50.0)
 print(Load.Beam.json())
 ```
 
@@ -116,7 +116,7 @@ Load_Case.create()
 
 #Apply UDL Load
 
-Load.Beam(1,"UDL Load",-50,"","GZ")
+Load.Beam(1,"UDL Load","",-50,"GZ")
 Load.Beam.create()
 
 ```
@@ -138,7 +138,7 @@ Load_Case.create()
 
 #Apply Trapezoidal Load
 
-Load.Beam(1,"Trapezoidal Load",0,"","GZ","",[0,0.3,0.7,1],[0,-20,-50,0])
+Load.Beam(1,"Trapezoidal Load","",0,"GZ","",[0,0.3,0.7,1],[0,-20,-50,0])
 Load.Beam.create()
 ```
 
@@ -158,7 +158,7 @@ Load_Case.create()
 
 #Apply Concentrated Load
 
-Load.Beam(1,"Test Load",0,"","GZ",1,[0.3,0.5,0.7],[-20,-30,-40],"BEAM","CONLOAD")
+Load.Beam(1,"Test Load","",0,"GZ",1,[0.3,0.5,0.7],[-20,-30,-40],"BEAM","CONLOAD")
 Load.Beam.create()
 ```
 
@@ -178,7 +178,7 @@ Load_Case.create()
 
 # Apply Load with 2.5 m eccentricity at i-end
 
-Load.Beam(1, "Test Load", -100, use_ecc=True, ieccn=2.5)
+Load.Beam(1, "Test Load","", -100, use_ecc=True, ieccn=2.5)
 Load.Beam.create()
 ```
 
@@ -198,7 +198,7 @@ Load_Case.create()
 
 # Apply Concentrated Moment/Torsion
 
-Load.Beam(1,"Test Load",0,"","GZ","",[0.3,0.7],[-20,-50],"BEAM","CONMOMENT")
+Load.Beam(1,"Test Load","",0,"GZ","",[0.3,0.7],[-20,-50],"BEAM","CONMOMENT")
 Load.Beam.create()
 ```
 
@@ -219,10 +219,10 @@ Load_Case.create()
 
 #Uniform Moment/Torsion
 
-Load.Beam(1,"Test Load 1",0,"","GZ","",[0,1],[-20,-20],"BEAM","UNIMOMENT")
+Load.Beam(1,"Test Load 1","",0,"GZ","",[0,1],[-20,-20],"BEAM","UNIMOMENT")
 
 #Trapezoidal Moment/Torsion
 
-Load.Beam(2,"Test Load 2",0,"","GZ","",[0.3,0.7],[-30,-50],"BEAM","UNIMOMENT")
+Load.Beam(2,"Test Load 2","",0,"GZ","",[0.3,0.7],[-30,-50],"BEAM","UNIMOMENT")
 Load.Beam.create()
 ```
