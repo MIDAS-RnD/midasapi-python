@@ -154,3 +154,58 @@ Section.PSC.I(
 Section.create()
 
 ```
+
+
+
+## PSC Value
+---
+#### Constructor
+**`Section.PSC.I(Name: str,   OuterPolygon: list,   InnerPolygon: list = [],       Offset: Offset = Offset.CC(),     useShear: bool = True,     use7Dof: bool = False,   id: int = 0):`**
+
+Creates custom shaped PSC Value section based on section co-ordinates.
+
+#### Parameters
+* `Name`: Section name
+* `OuterPolygon`: A list of (x, y) tuples defining the vertices of the outer boundary. The polygon does not need to be closed (the first and last points can be different).
+* `InnerPolygon`: An optional list defining the inner boundary (void). It can be either a single list of (x, y) tuples for one void or a list of lists for multiple voids.
+* `Offset (default=Offset.CC())`: Section offset parameters
+* `useShear (default=True)`: Enable shear deformation
+* `use7Dof (default=False)`: Enable warping effect
+* `id (default=0)`: Section ID
+
+### Object Attributes
+
+* `ID` (int): Section ID.
+* `NAME` (str): Section name.
+* `SHAPE` (str): Section shape, defaults to 'VALUE'.
+* `TYPE` (str): Type of section, defaults to 'PSC'.
+* `OUTER_POLYGON` (list): A list of (x, y) tuples defining the vertices of the outer boundary.
+* `N_INNER_POLYGON` (int): Number of Voids in the section
+* `INNER_POLYGON` (list): It can be either a single list of (x, y) tuples for one void or a list of lists for multiple voids.
+
+* `J1, JL1, JL2, JL3, JL4` (bool): Joint connectivity flags for the left side (and right side if symmetric).
+* `JR1, JR2, JR3, JR4` (bool): Joint connectivity flags for the right side (if not symmetric).
+
+* `OFFSET` (Offset): An `Offset` object defining the section's offset.
+* `USESHEAR` (bool): Flag to indicate if shear deformation is considered.
+* `USE7DOF` (bool): Flag to indicate if warping effect (7th DOF) is considered.
+#### Examples
+
+##### PSC Value (PSC BOX)
+```py
+# Symmetric PSC I-Section Example
+Element.Beam.SDL([0,0,0],[1,0,0],10,10)
+n_points = [
+    (0,1),(3,1),(3,0.8),(2,0.8),(1.5,0.7),(1,0),(0.9,-0.1),(0.56,-0.19),(0,-0.2),
+    (-0.56,-0.19),(-0.9,-0.1),(-1,0),(-1.5,0.7),(-2,0.8),(-3,0.8),(-3,1)
+]
+holl_point = [
+    (0,0.8),(1,0.8),(1,0.5),(0.7,0.1),(0.5,0),(0,0),
+    (-0.5,0),(-0.7,0.1),(-1,0.5),(-1,0.8)
+]
+
+Section.PSC.Value('PSC BOX test',n_points,holl_point,Offset=Offset('CT'))
+
+Model.create()
+
+```
