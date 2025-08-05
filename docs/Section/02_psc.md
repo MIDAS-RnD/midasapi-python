@@ -157,12 +157,12 @@ Section.create()
 
 
 
-## PSC Value
+## PSC Value Section
 ---
 #### Constructor
 **`Section.PSC.I(Name: str,   OuterPolygon: list,   InnerPolygon: list = [],       Offset: Offset = Offset.CC(),     useShear: bool = True,     use7Dof: bool = False,   id: int = 0):`**
 
-Creates custom shaped PSC Value section based on section co-ordinates.
+Creates PSC Value section based on section co-ordinates.
 
 #### Parameters
 * `Name`: Section name
@@ -191,14 +191,18 @@ Creates custom shaped PSC Value section based on section co-ordinates.
 * `USE7DOF` (bool): Flag to indicate if warping effect (7th DOF) is considered.
 #### Examples
 
-##### PSC Value (PSC BOX)
+##### PSC Value (PSC Box Example)
 ```py
-# Symmetric PSC I-Section Example
+# PSC Value section 
 Element.Beam.SDL([0,0,0],[1,0,0],10,10)
+
+# Outer polygon shape
 n_points = [
     (0,1),(3,1),(3,0.8),(2,0.8),(1.5,0.7),(1,0),(0.9,-0.1),(0.56,-0.19),(0,-0.2),
     (-0.56,-0.19),(-0.9,-0.1),(-1,0),(-1.5,0.7),(-2,0.8),(-3,0.8),(-3,1)
 ]
+
+# Inner Hole
 holl_point = [
     (0,0.8),(1,0.8),(1,0.5),(0.7,0.1),(0.5,0),(0,0),
     (-0.5,0),(-0.7,0.1),(-1,0.5),(-1,0.8)
