@@ -11,6 +11,7 @@ theme:
   # name: shadcn
   name : material
   favicon: assets/favicon.ico
+  logo: assets/midas-logo_White.png
 
   palette: 
     scheme: default
@@ -29,6 +30,9 @@ theme:
     - navigation.path
     - content.code.copy
     - header.autohide
+    - toc.follow
+    - search.suggest
+    
 
 plugins:
   - search # put it first to inject out custom code
@@ -63,7 +67,7 @@ markdown_extensions:
      
 
 
-copyright: Created by Midas India RnD - midas python interface
+copyright: "Created by Midas India :  MIDAS CIVIL NX - Python interface"
 
 
 nav:
