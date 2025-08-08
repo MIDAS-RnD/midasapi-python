@@ -98,7 +98,15 @@ nav:
     - Compressive Strength : Material/011comp.md
     - Time Dependent Link : Material/012tdlink.md  
 
-  - Boundary Conditions:
+  - Groups:
+    - Groups  : Group/index.md
+    - ‎ ‎ ‎ Structure Group : Group/001sg.md
+    - ‎ ‎ ‎ Boundary Group : Group/002bg.md
+    - ‎ ‎ ‎ Load Group: Group/003lg.md
+    - ‎ ‎ ‎ Tendon Group: Group/004tg.md
+
+
+  - Boundary:
     - Boundary : Boundary/index.md
     - ‎ ‎ ‎ Supports : Boundary/01supports.md
     - ‎ ‎ ‎ Elastic Link: Boundary/02elink.md
@@ -116,12 +124,11 @@ nav:
     - ‎ ‎ ‎ Specified Displacement: Load/005spDisp.md
     - Load Case : Load/case.md
   
-  - Group:
-    - Group  : Group/index.md
-    - ‎ ‎ ‎ Structure Group : Group/001sg.md
-    - ‎ ‎ ‎ Boundary Group : Group/002bg.md
-    - ‎ ‎ ‎ Load Group: Group/003lg.md
-    - ‎ ‎ ‎ Tendon Group: Group/004tg.md
+  - Tendon :
+    - ‎ ‎ ‎ Tendon Property : Tendon/001Property.md
+    - ‎ ‎ ‎ Tendon Profile : Tendon/002Profile.md
+    - ‎ ‎ ‎ Tendon Prestress : Tendon/003Prestress.md
+
 
   - Temperature:
     - Temperature Load: Temperature/index.md
@@ -156,8 +163,4 @@ nav:
     - ‎ ‎ ‎ Result Table : Result/02_resultTable.md
     - ‎ ‎ ‎ User Defined Table : Result/03_userResultTable.md
 
-  - Tendon ✨:
-    - ‎ ‎ ‎ Tendon Property : Tendon/001Property.md
-    - ‎ ‎ ‎ Tendon Profile : Tendon/002Profile.md
-    # - ‎ ‎ ‎ Tendon Prestress Load : Result/03_userResultTable.md
 
