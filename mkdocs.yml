@@ -1,8 +1,5 @@
 site_name: "MIDAS Python"
-# site_url: "https://sumit-shekhar.github.io/midasapi-python/"
-# site_description: "Documentation"
 site_author: "Sumit Shekhar"
-# repo_url: "https://github.com/Sumit-Shekhar/midasapi-python"
 
 extra_css:
   - stylesheets/extra.css
@@ -12,6 +9,7 @@ theme:
   name : material
   favicon: assets/favicon.ico
   logo: assets/midas-logo_White.png
+  custom_dir: overrides
 
   palette: 
     scheme: default
@@ -32,7 +30,9 @@ theme:
     - header.autohide
     - toc.follow
     - search.suggest
-    
+    - header.autohide
+    - announce.dismiss
+        
 
 plugins:
   - search # put it first to inject out custom code
