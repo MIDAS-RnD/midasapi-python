@@ -29,6 +29,7 @@ Additional libraries required by the modules are
 * Polars
 * xlsxwriter
 * Requests 
+* SciPy
 
 ---
 To import the package use the import *
