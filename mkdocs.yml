@@ -161,6 +161,16 @@ nav:
     - TIme Loads for CS: CS/003timeloads.md
     - Creep Coefficient for CS: CS/004creepcoeffcs.md
     - Camber for CS: CS/005cambercs.md
+  
+  - Analysis Control:
+    - Analysis Control : AnalysisControl/index.md
+    - ‎ ‎ ‎ Main Control Data: AnalysisControl/01MainControlData.md
+    - ‎ ‎ ‎ PDelta: AnalysisControl/02Pdelta.md
+    - ‎ ‎ ‎ Buckling: AnalysisControl/03Buckling.md
+    - ‎ ‎ ‎ EigenValue: AnalysisControl/04EigenValue.md
+    - ‎ ‎ ‎ Settlement: AnalysisControl/05Settlement.md
+    - Boundary Change Assignment : AnalysisControl/BoundaryChangeAssignment.md
+    
 
   - Results :
     - ‎ ‎ ‎ Load Combination : Result/01_loadCombination.md
