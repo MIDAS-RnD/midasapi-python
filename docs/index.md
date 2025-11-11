@@ -87,7 +87,7 @@ The `MAPI_COUNTRY `function allows users to define the country of CIVIL NX versi
 from midas_civil import * 
 
 
-MAPI_COUNTRY('CN') # For Chinese version
+MAPI_COUNTRY('CH') # For Chinese version
 MAPI_COUNTRY('KR') # For Korean version
 MAPI_COUNTRY('US') # For US / English version
 ```
