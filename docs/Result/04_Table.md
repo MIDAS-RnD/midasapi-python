@@ -1388,38 +1388,41 @@ Result.TABLE.SelfConstraintBeamStress(
 ```
 
 ---
-
-## ElementPropertiesAtStage
+## ElementPropertiesAtEachStage
 
 Fetches Element Properties at Each Stage result tables.
 
-**`Result.TABLE.ElementPropertiesAtStage(stage, components=['all'], force_unit='KN', len_unit='M', number_format="Fixed", digit=12, output_path_json=None, output_path_excel=None, existing_excel_input=None)`**
+**`Result.TABLE.ElementPropertiesAtEachStage(keys=[], stage=None, components=['all'], force_unit='KN', len_unit='M', number_format='Fixed', digit=12, output_path_json=None, output_path_excel=None, existing_excel_input=None)`**
 
 ### Parameters
 
-* **`stage`** (`str`): The construction stage to get properties for. Example: `"CS14"`.
-* **`components`** (`list[str]`): Optional. List of components to include. Default: `['all']`.
+* **`keys`** (`list[int]` or `str`): Optional. Element IDs or Structure Group name. Default: All elements.
+* **`stage`** (`str`): Optional. Construction stage name (e.g., `CS14`). Default: None.
+* **`components`** (`list[str]`): Optional. Table components to include.
+  Available: `["Elem", "StartAge", "EndAge", "StartElasticity", "EndElasticity", "CumulativeShrinkage", "CreepCoeff."]`. Default: `['all']`.
 * **`force_unit`** (`str`): Optional. Force unit. Default: `KN`.
 * **`len_unit`** (`str`): Optional. Length unit. Default: `M`.
 * **`number_format`** (`str`): Optional. Number format. Default: `Fixed`.
-* **`digit`** (`int`): Optional. Number of decimal places (0-15). Default: `12`.
+* **`digit`** (`int`): Optional. Number of decimal places (0–15). Default: `12`.
+* **`output_path_json`** (`str`): Optional. File path to save JSON. Default: `None`.
+* **`output_path_excel`** (`str`): Optional. File path to save Excel output. Default: `None`.
+* **`existing_excel_input`** (`list`): Optional. Write to existing Excel file `[excel_path, sheet_name, start_cell]`. Default: `None`.
 
 #### Returns
 
-* **Polars DataFrame**: A DataFrame containing the element properties at the specified stage.
+* **Polars DataFrame**: A DataFrame containing element properties at each stage.
 
 ### Example Usage
 
 ```python
-# Get element properties for stage "CS14"
-elem_props_df = Result.TABLE.ElementPropertiesAtStage(stage="CS14")
+# Fetch element properties for stage CS14
+elem_props_df = Result.TABLE.ElementPropertiesAtEachStage(stage="CS14")
 print(elem_props_df)
 
-# Get specific element properties for stage "CS2" and export
-Result.TABLE.ElementPropertiesAtStage(
-    stage="CS2",
-    components=["Element", "Section", "Area", "Iyy", "Izz"],
-    output_path_excel="elem_props_cs2.xlsx"
+# Export to Excel
+Result.TABLE.ElementPropertiesAtEachStage(
+    stage="CS14",
+    output_path_excel="element_properties_stage.xlsx"
 )
 ```
 
@@ -1427,63 +1430,79 @@ Result.TABLE.ElementPropertiesAtStage(
 
 ## LackOfFitForce
 
-Fetches Lack of Fit Force tables for Truss, Beam, or Plate elements.
+Fetches Lack of Fit Force results for Truss, Beam, or Plate elements.
 
-**`Result.TABLE.LackOfFitForce(components=['all'], force_unit='KN', len_unit='M', number_format="Fixed", digit=12, output_path_json=None, output_path_excel=None, existing_excel_input=None, type="Truss")`**
+**`Result.TABLE.LackOfFitForce(type='Truss', components=['all'], force_unit='KN', len_unit='M', number_format='Fixed', digit=12, output_path_json=None, output_path_excel=None, existing_excel_input=None)`**
 
 ### Parameters
 
-* **`components`** (`list[str]`): Optional. List of components to include. Default: `['all']`.
-* **`type`** (`str`): Optional. Element type. Options: `Truss`, `Beam`, `Plate`. Default: `Truss`.
+* **`type`** (`str`): Required. Type of element — `Truss`, `Beam`, or `Plate`.
+* **`components`** (`list[str]`): Optional. Table components to include.
+
+  * For **Truss**: `["Elem", "NodeI", "NodeJ", "Pretension", "LOFForce", "SUM", "LocalVector/V-X", "LocalVector/V-Y", "LocalVector/V-Z", "Angle", "Elasticity", "Area", "I-NodeDisp./DX", "I-NodeDisp./DY", "I-NodeDisp./DZ", "J-NodeDisp./DX", "J-NodeDisp./DY", "J-NodeDisp./DZ", "Deform"]`
+  * For **Beam**: `["Elem", "Node", "LOFForce/Axial", "LOFForce/Shear-y", "LOFForce/Shear-z", "LOFForce/Torsion", "LOFForce/Moment-y", "LOFForce/Moment-z", "LOFForce/Bi-Moment", "Displacement/DX", "Displacement/DY", "Displacement/DZ", "Displacement/RX", "Displacement/RY", "Displacement/RZ", "Displacement/RW"]`
+  * For **Plate**: `["Elem", "Node", "LOFForce/Axial", "LOFForce/Shear-y", "LOFForce/Shear-z", "LOFForce/Torsion", "LOFForce/Moment-y", "LOFForce/Moment-z", "Displacement/DX", "Displacement/DY", "Displacement/DZ", "Displacement/RX", "Displacement/RY", "Displacement/RZ"]`
+    Default: `['all']`.
+* **`force_unit`** (`str`): Optional. Force unit. Default: `KN`.
+* **`len_unit`** (`str`): Optional. Length unit. Default: `M`.
+* **`number_format`** (`str`): Optional. Number format. Default: `Fixed`.
+* **`digit`** (`int`): Optional. Number of decimal places (0–15). Default: `12`.
+* **`output_path_json`** (`str`): Optional. File path to save raw JSON response. Default: `None`.
+* **`output_path_excel`** (`str`): Optional. File path to save Excel table. Default: `None`.
+* **`existing_excel_input`** (`list`): Optional. Write to existing Excel file `[excel_path, sheet_name, start_cell]`. Default: `None`.
 
 #### Returns
 
-* **Polars DataFrame**: A DataFrame containing the lack of fit force table.
+* **Polars DataFrame**: A DataFrame containing lack of fit force data.
 
 ### Example Usage
 
 ```python
-# Get lack of fit forces for Beam elements
-lof_beam_df = Result.TABLE.LackOfFitForce(type="Beam")
-print(lof_beam_df)
+# Get Lack of Fit Force for Truss
+lof_truss_df = Result.TABLE.LackOfFitForce(type="Truss")
+print(lof_truss_df)
 
-# Get lack of fit forces for Truss elements and export
+# Export Lack of Fit Force for Beam
 Result.TABLE.LackOfFitForce(
-    type="Truss",
-    components=["Element", "Force"],
-    output_path_excel="lof_truss.xlsx"
+    type="Beam",
+    output_path_excel="lof_beam.xlsx"
 )
 ```
 
 ---
 
-## Equilibrium Element Nodal Force
+## EquilibriumElementNodalForce
 
-Fetches Equilibrium Element Nodal Force tables.
+Fetches Equilibrium Element Nodal Force results.
 
-**`Result.TABLE.EquilibriumElementNodalForce(components=['all'], force_unit='KN', len_unit='M', number_format="Fixed", digit=12, output_path_json=None, output_path_excel=None, existing_excel_input=None)`**
+**`Result.TABLE.EquilibriumElementNodalForce(components=['all'], force_unit='KN', len_unit='M', number_format='Fixed', digit=12, output_path_json=None, output_path_excel=None, existing_excel_input=None)`**
 
 ### Parameters
 
-* Same as **LackOfFitForce**, except without `type`.
+* **`components`** (`list[str]`): Optional. Table components to include — `["Type", "ID", "ElementNodalForce-i/Fx", "ElementNodalForce-i/Fy", "ElementNodalForce-i/Fz", "ElementNodalForce-i/Mx", "ElementNodalForce-i/My", "ElementNodalForce-i/Mz", "ElementNodalForce-j/Fx", "ElementNodalForce-j/Fy", "ElementNodalForce-j/Fz", "ElementNodalForce-j/Mx", "ElementNodalForce-j/My", "ElementNodalForce-j/Mz"]`. Default: `['all']`.
+* **`force_unit`** (`str`): Optional. Force unit. Default: `KN`.
+* **`len_unit`** (`str`): Optional. Length unit. Default: `M`.
+* **`number_format`** (`str`): Optional. Number format. Default: `Fixed`.
+* **`digit`** (`int`): Optional. Number of decimal places (0–15). Default: `12`.
+* **`output_path_json`** (`str`): Optional. File path to save JSON output. Default: `None`.
+* **`output_path_excel`** (`str`): Optional. File path to save Excel. Default: `None`.
+* **`existing_excel_input`** (`list`): Optional. Write to existing Excel file `[excel_path, sheet_name, start_cell]`. Default: `None`.
 
 #### Returns
 
-* **Polars DataFrame**: A DataFrame containing the equilibrium element nodal force table.
+* **Polars DataFrame**: Contains equilibrium element nodal force data.
 
 ### Example Usage
 
 ```python
-# Get equilibrium element nodal forces
-eq_nodal_force_df = Result.TABLE.EquilibriumElementNodalForce()
-print(eq_nodal_force_df)
+# Fetch equilibrium nodal forces
+equil_force_df = Result.TABLE.EquilibriumElementNodalForce()
+print(equil_force_df)
 
-# Get and export equilibrium element nodal forces
-Result.TABLE.EquilibriumElementNodalForce(
-    components=["Node", "Load", "FX", "FY", "FZ"],
-    output_path_excel="equilibrium_nodal_force.xlsx"
-)
+# Export equilibrium nodal forces
+Result.TABLE.EquilibriumElementNodalForce(output_path_excel="equil_elem_force.xlsx")
 ```
+
 
 ## InitialElementForce
 
@@ -1978,6 +1997,812 @@ Result.TABLE.SolidStrain(
     loadcase=["Nonlinear(ST)"],
     type="Global",
     output_path_excel="solid_strain_plastic.xlsx"
+)
+```
+
+## BeamStress_PSC
+
+Fetches Beam Stress (PSC) result tables.
+
+**`Result.TABLE.BeamStress_PSC(keys=[], loadcase=[], parts=["PartI", "PartJ"], section_position=['All'], components=['all'], force_unit='KN', len_unit='M', activationCSstep=False, stage_step=[], number_format="Fixed", digit=5, output_path_json=None, output_path_excel=None, existing_excel_input=None)`**
+
+### Parameters
+
+* **`keys`** (`list[int]` or `str`): Optional. List of Element IDs or Structure Group Name. Default: All elements.
+* **`loadcase`** (`list[str]`): Optional. List of load case names. Example: `["Selfweight(ST)"]`. Default: All load cases.
+* **`parts`** (`list[str]`): Optional. Element parts: `["PartI", "PartJ", etc.]`. Default: `["PartI", "PartJ"]`.
+* **`section_position`** (`list[str]`): Optional. Section positions: `["Pos-1", "Pos-10", "Max", "Min", "All"]`. Default: `['All']`.
+* **`components`** (`list[str]`): Optional. Table components to include. Default: `['all']`.
+* **`force_unit`** (`str`): Optional. Force unit. Default: `KN`.
+* **`len_unit`** (`str`): Optional. Length unit. Default: `M`.
+* **`activationCSstep`** (`bool`): Optional. Activate construction stage steps. Default: `False`.
+* **`stage_step`** (`list[str]`): Optional. List of stage steps. Example: `["CS3:001(first)"]`. Default: `[]`.
+* **`number_format`** (`str`): Optional. Number format. Default: `Fixed`.
+* **`digit`** (`int`): Optional. Number of decimal places (0–15). Default: `5`.
+* **`output_path_json`** (`str`): Optional. File path to save raw JSON response. Default: `None`.
+* **`output_path_excel`** (`str`): Optional. File path to save Excel table. Default: `None`.
+* **`existing_excel_input`** (`list`): Optional. Write to existing Excel file. Default: `None`.
+
+#### Returns
+
+* **Polars DataFrame**: A DataFrame containing PSC beam stress results.
+
+### Example Usage
+
+```python
+# Get PSC beam stresses for specific elements
+psc_stress_df = Result.TABLE.BeamStress_PSC(
+    keys=[501, 502],
+    loadcase=["Selfweight(ST)", "Prestress(ST)"],
+    section_position=["Max", "Min"]
+)
+print(psc_stress_df)
+
+# Export PSC stresses for a group
+Result.TABLE.BeamStress_PSC(
+    keys="PSC_Girders",
+    loadcase=["Summation(CS)"],
+    activationCSstep=True,
+    stage_step=["CS4:001(last)"],
+    output_path_excel="psc_beam_stress.xlsx"
+)
+```
+
+---
+
+## PlateForce_UnitLength_WA
+
+Fetches Plate Force (Unit Length, W-A Moment) result tables.
+
+**`Result.TABLE.PlateForce_UnitLength_WA(keys=[], loadcase=[], components=['all'], force_unit='KN', len_unit='M', activationCSstep=False, stage_step=[], avg_nodal_result=False, node_flag_center=False, node_flag_nodes=True, number_format="Fixed", digit=5, output_path_json=None, output_path_excel=None, existing_excel_input=None)`**
+
+### Parameters
+
+* Same parameter set as typical plate force functions, with the following:
+
+  * **`avg_nodal_result`** (`bool`): Average nodal results. Default: `False`.
+  * **`node_flag_center`** (`bool`): Retrieve results at center. Default: `False`.
+  * **`node_flag_nodes`** (`bool`): Retrieve results at nodes. Default: `True`.
+
+#### Returns
+
+* **Polars DataFrame**: A DataFrame containing plate W–A moment results.
+
+### Example Usage
+
+```python
+# Get Wood-Armer moments at nodes
+plate_wa_df = Result.TABLE.PlateForce_UnitLength_WA(
+    keys=[301, 302],
+    loadcase=["DL(ST)", "LL(ST)"],
+    node_flag_nodes=True
+)
+print(plate_wa_df)
+
+# Export W–A moments at center
+Result.TABLE.PlateForce_UnitLength_WA(
+    keys="Slab_Group",
+    loadcase=["ENV_Slab(CB:max)"],
+    node_flag_center=True,
+    node_flag_nodes=False,
+    output_path_excel="plate_wa_moments.xlsx"
+)
+```
+
+---
+
+## CableForce
+
+Fetches Cable Force result tables.
+
+**`Result.TABLE.CableForce(keys=[], loadcase=[], components=['all'], force_unit='KN', len_unit='M', activationCSstep=False, stage_step=[], number_format="Fixed", digit=5, output_path_json=None, output_path_excel=None, existing_excel_input=None)`**
+
+### Parameters
+
+* **`keys`** (`list[int]` or `str`): Optional. List of Cable Element IDs or Structure Group Name.
+  Default: All cable elements.
+
+* **`loadcase`** (`list[str]`): Optional. List of load case names.
+  Example: `["Dead Load", "Live Load"]`.
+  Default: All load cases.
+
+* **`components`** (`list[str]`): Optional. Table components to include.
+  Available options may include: `["Force", "Stress", "Strain", "Temperature", "all"]`.
+  Default: `['all']`.
+
+* **`force_unit`** (`str`): Optional. Force unit.
+  Default: `KN`.
+
+* **`len_unit`** (`str`): Optional. Length unit.
+  Default: `M`.
+
+* **`activationCSstep`** (`bool`): Optional. Activate construction stage steps.
+  Default: `False`.
+
+* **`stage_step`** (`list[str]`): Optional. List of stage steps.
+  Example: `["CS3:001(first)"]`.
+  Default: `[]`.
+
+* **`number_format`** (`str`): Optional. Number format for table values.
+  Default: `"Fixed"`.
+
+* **`digit`** (`int`): Optional. Number of decimal places (0–15).
+  Default: `5`.
+
+* **`output_path_json`** (`str`): Optional. File path to save raw JSON response.
+  Default: `None`.
+
+* **`output_path_excel`** (`str`): Optional. File path to save Excel table output.
+  Default: `None`.
+
+* **`existing_excel_input`** (`list`): Optional. Write to an existing Excel file (provide workbook and sheet reference).
+  Default: `None`.
+
+---
+
+#### **Returns**
+
+Returns the **Cable Force Table** in JSON or Excel format, depending on the provided output parameters.
+Includes details such as cable tension, stress, and elongation for selected elements, load cases, and stages.
+
+
+### Example Usage
+
+```python
+# Get cable forces for specific cables
+cable_force_df = Result.TABLE.CableForce(
+    keys=[701, 702, 703],
+    loadcase=["SelfWeight(ST)", "Tuning(ST)"]
+)
+print(cable_force_df)
+
+# Export cable forces for a construction stage
+Result.TABLE.CableForce(
+    keys="Main_Cables",
+    loadcase=["Summation(CS)"],
+    activationCSstep=True,
+    stage_step=["CS10:001(last)"],
+    output_path_excel="cable_forces.xlsx"
+)
+```
+
+---
+
+## CableConfiguration
+
+Fetches Cable Configuration result tables.
+
+**`Result.TABLE.CableConfiguration(keys=[], loadcase=[], components=['all'], force_unit='KN', len_unit='M', activationCSstep=False, stage_step=[], number_format="Fixed", digit=5, output_path_json=None, output_path_excel=None, existing_excel_input=None)`**
+
+### Parameters
+
+* **`keys`** (`list[int]` or `str`): Optional. List of Cable Element IDs or Structure Group Name.
+  Default: All cable elements.
+
+* **`loadcase`** (`list[str]`): Optional. List of load case names.
+  Example: `["Dead Load", "Live Load"]`.
+  Default: All load cases.
+
+* **`components`** (`list[str]`): Optional. Table components to include.
+  Available options may include: `["Configuration", "Length", "Tension", "Sag", "Stress", "all"]`.
+  Default: `['all']`.
+
+* **`force_unit`** (`str`): Optional. Force unit.
+  Default: `KN`.
+
+* **`len_unit`** (`str`): Optional. Length unit.
+  Default: `M`.
+
+* **`activationCSstep`** (`bool`): Optional. Activate construction stage steps.
+  Default: `False`.
+
+* **`stage_step`** (`list[str]`): Optional. List of stage steps.
+  Example: `["CS3:001(first)"]`.
+  Default: `[]`.
+
+* **`number_format`** (`str`): Optional. Number format for table values.
+  Default: `"Fixed"`.
+
+* **`digit`** (`int`): Optional. Number of decimal places (0–15).
+  Default: `5`.
+
+* **`output_path_json`** (`str`): Optional. File path to save raw JSON response.
+  Default: `None`.
+
+* **`output_path_excel`** (`str`): Optional. File path to save Excel table output.
+  Default: `None`.
+
+* **`existing_excel_input`** (`list`): Optional. Write to an existing Excel file (provide workbook and sheet reference).
+  Default: `None`.
+
+---
+
+
+#### Returns
+
+* **Polars DataFrame**: A DataFrame containing cable configuration data.
+
+### Example Usage
+
+```python
+# Get cable configuration for construction stage
+cable_config_df = Result.TABLE.CableConfiguration(
+    keys="Main_Cables",
+    loadcase=["Summation(CS)"],
+    activationCSstep=True,
+    stage_step=["CS10:001(last)"]
+)
+print(cable_config_df)
+```
+
+---
+
+## CableEfficiency
+
+Fetches Cable Efficiency result tables.
+
+**`Result.TABLE.CableEfficiency(keys=[], loadcase=[], components=['all'], force_unit='KN', len_unit='M', activationCSstep=False, stage_step=[], number_format="Fixed", digit=5, output_path_json=None, output_path_excel=None, existing_excel_input=None)`**
+
+### Parameters
+
+* **`keys`** (`list[int]` or `str`): Optional. List of Cable Element IDs or Structure Group Name.
+  Default: All cable elements.
+
+* **`loadcase`** (`list[str]`): Optional. List of load case names.
+  Example: `["Dead Load", "Cable Tension"]`.
+  Default: All load cases.
+
+* **`components`** (`list[str]`): Optional. Table components to include.
+  Available options may include: `["Efficiency", "Stress", "Force", "Elongation", "all"]`.
+  Default: `['all']`.
+
+* **`force_unit`** (`str`): Optional. Force unit.
+  Default: `KN`.
+
+* **`len_unit`** (`str`): Optional. Length unit.
+  Default: `M`.
+
+* **`activationCSstep`** (`bool`): Optional. Activate construction stage steps.
+  Default: `False`.
+
+* **`stage_step`** (`list[str]`): Optional. List of stage steps.
+  Example: `["CS3:001(first)"]`.
+  Default: `[]`.
+
+* **`number_format`** (`str`): Optional. Number format for table values.
+  Default: `"Fixed"`.
+
+* **`digit`** (`int`): Optional. Number of decimal places (0–15). Default: `5`.
+* **`output_path_json`** (`str`): Optional. File path to save raw JSON response. Default: `None`.
+* **`output_path_excel`** (`str`): Optional. File path to save Excel table output.Default: `None`.
+* **`existing_excel_input`** (`list`): Optional. Write to an existing Excel file (provide workbook and sheet reference).
+ Default: `None`.
+
+---
+
+#### Returns
+
+* **Polars DataFrame**: A DataFrame containing cable efficiency results.
+
+### Example Usage
+
+```python
+# Get cable efficiency
+cable_eff_df = Result.TABLE.CableEfficiency(
+    keys="Main_Cables",
+    loadcase=["Tuning(ST)"]
+)
+print(cable_eff_df)
+```
+
+---
+
+## ResultantForces_VBM
+
+Fetches Resultant Forces (Virtual Beam, View by Max Value) result tables.
+
+**`Result.TABLE.ResultantForces_VBM(keys=[], loadcase=[], items=['all'], parts=['PartI', 'PartJ'], components=['all'], force_unit='KN', len_unit='M', number_format='Fixed', digit=5, output_path_json=None, output_path_excel=None, existing_excel_input=None)`**
+
+### Parameters
+
+* **`keys`** (`list[int]` or `str`): Optional. List of Virtual Beam Element IDs or Structure Group Name. Default: All VBM elements.
+* **`loadcase`** (`list[str]`): Optional. List of load cases to extract. Example: `["ENV_Virtual(CB:max)", "ENV_Virtual(CB:min)"]`. Default: All load cases.
+* **`items`** (`list[str]`): Optional. Specifies the result items such as forces or moments. Available: `["AxialForce", "Shear-y", "Shear-z", "Torsion", "Moment-y", "Moment-z", "Bi-Moment", "all"]`. Default: `['all']`.
+* **`parts`** (`list[str]`): Optional. Parts of virtual beams for results. Example: `["PartI", "PartJ"]`. Default: `["PartI", "PartJ"]`.
+* **`components`** (`list[str]`): Optional. Table components to include. Default: `['all']`.
+* **`force_unit`** (`str`): Optional. Force unit. Default: `KN`.
+* **`len_unit`** (`str`): Optional. Length unit. Default: `M`.
+* **`number_format`** (`str`): Optional. Number format (`Fixed`, `Scientific`, etc.). Default: `Fixed`.
+* **`digit`** (`int`): Optional. Number of decimal places (0–15). Default: `5`.
+* **`output_path_json`** (`str`): Optional. File path to save raw JSON response. Default: `None`.
+* **`output_path_excel`** (`str`): Optional. File path to save Excel table. Default: `None`.
+* **`existing_excel_input`** (`list`): Optional. Write to an existing Excel file `[excel_path, sheet_name, start_cell]`. Default: `None`.
+
+#### Returns
+
+* **Polars DataFrame**: A DataFrame containing resultant forces (VBM) results.
+
+### Example Usage
+
+```python
+# Get VBM resultant forces for specific items
+res_force_vbm_df = Result.TABLE.ResultantForces_VBM(
+    keys=[1001],
+    loadcase=["ENV_Virtual(CB:max)"],
+    items=["Moment-y", "Moment-z"]
+)
+print(res_force_vbm_df)
+
+# Export VBM resultant forces
+Result.TABLE.ResultantForces_VBM(
+    keys="Virtual_Beams",
+    loadcase=["ENV_Virtual(CB:max)", "ENV_Virtual(CB:min)"],
+    output_path_excel="resultant_forces_vbm.xlsx"
+)
+```
+
+---
+
+## VibrationModeShape
+
+Fetches modal analysis result tables (Eigenvalue or Participation Vector).
+
+**`Result.TABLE.VibrationModeShape(keys=[], modes=['Mode1'], components=['all'], force_unit='KN', len_unit='M', number_format='Scientific', digit=12, output_path_json=None, output_path_excel=None, existing_excel_input=None, type='Eigenvalue')`**
+
+### Parameters
+
+* **`keys`** (`list[int]` or `str`): Optional. Node IDs or Structure Group Name. Default: All nodes.
+* **`modes`** (`list[str]`): Optional. Mode numbers to extract (e.g., `["Mode1", "Mode2"]`). Default: `["Mode1"]`.
+* **`components`** (`list[str]`): Optional. Table components to include. Example: `["UX", "UY", "UZ", "RX", "RY", "RZ", "all"]`. Default: `['all']`.
+* **`type`** (`str`): Optional. Type of vibration result. Options: `Eigenvalue`, `ParticipationVector`. Default: `Eigenvalue`.
+* **`force_unit`** (`str`): Optional. Force unit. Default: `KN`.
+* **`len_unit`** (`str`): Optional. Length unit. Default: `M`.
+* **`number_format`** (`str`): Optional. Number format. Default: `Scientific`.
+* **`digit`** (`int`): Optional. Number of decimal places (0–15). Default: `12`.
+* **`output_path_json`** (`str`): Optional. File path to save raw JSON. Default: `None`.
+* **`output_path_excel`** (`str`): Optional. File path to save Excel output. Default: `None`.
+* **`existing_excel_input`** (`list`): Optional. Write to existing Excel file `[excel_path, sheet_name, start_cell]`. Default: `None`.
+
+#### Returns
+
+* **Polars DataFrame**: A DataFrame containing vibration mode shape data.
+
+### Example Usage
+
+```python
+# Get eigenvalue mode shapes for first 3 modes
+eigen_df = Result.TABLE.VibrationModeShape(
+    keys=[10, 11, 12],
+    modes=["Mode1", "Mode2", "Mode3"],
+    type="Eigenvalue"
+)
+print(eigen_df)
+
+# Get participation vectors and export
+Result.TABLE.VibrationModeShape(
+    type="ParticipationVector",
+    modes=["Mode1", "Mode2", "Mode3", "Mode4", "Mode5"],
+    output_path_excel="participation_vectors.xlsx"
+)
+```
+
+---
+
+## BucklingModeShape
+
+Fetches Buckling Mode Shape result tables.
+
+**`Result.TABLE.BucklingModeShape(keys=[], modes=['Mode1'], components=['all'], force_unit='KN', len_unit='M', number_format='Scientific', digit=12, output_path_json=None, output_path_excel=None, existing_excel_input=None)`**
+
+### Parameters
+
+* **`keys`** (`list[int]` or `str`): Optional. Node IDs or Structure Group Name. Default: All nodes.
+* **`modes`** (`list[str]`): Optional. Mode numbers to extract (e.g., `["Mode1", "Mode2"]`). Default: `["Mode1"]`.
+* **`components`** (`list[str]`): Optional. Table components to include. Example: `["UX", "UY", "UZ", "RX", "RY", "RZ", "all"]`. Default: `['all']`.
+* **`force_unit`** (`str`): Optional. Force unit. Default: `KN`.
+* **`len_unit`** (`str`): Optional. Length unit. Default: `M`.
+* **`number_format`** (`str`): Optional. Number format. Default: `Scientific`.
+* **`digit`** (`int`): Optional. Number of decimal places (0–15). Default: `12`.
+* **`output_path_json`** (`str`): Optional. File path to save raw JSON. Default: `None`.
+* **`output_path_excel`** (`str`): Optional. File path to save Excel output. Default: `None`.
+* **`existing_excel_input`** (`list`): Optional. Write to existing Excel file `[excel_path, sheet_name, start_cell]`. Default: `None`.
+
+#### Returns
+
+* **Polars DataFrame**: A DataFrame containing buckling mode shape results.
+
+### Example Usage
+
+```python
+# Get buckling mode shapes for first 2 modes
+buckling_df = Result.TABLE.BucklingModeShape(
+    keys=[20, 21, 22],
+    modes=["Mode1", "Mode2"]
+)
+print(buckling_df)
+
+# Export buckling modes
+Result.TABLE.BucklingModeShape(
+    modes=["Mode1", "Mode2", "Mode3"],
+    output_path_excel="buckling_modes.xlsx"
+)
+```
+
+---
+
+## EffectiveSpanLength
+
+Fetches Effective Span Length Analysis results (Truss, Beam, or Plate).
+
+**`Result.TABLE.EffectiveSpanLength(components=['all'], type='Beam', force_unit='KN', len_unit='M', number_format='Fixed', digit=12, output_path_json=None, output_path_excel=None, existing_excel_input=None)`**
+
+### Parameters
+
+* **`components`** (`list[str]`): Required. List of table components to include based on type:
+
+  * For **Truss**: `["Element", "Lane", "Max", "Min"]`
+  * For **Beam**: `["Element", "Lane", "Parts", "My_max", "My_min", "Mz_max", "Mz_min", "Fx_max", "Fx_min", "ImpactFactor"]`
+  * For **Plate**: `["Element", "Lane", "Parts", "Mxx_max", "Mxx_min", "Myy_max", "Myy_min", "Fxx_max", "Fxx_min", "Fyy_max", "Fyy_min", "ImpactFactor"]`
+    Default: `['all']`.
+
+* **`type`** (`str`): Optional. Type of element — `Beam`, `Truss`, or `Plate`. Default: `Beam`.
+
+* **`force_unit`** (`str`): Optional. Force unit. Default: `KN`.
+
+* **`len_unit`** (`str`): Optional. Length unit. Default: `M`.
+
+* **`number_format`** (`str`): Optional. Number format (`Fixed`, `Scientific`, etc.). Default: `Fixed`.
+
+* **`digit`** (`int`): Optional. Number of decimal places (0–15). Default: `12`.
+
+* **`output_path_json`** (`str`): Optional. File path to save raw JSON response. Default: `None`.
+
+* **`output_path_excel`** (`str`): Optional. File path to save the result as Excel. Default: `None`.
+
+* **`existing_excel_input`** (`list`): Optional. Write to existing Excel file `[excel_path, sheet_name, start_cell]`. Default: `None`.
+
+#### Returns
+
+* **Polars DataFrame**: A DataFrame containing effective span length data.
+
+### Example Usage
+
+```python
+# Get effective span length for beams
+eff_span_beam_df = Result.TABLE.EffectiveSpanLength(
+    components=["Element", "Lane", "Parts", "My_max", "My_min"],
+    type="Beam"
+)
+print(eff_span_beam_df)
+
+# Export effective span length for plates
+Result.TABLE.EffectiveSpanLength(
+    components=["Element", "Lane", "Parts", "Mxx_max", "Mxx_min", "Myy_max", "Myy_min"],
+    type="Plate",
+    output_path_excel="eff_span_plate.xlsx"
+)
+```
+
+---
+
+## NodalResponseSpectrum
+
+Fetches Nodal Response Spectrum Analysis results (Inertia Force or Acceleration).
+
+**`Result.TABLE.NodalResponseSpectrum(keys=[], loadcase=[], modes=['Mode1'], components=['all'], type='InertiaForce', force_unit='KN', len_unit='M', number_format='Fixed', digit=12, output_path_json=None, output_path_excel=None, existing_excel_input=None)`**
+
+### Parameters
+
+* **`keys`** (`list[int]` or `str`): Optional. List of Node IDs or Structure Group Name. Default: All nodes.
+* **`loadcase`** (`list[str]`): Optional. List of Response Spectrum load cases. Example: `["X-dir(RS)", "Y-dir(RS)"]`. Default: All RS load cases.
+* **`modes`** (`list[str]`): Optional. Mode numbers to extract. Example: `["Mode1", "Mode2"]`. Default: `["Mode1"]`.
+* **`components`** (`list[str]`): Optional. Table components to include. Based on result type:
+
+  * For **InertiaForce** (`type='InertiaForce'`): `["LoadCase", "Mode", "Node", "FX", "FY", "FZ", "MX", "MY", "MZ"]`
+  * For **Acceleration** (`type='Acceleration'`): `["LoadCase", "Mode", "Node", "DX", "DY", "DZ", "RX", "RY", "RZ"]`
+    Default: `['all']`.
+* **`type`** (`str`): Optional. Type of RS result. Choose between `InertiaForce` or `Acceleration`. Default: `InertiaForce`.
+* **`force_unit`** (`str`): Optional. Force unit. Default: `KN`.
+* **`len_unit`** (`str`): Optional. Length unit. Default: `M`.
+* **`number_format`** (`str`): Optional. Number format for numeric results. Default: `Fixed`.
+* **`digit`** (`int`): Optional. Number of decimal places (0–15). Default: `12`.
+* **`output_path_json`** (`str`): Optional. File path to save raw JSON response. Default: `None`.
+* **`output_path_excel`** (`str`): Optional. File path to save Excel output. Default: `None`.
+* **`existing_excel_input`** (`list`): Optional. Write to an existing Excel file `[excel_path, sheet_name, start_cell]`. Default: `None`.
+
+#### Returns
+
+* **Polars DataFrame**: A DataFrame containing nodal inertia force or acceleration results for the specified modes and load cases.
+
+### Example Usage
+
+```python
+# Get nodal inertia forces for response spectrum case
+inertia_force_df = Result.TABLE.NodalResponseSpectrum(
+    keys=[10, 11, 12],
+    loadcase=["X-dir(RS)"],
+    modes=["Mode1", "Mode2", "Mode3"],
+    type="InertiaForce"
+)
+print(inertia_force_df)
+
+# Export nodal accelerations
+Result.TABLE.NodalResponseSpectrum(
+    loadcase=["Y-dir(RS)"],
+    modes=["Mode1", "Mode2", "Mode3"],
+    type="Acceleration",
+    output_path_excel="nodal_accel_rs.xlsx"
+)
+```
+
+---
+
+## TendonCoordinates
+
+Fetches Tendon Coordinates tables.
+
+**`Result.TABLE.TendonCoordinates(components=['all'], force_unit='KN', len_unit='M', number_format='Fixed', digit=12, output_path_json=None, output_path_excel=None, existing_excel_input=None)`**
+
+### Parameters
+
+* **`components`** (`list[str]`): Optional. List of columns to include. Example: `["TendonName", "No", "x", "y", "z"]`. Default: `['all']`.
+* **`force_unit`** (`str`): Optional. Force unit. Default: `KN`.
+* **`len_unit`** (`str`): Optional. Length unit. Default: `M`.
+* **`number_format`** (`str`): Optional. Number format. Default: `Fixed`.
+* **`digit`** (`int`): Optional. Number of decimal places (0–15). Default: `12`.
+* **`output_path_json`** (`str`): Optional. File path to save JSON output. Default: `None`.
+* **`output_path_excel`** (`str`): Optional. File path to save Excel output. Default: `None`.
+* **`existing_excel_input`** (`list`): Optional. Write to an existing Excel file `[excel_path, sheet_name, start_cell]`. Default: `None`.
+
+#### Returns
+
+* **Polars DataFrame**: A DataFrame containing tendon coordinate data.
+
+### Example Usage
+
+```python
+# Get tendon coordinates
+tendon_coords_df = Result.TABLE.TendonCoordinates(
+    components=["TendonName", "No", "x", "y", "z"]
+)
+print(tendon_coords_df)
+
+# Export tendon coordinates
+Result.TABLE.TendonCoordinates(output_path_excel="tendon_coordinates.xlsx")
+```
+
+---
+
+## TendonElongation
+
+Fetches Tendon Elongation result tables.
+
+**`Result.TABLE.TendonElongation(components=['all'], force_unit='KN', len_unit='M', number_format='Fixed', digit=12, output_path_json=None, output_path_excel=None, existing_excel_input=None)`**
+
+### Parameters
+
+* **`components`** (`list[str]`): Optional. List of columns to include. Example: `["TendonName", "Stage", "Elongation", "Force", "Stress"]`. Default: `['all']`.
+* **`force_unit`** (`str`): Optional. Force unit. Default: `KN`.
+* **`len_unit`** (`str`): Optional. Length unit. Default: `M`.
+* **`number_format`** (`str`): Optional. Number format. Default: `Fixed`.
+* **`digit`** (`int`): Optional. Number of decimal places (0–15). Default: `12`.
+* **`output_path_json`** (`str`): Optional. File path to save raw JSON output. Default: `None`.
+* **`output_path_excel`** (`str`): Optional. File path to save Excel. Default: `None`.
+* **`existing_excel_input`** (`list`): Optional. Write to existing Excel file `[excel_path, sheet_name, start_cell]`. Default: `None`.
+
+#### Returns
+
+* **Polars DataFrame**: A DataFrame containing tendon elongation data.
+
+### Example Usage
+
+```python
+# Get tendon elongation
+tendon_elong_df = Result.TABLE.TendonElongation()
+print(tendon_elong_df)
+
+# Export tendon elongation
+Result.TABLE.TendonElongation(output_path_excel="tendon_elongation.xlsx")
+```
+
+---
+
+## TendonArrangement
+
+Fetches Tendon Arrangement tables for a specific Tendon Group and Stage.
+
+**`Result.TABLE.TendonArrangement(tendon_group, stage, components=['all'], force_unit='KN', len_unit='M', number_format='Fixed', digit=12, output_path_json=None, output_path_excel=None, existing_excel_input=None)`**
+
+### Parameters
+
+* **`tendon_group`** (`str`): Required. Name of the tendon group.
+* **`stage`** (`str`): Required. Construction stage name.
+* **`components`** (`list[str]`): Optional. Table components to include. Example: `["Tendon", "TendonStress/f_pe", "TendonStressLimit/Atservice"]`. Default: `['all']`.
+* **`force_unit`** (`str`): Optional. Force unit. Default: `KN`.
+* **`len_unit`** (`str`): Optional. Length unit. Default: `M`.
+* **`number_format`** (`str`): Optional. Number format. Default: `Fixed`.
+* **`digit`** (`int`): Optional. Number of decimal places. Default: `12`.
+* **`output_path_json`** (`str`): Optional. File path to save JSON output. Default: `None`.
+* **`output_path_excel`** (`str`): Optional. File path to save Excel output. Default: `None`.
+* **`existing_excel_input`** (`list`): Optional. Write to existing Excel file `[excel_path, sheet_name, start_cell]`. Default: `None`.
+
+#### Returns
+
+* **Polars DataFrame**: A DataFrame containing tendon arrangement data.
+
+### Example Usage
+
+```python
+# Get tendon arrangement for specific group and stage
+tendon_arr_df = Result.TABLE.TendonArrangement(
+    tendon_group="Top-P2-A",
+    stage="CS2"
+)
+print(tendon_arr_df)
+
+# Export tendon arrangement
+Result.TABLE.TendonArrangement(
+    tendon_group="Bot-Key-B",
+    stage="CS16",
+    output_path_excel="tendon_arrangement.xlsx"
+)
+```
+
+---
+
+## TendonLoss
+
+Fetches Tendon Loss (Stress or Force) tables.
+
+**`Result.TABLE.TendonLoss(tendon_group, stage, components=['all'], force_unit='KN', len_unit='M', number_format='Fixed', digit=12, output_path_json=None, output_path_excel=None, existing_excel_input=None, type='Stress')`**
+
+### Parameters
+
+* **`tendon_group`** (`str`): Required. Name of the tendon group.
+* **`stage`** (`str`): Required. Construction stage name.
+* **`components`** (`list[str]`): Optional. Columns to include. Example: `["Tendon", "TendonStress/f_pe", "TendonStressLimit/Atservice"]`. Default: `['all']`.
+* **`type`** (`str`): Optional. Result type. Choose `Stress` or `Force`. Default: `Stress`.
+* **`force_unit`** (`str`): Optional. Force unit. Default: `KN`.
+* **`len_unit`** (`str`): Optional. Length unit. Default: `M`.
+* **`number_format`** (`str`): Optional. Number format. Default: `Fixed`.
+* **`digit`** (`int`): Optional. Number of decimal places. Default: `12`.
+* **`output_path_json`** (`str`): Optional. File path to save JSON output. Default: `None`.
+* **`output_path_excel`** (`str`): Optional. File path to save Excel. Default: `None`.
+* **`existing_excel_input`** (`list`): Optional. Write to existing Excel file `[excel_path, sheet_name, start_cell]`. Default: `None`.
+
+#### Returns
+
+* **Polars DataFrame**: A DataFrame containing tendon loss results.
+
+### Example Usage
+
+```python
+# Get tendon stress loss
+tendon_loss_stress_df = Result.TABLE.TendonLoss(
+    tendon_group="Bot-Key-B",
+    stage="CS16",
+    type="Stress"
+)
+print(tendon_loss_stress_df)
+
+# Export tendon force loss
+Result.TABLE.TendonLoss(
+    tendon_group="Top-P2-A",
+    stage="CS2",
+    type="Force",
+    output_path_excel="tendon_loss_force.xlsx"
+)
+```
+
+---
+
+## TendonWeight
+
+Fetches Tendon Weight tables (Profile, Property, or Group).
+
+**`Result.TABLE.TendonWeight(components=['all'], force_unit='KN', len_unit='M', number_format='Fixed', digit=12, output_path_json=None, output_path_excel=None, existing_excel_input=None, type='Profile')`**
+
+### Parameters
+
+* **`components`** (`list[str]`): Optional. Columns to include. Example: `["TendonName", "Group", "ProfileLength", "Weight"]`. Default: `['all']`.
+* **`type`** (`str`): Optional. Result type. Choose from `Profile`, `Property`, or `Group`. Default: `Profile`.
+* **`force_unit`** (`str`): Optional. Force unit. Default: `KN`.
+* **`len_unit`** (`str`): Optional. Length unit. Default: `M`.
+* **`number_format`** (`str`): Optional. Number format. Default: `Fixed`.
+* **`digit`** (`int`): Optional. Number of decimal places. Default: `12`.
+* **`output_path_json`** (`str`): Optional. File path to save JSON output. Default: `None`.
+* **`output_path_excel`** (`str`): Optional. File path to save Excel. Default: `None`.
+* **`existing_excel_input`** (`list`): Optional. Write to existing Excel file `[excel_path, sheet_name, start_cell]`. Default: `None`.
+
+#### Returns
+
+* **Polars DataFrame**: A DataFrame containing tendon weight data.
+
+### Example Usage
+
+```python
+# Get tendon weight by profile
+tendon_weight_prof_df = Result.TABLE.TendonWeight(type="Profile")
+print(tendon_weight_prof_df)
+
+# Export tendon weight by group
+Result.TABLE.TendonWeight(
+    type="Group",
+    output_path_excel="tendon_weight_group.xlsx"
+)
+```
+
+---
+
+## TendonStressLimitCheck
+
+Fetches **Tendon Stress Limit Check** tables.
+
+**`Result.TABLE.TendonStressLimitCheck(components=['all'], force_unit='KN', len_unit='M', number_format='Fixed', digit=12, output_path_json=None, output_path_excel=None, existing_excel_input=None)`**
+
+### Parameters
+
+* **`components`** (`list[str]`): Optional. Columns to include. Example: `["Tendon", "TendonStress/f_pe", "TendonStressLimit/Atservice"]`. Default: `['all']`.
+* **`force_unit`** (`str`): Optional. Force unit. Default: `KN`.
+* **`len_unit`** (`str`): Optional. Length unit. Default: `M`.
+* **`number_format`** (`str`): Optional. Number format. Default: `Fixed`.
+* **`digit`** (`int`): Optional. Number of decimal places. Default: `12`.
+* **`output_path_json`** (`str`): Optional. File path to save JSON output. Default: `None`.
+* **`output_path_excel`** (`str`): Optional. File path to save Excel output. Default: `None`.
+* **`existing_excel_input`** (`list`): Optional. Write to existing Excel file `[excel_path, sheet_name, start_cell]`. Default: `None`.
+
+#### Returns
+
+* **Polars DataFrame**: A DataFrame containing tendon stress limit check data.
+
+### Example Usage
+
+```python
+# Get tendon stress limit check
+tendon_stress_check_df = Result.TABLE.TendonStressLimitCheck()
+print(tendon_stress_check_df)
+
+# Export tendon stress limit check
+Result.TABLE.TendonStressLimitCheck(
+    output_path_excel="tendon_stress_check.xlsx"
+)
+```
+
+---
+
+## TendonApproximateLoss
+
+Fetches **Tendon Approximate Loss (Stress or Force)** tables.
+
+**`Result.TABLE.TendonApproximateLoss(components=['all'], force_unit='KN', len_unit='M', number_format='Fixed', digit=12, output_path_json=None, output_path_excel=None, existing_excel_input=None, type='Stress')`**
+
+### Parameters
+
+* **`components`** (`list[str]`): Optional. List of components to include, e.g., `["Elem", "Part", "AllLoss"]`. Default: `['all']`.
+* **`force_unit`** (`str`): Optional. Force unit (e.g., `"KN"`, `"N"`). Default: `KN`.
+* **`len_unit`** (`str`): Optional. Length unit (e.g., `"M"`, `"MM"`). Default: `M`.
+* **`number_format`** (`str`): Optional. Number format (`"Fixed"`, `"Scientific"`, `"General"`). Default: `Fixed`.
+* **`digit`** (`int`): Optional. Number of decimal places (0–15). Default: `12`.
+* **`output_path_json`** (`str`): Optional. File path to save raw JSON response. Default: `None`.
+* **`output_path_excel`** (`str`): Optional. File path to save as Excel. Default: `None`.
+* **`existing_excel_input`** (`list`): Optional. Write to an existing Excel file `[excel_path, sheet_name, start_cell]`. Default: `None`.
+* **`type`** (`str`): Optional. Result type — `"Stress"` or `"Force"`. Default: `Stress`.
+
+#### Returns
+
+* **Polars DataFrame**: Contains the tendon approximate loss result table.
+
+### Example Usage
+
+```python
+# Get tendon approximate stress loss
+tendon_approx_loss_df = Result.TABLE.TendonApproximateLoss(type="Stress")
+print(tendon_approx_loss_df)
+
+# Export tendon approximate force loss
+Result.TABLE.TendonApproximateLoss(
+    type="Force",
+    output_path_excel="tendon_approx_loss_force.xlsx"
 )
 ```
 
