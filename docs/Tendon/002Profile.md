@@ -6,7 +6,7 @@ It handles the geometric definition of 2D and 3D tendon profiles and their assig
 
 ## Constructor
 ---
-**`Tendon.Profile(name,tdn_prop,tdn_group=0,elem=[],inp_type='3D',curve_type = 'SPLINE',st_len_begin = 0 , st_len_end = 0,n_typical_tendon=0,                 trans_len_opt='USER', trans_len_begin = 0 , trans_len_end = 0, debon_len_begin=0 , debon_len_end=0,                 ref_axis = 'ELEMENT',                 prof_xyz = [], prof_xy =[],prof_xz=[],                 prof_ins_point_end = 'END-I', prof_ins_point_elem = 0, x_axis_dir_element = 'I-J', x_axis_rot_ang = 0 , projection = True, offset_y = 0 , offset_z = 0,                 prof_ins_point =[0,0,0], x_axis_dir_straight = 'X' , x_axis_dir_vec = [0,0], grad_rot_axis = 'X', grad_rot_ang=0,                 radius_cen = [0,0], offset = 0, dir = 'CW',                 id=0):`**
+**`Tendon.Profile(name,tdn_prop,tdn_group=0,elem=[],inp_type='3D',curve_type = 'SPLINE',st_len_begin = 0 , st_len_end = 0,n_typical_tendon=0,                 trans_len_opt='USER', trans_len_begin = 0 , trans_len_end = 0, debon_len_begin=0 , debon_len_end=0,                 ref_axis = 'ELEMENT',                 prof_xyz = [], prof_xy =[],prof_xz=[],                 prof_ins_point_end = 'END-I', prof_ins_point_elem = 0, x_axis_dir_element = 'I-J', x_axis_rot_ang = 0 , projection = True, offset_y = 0 , offset_z = 0,                 prof_ins_point =[0,0,0], x_axis_dir_straight = 'X' , x_axis_dir_vec = [0,0], grad_rot_axis = 'X', grad_rot_ang=0,                 radius_cen = [0,0], offset = 0, dir = 'CW',                 id=None):`**
 
 
 Creates a tendon profile
@@ -55,7 +55,7 @@ Creates a tendon profile
 ---
 - `x_axis_rot_ang` (float, default=0): Rotation angle of the x-axis.
 - `projection` (bool, default=True): Whether to project or rotate the tendon profile.
-- `id` (int, default=0): ID of tendon profile. If 0, an ID is automatically generated.
+- `id` (int, default=None): ID of tendon profile. If None, an ID is automatically generated.
 
 
 

@@ -51,7 +51,7 @@ CompStrength.delete()
 ??? sumit_block "IRC Code (112)"
 
     ### IRC
-    **<font color="green">`CompStrength.IRC(name, code_year=2020, fck_delta=0, cement_type=1, aggregate_type=0, id=0)`</font>**
+    **<font color="green">`CompStrength.IRC(name, code_year=2020, fck_delta=0, cement_type=1, aggregate_type=0, id =None)`</font>**
 
     Creates IRC standard compressive strength properties for Indian Road Congress standards.
 
@@ -97,7 +97,7 @@ CompStrength.delete()
 ??? sumit_block "ACI Code"
 
     ### ACI
-    **<font color="green">`CompStrength.ACI(name, fck=0, factor_a=1, factor_b=2, id=0)`</font>**
+    **<font color="green">`CompStrength.ACI(name, fck=0, factor_a=1, factor_b=2, id =None)`</font>**
 
     Creates ACI standard compressive strength properties for American Concrete Institute standards.
 
@@ -132,7 +132,7 @@ CompStrength.delete()
 ??? sumit_block "CEB-FIP Code"
 
     ### CEB_FIP
-    **<font color="green">`CompStrength.CEB_FIP(name, code_year=2010, fck=0, cement_type=1, aggregate_type=0, id=0)`</font>**
+    **<font color="green">`CompStrength.CEB_FIP(name, code_year=2010, fck=0, cement_type=1, aggregate_type=0, id =None)`</font>**
 
     Creates CEB-FIP standard compressive strength properties for European concrete standards.
 
@@ -178,7 +178,7 @@ CompStrength.delete()
 ??? sumit_block "Ohzagi Code"
 
     ### Ohzagi
-    **<font color="green">`CompStrength.Ohzagi(name, fck=0, cement_type=2, id=0)`</font>**
+    **<font color="green">`CompStrength.Ohzagi(name, fck=0, cement_type=2, id =None)`</font>**
 
     Creates Ohzagi compressive strength model properties.
 
@@ -215,7 +215,7 @@ CompStrength.delete()
 ??? sumit_block "European Code"
 
     ### European
-    **<font color="green">`CompStrength.European(name, fck=0, cement_type=2, id=0)`</font>**
+    **<font color="green">`CompStrength.European(name, fck=0, cement_type=2, id =None)`</font>**
 
     Creates European compressive strength model properties.
 
@@ -251,7 +251,7 @@ CompStrength.delete()
 ??? sumit_block "Russian Code"
 
     ### Russian
-    **<font color="green">`CompStrength.Russian(name, fck=0, cement_type=1, curing_method=1, concrete_type=1, max_aggregate_size=0.02, specific_cement_content=0.25, id=0)`</font>**
+    **<font color="green">`CompStrength.Russian(name, fck=0, cement_type=1, curing_method=1, concrete_type=1, max_aggregate_size=0.02, specific_cement_content=0.25, id =None)`</font>**
 
     Creates Russian compressive strength model properties.
 
@@ -300,7 +300,7 @@ CompStrength.delete()
 ??? sumit_block "Australian Standards Code"
 
     ### AS
-    **<font color="green">`CompStrength.AS(name, standard="AS5100.5-2017", fck=0, id=0)`</font>**
+    **<font color="green">`CompStrength.AS(name, standard="AS5100.5-2017", fck=0, id =None)`</font>**
 
     Creates Australian Standards compressive strength model properties.
 
@@ -336,7 +336,7 @@ CompStrength.delete()
 ??? sumit_block "Gilbert and Ranzi Code"
 
     ### GilbertRanzi
-    **<font color="green">`CompStrength.GilbertRanzi(name, fck=0, cement_type=1, density=230, id=0)`</font>**
+    **<font color="green">`CompStrength.GilbertRanzi(name, fck=0, cement_type=1, density=230, id =None)`</font>**
 
     Creates Gilbert and Ranzi compressive strength model properties.
 
@@ -373,7 +373,7 @@ CompStrength.delete()
 ??? sumit_block "Japan Hydration Code"
 
     ### JapanHydration
-    **<font color="green">`CompStrength.JapanHydration(name, fck=0, cement_type=1, use_concrete_data=True, tensile_strength_factor=3, factor_a=4.5, factor_b=0.95, factor_d=1.11, id=0)`</font>**
+    **<font color="green">`CompStrength.JapanHydration(name, fck=0, cement_type=1, use_concrete_data=True, tensile_strength_factor=3, factor_a=4.5, factor_b=0.95, factor_d=1.11, id =None)`</font>**
 
     Creates Japan Hydration compressive strength model properties.
 
@@ -419,7 +419,7 @@ CompStrength.delete()
 ??? sumit_block "Japan Elastic Code"
 
     ### JapanElastic
-    **<font color="green">`CompStrength.JapanElastic(name, fck=0, elastic_cement_type=0, id=0)`</font>**
+    **<font color="green">`CompStrength.JapanElastic(name, fck=0, elastic_cement_type=0, id =None)`</font>**
 
     Creates Japan Elastic compressive strength model properties.
 
@@ -454,7 +454,7 @@ CompStrength.delete()
 ??? sumit_block "KDS-2016 Code"
 
     ### KDS
-    **<font color="green">`CompStrength.KDS(name, fck=0, cement_type=1, density=230, id=0)`</font>**
+    **<font color="green">`CompStrength.KDS(name, fck=0, cement_type=1, density=230, id =None)`</font>**
 
     Creates KDS-2016 compressive strength model properties.
 
@@ -494,7 +494,7 @@ CompStrength.delete()
 ??? sumit_block "KCI-USD12 Code"
 
     ### KCI
-    **<font color="green">`CompStrength.KCI(name, fck=0, cement_type=1, id=0)`</font>**
+    **<font color="green">`CompStrength.KCI(name, fck=0, cement_type=1, id =None)`</font>**
 
     Creates KCI-USD12 compressive strength model properties.
 
@@ -528,7 +528,7 @@ CompStrength.delete()
 ??? sumit_block "Korean Standard Code"
 
     ### KoreanStandard
-    **<font color="green">`CompStrength.KoreanStandard(name, fck=0, factor_a=1, factor_b=2, id=0)`</font>**
+    **<font color="green">`CompStrength.KoreanStandard(name, fck=0, factor_a=1, factor_b=2, id =None)`</font>**
 
     Creates Korean Standard compressive strength model properties.
 
@@ -563,7 +563,7 @@ CompStrength.delete()
 ??? sumit_block "User Defined Code"
 
     ### UserDefined
-    **<font color="green">`CompStrength.UserDefined(name, scale_factor=1, time_data=None, id=0)`</font>**
+    **<font color="green">`CompStrength.UserDefined(name, scale_factor=1, time_data=None, id =None)`</font>**
 
     Creates User Defined compressive strength model properties.
 

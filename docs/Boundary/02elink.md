@@ -4,7 +4,7 @@ A nested class within Boundary used to create elastic connections between nodes 
 
 ## Constructor
 ---
-**<font color="green">`Boundary.ElasticLink(i_node, j_node, group = "", id = None, link_type = "GEN", sdx = 0, sdy = 0, sdz = 0, srx = 0, sry = 0, srz = 0, shear = False, dr_y = 0.5, dr_z = 0.5, beta_angle = 0, dir = "Dy", func_id = 1, distance_ratio = 0)`</font>**
+**<font color="green">`Boundary.ElasticLink(i_node, j_node, group = "", link_type = "GEN", sdx = 0, sdy = 0, sdz = 0, srx = 0, sry = 0, srz = 0, shear = False, dr_y = 0.5, dr_z = 0.5, beta_angle = 0, dir = "Dy", func_id = 1, distance_ratio = 0, id = None)`</font>**
 
 Creates elastic links between two nodes with specified spring properties and behavior.
 
@@ -13,7 +13,6 @@ Creates elastic links between two nodes with specified spring properties and beh
 * `i_node`: First node ID
 * `j_node`: Second node ID
 * `group (default="")`: Boundary group name
-* `id (default=None)`: Manual ID assignment (auto-assigned if None)
 * `link_type (default="GEN")`: Type of elastic link
 * `sdx, sdy, sdz (default=0)`: Translational spring stiffness in X, Y, Z directions
 * `srx, sry, srz (default=0)`: Rotational spring stiffness about X, Y, Z axes
@@ -23,6 +22,7 @@ Creates elastic links between two nodes with specified spring properties and beh
 * `dir (default="Dy")`: Direction for specialized link types
 * `func_id (default=1)`: Function ID for specialized link types
 * `distance_ratio (default=0)`: Distance ratio for specialized link types
+* `id (default=None)`: Manual ID assignment (auto-assigned if None)
 
 ### Link Types
 * **"GEN"**: General elastic link with full stiffness matrix
@@ -64,7 +64,7 @@ Creates elastic links between two nodes with specified spring properties and beh
 Returns JSON representation of all elastic links.
 
 ```py
-link1 = Boundary.ElasticLink(1, 2, "Group1", 1, "GEN", 1000, 1000, 1000)
+link1 = Boundary.ElasticLink(1, 2, "Group1","GEN", 1000, 1000, 1000)
 print(Boundary.ElasticLink.json())
 ```
 
@@ -120,7 +120,7 @@ Element.Beam(1,2)
 Element.create()
 
 #Create General Elastic Link    
-Boundary.ElasticLink(1, 3, "", 1, "GEN", 1000, 1000, 1000, 100, 100, 100)
+Boundary.ElasticLink(1, 3, "","GEN", 1000, 1000, 1000, 100, 100, 100)
 Boundary.ElasticLink.create()
 ```
 
@@ -137,7 +137,7 @@ Element.Beam(1,2)
 Element.create()
 
 #Create Rigid Link    
-Boundary.ElasticLink(2, 4, "", 1, "RIGID")
+Boundary.ElasticLink(2, 4, "","RIGID")
 Boundary.ElasticLink.create()
 
 ```
@@ -155,8 +155,8 @@ Element.Beam(1,2)
 Element.create()
 
 #Tension-Onl & Compression-Only Link    
-Boundary.ElasticLink(1, 3, "", 1, "TENS",500)
-Boundary.ElasticLink(2, 4, "", 2, "COMP",600)
+Boundary.ElasticLink(1, 3, "", "TENS",500)
+Boundary.ElasticLink(2, 4, "", "COMP",600)
 Boundary.ElasticLink.create()
 ```
 
@@ -174,7 +174,7 @@ Element.create()
 
 
 #Create Saddle type Link    
-Boundary.ElasticLink(1, 3, "", 1, "SADDLE")
+Boundary.ElasticLink(1, 3, "","SADDLE")
 Boundary.ElasticLink.create()
 
 ```
@@ -193,7 +193,7 @@ Element.create()
 
 
 # Multi-linear link
-Boundary.ElasticLink(1, 3, "", 1, "MULTI LINEAR", dir="Dy", func_id=1)
+Boundary.ElasticLink(1, 3, "", "MULTI LINEAR", dir="Dy", func_id=1)
 Boundary.ElasticLink.create()
 
 #Note: Before running this code, the Force-Deformation function must be created in Civil NX to avoid any errors.
@@ -214,7 +214,7 @@ Element.create()
 
 
 # Rail track interaction link
-Boundary.ElasticLink(2, 4, "", 1, "RAIL INTERACT", dir="Dy", func_id=1)
+Boundary.ElasticLink(2, 4, "","RAIL INTERACT", dir="Dy", func_id=1)
 Boundary.ElasticLink.create()
 
 #Note: Before running this code, the Rail Interaction function must be created in Civil NX to avoid any errors.

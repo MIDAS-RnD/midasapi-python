@@ -9,7 +9,7 @@ It supports classification-specific combinations such as Steel, Concrete, Seismi
 ## Constructor
 ---
 
-`LoadCombination(name, case, classification="General", active="ACTIVE", typ="Add", id=0, desc="")`
+`LoadCombination(name, case, classification="General", active="ACTIVE", typ="Add", id =None, desc="")`
 
 
 ### Parameters

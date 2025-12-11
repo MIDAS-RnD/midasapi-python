@@ -5,7 +5,7 @@ A nested class within Section used to create Prestressed Concrete sections.
 ## PSC Box Section (1-Cell, 2-Cell)
 ---
 #### Constructor
-**<font color="green">`Section.PSC.CEL12(Name='', Shape='1CEL', Joint=[0,0,0,0,0,0,0,0], HO1=0, HO2=0, HO21=0, HO22=0, HO3=0, HO31=0, BO1=0, BO11=0, BO12=0, BO2=0, BO21=0, BO3=0, HI1=0, HI2=0, HI21=0, HI22=0, HI3=0, HI31=0, HI4=0, HI41=0, HI42=0, HI5=0, BI1=0, BI11=0, BI12=0, BI21=0, BI3=0, BI31=0, BI32=0, BI4=0, Offset:Offset=Offset.CC(), useShear=True, use7Dof=False, id:int=0)`</font>**
+**<font color="green">`Section.PSC.CEL12(Name='', Shape='1CEL', Joint=[0,0,0,0,0,0,0,0], HO1=0, HO2=0, HO21=0, HO22=0, HO3=0, HO31=0, BO1=0, BO11=0, BO12=0, BO2=0, BO21=0, BO3=0, HI1=0, HI2=0, HI21=0, HI22=0, HI3=0, HI31=0, HI4=0, HI41=0, HI42=0, HI5=0, BI1=0, BI11=0, BI12=0, BI21=0, BI3=0, BI31=0, BI32=0, BI4=0, Offset:Offset=Offset.CC(), useShear=True, use7Dof=False, id=None)`</font>**
 
 Creates PSC 1-cell or 2-cell box sections.
 
@@ -20,7 +20,7 @@ Creates PSC 1-cell or 2-cell box sections.
 * `Offset (default=Offset.CC())`: Section offset parameters
 * `useShear (default=True)`: Enable shear deformation
 * `use7Dof (default=False)`: Enable warping effect
-* `id (default=0)`: Section ID
+* `id (default=None)`: Section ID
 
 
 ### Object Attributes
@@ -91,7 +91,7 @@ Section.create()
 ## PSC I-Section
 ---
 #### Constructor
-**<font color="green">`Section.PSC.I(Name='', Symm=True, Joint=[0,0,0,0,0,0,0,0,0], H1=0, HL1=0, HL2=0, HL21=0, HL22=0, HL3=0, HL4=0, HL41=0, HL42=0, HL5=0, BL1=0, BL2=0, BL21=0, BL22=0, BL4=0, BL41=0, BL42=0, HR1=0, HR2=0, HR21=0, HR22=0, HR3=0, HR4=0, HR41=0, HR42=0, HR5=0, BR1=0, BR2=0, BR21=0, BR22=0, BR4=0, BR41=0, BR42=0, Offset:Offset=Offset.CC(), useShear=True, use7Dof=False, id:int=0)`</font>**
+**<font color="green">`Section.PSC.I(Name='', Symm=True, Joint=[0,0,0,0,0,0,0,0,0], H1=0, HL1=0, HL2=0, HL21=0, HL22=0, HL3=0, HL4=0, HL41=0, HL42=0, HL5=0, BL1=0, BL2=0, BL21=0, BL22=0, BL4=0, BL41=0, BL42=0, HR1=0, HR2=0, HR21=0, HR22=0, HR3=0, HR4=0, HR41=0, HR42=0, HR5=0, BR1=0, BR2=0, BR21=0, BR22=0, BR4=0, BR41=0, BR42=0, Offset:Offset=Offset.CC(), useShear=True, use7Dof=False, id=None)`</font>**
 
 Creates PSC I-sections with symmetric or asymmetric flanges.
 
@@ -107,7 +107,7 @@ Creates PSC I-sections with symmetric or asymmetric flanges.
 * `Offset (default=Offset.CC())`: Section offset parameters
 * `useShear (default=True)`: Enable shear deformation
 * `use7Dof (default=False)`: Enable warping effect
-* `id (default=0)`: Section ID
+* `id (default=None)`: Section ID
 
 ### Object Attributes
 
@@ -171,7 +171,7 @@ Creates PSC Value section based on section co-ordinates.
 * `Offset (default=Offset.CC())`: Section offset parameters
 * `useShear (default=True)`: Enable shear deformation
 * `use7Dof (default=False)`: Enable warping effect
-* `id (default=0)`: Section ID
+* `id (default=None)`: Section ID
 
 ### Object Attributes
 

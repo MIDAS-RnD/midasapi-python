@@ -29,7 +29,7 @@ Details of all available sections can be found [here](https://support.midasuser.
 
 ## Constructor
 ---
-**<font color="green">`Section.DBUSER(Name='', Shape='', parameters:list=[], Offset:Offset=Offset.CC(), useShear=True, use7Dof=False, id:int=0)`</font>**
+**<font color="green">`Section.DBUSER(Name='', Shape='', parameters:list=[], Offset:Offset=Offset.CC(), useShear=True, use7Dof=False, id=None)`</font>**
 
 Creates user-defined sections with specified shape and parameters.
 
@@ -40,7 +40,7 @@ Creates user-defined sections with specified shape and parameters.
 * `Offset (default=Offset.CC())`: Section offset parameters
 * `useShear (default=True)`: Enable shear deformation
 * `use7Dof (default=False)`: Enable warping (7DOF)
-* `id (default=0)`: Section ID (auto-assigned if 0)
+* `id (default=None)`: Section ID (auto-assigned if 0)
 
 ### Object Attributes
 * `ID` (int): Section ID.

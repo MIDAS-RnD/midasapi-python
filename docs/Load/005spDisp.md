@@ -4,7 +4,7 @@ A nested class within Load used to create specified displacement loads for presc
 
 ## Constructor
 ---
-**<font color="green">`Load.SpDisp(node, load_case, load_group="", values=[0, 0, 0, 0, 0, 0], id="")`</font>**
+**<font color="green">`Load.SpDisp(node, load_case, load_group="", values=[0, 0, 0, 0, 0, 0], id= None)`</font>**
 
 Creates specified displacement loads and converts to JSON format for applying prescribed displacements at nodes.
 
@@ -13,14 +13,14 @@ Creates specified displacement loads and converts to JSON format for applying pr
 * `load_case`: Load case name (Required)
 * `load_group (default="")`: Load group name
 * `values (default=[0, 0, 0, 0, 0, 0])`: Displacement values [Dx, Dy, Dz, Rx, Ry, Rz]
-* `id (default="")`: Load ID (auto-generated if empty)
+* `id (default=None)`: Load ID (auto-generated if empty)
 
 ### Object Attributes
 * `NODE` (int): The node number where the specified displacement is applied.
 * `LCN` (str): The name of the load case.
 * `LDGR` (str): The name of the load group.
 * `VALUES` (list): List of displacement values [Dx, Dy, Dz, Rx, Ry, Rz].
-* `ID` (int/str): The ID of the specified displacement entry.
+* `ID`(int): The ID of the specified displacement entry.
 
 ## Methods
 ---

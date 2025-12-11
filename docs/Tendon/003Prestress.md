@@ -5,7 +5,7 @@ Defines a prestress load to be applied to a tendon profile.
 
 ## Constructor
 ---
-**`Tendon.Prestress(profile_name, load_case, load_group = "", prestress_type = "STRESS", jack_step = "BEGIN", jack_begin = 0, jack_end=0, grouting_stage = 0, id = 0):`**
+**`Tendon.Prestress(profile_name, load_case, load_group = "", prestress_type = "STRESS", jack_step = "BEGIN", jack_begin = 0, jack_end=0, grouting_stage = 0, id = None):`**
 
 
 Creates a tendon prestress loading
@@ -28,7 +28,7 @@ Creates a tendon prestress loading
 - `jack_begin` (float) : The stress or force value applied at the beginning of the tendon.
 - `jack_end` (float) :	The stress or force value applied at the end of the tendon.
 - `grouting_stage` (int) : The construction stage number after which grouting is applied. A value of 0 signifies that grouting is applied in same stage.
-- `id` (int, default=0): ID of tendon prestress load. If 0, an ID is automatically generated.
+- `id` (int, default=None): ID of tendon prestress load. If None, an ID is automatically generated.
 
 
 

@@ -276,7 +276,7 @@ Fetches standard Beam Force result tables.
 
 ```python
 # Get PSC stress at all section positions
-psc_stress = Result.TABLE.BeamStress_PSC(
+psc_stress = Result.TABLE.BeamForce(
     keys=[501, 502, 503],
     loadcase=["Selfweight(ST)", "Prestress(ST)"],
     section_position=['All']
@@ -284,7 +284,7 @@ psc_stress = Result.TABLE.BeamStress_PSC(
 print(psc_stress)
 
 # Get max/min stresses with construction stages
-Result.TABLE.BeamStress_PSC(
+Result.TABLE.BeamForce(
     keys="PSC_Group",
     section_position=["Max", "Min"],
     activationCSstep=True,

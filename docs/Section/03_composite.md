@@ -5,7 +5,7 @@ A nested class within Section used to create composite sections.
 ## Composite PSC I-Section
 ---
 #### Constructor
-**<font color="green">`Section.Composite.PSCI(Name='', Symm=True, Joint=[0,0,0,0,0,0,0,0,0], Bc=0, tc=0, Hh=0, H1=0, HL1=0, HL2=0, HL21=0, HL22=0, HL3=0, HL4=0, HL41=0, HL42=0, HL5=0, BL1=0, BL2=0, BL21=0, BL22=0, BL4=0, BL41=0, BL42=0, HR1=0, HR2=0, HR21=0, HR22=0, HR3=0, HR4=0, HR41=0, HR42=0, HR5=0, BR1=0, BR2=0, BR21=0, BR22=0, BR4=0, BR41=0, BR42=0, EgdEsb=0, DgdDsb=0, Pgd=0, Psb=0, TgdTsb=0, MultiModulus=False, CreepEratio=0, ShrinkEratio=0, Offset:Offset=Offset.CC(), useShear=True, use7Dof=False, id:int=0)`</font>**
+**<font color="green">`Section.Composite.PSCI(Name='', Symm=True, Joint=[0,0,0,0,0,0,0,0,0], Bc=0, tc=0, Hh=0, H1=0, HL1=0, HL2=0, HL21=0, HL22=0, HL3=0, HL4=0, HL41=0, HL42=0, HL5=0, BL1=0, BL2=0, BL21=0, BL22=0, BL4=0, BL41=0, BL42=0, HR1=0, HR2=0, HR21=0, HR22=0, HR3=0, HR4=0, HR41=0, HR42=0, HR5=0, BR1=0, BR2=0, BR21=0, BR22=0, BR4=0, BR41=0, BR42=0, EgdEsb=0, DgdDsb=0, Pgd=0, Psb=0, TgdTsb=0, MultiModulus=False, CreepEratio=0, ShrinkEratio=0, Offset:Offset=Offset.CC(), useShear=True, use7Dof=False, id=None)`</font>**
 
 Creates composite PSC I-sections with concrete slab.
 
@@ -26,7 +26,7 @@ Creates composite PSC I-sections with concrete slab.
 * `Offset (default=Offset.CC())`: Section offset parameters
 * `useShear (default=True)`: Enable shear deformation
 * `use7Dof (default=False)`: Enable warping effect
-* `id (default=0)`: Section ID
+* `id (default=None)`: Section ID
 
 
 ### Object Attributes
@@ -115,7 +115,7 @@ Section.create()
 ## Composite Steel I-Section
 ---
 #### Constructor
-**<font color="green">`Section.Composite.SteelI_Type1(Name='', Bc=0, tc=0, Hh=0, Hw=0, B1=0, tf1=0, tw=0, B2=0, tf2=0, EsEc=0, DsDc=0, Ps=0, Pc=0, TsTc=0, MultiModulus=False, CreepEratio=0, ShrinkEratio=0, Offset:Offset=Offset.CC(), useShear=True, use7Dof=False, id:int=0)`</font>**
+**<font color="green">`Section.Composite.SteelI_Type1(Name='', Bc=0, tc=0, Hh=0, Hw=0, B1=0, tf1=0, tw=0, B2=0, tf2=0, EsEc=0, DsDc=0, Ps=0, Pc=0, TsTc=0, MultiModulus=False, CreepEratio=0, ShrinkEratio=0, Offset:Offset=Offset.CC(), useShear=True, use7Dof=False, id=None)`</font>**
 
 Creates composite steel I-sections with concrete slab.
 
@@ -135,7 +135,7 @@ Creates composite steel I-sections with concrete slab.
 * `Offset (default=Offset.CC())`: Section offset parameters
 * `useShear (default=True)`: Enable shear deformation
 * `use7Dof (default=False)`: Enable warping effect
-* `id (default=0)`: Section ID
+* `id (default=None)`: Section ID
 
 
 ### Object Attributes

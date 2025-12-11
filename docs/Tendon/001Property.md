@@ -10,7 +10,7 @@ Manages tendon properties and integrates relaxation models.
 
 ## Constructor
 ---
-**`Tendon.Property(name, type, matID: int, tdn_area, duct_dia, relaxation, ext_mom_mag=0, anch_slip_begin=0, anch_slip_end=0, bond_type: bool=True, id=0)`**
+**`Tendon.Property(name, type, matID: int, tdn_area, duct_dia, relaxation, ext_mom_mag=0, anch_slip_begin=0, anch_slip_end=0, bond_type: bool=True, id=None)`**
 
 
 Creates a tendon property
@@ -26,7 +26,7 @@ Creates a tendon property
 * `anch_slip_begin` (float, default=0): Anchorage slip at begin.
 * `anch_slip_end` (float, default=0): Anchorage slip at end.
 * `bond_type` (bool, default=True): Whether the tendon is bonded or unbonded.
-* `id` (int, default=0): Optional ID for tendon property.
+* `id` (default=None): Optional ID for tendon property.
 
 ### Object Attributes
 * `ID`: Unique identifier (auto-generated)

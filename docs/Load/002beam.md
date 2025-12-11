@@ -4,7 +4,7 @@ A nested class within Load used to create beam loads with comprehensive options 
 
 ## Constructor
 ---
-**<font color="green">`Load.Beam(element, load_case, load_group = "", value, direction = "GZ", id = "", D = [0, 1, 0, 0], P = [0, 0, 0, 0], cmd = "BEAM", typ = "UNILOAD", use_ecc = False, use_proj = False, eccn_dir = "LZ", eccn_type = 1, ieccn = 0, jeccn = 0.0000195, adnl_h = False, adnl_h_i = 0, adnl_h_j = 0.0000195)`</font>**
+**<font color="green">`Load.Beam(element, load_case, load_group = "", value, direction = "GZ"", D = [0, 1, 0, 0], P = [0, 0, 0, 0], cmd = "BEAM", typ = "UNILOAD", use_ecc = False, use_proj = False, eccn_dir = "LZ", eccn_type = 1, ieccn = 0, jeccn = 0.0000195, adnl_h = False, adnl_h_i = 0, adnl_h_j = 0.0000195, id = None)`</font>**
 
 Creates beam loads with various distribution patterns and advanced options.
 
@@ -14,7 +14,6 @@ Creates beam loads with various distribution patterns and advanced options.
 * `load_group (default="")`: Load group name
 * `value`: Load magnitude
 * `direction (default="GZ")`: Load direction ("GX", "GY", "GZ", "LX", "LY", "LZ")
-* `id (default="")`: Manual ID assignment (auto-assigned if empty)
 * `D (default=[0, 1, 0, 0])`: Relative distance array (4 values based on element length)
 * `P (default=[0, 0, 0, 0])`: Load magnitude at corresponding D positions
 * `cmd (default="BEAM")`: Load command ("BEAM", "LINE", "TYPICAL")
@@ -26,6 +25,7 @@ Creates beam loads with various distribution patterns and advanced options.
 * `ieccn, jeccn (default=0, 0.0000195)`: Eccentricity values at i-end and j-end
 * `adnl_h (default=False)`: Consider additional height for pressure loads
 * `adnl_h_i, adnl_h_j (default=0, 0.0000195)`: Additional height values at ends
+* `id (default=None)`: Manual ID assignment (auto-assigned if empty)
 
 ### Object Attributes
 * `ELEMENT` (int): The element number to which the load is applied.

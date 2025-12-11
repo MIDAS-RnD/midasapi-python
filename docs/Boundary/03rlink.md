@@ -12,8 +12,8 @@ Creates rigid links connecting a master node to one or more slave nodes with spe
 * `master_node`: Master node ID (controls the motion)
 * `slave_nodes`: List of slave node IDs (follow master node motion)
 * `group (default="")`: Boundary group name
-* `id (default=None)`: Manual ID assignment (auto-assigned if None)
 * `dof (default=111111)`: Degrees of freedom constraint (6-digit integer)
+* `id (default=None)`: Manual ID assignment (auto-assigned if None)
 
 
 
@@ -41,7 +41,7 @@ Creates rigid links connecting a master node to one or more slave nodes with spe
 Returns JSON representation of all rigid links.
 
 ```py
-rlink1 = Boundary.RigidLink(1, [2, 3], "Group1", 1, 111111)
+rlink1 = Boundary.RigidLink(1, [2, 3], "Group1", 111111)
 print(Boundary.RigidLink.json())
 ```
 
@@ -84,7 +84,7 @@ for i in range(5):
 Node.create()
 
 # Rigid link between master and single slave
-rlink1 = Boundary.RigidLink(1, [2], "", 1, 111111)
+rlink1 = Boundary.RigidLink(1, [2], "", 111111)
 Boundary.RigidLink.create()
 ```
 
@@ -97,7 +97,7 @@ for i in range(5):
 Node.create()
 
 # Rigid link with multiple slave nodes
-rlink2 = Boundary.RigidLink(3, [4, 5], "", 2, 111111)
+rlink2 = Boundary.RigidLink(3, [4, 5], "",111111)
 Boundary.RigidLink.create()
 ```
 
@@ -110,7 +110,7 @@ for i in range(5):
 Node.create()
 
 # Rigid link with only translational constraints
-rlink3 = Boundary.RigidLink(1, [2, 3], "", 3, 111000)
+rlink3 = Boundary.RigidLink(1, [2, 3], "", 111000)
 Boundary.RigidLink.create()
 ```
 

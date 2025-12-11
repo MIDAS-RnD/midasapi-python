@@ -4,7 +4,7 @@ A nested class within Load used to create nodal loads.
 
 ## Constructor
 ---
-**<font color="green">`Load.Nodal(node, load_case, load_group = "", FX = 0, FY = 0, FZ = 0, MX = 0, MY = 0, MZ = 0, id = "")`</font>**
+**<font color="green">`Load.Nodal(node, load_case, load_group = "", FX = 0, FY = 0, FZ = 0, MX = 0, MY = 0, MZ = 0, id =None)`</font>**
 
 Creates nodal loads (forces and moments) at specified nodes.
 
@@ -14,7 +14,7 @@ Creates nodal loads (forces and moments) at specified nodes.
 * `load_group (default="")`: Load group name
 * `FX, FY, FZ (default=0)`: Force components in X, Y, Z directions
 * `MX, MY, MZ (default=0)`: Moment components about X, Y, Z axes
-* `id (default="")`: Manual ID assignment (auto-assigned if empty)
+* `id (default=None)`: Manual ID assignment (auto-assigned if empty)
 
 ### Object Attributes
 * `NODE` (int): The node number where the load is applied.

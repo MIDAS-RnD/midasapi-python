@@ -4,7 +4,7 @@ A nested class within Material used to create concrete materials.
 
 ## Standard
 ---
-**<font color="green">`Material.CONC(name='', standard='', db='', id=0)`</font>**
+**<font color="green">`Material.CONC(name='', standard='', db='', id =None)`</font>**
 
 Creates a concrete material from database with specified standard and database code.
 
@@ -12,7 +12,7 @@ Creates a concrete material from database with specified standard and database c
 * `name (default='')`: Material name
 * `standard (default='')`: Standard code (e.g., "EN(RC)", "ACI(RC)", "IS(RC)")
 * `db (default='')`: Database material code
-* `id (default=0)`: Manual ID assignment
+* `id (default=None)`: Manual ID assignment
 
 ### Object Attributes
 * `ID` (int): The ID of the material.
@@ -35,7 +35,7 @@ Material.create()
 
 ## User-Defined
 ---
-**<font color="green">`Material.CONC.User(name='', E=0, pois=0, den=0, mass=0, therm=0, id=0)`</font>**
+**<font color="green">`Material.CONC.User(name='', E=0, pois=0, den=0, mass=0, therm=0, id =None)`</font>**
 
 Creates a user-defined concrete material with custom properties.
 
@@ -46,7 +46,7 @@ Creates a user-defined concrete material with custom properties.
 * `den (default=0)`: Density
 * `mass (default=0)`: Mass density
 * `therm (default=0)`: Thermal expansion coefficient
-* `id (default=0)`: Manual ID assignment
+* `id (default=None)`: Manual ID assignment
 
 ### Object Attributes
 * `ID` (int): The ID of the material.

@@ -51,7 +51,7 @@ CreepShrinkage.delete()
 ??? sumit_block "IRC Code (18 & 112)"
 
     ### IRC
-    **<font color="green">`CreepShrinkage.IRC(name='', code_year=2011, fck=0, notional_size=1, relative_humidity=70, age_shrinkage=3, type_cement='NR', id=0)`</font>**
+    **<font color="green">`CreepShrinkage.IRC(name='', code_year=2011, fck=0, notional_size=1, relative_humidity=70, age_shrinkage=3, type_cement='NR', id =None)`</font>**
 
     Creates IRC standard creep and shrinkage properties.
 
@@ -93,7 +93,7 @@ CreepShrinkage.delete()
 ??? sumit_block "CEB-FIP Code (2010, 1990, 1978)"
 
     ### CEB_FIP
-    **<font color="green">`CreepShrinkage.CEB_FIP(name='', code_year=2010, fck=0, notional_size=1, relative_humidity=70, age_shrinkage=3, type_cement='RS', type_of_aggregate=0, id=0)`</font>**
+    **<font color="green">`CreepShrinkage.CEB_FIP(name='', code_year=2010, fck=0, notional_size=1, relative_humidity=70, age_shrinkage=3, type_cement='RS', type_of_aggregate=0, id =None)`</font>**
 
     Creates CEB-FIP standard creep and shrinkage properties for European concrete standards.
 
@@ -136,7 +136,7 @@ CreepShrinkage.delete()
 ??? sumit_block "ACI Code"
 
     ### ACI
-    **<font color="green">`CreepShrinkage.ACI(name='', fck=0, relative_humidity=70, age_shrinkage=3, vol_surface_ratio=1.2, cfact_a=4, cfact_b=0.85, curing_method='MOIST', material_type='CODE', cement_content=24, slump=1.1, fine_agg_percent=12, air_content=13, creep_coeff=None, shrink_strain=None, id=0)`</font>**
+    **<font color="green">`CreepShrinkage.ACI(name='', fck=0, relative_humidity=70, age_shrinkage=3, vol_surface_ratio=1.2, cfact_a=4, cfact_b=0.85, curing_method='MOIST', material_type='CODE', cement_content=24, slump=1.1, fine_agg_percent=12, air_content=13, creep_coeff=None, shrink_strain=None, id =None)`</font>**
 
     Creates ACI standard creep and shrinkage properties for American Concrete Institute standards.
 
@@ -187,7 +187,7 @@ CreepShrinkage.delete()
 ??? sumit_block "AASHTO Code"
 
     ### AASHTO
-    **<font color="green">`CreepShrinkage.AASHTO(name='', fck=0, relative_humidity=70, age_shrinkage=3, vol_surface_ratio=1.2, b_expose=False, id=0)`</font>**
+    **<font color="green">`CreepShrinkage.AASHTO(name='', fck=0, relative_humidity=70, age_shrinkage=3, vol_surface_ratio=1.2, b_expose=False, id =None)`</font>**
 
     Creates AASHTO standard creep and shrinkage properties.
 
@@ -224,7 +224,7 @@ CreepShrinkage.delete()
 ??? sumit_block "European Code (EN 1992)""
 
     ### European
-    **<font color="green">`CreepShrinkage.European(name='', fck=0, relative_humidity=70, age_shrinkage=3, notional_size=1.2, type_cement='Class N', t_code=0, b_silica=False, id=0)`</font>**
+    **<font color="green">`CreepShrinkage.European(name='', fck=0, relative_humidity=70, age_shrinkage=3, notional_size=1.2, type_cement='Class N', t_code=0, b_silica=False, id =None)`</font>**
 
     Creates European standard creep and shrinkage properties (EN 1992).
 
@@ -268,7 +268,7 @@ CreepShrinkage.delete()
 ??? sumit_block "Russian Code"
 
     ### Russian
-    **<font color="green">`CreepShrinkage.Russian(name='', fck=0, relative_humidity=70, module_exposed_surface=10, age_concrete=14, water_content=180, max_aggregate_size=0.02, air_content=30, specific_cement_paste_content=0.25, curing_method=0, cement_type=1, fast_accumulating_creep=False, concrete_type=0, id=0)`</font>**
+    **<font color="green">`CreepShrinkage.Russian(name='', fck=0, relative_humidity=70, module_exposed_surface=10, age_concrete=14, water_content=180, max_aggregate_size=0.02, air_content=30, specific_cement_paste_content=0.25, curing_method=0, cement_type=1, fast_accumulating_creep=False, concrete_type=0, id =None)`</font>**
 
     Creates Russian standard creep and shrinkage properties.
 
@@ -304,7 +304,7 @@ CreepShrinkage.delete()
 ??? sumit_block "AS & NZ Code (Australian & New Zealand Standards)"
 
     ### AS_NZ
-    **<font color="green">`CreepShrinkage.AS_NZ(name='', standard='AS_5100_5_2017', fck=0, concrete_age=7, hypothetical_thickness=0.3, drying_shrinkage_type=0, user_defined_shrinkage_strain=0, humidity_factor=0.72, exposure_environment=0, id=0)`</font>**
+    **<font color="green">`CreepShrinkage.AS_NZ(name='', standard='AS_5100_5_2017', fck=0, concrete_age=7, hypothetical_thickness=0.3, drying_shrinkage_type=0, user_defined_shrinkage_strain=0, humidity_factor=0.72, exposure_environment=0, id =None)`</font>**
 
     Creates Australian & New Zealand standards creep and shrinkage properties.
 
@@ -335,7 +335,7 @@ CreepShrinkage.delete()
 ??? sumit_block "Chinese Standards"
 
     ### Chinese
-    **<font color="green">`CreepShrinkage.Chinese(name='', standard='CHINESE', fck=0, relative_humidity=70, concrete_age=14, notional_size=2, humidity_type='RH', cement_coeff=5, fly_ash_amount=20, id=0)`</font>**
+    **<font color="green">`CreepShrinkage.Chinese(name='', standard='CHINESE', fck=0, relative_humidity=70, concrete_age=14, notional_size=2, humidity_type='RH', cement_coeff=5, fly_ash_amount=20, id =None)`</font>**
 
     Creates Chinese standards creep and shrinkage properties.
 
@@ -367,7 +367,7 @@ CreepShrinkage.delete()
 ??? sumit_block "Korean Standards"
 
     ### Korean
-    **<font color="green">`CreepShrinkage.Korean(name='', standard='KDS_2016', fck=0, relative_humidity=70, concrete_age=14, notional_size=2, cement_type='NR', density=240, id=0)`</font>**
+    **<font color="green">`CreepShrinkage.Korean(name='', standard='KDS_2016', fck=0, relative_humidity=70, concrete_age=14, notional_size=2, cement_type='NR', density=240, id =None)`</font>**
 
     Creates Korean standards creep and shrinkage properties.
 
@@ -398,7 +398,7 @@ CreepShrinkage.delete()
 ??? sumit_block "PCA Code"
 
     ### PCA
-    **<font color="green">`CreepShrinkage.PCA(name='', fck=0, relative_humidity=70, ultimate_creep_strain=4, vol_surface_ratio=1.2, reinforcement_ratio=20, steel_elasticity_modulus=2e8, ultimate_shrinkage_strain=780, id=0)`</font>**
+    **<font color="green">`CreepShrinkage.PCA(name='', fck=0, relative_humidity=70, ultimate_creep_strain=4, vol_surface_ratio=1.2, reinforcement_ratio=20, steel_elasticity_modulus=2e8, ultimate_shrinkage_strain=780, id =None)`</font>**
 
     Creates PCA standard creep and shrinkage properties.
 
@@ -424,7 +424,7 @@ CreepShrinkage.delete()
 ??? sumit_block "Japan Standards (JSCE)"
 
     ### Japan
-    **<font color="green">`CreepShrinkage.Japan(name='', standard='JSCE_12', relative_humidity=70, concrete_age=3, vol_surface_ratio=0.2, cement_content=30, water_content=20, fck=30, impact_factor=1, age_of_solidification=5, alpha_factor=11, autogenous_shrinkage=True, gamma_factor=1, a_factor=0.1, b_factor=0.7, general_shrinkage=True, id=0)`</font>**
+    **<font color="green">`CreepShrinkage.Japan(name='', standard='JSCE_12', relative_humidity=70, concrete_age=3, vol_surface_ratio=0.2, cement_content=30, water_content=20, fck=30, impact_factor=1, age_of_solidification=5, alpha_factor=11, autogenous_shrinkage=True, gamma_factor=1, a_factor=0.1, b_factor=0.7, general_shrinkage=True, id =None)`</font>**
 
     Creates Japan standards creep and shrinkage properties (JSCE).
 
@@ -462,7 +462,7 @@ CreepShrinkage.delete()
 ??? sumit_block "Japanese Standard"
 
     ### JapaneseStandard
-    **<font color="green">`CreepShrinkage.JapaneseStandard(name='', fck=0, relative_humidity=70, concrete_age=3, notional_size=1.2, calculation_method='JSCE', humidity_type='RH', cement_type='NC', environmental_coeff=1, id=0)`</font>**
+    **<font color="green">`CreepShrinkage.JapaneseStandard(name='', fck=0, relative_humidity=70, concrete_age=3, notional_size=1.2, calculation_method='JSCE', humidity_type='RH', cement_type='NC', environmental_coeff=1, id =None)`</font>**
 
     Creates Japanese standard creep and shrinkage properties.
 
@@ -490,7 +490,7 @@ CreepShrinkage.delete()
 ??? sumit_block "User Defined"
 
     ### UserDefined
-    **<font color="green">`CreepShrinkage.UserDefined(name='', shrinkage_func_name='', creep_func_name='', creep_age=0, id=0)`</font>**
+    **<font color="green">`CreepShrinkage.UserDefined(name='', shrinkage_func_name='', creep_func_name='', creep_age=0, id =None)`</font>**
 
     Creates user defined creep and shrinkage properties.
 

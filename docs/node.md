@@ -13,11 +13,11 @@ MAPI_KEY('eyJ1ciI6InN1bWl0QG1pZGFzaXQuY29tIiwicGciO252a81571d')
 
 ## Constructor
 ---
-**Node(`x , y , z , id = 0 , group = '' , merge = 1`)**
+**Node(`x , y , z , id=None , group = '' , merge = 1`)**
 
 ### Parameters
 * `x, y, z`: Coordinates of the node.
-* `id (default=0)`: Manually assign an ID.   If 0, ID will be auto-assigned.
+* `id (default=None)`: Manually assign an ID.   If 0, ID will be auto-assigned.
 * `group (default='')`: Structure group of the node (can be str or list eg. 'SG' or ['SG1','SG2'])
 * `merge (default=1)`: If enabled, checks for existing nodes and return their IDs.  No additional/duplicate node will be created.
 

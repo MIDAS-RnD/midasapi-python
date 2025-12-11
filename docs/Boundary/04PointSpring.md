@@ -4,7 +4,7 @@ A nested class within Boundary used to create point springs at nodes with variou
 
 ## Constructor
 ---
-**<font color="green">`Boundary.PointSpring(node, spring_type = "LINEAR", group = "", id = None, stiffness = None, fixed_option = None, damping = None, direction = "Dx+", normal_vector = None, function_id = 1)`</font>**
+**<font color="green">`Boundary.PointSpring(node, spring_type = "LINEAR", group = "", stiffness = None, fixed_option = None, damping = None, direction = "Dx+", normal_vector = None, function_id = 1, id = None)`</font>**
 
 Creates point springs at specified nodes with defined spring properties and behavior types.
 
@@ -12,13 +12,13 @@ Creates point springs at specified nodes with defined spring properties and beha
 * `node`: Node ID where spring is applied
 * `spring_type (default="LINEAR")`: Type of spring behavior
 * `group (default="")`: Boundary group name
-* `id (default=None)`: Manual ID assignment (auto-assigned if None)
 * `stiffness (default=None)`: Spring stiffness values or single value
 * `fixed_option (default=None)`: Fixed option array for LINEAR type
 * `damping (default=None)`: Damping values (enables damping if provided)
 * `direction (default="Dx+")`: Direction string for spring action
 * `normal_vector (default=None)`: Normal vector [x, y, z] when direction is "Vector"
 * `function_id (default=1)`: Function ID for MULTI type springs
+* `id (default=None)`: Manual ID assignment (auto-assigned if None)
 
 #### Spring Types
 * **"LINEAR"**: Linear spring with full 6-DOF stiffness matrix
