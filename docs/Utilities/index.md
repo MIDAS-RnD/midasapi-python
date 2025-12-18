@@ -101,8 +101,8 @@ It provides an interpolated curve representation (e.g. cubic spline, Akima, Maki
 
 #### Object Attributes
 
-`PT_X`: Input points' X-coordinate  
-`PT_Y`: Input points' X-coordinate  
+`PT_X`: Input points X-coordinates  
+`PT_Y`: Input points Y-coordinates  
 `TOTALLENGTH`: Total length of the Alignment  
 
 #### Object Functions

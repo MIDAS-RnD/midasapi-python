@@ -82,8 +82,10 @@ MAPI_BASEURL('https://moa-engineers.midasit.com:443/civil')
 
 #### MAPI_BASEURL.autoURL
 
-When using python library in a web environment, `.com` (moa-engineers.midasit.com) server may be different for the MIDAS CIVIL NX and the system on which python is running.
-In such scenario, python may fail to connect with (https://moa-engineers.midasit.com:443/civil) Base URL.
+When using python library in a web environment, **.com** `moa-engineers.midasit.com` server may be different for the MIDAS CIVIL NX and the system on which python is running.  
+In such scenario, python may fail to connect with `https://moa-engineers.midasit.com:443/civil` Base URL.
+
+The `.com` URL automatically connects to the nearest API server based on the system’s network location.
 
 There are total 5 MIDAS API servers located across the globe :
 
@@ -95,15 +97,13 @@ There are total 5 MIDAS API servers located across the globe :
 | 4. | USA | moa-engineers-us.midasit.com |
 | 5. | China | moa-engineers.midasit.cn |
 
-The `.com` URL automatically connects to the nearest API server based on the system’s network location.
 
 ![Image title](assets/autoURL.png)
 
-For example, a user in India may have **MIDAS CIVIL NX** connected to the **India server**, but run a Python script in **Google Colab**, which is hosted on a **US server**.
-
+For example, a user in India may have **MIDAS CIVIL NX** connected to the **India server**, but run a Python script in **Google Colab**, which is hosted on a **US server**.   
 Because the servers are different, Python library may not connect correctly.
 
-In this situation, we can use the `MAPI_BASEURL.autoURL()` function.
+In this situation, we can use the `MAPI_BASEURL.autoURL()` function.   
 This function automatically finds and sets the correct Base URL based on the provided MAPI Key, ensuring a successful connection.
 
 ```py
