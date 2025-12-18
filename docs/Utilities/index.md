@@ -32,8 +32,9 @@ If `None`, the currently selected elements in CIVIL NX are used.
 
 !!! info "Note."
     Either `nDiv` or `mSizeDiv` should be specified (not both simultaneously):  
-        1. Use `nDiv` when we want an exact number of divisions.  
-        2. Use `mSizeDiv` when we want divisions based on mesh size.  
+    ‎ ‎ ‎ 1. Use `nDiv` when we want an exact number of divisions.  
+    ‎ ‎ ‎ 2. Use `mSizeDiv` when we want divisions based on mesh size.  
+    To use with tapersections assigned to a Tapered Group, we first need to Convert them into individual tapered section
 
 
 #### Examples  
@@ -98,6 +99,16 @@ It provides an interpolated curve representation (e.g. cubic spline, Akima, Maki
 !!! info "Note."
     Ensure that x-values in points are monotonic (increasing) to avoid errors in interpolation.
 
+#### Object Attributes
+
+`PT_X`: Input points' X-coordinate  
+`PT_Y`: Input points' X-coordinate  
+`TOTALLENGTH`: Total length of the Alignment  
+
+#### Object Functions
+
+`getPoint`: Returns (x,y) point at specific distance from start  
+`getSlope`: Returns slope(in radians) at specific distance from start  
 
 ### Alignment.transformPoint
 **`utils.Alignment.transformPoint(point, initial_align, final_align)`**  
@@ -112,6 +123,7 @@ It is used to realign geometric data — for instance, transforming model node c
 #### Examples  
 
 ##### Obtaining new location  
+![NODE GRID](alignTransform.png)
 ```py
 from midas_civil import *
 
