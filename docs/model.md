@@ -76,7 +76,7 @@ Model.exportJSON('D:\\model.json')
 
 ### <font style="font-size:0px">Model.</font>info
 Sets the project information.  
-`info(project_name="", revision="", user="", title="")`  
+`info(project_name="", revision="", user="", title="",comment="")`  
 
 
 ```py

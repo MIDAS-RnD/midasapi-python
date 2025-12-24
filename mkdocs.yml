@@ -174,9 +174,10 @@ nav:
 
   - Results :
     - ‎ ‎ ‎ Load Combination : Result/01_loadCombination.md
-    - ‎ ‎ ‎ Result Table : Result/02_resultTable.md
+    - ‎ ‎ ‎ Result Table : Result/02_ResultTable.md
     - ‎ ‎ ‎ User Defined Table : Result/03_userResultTable.md
-    - ‎ ‎ ‎ Table : Result/04_Table.md
+  
+    
 
   - Utilities : Utilities/index.md
 
