@@ -43,6 +43,9 @@ from midas_civil import *
 
 <iframe width="900" height="480" src="https://www.youtube.com/embed/1MSzdb2IX1c" title="How to Install MIDAS Civil Python Library | MIDAS API" allowfullscreen></iframe>
 
+---
+
+<iframe width="900" height="480" src="https://www.youtube.com/embed/LjXMGUqseiE?si=lmptfcZfUpzw-K-H" title="How to Set Up VS Code and Python | MIDAS API" allowfullscreen></iframe>
 
 ## Functions available
 
