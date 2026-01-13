@@ -100,6 +100,12 @@ for n in Node.nodes:
 
 ```
 
+### <font style="font-size:0px">Node.</font>clear
+Deletes all node data from Python.
+
+```py
+Node.clear()
+```
 
 ### <font style="font-size:0px">Node.</font>delete
 Deletes all node data from both Python and Civil NX.

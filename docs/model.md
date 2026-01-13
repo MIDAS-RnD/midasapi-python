@@ -140,8 +140,9 @@ Model.create()
 ```
 
 ### <font style="font-size:0px">Model.</font>clear
-Clears all components in the model, including nodes, elements, materials, groups, loads, and boundaries.  
->*Equivalent to executing all the delete commands individually*
+Clears all internal python data of the model, including nodes, elements, materials, groups, loads, and boundaries.  
+>*Equivalent to executing all the clear commands individually*   
+>*It does not delete data from CIVIL NX*
 ```py
 Model.clear()
 ```
