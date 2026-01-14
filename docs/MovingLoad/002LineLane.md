@@ -4,7 +4,7 @@ A nested class within MovingLoad used to create and manage traffic lanes for mov
 
 ## Constructor
 ---
-**<font color="green">`MovingLoad.LineLane(code, Lane_name, Ecc, Wheel_space, Elment_start, Elemnt_end, IF=0, Span=0, id=None, width=0, opt_width=0, Group_Name="", Moving_Direction="BOTH", Skew_start=0, Skew_end=0)`</font>**
+**<font color="green">`MovingLoad.LineLane(code, Lane_name, Ecc, Wheel_space, elem_list, IF=0, Span=0, id=None, width=0, opt_width=0, Group_Name="", Moving_Direction="BOTH", Skew_start=0, Skew_end=0)`</font>**
 
 Creates a traffic lane with specified parameters.
 
@@ -13,8 +13,7 @@ Creates a traffic lane with specified parameters.
 * `Lane_name` (str): A unique name for the lane
 * `Ecc` (float): Lateral eccentricity of the lane's centerline from the reference element path (positive = +Y direction)
 * `Wheel_space` (float): Center-to-center distance between vehicle wheels (typically 1.8m or 6ft)
-* `Elment_start` (int): First element ID in the continuous path defining the lane
-* `Elemnt_end` (int): Last element ID in the continuous path defining the lane
+* `elem_list` (list[int]): A list of element IDs defining the continuous path of the lane
 * `IF` (float, optional): Impact Factor or Scale Factor as defined by design code. Default: 0
 * `Span` (float, optional): Span length for impact factor calculation. Default: 0
 * `id` (int, optional): Unique integer ID for the lane (auto-assigned if None). Default: None
@@ -44,8 +43,7 @@ Creates a traffic lane with specified parameters.
 * `Lane_name` (str): The unique name of the lane
 * `Ecc` (float): Lateral eccentricity value
 * `Wheel_space` (float): Wheel spacing distance
-* `Elment_start` (int): Starting element ID
-* `Elemnt_end` (int): Ending element ID
+* `elem_list` (list[int]): List of element IDs defining the lane path
 * `IF` (float): Impact/scale factor
 * `Span` (float): Span length
 * `id` (int): Lane ID
@@ -60,63 +58,63 @@ Creates a traffic lane with specified parameters.
 ---
 
 ### India
-**<font color="green">`MovingLoad.LineLane.India(Lane_name, Ecc, Wheel_space, Elment_start, Elemnt_end, IF=0, Span=0, id=None, width=0, opt_width=0, Group_Name="", Moving_Direction="BOTH", Skew_start=0, Skew_end=0)`</font>**  
+**<font color="green">`MovingLoad.LineLane.India(Lane_name, Ecc, Wheel_space, elem_list, IF=0, Span=0, id=None, width=0, opt_width=0, Group_Name="", Moving_Direction="BOTH", Skew_start=0, Skew_end=0)`</font>**  
 Creates a traffic lane according to Indian Road Congress (IRC) standards.
 
 ### China
-**<font color="green">`MovingLoad.LineLane.China(Lane_name, Ecc, Wheel_space, Elment_start, Elemnt_end, IF=0, Span=0, id=None, width=0, opt_width=0, Group_Name="", Moving_Direction="BOTH", Skew_start=0, Skew_end=0)`</font>**  
+**<font color="green">`MovingLoad.LineLane.China(Lane_name, Ecc, Wheel_space, elem_list, IF=0, Span=0, id=None, width=0, opt_width=0, Group_Name="", Moving_Direction="BOTH", Skew_start=0, Skew_end=0)`</font>**  
 Creates a traffic lane according to Chinese bridge design standards.
 
 ### Korea
-**<font color="green">`MovingLoad.LineLane.Korea(Lane_name, Ecc, Wheel_space, Elment_start, Elemnt_end, IF=0, id=None, opt_width=0, Group_Name="", Moving_Direction="BOTH", Skew_start=0, Skew_end=0)`</font>**  
+**<font color="green">`MovingLoad.LineLane.Korea(Lane_name, Ecc, Wheel_space, elem_list, IF=0, id=None, opt_width=0, Group_Name="", Moving_Direction="BOTH", Skew_start=0, Skew_end=0)`</font>**  
 Creates a traffic lane according to Korean standards (fixed width = 3m).
 
 ### Taiwan
-**<font color="green">`MovingLoad.LineLane.Taiwan(Lane_name, Ecc, Wheel_space, Elment_start, Elemnt_end, IF=0, id=None, width=0, opt_width=0, Group_Name="", Moving_Direction="BOTH", Skew_start=0, Skew_end=0)`</font>**  
+**<font color="green">`MovingLoad.LineLane.Taiwan(Lane_name, Ecc, Wheel_space, elem_list, IF=0, id=None, width=0, opt_width=0, Group_Name="", Moving_Direction="BOTH", Skew_start=0, Skew_end=0)`</font>**  
 Creates a traffic lane according to Taiwanese standards.
 
 ### AASHTO Standard
-**<font color="green">`MovingLoad.LineLane.AASHTOStandard(Lane_name, Ecc, Wheel_space, Elment_start, Elemnt_end, IF=0, id=None, opt_width=0, Group_Name="", Moving_Direction="BOTH", Skew_start=0, Skew_end=0)`</font>**  
+**<font color="green">`MovingLoad.LineLane.AASHTOStandard(Lane_name, Ecc, Wheel_space, elem_list, IF=0, id=None, opt_width=0, Group_Name="", Moving_Direction="BOTH", Skew_start=0, Skew_end=0)`</font>**  
 Creates a traffic lane according to AASHTO Standard (fixed width = 3m).
 
 ### AASHTO LRFD
-**<font color="green">`MovingLoad.LineLane.AASHTOLRFD(Lane_name, Ecc, Wheel_space, Elment_start, Elemnt_end, IF=0, id=None, opt_width=0, Group_Name="", Moving_Direction="BOTH", Skew_start=0, Skew_end=0)`</font>**  
+**<font color="green">`MovingLoad.LineLane.AASHTOLRFD(Lane_name, Ecc, Wheel_space, elem_list, IF=0, id=None, opt_width=0, Group_Name="", Moving_Direction="BOTH", Skew_start=0, Skew_end=0)`</font>**  
 Creates a traffic lane according to AASHTO LRFD (fixed width = 3m, IF represents centrifugal force).
 
 ### PENNDOT
-**<font color="green">`MovingLoad.LineLane.PENNDOT(Lane_name, Ecc, Wheel_space, Elment_start, Elemnt_end, id=None, opt_width=0, Group_Name="", Moving_Direction="BOTH", Skew_start=0, Skew_end=0)`</font>**  
+**<font color="green">`MovingLoad.LineLane.PENNDOT(Lane_name, Ecc, Wheel_space, elem_list, id=None, opt_width=0, Group_Name="", Moving_Direction="BOTH", Skew_start=0, Skew_end=0)`</font>**  
 Creates a traffic lane according to AASHTO LRFD (PENNDOT) (fixed width = 3m).
 
 ### Canada
-**<font color="green">`MovingLoad.LineLane.Canada(Lane_name, Ecc, Wheel_space, Elment_start, Elemnt_end, id=None, opt_width=0, Group_Name="", Moving_Direction="BOTH", Skew_start=0, Skew_end=0)`</font>**  
+**<font color="green">`MovingLoad.LineLane.Canada(Lane_name, Ecc, Wheel_space, elem_list, id=None, opt_width=0, Group_Name="", Moving_Direction="BOTH", Skew_start=0, Skew_end=0)`</font>**  
 Creates a traffic lane according to Canadian standards (fixed width = 3m).
 
 ### BS
-**<font color="green">`MovingLoad.LineLane.BS(Lane_name, Ecc, Wheel_space, Elment_start, Elemnt_end, id=None, width=0, opt_width=0, Group_Name="", Moving_Direction="BOTH", Skew_start=0, Skew_end=0)`</font>**  
+**<font color="green">`MovingLoad.LineLane.BS(Lane_name, Ecc, Wheel_space, elem_list, id=None, width=0, opt_width=0, Group_Name="", Moving_Direction="BOTH", Skew_start=0, Skew_end=0)`</font>**  
 Creates a traffic lane according to British Standards (BS).
 
 ### Eurocode
-**<font color="green">`MovingLoad.LineLane.Eurocode(Lane_name, Ecc, Wheel_space, Elment_start, Elemnt_end, IF=0, id=None, width=0, opt_width=0, Group_Name="", Moving_Direction="BOTH", Skew_start=0, Skew_end=0)`</font>**  
+**<font color="green">`MovingLoad.LineLane.Eurocode(Lane_name, Ecc, Wheel_space, elem_list, IF=0, id=None, width=0, opt_width=0, Group_Name="", Moving_Direction="BOTH", Skew_start=0, Skew_end=0)`</font>**  
 Creates a traffic lane according to European standards (IF represents vertical load eccentricity).
 
 ### Australia
-**<font color="green">`MovingLoad.LineLane.Australia(Lane_name, Ecc, Wheel_space, Elment_start, Elemnt_end, id=None, width=0, opt_width=0, Group_Name="", Moving_Direction="BOTH", Skew_start=0, Skew_end=0)`</font>**  
+**<font color="green">`MovingLoad.LineLane.Australia(Lane_name, Ecc, Wheel_space, elem_list, id=None, width=0, opt_width=0, Group_Name="", Moving_Direction="BOTH", Skew_start=0, Skew_end=0)`</font>**  
 Creates a traffic lane according to Australian standards.
 
 ### Poland
-**<font color="green">`MovingLoad.LineLane.Poland(Lane_name, Ecc, Wheel_space, Elment_start, Elemnt_end, id=None, width=0, opt_width=0, Group_Name="", Moving_Direction="BOTH", Skew_start=0, Skew_end=0)`</font>**  
+**<font color="green">`MovingLoad.LineLane.Poland(Lane_name, Ecc, Wheel_space, elem_list, id=None, width=0, opt_width=0, Group_Name="", Moving_Direction="BOTH", Skew_start=0, Skew_end=0)`</font>**  
 Creates a traffic lane according to Polish standards.
 
 ### Russia
-**<font color="green">`MovingLoad.LineLane.Russia(Lane_name, Ecc, Wheel_space, Elment_start, Elemnt_end, id=None, width=0, opt_width=0, Group_Name="", Moving_Direction="BOTH", Skew_start=0, Skew_end=0)`</font>**  
+**<font color="green">`MovingLoad.LineLane.Russia(Lane_name, Ecc, Wheel_space, elem_list, id=None, width=0, opt_width=0, Group_Name="", Moving_Direction="BOTH", Skew_start=0, Skew_end=0)`</font>**  
 Creates a traffic lane according to Russian standards.
 
 ### South Africa
-**<font color="green">`MovingLoad.LineLane.SouthAfrica(Lane_name, Ecc, Wheel_space, Elment_start, Elemnt_end, id=None, width=0, opt_width=0, Group_Name="", Moving_Direction="BOTH", Skew_start=0, Skew_end=0)`</font>**  
+**<font color="green">`MovingLoad.LineLane.SouthAfrica(Lane_name, Ecc, Wheel_space, elem_list, id=None, width=0, opt_width=0, Group_Name="", Moving_Direction="BOTH", Skew_start=0, Skew_end=0)`</font>**  
 Creates a traffic lane according to South African standards.
 
 ### KSCE-LSD15
-**<font color="green">`MovingLoad.LineLane.KSCELSD15(Lane_name, Ecc, Wheel_space, Elment_start, Elemnt_end, id=None, opt_width=0, Group_Name="", Moving_Direction="BOTH", Skew_start=0, Skew_end=0)`</font>**  
+**<font color="green">`MovingLoad.LineLane.KSCELSD15(Lane_name, Ecc, Wheel_space, elem_list, id=None, opt_width=0, Group_Name="", Moving_Direction="BOTH", Skew_start=0, Skew_end=0)`</font>**  
 Creates a traffic lane according to KSCE-LSD15 (fixed width = 3m).
 
 
@@ -128,8 +126,8 @@ Returns JSON representation of all defined traffic lanes.
 
 ```py
 # Create some lanes
-MovingLoad.LineLane.India("Lane1", -1.8, 1.8, 1, 10, Span=30)
-MovingLoad.LineLane.India("Lane2", 1.8, 1.8, 1, 10, Span=30)
+MovingLoad.LineLane.India("Lane1", -1.8, 1.8, [1, 2, 3, 4, 5, 6, 7, 8, 9, 10], Span=30)
+MovingLoad.LineLane.India("Lane2", 1.8, 1.8, [1, 2, 3, 4, 5, 6, 7, 8, 9, 10], Span=30)
 
 # Get JSON representation
 lane_json = MovingLoad.LineLane.json()
@@ -176,21 +174,18 @@ MovingLoad.Code("INDIA")
 # Create two lanes for a bridge
 MovingLoad.LineLane.India(
     Lane_name="LeftLane",
-    Ecc=-1.875,  # 1.875m left of centerline
+    Ecc=-1.875,  
     Wheel_space=1.8,  # Standard wheel spacing
-    Elment_start=1,
-    Elemnt_end=20,
+    elem_list=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
     Span=30  # 30m span
 )
 
 MovingLoad.LineLane.India(
     Lane_name="RightLane",
-    Ecc=1.875,   # 1.875m right of centerline
+    Ecc=1.875,   
     Wheel_space=1.8,
-    Elment_start=1,
-    Elemnt_end=20,
+    elem_list=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
     Span=30
-    
 )
 
 # Create lanes in Civil NX
@@ -207,8 +202,7 @@ MovingLoad.LineLane.AASHTOLRFD(
     Lane_name="Highway_Lane_1",
     Ecc=-1.8,
     Wheel_space=1.83,  # 6 feet
-    Elment_start=5,
-    Elemnt_end=25,
+    elem_list=[5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25],
     IF=0.15  # Centrifugal force factor
 )
 
@@ -225,8 +219,7 @@ MovingLoad.LineLane.Eurocode(
     Lane_name="Euro_Lane",
     Ecc=0,
     Wheel_space=2.0,
-    Elment_start=10,
-    Elemnt_end=30,
+    elem_list=[10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30],
     IF=0.6,  # Vertical load eccentricity
     width=3.0
 )
@@ -241,8 +234,7 @@ MovingLoad.LineLane.India(
     Lane_name="CrossBeam_Lane1",
     Ecc=-2.0,
     Wheel_space=1.8,
-    Elment_start=1,
-    Elemnt_end=15,
+    elem_list=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
     Group_Name="CrossBeamGroup1",  # Enables cross-beam distribution
     width=3.5
 )
@@ -251,8 +243,7 @@ MovingLoad.LineLane.India(
     Lane_name="CrossBeam_Lane2",
     Ecc=2.0,
     Wheel_space=1.8,
-    Elment_start=1,
-    Elemnt_end=15,
+    elem_list=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
     Group_Name="CrossBeamGroup1",  # Same group for distribution
     width=3.5
 )
@@ -267,8 +258,7 @@ MovingLoad.LineLane.China(
     Lane_name="Skewed_Lane",
     Ecc=0,
     Wheel_space=2.0,
-    Elment_start=1,
-    Elemnt_end=12,
+    elem_list=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
     Skew_start=15,    # 15 degrees skew at start
     Skew_end=20,      # 20 degrees skew at end
     IF=1.3            # Scale factor
@@ -284,9 +274,24 @@ MovingLoad.LineLane.Korea(
     Lane_name="Oneway_Forward",
     Ecc=-1.5,
     Wheel_space=1.8,
-    Elment_start=5,
-    Elemnt_end=25,
+    elem_list=[5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25],
     Moving_Direction="FORWARD"  # Only forward traffic
+)
+
+MovingLoad.LineLane.create()
+```
+
+#### Using Element Range Helper Function
+```py
+# For continuous element sequences, you can use list comprehension or range
+elem_list = list(range(1, 21))  # Creates [1, 2, 3, ..., 20]
+
+MovingLoad.LineLane.India(
+    Lane_name="SimpleLane",
+    Ecc=0,
+    Wheel_space=1.8,
+    elem_list=elem_list,
+    Span=30
 )
 
 MovingLoad.LineLane.create()
@@ -299,6 +304,5 @@ MovingLoad.LineLane.sync()
 
 # Display synced lanes
 for lane in MovingLoad.LineLane.lanes:
-    print(f"Lane: {lane.Lane_name}, Code: {lane.code}, Elements: {lane.Elment_start}-{lane.Elemnt_end}")
+    print(f"Lane: {lane.Lane_name}, Code: {lane.code}, Elements: {lane.elem_list}")
 ```
-
