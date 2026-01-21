@@ -183,9 +183,6 @@ Creates PSC Value section based on section co-ordinates.
 * `N_INNER_POLYGON` (int): Number of Voids in the section
 * `INNER_POLYGON` (list): It can be either a single list of (x, y) tuples for one void or a list of lists for multiple voids.
 
-* `J1, JL1, JL2, JL3, JL4` (bool): Joint connectivity flags for the left side (and right side if symmetric).
-* `JR1, JR2, JR3, JR4` (bool): Joint connectivity flags for the right side (if not symmetric).
-
 * `OFFSET` (Offset): An `Offset` object defining the section's offset.
 * `USESHEAR` (bool): Flag to indicate if shear deformation is considered.
 * `USE7DOF` (bool): Flag to indicate if warping effect (7th DOF) is considered.

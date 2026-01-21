@@ -86,8 +86,13 @@ print(Element.get())
 
 ### <font style="font-size:0px">Element.</font>sync
 Retrieves Element data from the Civil NX and rebuilds the internal element list.  
+> Element object now includes LENGTH, AREA, CENTER, LOCAL axes, NORMAL data which requires geometry/nodal data.   
+From v1.3.5 onwards Element.sync requires Node.sync to be execute beforehand.   
+
+
 *-Here, Civil model had 1 beam element* 
 ```py
+Node.sync()
 Element.sync()
 for elem in Element.elements:
     print(f'ELEM ID = {elem.ID} | TYPE = {elem.TYPE} | NODE = {elem.NODE}')
