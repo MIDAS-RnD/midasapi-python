@@ -44,7 +44,7 @@ Creates composite PSC I-sections with concrete slab.
 * `MATL_POIS_S` (float): Poisson's ratio for girder.
 * `MATL_POIS_C` (float): Poisson's ratio for slab.
 * `MATL_THERMAL` (float): Thermal coefficient ratio.
-* `USE_MULTI_ELAST` (bool): Flag for multi-modulus analysis.
+* `USE_MULTI_ELAST` (bool): Flag for multi-modulus of elasticity.
 * `LONGTERM_ESEC` (float): Creep E-ratio.
 * `SHRINK_ESEC` (float): Shrinkage E-ratio.
 * `J1, JL1, JL2, JL3, JL4` (bool): Joint connectivity flags for the left side (and right side if symmetric).
@@ -158,7 +158,7 @@ Creates composite steel I-sections with concrete slab.
 * `MATL_POIS_S` (float): Poisson's ratio for steel.
 * `MATL_POIS_C` (float): Poisson's ratio for concrete.
 * `MATL_THERMAL` (float): Thermal coefficient ratio.
-* `USE_MULTI_ELAST` (bool): Flag for multi-modulus analysis.
+* `USE_MULTI_ELAST` (bool): Flag for multi-modulus of elasticity.
 * `LONGTERM_ESEC` (float): Creep E-ratio.
 * `SHRINK_ESEC` (float): Shrinkage E-ratio.
 * `OFFSET` (Offset): An `Offset` object defining the section's offset.
@@ -190,4 +190,72 @@ Section.Composite.SteelI_Type1(
     id=13
 )
 Section.create()
+```
+
+## Composite PSC Value Section
+---
+#### Constructor
+**`Section.Composite.PSC_Value(Name: str, Bc=0, tc=0, Hh=0,  OuterPolygon: list,   InnerPolygon: list = [],  EgEs=0, DgDs=0, Pg=0, Ps=0, TgTs=0, MultiModulus=False, CreepEratio=0, ShrinkEratio=0,     Offset: Offset = Offset.CC(),     useShear: bool = True,     use7Dof: bool = False,   id: int = None):`**
+
+Creates CompositePSC Value section based on section co-ordinates.
+
+#### Parameters
+* `Name`: Section name
+* `Bc, tc, Hh`: Slab parameters (width, thickness, haunch height)
+* `OuterPolygon`: A list of (x, y) tuples defining the vertices of the outer boundary. The polygon does not need to be closed (the first and last points can be different).
+* `InnerPolygon`: An optional list defining the inner boundary (void). It can be either a single list of (x, y) tuples for one void or a list of lists for multiple voids.
+* `EgEs`: Modular ratio (Egirder/Eslab)
+* `DgDs`: Density ratio (Dgirder/Dslab)
+* `Pg, Ps`: Poisson's ratios for girder and slab
+* `TgTs`: Thermal coefficient ratio
+* `MultiModulus (default=False)`: Enable multi-modulus analysis
+* `CreepEratio, ShrinkEratio`: Creep and shrinkage ratios
+* `Offset (default=Offset.CC())`: Section offset parameters
+* `useShear (default=True)`: Enable shear deformation
+* `use7Dof (default=False)`: Enable warping effect
+* `id (default=None)`: Section ID
+
+### Object Attributes
+
+* `ID` (int): Section ID.
+* `NAME` (str): Section name.
+* `SHAPE` (str): Section shape, defaults to 'VALUE'.
+* `TYPE` (str): Type of section, defaults to 'PSC'.
+* `BC` (float): Slab width.
+* `TC` (float): Slab thickness.
+* `HH` (float): Haunch height.
+* `OUTER_POLYGON` (list): A list of (x, y) tuples defining the vertices of the outer boundary.
+* `N_INNER_POLYGON` (int): Number of Voids in the section
+* `INNER_POLYGON` (list): It can be either a single list of (x, y) tuples for one void or a list of lists for multiple voids.
+* `MATL_ELAST` (float): Modular ratio (E<sub>girder</sub>/E<sub>slab</sub>).
+* `MATL_DENS` (float): Density ratio (D<sub>girder</sub>/D<sub>slab</sub>).
+* `MATL_POIS_G` (float): Poisson's ratio for girder.
+* `MATL_POIS_S` (float): Poisson's ratio for slab.
+* `MATL_THERMAL` (float): Thermal coefficient ratio.
+* `USE_MULTI_ELAST` (bool): Flag for multi-modulus of elasticity.
+* `LONGTERM_ESEC` (float): Creep E-ratio.
+* `SHRINK_ESEC` (float): Shrinkage E-ratio.
+* `OFFSET` (Offset): An `Offset` object defining the section's offset.
+* `USESHEAR` (bool): Flag to indicate if shear deformation is considered.
+* `USE7DOF` (bool): Flag to indicate if warping effect (7th DOF) is considered.
+#### Examples
+
+##### Composite PSC Value (Super T Example)
+```py
+# Composite PSC Value section 
+Element.Beam.SDL([0,0,0],[1,0,0],10,10)
+
+# Outer polygon shape
+psc_points = [
+    (-1.05,0.81318),(-1.05,0.72318),(-0.6135,0.72318),(-0.506426,0.648514),
+    (-0.3785,-0.70182),(0.3785,-0.70182),(0.506426,0.648514),(0.6135,0.72318),
+    (1.05,0.72318),(1.05,0.81318),(0.4465,0.81318),(0.4465,0.78818),(0.419141,0.78818),
+    (0.309,-0.37882),(0,-0.43682),(-0.309,-0.37882),(-0.41914,0.78818),(-0.4465,0.78818),(-0.4465,0.81318)
+]
+
+
+Section.Composite.PSC_Value('PSC COMPSITE VALUE',3,0.2,0,psc_points)
+
+Model.create()
+
 ```
