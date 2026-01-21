@@ -1,0 +1,115 @@
+.md-grid {
+  max-width: 98%;
+}
+
+@media (min-width: 1400px) {
+  .md-main__inner {
+    margin-top: 0;
+  }
+  .md-sidebar {
+    height: auto;
+  }
+  .md-sidebar--primary {
+    border-right: 1px solid var(--md-default-fg-color--lightest);
+  }
+  .md-nav {
+    font-size: 16px;
+  }
+  .md-nav .md-nav__title {
+    display: none;
+  }
+  .md-nav__icon {
+    width: 1.2rem;
+    height: 1.2rem;
+    margin-top: -.1rem;
+  }
+}
+
+.md-typeset p {
+  line-height: 1.8; /* default is ~1.5 */
+  font-size: 17px;
+  font-weight: 10px;
+}
+
+.md-typeset h1 {
+  color: #2c2c2c;
+  margin-bottom: 0;
+  font-weight: 900;
+  font-size: 40px;
+}
+
+.md-typeset h2 {
+  color: #2c2c2c;
+  margin-bottom: 0;
+  font-weight: 600;
+  font-size: 30px;
+}
+
+.md-typeset h3 {
+  color: #2c2c2c;
+  margin-bottom: 0;
+  font-weight: 600;
+  font-size: 25px;
+}
+
+.md-typeset h4 {
+  color: #2c2c2c;
+  margin-bottom: 0;
+  font-weight: 600;
+  font-size: 25px;
+}
+
+.md-typeset h5 {
+  color: #3c3c3c;
+  margin-bottom: 0;
+  font-weight: 600;
+  font-size: 17px;
+  text-transform: none;
+}
+
+
+.md-typeset .admonition.sumit_block,
+.md-typeset details.sumit_block {
+  border-color: rgb(211, 211, 211);
+}
+.md-typeset .sumit_block > .admonition-title,
+.md-typeset .sumit_block > summary {
+  background-color: rgb(255, 255, 255);
+}
+.md-typeset .sumit_block > summary::before {
+  background-color: rgb(0, 153, 255);
+  -webkit-mask-image: var(--md-admonition-icon--abstract);
+          mask-image: var(--md-admonition-icon--abstract);
+}
+
+.md-banner {
+  background-color: #00aeff;
+}
+
+.scroll-banner {
+  width: 90%;
+  overflow: hidden;
+  white-space: nowrap; 
+  box-sizing: border-box;
+  z-index: 1;
+}
+
+.scroll-banner p {
+  display: inline-block;
+  padding-left: 100%;
+  animation: scroll-left 30s linear infinite;
+  font-weight: 400;
+  color: #ffffff;
+  font-size: medium;
+  margin: 0;
+}
+
+/* Animation */
+@keyframes scroll-left {
+  from {
+    transform: translateX(0%);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
