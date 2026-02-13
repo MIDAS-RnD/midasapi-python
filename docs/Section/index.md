@@ -45,12 +45,31 @@ print(Section.get())
 
 #### sync
 Retrieves Section data from Civil NX and rebuilds the internal section list.
-
 ```py
 Section.sync()
 for sect in Section.sect:
     print(f'Section: {sect.NAME} | Type: {sect.TYPE}')
 ```
+v1.4.9   
+Added sync(`bDBSectParams` = False, `bSectionProperty` = False)    
+
+- `bSectionProperty` - adds Section property in section object   
+    Added properties 
+
+    | Property	 |	Name	|
+    |--------|-------|
+    | Area	|	`sec.AREA` |
+    | Eff. Shear Area Y	|	`sec.ASY`    |
+    | Eff. Shear Area Z	|	`sec.ASZ`    |
+    | Torsional Resistance	|	`sec.IXX` 	|
+    | Moment of Inertia Y	|	`sec.IYY`  |
+    | Moment of Inertia Z	|	`sec.IZZ`	|  
+
+* `bDBSectParams` - adds `PARAMS` to DB section parameters  
+    DB sections are codal sections and hence contains only Code Name and Section Name. Incase section dimensions are need, this option can be used.
+    Parameters are stored in `sec.PARAMS`
+
+
 
 #### delete
 Deletes all section data from both Python and Civil NX.
