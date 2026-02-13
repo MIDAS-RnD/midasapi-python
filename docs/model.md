@@ -146,8 +146,6 @@ Clears all internal python data of the model, including nodes, elements, materia
 ```py
 Model.clear()
 ```
-!!! info "NOTE"
-    To save time, use individual delete commands eg. *Node.delete() ; Element.delete()*
 
 
 ### <font style="font-size:0px">Model.</font>analyse
