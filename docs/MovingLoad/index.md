@@ -99,34 +99,47 @@ MovingLoad.Vehicle.India(
 
 # Define two traffic lanes on the bridge elements
 MovingLoad.LineLane.India(
-    Lane_name="Lane_1", 
-    Ecc=-1.8, 
-    Wheel_space=1.8, 
-    Elment_start=1, 
-    Elemnt_end=10,
-
-    Span=30
-
+    Lane_name="Lane_1",
+    Ecc=-1.8,
+    Wheel_space=1.8,
+    elem_list=list(range(1, 11)),   # [1, 2, 3, ..., 10]
+    IF=0,
+    Span=30,
+    id=1,
+    width=0,
+    opt_width=0,
+    Group_Name="",
+    Moving_Direction="BOTH",
+    Skew_start=0,
+    Skew_end=0
 )
 
 MovingLoad.LineLane.India(
-    Lane_name="Lane_2", 
-    Ecc=1.8, 
-    Wheel_space=1.8, 
-    Elment_start=1, 
-    Elemnt_end=10,
-    Span=30
+    Lane_name="Lane_2",
+    Ecc=1.8,
+    Wheel_space=1.8,
+    elem_list=list(range(1, 11)),   # [1, 2, 3, ..., 10]
+    IF=0,
+    Span=30,
+    id=2,
+    width=0,
+    opt_width=0,
+    Group_Name="",
+    Moving_Direction="BOTH",
+    Skew_start=0,
+    Skew_end=0
 )
 
 # Define a general moving load case
 MovingLoad.Case.India(
     name="General_IRC_Loading",
     num_loaded_lanes=2,
-    id =1 ,
+    id=1,
     sub_load_items=[
         [1.0, 1, 2, "IRC_Class_A", ["Lane_1", "Lane_2"]]
     ]
 )
+
 # Create the load case in Midas Civil
 MovingLoad.create()
 

@@ -55,6 +55,22 @@ Retrieves Material data from Civil NX and rebuilds the internal material list.
 ```py
 Material.sync()
 ```
+v1.5.0   
+Added sync(`bMaterialParam` = False)    
+
+*  Material.sync() has new inputs : `bMaterialParam`   
+    - `bMaterialParam` - adds property in Material object    
+        Added properties 
+
+        | Property	 |	Name	|
+        |--------|-------|
+        | Elastic Modulus	|	`mat.E` |
+        | Poisson's Ratio	|	`mat.V`    |
+        | Coeff. Thermal Exp	|	`mat.ALPHA`    |
+        | Weight Density	|	`mat.W` 	|
+        | Damping	|	`mat.D`  |
+
+
 
 #### delete
 Deletes all material data from both Python and Civil NX.

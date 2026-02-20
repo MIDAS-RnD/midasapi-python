@@ -1,5 +1,28 @@
 # Release Notes
 
+## Version 1.5.0
+Released on - 17 Feb 2026
+
+#### What's New
+* Tapered PSC Value Section   
+* Tapered Section byShape   
+* Material.sync() has new inputs : `bMaterialParam`   
+    - `bMaterialParam` - adds property in Material object    
+        Added properties 
+
+        | Property	 |	Name	|
+        |--------|-------|
+        | Elastic Modulus	|	`mat.E` |
+        | Poisson's Ratio	|	`mat.V`    |
+        | Coeff. Thermal Exp	|	`mat.ALPHA`    |
+        | Weight Density	|	`mat.W` 	|
+        | Damping	|	`mat.D`  |
+* Helper Classes for Support, Elastic Link , Rigid Link , MLFC  
+
+#### Bug Fixes   
+* Fix Model.maxID updates    
+
+
 ## Version 1.4.9
 Released on - 12 Feb 2026
 
