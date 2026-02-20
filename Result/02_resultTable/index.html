@@ -1,0 +1,4683 @@
+<!DOCTYPE html><html lang="en" class="no-js"><head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+        <meta name="author" content="Sumit Shekhar">
+      
+      
+      
+        <link rel="prev" href="../01_loadCombination/">
+      
+      
+        <link rel="next" href="../03_userResultTable/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.2">
+    
+    
+      
+        <title>‎ ‎ ‎ Result Table - MIDAS Python</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Flex:300,300i,400,400i,700,700i%7CFragment+Mono:400,400i,700,700i&amp;display=fallback">
+        <style>:root{--md-text-font:"Roboto Flex";--md-code-font:"Fragment Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  <link href="../../assets/stylesheets/glightbox.min.css" rel="stylesheet"><script src="../../assets/javascripts/glightbox.min.js"></script><style id="glightbox-style">
+            html.glightbox-open { overflow: initial; height: 100%; }
+            .gslide-title { margin-top: 0px; user-select: text; }
+            .gslide-desc { color: #666; user-select: text; }
+            .gslide-image img { background: white; }
+            .gscrollbar-fixer { padding-right: 15px; }
+            .gdesc-inner { font-size: 0.75rem; }
+            body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color); }
+            body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color); }
+            body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color); }
+        </style></head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#result-table" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+        <aside class="md-banner">
+          <div class="md-banner__inner md-grid md-typeset">
+            
+              <button class="md-banner__button md-icon" aria-label="Don't show this again">
+                
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+              </button>
+            
+            
+<div class="scroll-banner">
+  <p>🚀 New Features added ‎ ‎ ‎ ‎: 
+    ‎ ‎ ‎ ‎
+    Discussion page for suggestions
+    ‎ ‎ ‎ ‎ ‎ ‎|‎ ‎ ‎ ‎ ‎ ‎
+    Polyline and Spline for Beam - Element.Beam.PLine
+    ‎ ‎ ‎ ‎ ‎ ‎|‎ ‎ ‎ ‎ ‎ ‎
+    Polyline with Offset options - Element.Beam.PLine2
+    ‎ ‎ ‎ ‎ ‎ ‎|‎ ‎ ‎ ‎ ‎ ‎
+    Alignment defintion and Alignment update
+    ‎ ‎ ‎ ‎ ‎ ‎|‎ ‎ ‎ ‎ ‎ ‎
+    Line to Plate conversion
+    ‎ ‎ ‎ ‎ ‎ ‎|‎ ‎ ‎ ‎ ‎ ‎
+    Results Table
+    ‎ ‎ ‎ ‎ ‎ ‎|‎ ‎ ‎ ‎ ‎ ‎
+     </p>
+</div>
+
+          </div>
+          
+            <script>var el=document.querySelector("[data-md-component=announce]");if(el){var content=el.querySelector(".md-typeset");__md_hash(content.innerHTML)===__md_get("__announce")&&(el.hidden=!0)}</script>
+          
+        </aside>
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="MIDAS Python" class="md-header__button md-logo" aria-label="MIDAS Python" data-md-component="logo">
+      
+  <img src="../../assets/midas-logo_White.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"></path></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            MIDAS Python
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              ‎ ‎ ‎ Result Table
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="MIDAS Python" class="md-nav__button md-logo" aria-label="MIDAS Python" data-md-component="logo">
+      
+  <img src="../../assets/midas-logo_White.png" alt="logo">
+
+    </a>
+    MIDAS Python
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Introduction
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../model/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Model
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../node/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Node
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4">
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../Element/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Element
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Element
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Element/1D/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ 1D Elements
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Element/2D/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ 2D Elements
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Element/3D/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ 3D Elements
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Element/ElemetScaleFactor/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Stiffness Scale Factor
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5">
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../Section/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Section Properties
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Section Properties
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Section/01_user/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Standard Section
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Section/02_psc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ PSC Section
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Section/03_composite/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Composite Section
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Section/04_taperedgroup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Tapered Group
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Section/09_thickness/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Thickness
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6">
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../Material/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Material Properties
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6" id="__nav_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Material Properties
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Material/001concrete/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Concrete
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Material/002steel/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Steel
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Material/003usermat/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ User-defined
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Material/010creep/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Creep Shrinkage
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Material/011comp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Compressive Strength
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Material/012tdlink/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Time Dependent Link
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7">
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../Group/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Groups
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_7" id="__nav_7_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Groups
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Group/001sg/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Structure Group
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Group/002bg/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Boundary Group
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Group/003lg/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Load Group
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Group/004tg/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Tendon Group
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8">
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../Boundary/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Boundary
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_8" id="__nav_8_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Boundary
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Boundary/01supports/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Supports
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Boundary/02elink/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Elastic Link
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Boundary/03rlink/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Rigid Link
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Boundary/04PointSpring/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Point Spring
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Boundary/05MLFC/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Multi Linear Function
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9">
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../Load/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Load
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_9" id="__nav_9_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Load
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Load/000sw/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Self Weight
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Load/001nodal/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Nodal Load
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Load/002beam/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Beam Load
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Load/003LoadToMass/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Load To Mass
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Load/004NodalMass/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Nodal Mass
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Load/005spDisp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Specified Displacement
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Load/case/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Load Case
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10">
+        
+          
+          <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tendon
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Tendon
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Tendon/001Property/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Tendon Property
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Tendon/002Profile/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Tendon Profile
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Tendon/003Prestress/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Tendon Prestress
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11">
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../Temperature/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Temperature
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_11" id="__nav_11_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_11">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Temperature
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Temperature/001System/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ System
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Temperature/002Element/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Element
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Temperature/003Gradient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Gradient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Temperature/004Nodal/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Nodal
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Temperature/005Beamsection/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Beam Section
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_12">
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../MovingLoad/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Moving Load
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_12" id="__nav_12_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_12_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_12">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Moving Load
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MovingLoad/000Code/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Code
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MovingLoad/001Vehicle/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Vehicle
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MovingLoad/002LineLane/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Line Lane
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MovingLoad/003VHCase/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Case
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_13">
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../Settlement/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Settlement
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_13" id="__nav_13_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_13_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_13">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Settlement
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Settlement/01Group/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Group
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Settlement/02Case/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Case
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_14">
+        
+          
+          <label class="md-nav__link" for="__nav_14" id="__nav_14_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Construction Stage
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_14_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_14">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Construction Stage
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CS/001stage/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Define Construction Stage
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CS/002compsec/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Composite Section for CS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CS/003timeloads/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TIme Loads for CS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CS/004creepcoeffcs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Creep Coefficient for CS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CS/005cambercs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Camber for CS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_15">
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../AnalysisControl/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Analysis Control
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_15" id="__nav_15_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_15_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_15">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Analysis Control
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../AnalysisControl/01MainControlData/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Main Control Data
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../AnalysisControl/02Pdelta/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ PDelta
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../AnalysisControl/03Buckling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Buckling
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../AnalysisControl/04EigenValue/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ EigenValue
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../AnalysisControl/05Settlement/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Settlement
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../AnalysisControl/BoundaryChangeAssignment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Boundary Change Assignment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_16" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_16" id="__nav_16_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Results
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_16_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_16">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Results
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01_loadCombination/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Load Combination
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Result Table
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Result Table
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#resulttable" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Result.TABLE
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Result.TABLE">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Parameters
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example Usage
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tableoptions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TableOptions
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="TableOptions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parameters_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Parameters
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-usage_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example Usage
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resulttable-methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Result.TABLE Methods
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Result.TABLE Methods">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#reaction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reaction
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#displacement" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Displacement
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#trussforce" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TrussForce
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#trussstress" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TrussStress
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#beamforce" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        BeamForce
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#beamforce_vbm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        BeamForce_VBM
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#beamforce_staticprestress" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        BeamForce_StaticPrestress
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#beamstress" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        BeamStress
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#beamstress_vbm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        BeamStress_VBM
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#beamstress_7dof" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        BeamStress_7DOF
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#beamstress_psc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        BeamStress_PSC
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#beamstress_7dof_psc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        BeamStress_7DOF_PSC
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#beamstress_equivalent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        BeamStress_Equivalent
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#plateforce" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PlateForce
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#plateforce_unitlength" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PlateForce_UnitLength
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#plateforce_unitlength_vbm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PlateForce_UnitLength_VBM
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#plateforce_unitlength_wa" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PlateForce_UnitLength_WA
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03_userResultTable/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ User Defined Table
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Utilities/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Utilities
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Release%20Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Release Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Examples/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Examples
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Comments/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Discussion
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#resulttable" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Result.TABLE
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Result.TABLE">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Parameters
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example Usage
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tableoptions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TableOptions
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="TableOptions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parameters_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Parameters
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-usage_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example Usage
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resulttable-methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Result.TABLE Methods
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Result.TABLE Methods">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#reaction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reaction
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#displacement" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Displacement
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#trussforce" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TrussForce
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#trussstress" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TrussStress
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#beamforce" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        BeamForce
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#beamforce_vbm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        BeamForce_VBM
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#beamforce_staticprestress" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        BeamForce_StaticPrestress
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#beamstress" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        BeamStress
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#beamstress_vbm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        BeamStress_VBM
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#beamstress_7dof" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        BeamStress_7DOF
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#beamstress_psc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        BeamStress_PSC
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#beamstress_7dof_psc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        BeamStress_7DOF_PSC
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#beamstress_equivalent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        BeamStress_Equivalent
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#plateforce" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PlateForce
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#plateforce_unitlength" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PlateForce_UnitLength
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#plateforce_unitlength_vbm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PlateForce_UnitLength_VBM
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#plateforce_unitlength_wa" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PlateForce_UnitLength_WA
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+  <nav class="md-path" aria-label="Navigation">
+    <ol class="md-path__list">
+      
+        
+  
+  
+    <li class="md-path__item">
+      <a href="../.." class="md-path__link">
+        
+  <span class="md-ellipsis">
+    Introduction
+  </span>
+
+      </a>
+    </li>
+  
+
+      
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../01_loadCombination/" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    Results
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="result-table">Result Table</h1>
+<p>Fetches result tables like reactions, displacements, forces, and stresses for given elements and load cases from MIDAS CIVIL NX.</p>
+<hr>
+<h2 id="resulttable">Result.TABLE</h2>
+<p><strong><code>Result.TABLE(tabletype, keys=[], loadcase=[], cs_stage=[], options=None)</code></strong></p>
+<p>General method to extract any type of result table from MIDAS CIVIL NX.</p>
+<h3 id="parameters">Parameters</h3>
+<ul>
+<li><strong><code>tabletype</code></strong> (<code>str</code>): Analysis Results Table type.</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Result Table</th>
+<th>Table Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Reaction (Global)</td>
+<td>REACTIONG</td>
+</tr>
+<tr>
+<td>Reaction (Local)</td>
+<td>REACTIONL</td>
+</tr>
+<tr>
+<td>Displacement (Global)</td>
+<td>DISPLACEMENTG</td>
+</tr>
+<tr>
+<td>Displacement (Local)</td>
+<td>DISPLACEMENTL</td>
+</tr>
+<tr>
+<td>Truss Force</td>
+<td>TRUSSFORCE</td>
+</tr>
+<tr>
+<td>Truss Stress</td>
+<td>TRUSSSTRESS</td>
+</tr>
+<tr>
+<td>Beam Force</td>
+<td>BEAMFORCE</td>
+</tr>
+<tr>
+<td>Beam Stress</td>
+<td>BEAMSTRESS</td>
+</tr>
+</tbody>
+</table>
+<p>Details of all available tables can be found <a href="https://support.midasuser.com/hc/en-us/articles/33016922742937-MIDAS-API-Online-Manual">here</a>.</p>
+<ul>
+<li>
+<p><strong><code>keys</code></strong> (<code>list[int]</code> or <code>str</code>): Optional. Element or Node IDs (Default: All) | <code>list[int]</code> → IDs or <code>str</code> → Group Name.</p>
+</li>
+<li>
+<p><strong><code>loadcase</code></strong> (<code>list[str]</code>): Optional. Load case names (Default: All). Example: <code>["Dead Load(ST)", "Live Load(ST)"]</code>.</p>
+</li>
+<li>
+<p><strong><code>cs_stage</code></strong> (<code>list</code> or <code>'all'</code>): Optional. Construction stages. Default: <code>[]</code>.</p>
+</li>
+<li>
+<p><strong><code>options</code></strong> (<code>TableOptions</code>): Optional. Table options object for formatting and output settings.</p>
+</li>
+</ul>
+<h4 id="returns">Returns</h4>
+<ul>
+<li><strong>Polars DataFrame</strong>: A high-performance DataFrame containing the result table.</li>
+</ul>
+<p>Polars is a high-performance DataFrame library designed to provide fast and efficient data processing capabilities. Polars DataFrames support exporting tabular data as CSV and Excel sheets.</p>
+<p>Write Excel: <a href="https://docs.pola.rs/api/python/dev/reference/api/polars.DataFrame.write_excel.html">https://docs.pola.rs/api/python/dev/reference/api/polars.DataFrame.write_excel.html</a></p>
+<h3 id="example-usage">Example Usage</h3>
+<h4 id="1-printing-result-table">1. Printing Result Table</h4>
+<div class="highlight"><pre><span></span><code><span class="c1"># Reaction table for all nodes and load cases</span>
+<span class="n">rkn_res</span> <span class="o">=</span> <span class="n">Result</span><span class="o">.</span><span class="n">TABLE</span><span class="p">(</span><span class="s1">'REACTIONG'</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">rkn_res</span><span class="p">)</span>
+
+<span class="c1"># Output</span>
+<span class="c1"># shape: (36, 9)</span>
+<span class="c1"># +-------+------+------------+-----------+-------+-----------+---------+---------+---------+</span>
+<span class="c1"># | Index | Node |   Load     |    FX     |  ...  |    FZ     |   MX    |   MY    |   MZ    |</span>
+<span class="c1"># +-------+------+------------+-----------+-------+-----------+---------+---------+---------+</span>
+<span class="c1"># |   1   |   1  | Dead Load  |  338.647  |  ...  |  3273.412 |  0.000  |  0.000  |  0.000  |</span>
+<span class="c1"># |   2   |  11  | Dead Load  |    0.000  |  ...  |  3687.690 |  0.000  |  0.000  |  0.000  |</span>
+<span class="c1"># |   3   |  21  | Dead Load  | -338.647  |  ...  |  1463.059 |  0.000  |  0.000  |  0.000  |</span>
+<span class="c1"># |  ...  | ...  |    ...     |    ...    |  ...  |    ...    |   ...   |   ...   |   ...   |</span>
+<span class="c1"># +-------+------+------------+-----------+-------+-----------+---------+---------+---------+</span>
+</code></pre></div>
+<h4 id="2-result-table-for-displacement">2. Result Table for Displacement</h4>
+<div class="highlight"><pre><span></span><code><span class="n">Result</span><span class="o">.</span><span class="n">TABLE</span><span class="p">(</span><span class="s1">'DISPLACEMENTG'</span><span class="p">,</span><span class="n">loadcase</span><span class="o">=</span><span class="s1">'UDL(ST)'</span><span class="p">)</span>
+</code></pre></div>
+<h4 id="3-multiple-result-tables-to-excel">3. Multiple Result Tables to Excel</h4>
+<div class="highlight"><pre><span></span><code><span class="n">sheetloaction</span> <span class="o">=</span> <span class="s1">'D:</span><span class="se">\\</span><span class="s1">ResultTest.xlsx'</span>
+
+<span class="n">sheetA</span> <span class="o">=</span> <span class="n">TableOptions</span><span class="p">(</span><span class="s1">'KN'</span><span class="p">,</span><span class="s1">'M'</span><span class="p">,</span><span class="s1">'Fixed'</span><span class="p">,</span><span class="n">ExcelFileLoc</span><span class="o">=</span><span class="n">sheetloaction</span><span class="p">,</span><span class="n">ExcelSheetName</span><span class="o">=</span><span class="s1">'Displacement'</span><span class="p">)</span>
+<span class="n">sheetB</span> <span class="o">=</span> <span class="n">TableOptions</span><span class="p">(</span><span class="s1">'KN'</span><span class="p">,</span><span class="s1">'M'</span><span class="p">,</span><span class="s1">'Fixed'</span><span class="p">,</span><span class="n">ExcelFileLoc</span><span class="o">=</span><span class="n">sheetloaction</span><span class="p">,</span><span class="n">ExcelSheetName</span><span class="o">=</span><span class="s1">'Reaction'</span><span class="p">)</span>
+
+<span class="n">Result</span><span class="o">.</span><span class="n">TABLE</span><span class="p">(</span><span class="s1">'DISPLACEMENTG'</span><span class="p">,</span><span class="n">loadcase</span><span class="o">=</span><span class="s1">'UDL(ST)'</span><span class="p">,</span><span class="n">options</span><span class="o">=</span><span class="n">sheetA</span><span class="p">)</span>
+
+<span class="n">sheetB</span><span class="o">.</span><span class="n">EXCEL_CELL_POS</span> <span class="o">=</span> <span class="s2">"B5"</span>
+<span class="n">Result</span><span class="o">.</span><span class="n">TABLE</span><span class="o">.</span><span class="n">Reaction</span><span class="p">(</span><span class="n">options</span><span class="o">=</span><span class="n">sheetB</span><span class="p">)</span>
+<span class="n">sheetB</span><span class="o">.</span><span class="n">EXCEL_CELL_POS</span> <span class="o">=</span> <span class="s2">"end"</span>
+<span class="n">Result</span><span class="o">.</span><span class="n">TABLE</span><span class="p">(</span><span class="s1">'REACTIONG'</span><span class="p">,</span><span class="n">loadcase</span><span class="o">=</span><span class="s1">'UVL(ST)'</span><span class="p">,</span><span class="n">options</span><span class="o">=</span><span class="n">sheetB</span><span class="p">)</span>
+</code></pre></div>
+<hr>
+<h2 id="tableoptions">TableOptions</h2>
+<p><strong><code>TableOptions(force_unit=None, len_unit=None, num_format=None, decimal_place=None, JSONFileLoc=None, ExcelFileLoc=None, ExcelSheetName=None, ExcelCellPos=None)</code></strong></p>
+<p>Configuration class for customizing result table output formatting and export options.</p>
+<h3 id="parameters_1">Parameters</h3>
+<ul>
+<li>
+<p><strong><code>force_unit</code></strong> (<code>str</code>): Force unit. Options: <code>KN</code>, <code>N</code>, <code>KGF</code>, <code>TONF</code>, <code>LBF</code>, <code>KIPS</code>. Default: <code>KN</code>.</p>
+</li>
+<li>
+<p><strong><code>len_unit</code></strong> (<code>str</code>): Length unit. Options: <code>M</code>, <code>CM</code>, <code>MM</code>, <code>FT</code>, <code>IN</code>. Default: <code>M</code>.</p>
+</li>
+<li>
+<p><strong><code>num_format</code></strong> (<code>str</code>): Number format. Options: <code>Fixed</code>, <code>Scientific</code>, <code>General</code>. Default: <code>Fixed</code>.</p>
+</li>
+<li>
+<p><strong><code>decimal_place</code></strong> (<code>int</code>): Number of decimal places for result output (0-15). Default: <code>5</code>.</p>
+</li>
+<li>
+<p><strong><code>JSONFileLoc</code></strong> (<code>str</code>): Optional. File path to save the raw JSON response.</p>
+</li>
+<li>
+<p><strong><code>ExcelFileLoc</code></strong> (<code>str</code>): Optional. File path to save or update the result table as an Excel file.</p>
+</li>
+<li>
+<p><strong><code>ExcelSheetName</code></strong> (<code>str</code>): Optional. Sheet name for Excel output. If not provided, a default name is generated.</p>
+</li>
+<li>
+<p><strong><code>ExcelCellPos</code></strong> (<code>str</code>): Optional. Starting cell position for writing to Excel (e.g., <code>"A1"</code>). Use <code>"end"</code> to append to the end of the sheet. Default: <code>"end"</code>.</p>
+</li>
+</ul>
+<h3 id="example-usage_1">Example Usage</h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Create custom table options</span>
+<span class="n">options</span> <span class="o">=</span> <span class="n">TableOptions</span><span class="p">(</span>
+    <span class="n">force_unit</span><span class="o">=</span><span class="s1">'KN'</span><span class="p">,</span>
+    <span class="n">len_unit</span><span class="o">=</span><span class="s1">'M'</span><span class="p">,</span>
+    <span class="n">num_format</span><span class="o">=</span><span class="s1">'Fixed'</span><span class="p">,</span>
+    <span class="n">decimal_place</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+    <span class="n">ExcelFileLoc</span><span class="o">=</span><span class="s1">'D:</span><span class="se">\\</span><span class="s1">results.xlsx'</span><span class="p">,</span>
+    <span class="n">ExcelSheetName</span><span class="o">=</span><span class="s1">'Reactions'</span><span class="p">,</span>
+    <span class="n">ExcelCellPos</span><span class="o">=</span><span class="s1">'A1'</span>
+<span class="p">)</span>
+
+<span class="c1"># Use options with Result.Table</span>
+<span class="n">reaction_df</span> <span class="o">=</span> <span class="n">Result</span><span class="o">.</span><span class="n">Table</span><span class="p">(</span><span class="s1">'REACTIONG'</span><span class="p">,</span> <span class="n">loadcase</span><span class="o">=</span><span class="p">[</span><span class="s1">'Dead Load(ST)'</span><span class="p">],</span> <span class="n">options</span><span class="o">=</span><span class="n">options</span><span class="p">)</span>
+</code></pre></div>
+<hr>
+<h2 id="resulttable-methods">Result.TABLE Methods</h2>
+<p>The <code>Result.TABLE</code> class provides specialized methods to fetch various types of result tables from MIDAS CIVIL NX, including reactions, displacements, forces, and stresses for different element types.</p>
+<hr>
+<h3 id="reaction">Reaction</h3>
+<p>Fetches Reaction result tables (Global, Local, or Surface Spring).</p>
+<p><strong><code>Result.TABLE.Reaction(keys=[], loadcase=[], components=['all'], cs_stage=[], type="Global", options=None)</code></strong></p>
+<h4 id="parameters_2">Parameters</h4>
+<ul>
+<li>
+<p><strong><code>keys</code></strong> (<code>list[int]</code> or <code>str</code>): Optional. List of Node IDs or a Structure Group Name. Default: All nodes.</p>
+</li>
+<li>
+<p><strong><code>loadcase</code></strong> (<code>list[str]</code>): Optional. List of load case names. Example: <code>["DL(ST)", "LL(ST)"]</code>. Default: All load cases.</p>
+</li>
+<li>
+<p><strong><code>components</code></strong> (<code>list[str]</code>): Table components to include. Default: <code>['all']</code>.</p>
+</li>
+<li>
+<p><strong><code>cs_stage</code></strong> (<code>list</code> or <code>'all'</code>): Optional. Construction Stage options. Default: <code>[]</code>.</p>
+</li>
+<li>
+<p><strong><code>type</code></strong> (<code>str</code>): Reaction type. Options: <code>Global</code>, <code>Local</code>, <code>SurfaceSpring</code>. Default: <code>Global</code>.</p>
+</li>
+<li>
+<p><strong><code>options</code></strong> (<code>TableOptions</code>): Optional. Table options object for formatting and output settings.</p>
+</li>
+</ul>
+<h4 id="returns_1">Returns</h4>
+<ul>
+<li><strong>Polars DataFrame</strong>: A DataFrame containing the reaction result table.</li>
+</ul>
+<h4 id="example-usage_2">Example Usage</h4>
+<div class="highlight"><pre><span></span><code><span class="c1"># Get global reactions for specific nodes</span>
+<span class="n">reaction_df</span> <span class="o">=</span> <span class="n">Result</span><span class="o">.</span><span class="n">TABLE</span><span class="o">.</span><span class="n">Reaction</span><span class="p">(</span>
+    <span class="n">keys</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">10</span><span class="p">],</span>
+    <span class="n">loadcase</span><span class="o">=</span><span class="p">[</span><span class="s2">"Dead Load(ST)"</span><span class="p">,</span> <span class="s2">"Live Load(ST)"</span><span class="p">],</span>
+    <span class="nb">type</span><span class="o">=</span><span class="s2">"Global"</span>
+<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">reaction_df</span><span class="p">)</span>
+
+<span class="c1"># Export reaction table to Excel with custom options</span>
+<span class="n">options</span> <span class="o">=</span> <span class="n">TableOptions</span><span class="p">(</span><span class="n">ExcelFileLoc</span><span class="o">=</span><span class="s2">"reactions.xlsx"</span><span class="p">,</span> <span class="n">ExcelSheetName</span><span class="o">=</span><span class="s2">"Reactions"</span><span class="p">)</span>
+<span class="n">Result</span><span class="o">.</span><span class="n">TABLE</span><span class="o">.</span><span class="n">Reaction</span><span class="p">(</span><span class="n">loadcase</span><span class="o">=</span><span class="p">[</span><span class="s2">"DL(ST)"</span><span class="p">,</span> <span class="s2">"LL(ST)"</span><span class="p">],</span> <span class="n">options</span><span class="o">=</span><span class="n">options</span><span class="p">)</span>
+</code></pre></div>
+<hr>
+<h3 id="displacement">Displacement</h3>
+<p>Fetches Displacement result tables (Global or Local).</p>
+<p><strong><code>Result.TABLE.Displacement(keys=[], loadcase=[], components=['all'], cs_stage=[], type="Global", displacement_type="Accumulative", options=None)</code></strong></p>
+<h4 id="parameters_3">Parameters</h4>
+<ul>
+<li>
+<p><strong><code>keys</code></strong> (<code>list[int]</code> or <code>str</code>): Optional. List of Node IDs or a Structure Group Name. Default: All nodes.</p>
+</li>
+<li>
+<p><strong><code>loadcase</code></strong> (<code>list[str]</code>): Optional. List of load case names. Example: <code>["Self(ST)", "Wind(ST)"]</code>. Default: All load cases.</p>
+</li>
+<li>
+<p><strong><code>components</code></strong> (<code>list[str]</code>): Table components to include. Default: <code>['all']</code>.</p>
+</li>
+<li>
+<p><strong><code>cs_stage</code></strong> (<code>list</code> or <code>'all'</code>): Optional. Construction Stage options. Default: <code>[]</code>.</p>
+</li>
+<li>
+<p><strong><code>type</code></strong> (<code>str</code>): Displacement type. Options: <code>Global</code>, <code>Local</code>. Default: <code>Global</code>.</p>
+</li>
+<li>
+<p><strong><code>displacement_type</code></strong> (<code>str</code>): Displacement option. Options: <code>Accumulative</code>, <code>Current</code>, <code>Real</code>. Default: <code>Accumulative</code>.</p>
+</li>
+<li>
+<p><strong><code>options</code></strong> (<code>TableOptions</code>): Optional. Table options object for formatting and output settings.</p>
+</li>
+</ul>
+<h4 id="returns_2">Returns</h4>
+<ul>
+<li><strong>Polars DataFrame</strong>: A DataFrame containing the displacement result table.</li>
+</ul>
+<h4 id="example-usage_3">Example Usage</h4>
+<div class="highlight"><pre><span></span><code><span class="c1"># Get global displacements with accumulative type</span>
+<span class="n">disp_df</span> <span class="o">=</span> <span class="n">Result</span><span class="o">.</span><span class="n">TABLE</span><span class="o">.</span><span class="n">Displacement</span><span class="p">(</span>
+    <span class="n">keys</span><span class="o">=</span><span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">],</span>
+    <span class="n">loadcase</span><span class="o">=</span><span class="p">[</span><span class="s2">"Self(ST)"</span><span class="p">,</span> <span class="s2">"Wind(ST)"</span><span class="p">],</span>
+    <span class="n">displacement_type</span><span class="o">=</span><span class="s2">"Accumulative"</span><span class="p">,</span>
+    <span class="nb">type</span><span class="o">=</span><span class="s2">"Global"</span>
+<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">disp_df</span><span class="p">)</span>
+
+<span class="c1"># Export displacements for construction stages</span>
+<span class="n">options</span> <span class="o">=</span> <span class="n">TableOptions</span><span class="p">(</span><span class="n">ExcelFileLoc</span><span class="o">=</span><span class="s2">"displacements_cs.xlsx"</span><span class="p">)</span>
+<span class="n">Result</span><span class="o">.</span><span class="n">TABLE</span><span class="o">.</span><span class="n">Displacement</span><span class="p">(</span>
+    <span class="n">cs_stage</span><span class="o">=</span><span class="s1">'all'</span><span class="p">,</span>
+    <span class="n">options</span><span class="o">=</span><span class="n">options</span>
+<span class="p">)</span>
+</code></pre></div>
+<hr>
+<h3 id="trussforce">TrussForce</h3>
+<p>Fetches Truss Force result tables.</p>
+<p><strong><code>Result.TABLE.TrussForce(keys=[], loadcase=[], components=['all'], cs_stage=[], options=None)</code></strong></p>
+<h4 id="parameters_4">Parameters</h4>
+<ul>
+<li>
+<p><strong><code>keys</code></strong> (<code>list[int]</code> or <code>str</code>): Optional. List of Element IDs or a Structure Group Name. Default: All elements.</p>
+</li>
+<li>
+<p><strong><code>loadcase</code></strong> (<code>list[str]</code>): Optional. List of load case names. Example: <code>["DL(ST)", "LL(ST)"]</code>. Default: All load cases.</p>
+</li>
+<li>
+<p><strong><code>components</code></strong> (<code>list[str]</code>): Table components to include. Default: <code>['all']</code>.</p>
+</li>
+<li>
+<p><strong><code>cs_stage</code></strong> (<code>list</code> or <code>'all'</code>): Optional. Construction Stage options. Default: <code>[]</code>.</p>
+</li>
+<li>
+<p><strong><code>options</code></strong> (<code>TableOptions</code>): Optional. Table options object for formatting and output settings.</p>
+</li>
+</ul>
+<h4 id="returns_3">Returns</h4>
+<ul>
+<li><strong>Polars DataFrame</strong>: A DataFrame containing the truss force result table.</li>
+</ul>
+<h4 id="example-usage_4">Example Usage</h4>
+<div class="highlight"><pre><span></span><code><span class="c1"># Get truss forces for specific elements</span>
+<span class="n">truss_df</span> <span class="o">=</span> <span class="n">Result</span><span class="o">.</span><span class="n">TABLE</span><span class="o">.</span><span class="n">TrussForce</span><span class="p">(</span>
+    <span class="n">keys</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
+    <span class="n">loadcase</span><span class="o">=</span><span class="p">[</span><span class="s2">"DL(ST)"</span><span class="p">,</span> <span class="s2">"LL(ST)"</span><span class="p">]</span>
+<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">truss_df</span><span class="p">)</span>
+</code></pre></div>
+<hr>
+<h3 id="trussstress">TrussStress</h3>
+<p>Fetches Truss Stress result tables.</p>
+<p><strong><code>Result.TABLE.TrussStress(keys=[], loadcase=[], components=['all'], cs_stage=[], options=None)</code></strong></p>
+<h4 id="parameters_5">Parameters</h4>
+<ul>
+<li>
+<p><strong><code>keys</code></strong> (<code>list[int]</code> or <code>str</code>): Optional. List of Element IDs or a Structure Group Name. Default: All elements.</p>
+</li>
+<li>
+<p><strong><code>loadcase</code></strong> (<code>list[str]</code>): Optional. List of load case names. Example: <code>["DL(ST)", "LL(ST)"]</code>. Default: All load cases.</p>
+</li>
+<li>
+<p><strong><code>components</code></strong> (<code>list[str]</code>): Table components to include. Default: <code>['all']</code>.</p>
+</li>
+<li>
+<p><strong><code>cs_stage</code></strong> (<code>list</code> or <code>'all'</code>): Optional. Construction Stage options. Default: <code>[]</code>.</p>
+</li>
+<li>
+<p><strong><code>options</code></strong> (<code>TableOptions</code>): Optional. Table options object for formatting and output settings.</p>
+</li>
+</ul>
+<h4 id="returns_4">Returns</h4>
+<ul>
+<li><strong>Polars DataFrame</strong>: A DataFrame containing the truss stress result table.</li>
+</ul>
+<h4 id="example-usage_5">Example Usage</h4>
+<div class="highlight"><pre><span></span><code><span class="c1"># Get truss stresses with custom units</span>
+<span class="n">options</span> <span class="o">=</span> <span class="n">TableOptions</span><span class="p">(</span><span class="n">force_unit</span><span class="o">=</span><span class="s1">'N'</span><span class="p">,</span> <span class="n">len_unit</span><span class="o">=</span><span class="s1">'MM'</span><span class="p">)</span>
+<span class="n">stress_df</span> <span class="o">=</span> <span class="n">Result</span><span class="o">.</span><span class="n">TABLE</span><span class="o">.</span><span class="n">TrussStress</span><span class="p">(</span>
+    <span class="n">keys</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
+    <span class="n">loadcase</span><span class="o">=</span><span class="p">[</span><span class="s2">"DL(ST)"</span><span class="p">],</span>
+    <span class="n">options</span><span class="o">=</span><span class="n">options</span>
+<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">stress_df</span><span class="p">)</span>
+</code></pre></div>
+<hr>
+<h3 id="beamforce">BeamForce</h3>
+<p>Fetches standard Beam Force result tables.</p>
+<p><strong><code>Result.TABLE.BeamForce(keys=[], loadcase=[], parts=["PartI", "PartJ"], components=['all'], cs_stage=[], options=None)</code></strong></p>
+<h4 id="parameters_6">Parameters</h4>
+<ul>
+<li>
+<p><strong><code>keys</code></strong> (<code>list[int]</code> or <code>str</code>): Optional. List of Element IDs or a Structure Group Name. Default: All elements.</p>
+</li>
+<li>
+<p><strong><code>loadcase</code></strong> (<code>list[str]</code>): Optional. List of load case names. Example: <code>["Selfweight(ST)"]</code>. Default: All load cases.</p>
+</li>
+<li>
+<p><strong><code>parts</code></strong> (<code>list[str]</code>): Element parts: <code>["PartI", "Part1/4", "PartJ"]</code>, etc. Default: <code>["PartI", "PartJ"]</code>.</p>
+</li>
+<li>
+<p><strong><code>components</code></strong> (<code>list[str]</code>): Table components to include. Default: <code>['all']</code>.</p>
+</li>
+<li>
+<p><strong><code>cs_stage</code></strong> (<code>list</code> or <code>'all'</code>): Optional. Construction Stage options. Default: <code>[]</code>.</p>
+</li>
+<li>
+<p><strong><code>options</code></strong> (<code>TableOptions</code>): Optional. Table options object for formatting and output settings.</p>
+</li>
+</ul>
+<h4 id="returns_5">Returns</h4>
+<ul>
+<li><strong>Polars DataFrame</strong>: A DataFrame containing the beam force result table.</li>
+</ul>
+<h4 id="example-usage_6">Example Usage</h4>
+<div class="highlight"><pre><span></span><code><span class="c1"># Get beam forces at specific parts</span>
+<span class="n">beam_df</span> <span class="o">=</span> <span class="n">Result</span><span class="o">.</span><span class="n">TABLE</span><span class="o">.</span><span class="n">BeamForce</span><span class="p">(</span>
+    <span class="n">keys</span><span class="o">=</span><span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">],</span>
+    <span class="n">loadcase</span><span class="o">=</span><span class="p">[</span><span class="s2">"Selfweight(ST)"</span><span class="p">,</span> <span class="s2">"Dead Load(ST)"</span><span class="p">],</span>
+    <span class="n">parts</span><span class="o">=</span><span class="p">[</span><span class="s2">"PartI"</span><span class="p">,</span> <span class="s2">"Part1/4"</span><span class="p">,</span> <span class="s2">"PartJ"</span><span class="p">]</span>
+<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">beam_df</span><span class="p">)</span>
+</code></pre></div>
+<hr>
+<h3 id="beamforce_vbm">BeamForce_VBM</h3>
+<p>Fetches Beam Force (View by Max Value) result tables.</p>
+<p><strong><code>Result.TABLE.BeamForce_VBM(keys=[], loadcase=[], items=['all'], parts=["PartI", "PartJ"], components=['all'], cs_stage=[], options=None)</code></strong></p>
+<h4 id="parameters_7">Parameters</h4>
+<ul>
+<li>
+<p><strong><code>keys</code></strong> (<code>list[int]</code> or <code>str</code>): Optional. List of Element IDs or a Structure Group Name. Default: All elements.</p>
+</li>
+<li>
+<p><strong><code>loadcase</code></strong> (<code>list[str]</code>): Optional. List of load case names. Example: <code>["STLENV_STR(CB:max)"]</code>. Default: All load cases.</p>
+</li>
+<li>
+<p><strong><code>items</code></strong> (<code>list[str]</code>): Items to display: <code>["Axial", "Shear-y", "Moment-z"]</code>, etc. Default: <code>['all']</code>.</p>
+</li>
+<li>
+<p><strong><code>parts</code></strong> (<code>list[str]</code>): Element parts: <code>["PartI", "Part1/4", "PartJ"]</code>, etc. Default: <code>["PartI", "PartJ"]</code>.</p>
+</li>
+<li>
+<p><strong><code>components</code></strong> (<code>list[str]</code>): Table components to include. Default: <code>['all']</code>.</p>
+</li>
+<li>
+<p><strong><code>cs_stage</code></strong> (<code>list</code> or <code>'all'</code>): Optional. Construction Stage options. Default: <code>[]</code>.</p>
+</li>
+<li>
+<p><strong><code>options</code></strong> (<code>TableOptions</code>): Optional. Table options object for formatting and output settings.</p>
+</li>
+</ul>
+<h4 id="returns_6">Returns</h4>
+<ul>
+<li><strong>Polars DataFrame</strong>: A DataFrame containing the beam force (view by max) result table.</li>
+</ul>
+<h4 id="example-usage_7">Example Usage</h4>
+<div class="highlight"><pre><span></span><code><span class="c1"># Get maximum beam forces</span>
+<span class="n">beam_max_df</span> <span class="o">=</span> <span class="n">Result</span><span class="o">.</span><span class="n">TABLE</span><span class="o">.</span><span class="n">BeamForce_VBM</span><span class="p">(</span>
+    <span class="n">loadcase</span><span class="o">=</span><span class="p">[</span><span class="s2">"STLENV_STR(CB:max)"</span><span class="p">],</span>
+    <span class="n">items</span><span class="o">=</span><span class="p">[</span><span class="s2">"Axial"</span><span class="p">,</span> <span class="s2">"Shear-y"</span><span class="p">,</span> <span class="s2">"Moment-z"</span><span class="p">]</span>
+<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">beam_max_df</span><span class="p">)</span>
+</code></pre></div>
+<hr>
+<h3 id="beamforce_staticprestress">BeamForce_StaticPrestress</h3>
+<p>Fetches Beam Force (Static Prestress) result tables.</p>
+<p><strong>Note:</strong> Construction Stage options are not applicable to this table type.</p>
+<p><strong><code>Result.TABLE.BeamForce_StaticPrestress(keys=[], loadcase=[], parts=["PartI", "PartJ"], components=['all'], options=None)</code></strong></p>
+<h4 id="parameters_8">Parameters</h4>
+<ul>
+<li>
+<p><strong><code>keys</code></strong> (<code>list[int]</code> or <code>str</code>): Optional. List of Element IDs or a Structure Group Name. Default: All elements.</p>
+</li>
+<li>
+<p><strong><code>loadcase</code></strong> (<code>list[str]</code>): Optional. List of load case names. Example: <code>["Prestress(ST)"]</code>. Default: All load cases.</p>
+</li>
+<li>
+<p><strong><code>parts</code></strong> (<code>list[str]</code>): Element parts: <code>["PartI", "PartJ"]</code>, etc. Default: <code>["PartI", "PartJ"]</code>.</p>
+</li>
+<li>
+<p><strong><code>components</code></strong> (<code>list[str]</code>): Table components to include. Default: <code>['all']</code>.</p>
+</li>
+<li>
+<p><strong><code>options</code></strong> (<code>TableOptions</code>): Optional. Table options object for formatting and output settings.</p>
+</li>
+</ul>
+<h4 id="returns_7">Returns</h4>
+<ul>
+<li><strong>Polars DataFrame</strong>: A DataFrame containing the beam force (static prestress) result table.</li>
+</ul>
+<h4 id="example-usage_8">Example Usage</h4>
+<div class="highlight"><pre><span></span><code><span class="c1"># Get prestress beam forces</span>
+<span class="n">prestress_df</span> <span class="o">=</span> <span class="n">Result</span><span class="o">.</span><span class="n">TABLE</span><span class="o">.</span><span class="n">BeamForce_StaticPrestress</span><span class="p">(</span>
+    <span class="n">loadcase</span><span class="o">=</span><span class="p">[</span><span class="s2">"Prestress(ST)"</span><span class="p">],</span>
+    <span class="n">parts</span><span class="o">=</span><span class="p">[</span><span class="s2">"PartI"</span><span class="p">,</span> <span class="s2">"PartJ"</span><span class="p">]</span>
+<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">prestress_df</span><span class="p">)</span>
+</code></pre></div>
+<hr>
+<h3 id="beamstress">BeamStress</h3>
+<p>Fetches standard Beam Stress result tables.</p>
+<p><strong><code>Result.TABLE.BeamStress(keys=[], loadcase=[], parts=["PartI", "PartJ"], components=['all'], cs_stage=[], options=None)</code></strong></p>
+<h4 id="parameters_9">Parameters</h4>
+<ul>
+<li>
+<p><strong><code>keys</code></strong> (<code>list[int]</code> or <code>str</code>): Optional. List of Element IDs or a Structure Group Name. Default: All elements.</p>
+</li>
+<li>
+<p><strong><code>loadcase</code></strong> (<code>list[str]</code>): Optional. List of load case names. Example: <code>["Selfweight(ST)"]</code>. Default: All load cases.</p>
+</li>
+<li>
+<p><strong><code>parts</code></strong> (<code>list[str]</code>): Element parts: <code>["PartI", "PartJ"]</code>, etc. Default: <code>["PartI", "PartJ"]</code>.</p>
+</li>
+<li>
+<p><strong><code>components</code></strong> (<code>list[str]</code>): Table components to include. Default: <code>['all']</code>.</p>
+</li>
+<li>
+<p><strong><code>cs_stage</code></strong> (<code>list</code> or <code>'all'</code>): Optional. Construction Stage options. Default: <code>[]</code>.</p>
+</li>
+<li>
+<p><strong><code>options</code></strong> (<code>TableOptions</code>): Optional. Table options object for formatting and output settings.</p>
+</li>
+</ul>
+<h4 id="returns_8">Returns</h4>
+<ul>
+<li><strong>Polars DataFrame</strong>: A DataFrame containing the beam stress result table.</li>
+</ul>
+<h4 id="example-usage_9">Example Usage</h4>
+<div class="highlight"><pre><span></span><code><span class="c1"># Get beam stresses</span>
+<span class="n">stress_df</span> <span class="o">=</span> <span class="n">Result</span><span class="o">.</span><span class="n">TABLE</span><span class="o">.</span><span class="n">BeamStress</span><span class="p">(</span>
+    <span class="n">keys</span><span class="o">=</span><span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">],</span>
+    <span class="n">loadcase</span><span class="o">=</span><span class="p">[</span><span class="s2">"Selfweight(ST)"</span><span class="p">,</span> <span class="s2">"Live Load(ST)"</span><span class="p">]</span>
+<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">stress_df</span><span class="p">)</span>
+</code></pre></div>
+<hr>
+<h3 id="beamstress_vbm">BeamStress_VBM</h3>
+<p>Fetches Beam Stress (View by Max Value) result tables.</p>
+<p><strong><code>Result.TABLE.BeamStress_VBM(keys=[], loadcase=[], items=['all'], parts=["PartI", "PartJ"], components=['all'], cs_stage=[], options=None)</code></strong></p>
+<h4 id="parameters_10">Parameters</h4>
+<ul>
+<li>
+<p><strong><code>keys</code></strong> (<code>list[int]</code> or <code>str</code>): Optional. List of Element IDs or a Structure Group Name. Default: All elements.</p>
+</li>
+<li>
+<p><strong><code>loadcase</code></strong> (<code>list[str]</code>): Optional. List of load case names. Example: <code>["STLENV_SER(CB:max)"]</code>. Default: All load cases.</p>
+</li>
+<li>
+<p><strong><code>items</code></strong> (<code>list[str]</code>): Items to display: <code>["Axial", "Shear-y", "Bend(+y)"]</code>, etc. Default: <code>['all']</code>.</p>
+</li>
+<li>
+<p><strong><code>parts</code></strong> (<code>list[str]</code>): Element parts: <code>["PartI", "PartJ"]</code>, etc. Default: <code>["PartI", "PartJ"]</code>.</p>
+</li>
+<li>
+<p><strong><code>components</code></strong> (<code>list[str]</code>): Table components to include. Default: <code>['all']</code>.</p>
+</li>
+<li>
+<p><strong><code>cs_stage</code></strong> (<code>list</code> or <code>'all'</code>): Optional. Construction Stage options. Default: <code>[]</code>.</p>
+</li>
+<li>
+<p><strong><code>options</code></strong> (<code>TableOptions</code>): Optional. Table options object for formatting and output settings.</p>
+</li>
+</ul>
+<h4 id="returns_9">Returns</h4>
+<ul>
+<li><strong>Polars DataFrame</strong>: A DataFrame containing the beam stress (view by max) result table.</li>
+</ul>
+<h4 id="example-usage_10">Example Usage</h4>
+<div class="highlight"><pre><span></span><code><span class="c1"># Get maximum beam stresses</span>
+<span class="n">stress_max_df</span> <span class="o">=</span> <span class="n">Result</span><span class="o">.</span><span class="n">TABLE</span><span class="o">.</span><span class="n">BeamStress_VBM</span><span class="p">(</span>
+    <span class="n">loadcase</span><span class="o">=</span><span class="p">[</span><span class="s2">"STLENV_SER(CB:max)"</span><span class="p">],</span>
+    <span class="n">items</span><span class="o">=</span><span class="p">[</span><span class="s2">"Axial"</span><span class="p">,</span> <span class="s2">"Bend(+y)"</span><span class="p">,</span> <span class="s2">"Bend(-y)"</span><span class="p">]</span>
+<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">stress_max_df</span><span class="p">)</span>
+</code></pre></div>
+<hr>
+<h3 id="beamstress_7dof">BeamStress_7DOF</h3>
+<p>Fetches Beam Stress (7th DOF) result tables.</p>
+<p><strong><code>Result.TABLE.BeamStress_7DOF(keys=[], loadcase=[], parts=["PartI", "PartJ"], section_position=['Max'], components=['all'], cs_stage=[], options=None)</code></strong></p>
+<h4 id="parameters_11">Parameters</h4>
+<ul>
+<li>
+<p><strong><code>keys</code></strong> (<code>list[int]</code> or <code>str</code>): Optional. List of Element IDs or a Structure Group Name. Default: All elements.</p>
+</li>
+<li>
+<p><strong><code>loadcase</code></strong> (<code>list[str]</code>): Optional. List of load case names. Example: <code>["EccentricLoads(ST)"]</code>. Default: All load cases.</p>
+</li>
+<li>
+<p><strong><code>parts</code></strong> (<code>list[str]</code>): Element parts: <code>["PartI", "PartJ"]</code>, etc. Default: <code>["PartI", "PartJ"]</code>.</p>
+</li>
+<li>
+<p><strong><code>section_position</code></strong> (<code>list[str]</code>): Section positions: <code>["Pos-1", "Pos-4", "Max"]</code>, etc. Default: <code>['Max']</code>.</p>
+</li>
+<li>
+<p><strong><code>components</code></strong> (<code>list[str]</code>): Table components to include. Default: <code>['all']</code>.</p>
+</li>
+<li>
+<p><strong><code>cs_stage</code></strong> (<code>list</code> or <code>'all'</code>): Optional. Construction Stage options. Default: <code>[]</code>.</p>
+</li>
+<li>
+<p><strong><code>options</code></strong> (<code>TableOptions</code>): Optional. Table options object for formatting and output settings.</p>
+</li>
+</ul>
+<h4 id="returns_10">Returns</h4>
+<ul>
+<li><strong>Polars DataFrame</strong>: A DataFrame containing the beam stress (7th DOF) result table.</li>
+</ul>
+<h4 id="example-usage_11">Example Usage</h4>
+<div class="highlight"><pre><span></span><code><span class="c1"># Get beam stresses with 7th DOF</span>
+<span class="n">stress_7dof_df</span> <span class="o">=</span> <span class="n">Result</span><span class="o">.</span><span class="n">TABLE</span><span class="o">.</span><span class="n">BeamStress_7DOF</span><span class="p">(</span>
+    <span class="n">loadcase</span><span class="o">=</span><span class="p">[</span><span class="s2">"EccentricLoads(ST)"</span><span class="p">],</span>
+    <span class="n">section_position</span><span class="o">=</span><span class="p">[</span><span class="s2">"Pos-1"</span><span class="p">,</span> <span class="s2">"Max"</span><span class="p">]</span>
+<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">stress_7dof_df</span><span class="p">)</span>
+</code></pre></div>
+<hr>
+<h3 id="beamstress_psc">BeamStress_PSC</h3>
+<p>Fetches Beam Stress (PSC) result tables.</p>
+<p><strong><code>Result.TABLE.BeamStress_PSC(keys=[], loadcase=[], parts=["PartI", "PartJ"], section_position=['All'], components=['all'], cs_stage=[], options=None)</code></strong></p>
+<h4 id="parameters_12">Parameters</h4>
+<ul>
+<li>
+<p><strong><code>keys</code></strong> (<code>list[int]</code> or <code>str</code>): Optional. List of Element IDs or a Structure Group Name. Default: All elements.</p>
+</li>
+<li>
+<p><strong><code>loadcase</code></strong> (<code>list[str]</code>): Optional. List of load case names. Example: <code>["Selfweight(ST)"]</code>. Default: All load cases.</p>
+</li>
+<li>
+<p><strong><code>parts</code></strong> (<code>list[str]</code>): Element parts: <code>["PartI", "PartJ"]</code>, etc. Default: <code>["PartI", "PartJ"]</code>.</p>
+</li>
+<li>
+<p><strong><code>section_position</code></strong> (<code>list[str]</code>): Section positions: <code>["Pos-1", "Pos-10", "Max", "Min", "All"]</code>. Default: <code>['All']</code>.</p>
+</li>
+<li>
+<p><strong><code>components</code></strong> (<code>list[str]</code>): Table components to include. Default: <code>['all']</code>.</p>
+</li>
+<li>
+<p><strong><code>cs_stage</code></strong> (<code>list</code> or <code>'all'</code>): Optional. Construction Stage options. Default: <code>[]</code>.</p>
+</li>
+<li>
+<p><strong><code>options</code></strong> (<code>TableOptions</code>): Optional. Table options object for formatting and output settings.</p>
+</li>
+</ul>
+<h4 id="returns_11">Returns</h4>
+<ul>
+<li><strong>Polars DataFrame</strong>: A DataFrame containing the beam stress (PSC) result table.</li>
+</ul>
+<h4 id="example-usage_12">Example Usage</h4>
+<div class="highlight"><pre><span></span><code><span class="c1"># Get PSC beam stresses</span>
+<span class="n">psc_df</span> <span class="o">=</span> <span class="n">Result</span><span class="o">.</span><span class="n">TABLE</span><span class="o">.</span><span class="n">BeamStress_PSC</span><span class="p">(</span>
+    <span class="n">loadcase</span><span class="o">=</span><span class="p">[</span><span class="s2">"Selfweight(ST)"</span><span class="p">],</span>
+    <span class="n">section_position</span><span class="o">=</span><span class="p">[</span><span class="s2">"Max"</span><span class="p">,</span> <span class="s2">"Min"</span><span class="p">]</span>
+<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">psc_df</span><span class="p">)</span>
+</code></pre></div>
+<hr>
+<h3 id="beamstress_7dof_psc">BeamStress_7DOF_PSC</h3>
+<p>Fetches Beam Stress (7th DOF PSC) result tables.</p>
+<p><strong><code>Result.TABLE.BeamStress_7DOF_PSC(keys=[], loadcase=[], parts=["PartI", "PartJ"], section_position=['All'], components=['all'], cs_stage=[], options=None)</code></strong></p>
+<h4 id="parameters_13">Parameters</h4>
+<ul>
+<li>
+<p><strong><code>keys</code></strong> (<code>list[int]</code> or <code>str</code>): Optional. List of Element IDs or a Structure Group Name. Default: All elements.</p>
+</li>
+<li>
+<p><strong><code>loadcase</code></strong> (<code>list[str]</code>): Optional. List of load case names. Example: <code>["EccentricLoads(ST)"]</code>. Default: All load cases.</p>
+</li>
+<li>
+<p><strong><code>parts</code></strong> (<code>list[str]</code>): Element parts: <code>["PartI", "PartJ"]</code>, etc. Default: <code>["PartI", "PartJ"]</code>.</p>
+</li>
+<li>
+<p><strong><code>section_position</code></strong> (<code>list[str]</code>): Section positions: <code>["Pos-1", "Pos-10", "Max", "Min", "All"]</code>. Default: <code>['All']</code>.</p>
+</li>
+<li>
+<p><strong><code>components</code></strong> (<code>list[str]</code>): Table components to include. Default: <code>['all']</code>.</p>
+</li>
+<li>
+<p><strong><code>cs_stage</code></strong> (<code>list</code> or <code>'all'</code>): Optional. Construction Stage options. Default: <code>[]</code>.</p>
+</li>
+<li>
+<p><strong><code>options</code></strong> (<code>TableOptions</code>): Optional. Table options object for formatting and output settings.</p>
+</li>
+</ul>
+<h4 id="returns_12">Returns</h4>
+<ul>
+<li><strong>Polars DataFrame</strong>: A DataFrame containing the beam stress (7th DOF PSC) result table.</li>
+</ul>
+<h4 id="example-usage_13">Example Usage</h4>
+<div class="highlight"><pre><span></span><code><span class="c1"># Get 7DOF PSC beam stresses</span>
+<span class="n">psc_7dof_df</span> <span class="o">=</span> <span class="n">Result</span><span class="o">.</span><span class="n">TABLE</span><span class="o">.</span><span class="n">BeamStress_7DOF_PSC</span><span class="p">(</span>
+    <span class="n">loadcase</span><span class="o">=</span><span class="p">[</span><span class="s2">"EccentricLoads(ST)"</span><span class="p">],</span>
+    <span class="n">section_position</span><span class="o">=</span><span class="p">[</span><span class="s2">"All"</span><span class="p">]</span>
+<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">psc_7dof_df</span><span class="p">)</span>
+</code></pre></div>
+<hr>
+<h3 id="beamstress_equivalent">BeamStress_Equivalent</h3>
+<p>Fetches Beam Stress (Equivalent) result tables.</p>
+<p><strong><code>Result.TABLE.BeamStress_Equivalent(keys=[], loadcase=[], parts=["PartI", "PartJ"], section_position=['Maximum'], components=['all'], cs_stage=[], options=None)</code></strong></p>
+<h4 id="parameters_14">Parameters</h4>
+<ul>
+<li>
+<p><strong><code>keys</code></strong> (<code>list[int]</code> or <code>str</code>): Optional. List of Element IDs or a Structure Group Name. Default: All elements.</p>
+</li>
+<li>
+<p><strong><code>loadcase</code></strong> (<code>list[str]</code>): Optional. List of load case names. Example: <code>["Selfweight(ST)"]</code>. Default: All load cases.</p>
+</li>
+<li>
+<p><strong><code>parts</code></strong> (<code>list[str]</code>): Element parts: <code>["PartI", "PartJ"]</code>, etc. Default: <code>["PartI", "PartJ"]</code>.</p>
+</li>
+<li>
+<p><strong><code>section_position</code></strong> (<code>list[str]</code>): Section positions: <code>["Maximum", "1", "12"]</code>, etc. Default: <code>['Maximum']</code>.</p>
+</li>
+<li>
+<p><strong><code>components</code></strong> (<code>list[str]</code>): Table components to include. Default: <code>['all']</code>.</p>
+</li>
+<li>
+<p><strong><code>cs_stage</code></strong> (<code>list</code> or <code>'all'</code>): Optional. Construction Stage options. Default: <code>[]</code>.</p>
+</li>
+<li>
+<p><strong><code>options</code></strong> (<code>TableOptions</code>): Optional. Table options object for formatting and output settings.</p>
+</li>
+</ul>
+<h4 id="returns_13">Returns</h4>
+<ul>
+<li><strong>Polars DataFrame</strong>: A DataFrame containing the beam stress (equivalent) result table.</li>
+</ul>
+<h4 id="example-usage_14">Example Usage</h4>
+<div class="highlight"><pre><span></span><code><span class="c1"># Get equivalent beam stresses</span>
+<span class="n">equiv_df</span> <span class="o">=</span> <span class="n">Result</span><span class="o">.</span><span class="n">TABLE</span><span class="o">.</span><span class="n">BeamStress_Equivalent</span><span class="p">(</span>
+    <span class="n">loadcase</span><span class="o">=</span><span class="p">[</span><span class="s2">"Selfweight(ST)"</span><span class="p">],</span>
+    <span class="n">section_position</span><span class="o">=</span><span class="p">[</span><span class="s2">"Maximum"</span><span class="p">]</span>
+<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">equiv_df</span><span class="p">)</span>
+</code></pre></div>
+<hr>
+<h3 id="plateforce">PlateForce</h3>
+<p>Fetches Plate Force (Local or Global) result tables.</p>
+<p><strong><code>Result.TABLE.PlateForce(keys=[], loadcase=[], components=['all'], cs_stage=[], avg_nodal_result=False, type="Local", options=None)</code></strong></p>
+<h4 id="parameters_15">Parameters</h4>
+<ul>
+<li>
+<p><strong><code>keys</code></strong> (<code>list[int]</code> or <code>str</code>): Optional. List of Element IDs or a Structure Group Name. Default: All elements.</p>
+</li>
+<li>
+<p><strong><code>loadcase</code></strong> (<code>list[str]</code>): Optional. List of load case names. Example: <code>["DL(ST)"]</code>. Default: All load cases.</p>
+</li>
+<li>
+<p><strong><code>components</code></strong> (<code>list[str]</code>): Table components to include. Default: <code>['all']</code>.</p>
+</li>
+<li>
+<p><strong><code>cs_stage</code></strong> (<code>list</code> or <code>'all'</code>): Optional. Construction Stage options. Default: <code>[]</code>.</p>
+</li>
+<li>
+<p><strong><code>avg_nodal_result</code></strong> (<code>bool</code>): Option to average nodal results. Default: <code>False</code>.</p>
+</li>
+<li>
+<p><strong><code>type</code></strong> (<code>str</code>): Plate Force type. Options: <code>Local</code>, <code>Global</code>. Default: <code>Local</code>.</p>
+</li>
+<li>
+<p><strong><code>options</code></strong> (<code>TableOptions</code>): Optional. Table options object for formatting and output settings.</p>
+</li>
+</ul>
+<h4 id="returns_14">Returns</h4>
+<ul>
+<li><strong>Polars DataFrame</strong>: A DataFrame containing the plate force result table.</li>
+</ul>
+<h4 id="example-usage_15">Example Usage</h4>
+<div class="highlight"><pre><span></span><code><span class="c1"># Get local plate forces</span>
+<span class="n">plate_df</span> <span class="o">=</span> <span class="n">Result</span><span class="o">.</span><span class="n">TABLE</span><span class="o">.</span><span class="n">PlateForce</span><span class="p">(</span>
+    <span class="n">loadcase</span><span class="o">=</span><span class="p">[</span><span class="s2">"DL(ST)"</span><span class="p">,</span> <span class="s2">"LL(ST)"</span><span class="p">],</span>
+    <span class="n">avg_nodal_result</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="nb">type</span><span class="o">=</span><span class="s2">"Local"</span>
+<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">plate_df</span><span class="p">)</span>
+</code></pre></div>
+<hr>
+<h3 id="plateforce_unitlength">PlateForce_UnitLength</h3>
+<p>Fetches Plate Force (Unit Length) for Local or Global coordinates.</p>
+<p><strong><code>Result.TABLE.PlateForce_UnitLength(keys=[], loadcase=[], components=['all'], cs_stage=[], avg_nodal_result=False, node_flag_center=False, node_flag_nodes=True, type="Local", options=None)</code></strong></p>
+<h4 id="parameters_16">Parameters</h4>
+<ul>
+<li>
+<p><strong><code>keys</code></strong> (<code>list[int]</code> or <code>str</code>): Optional. List of Element IDs or a Structure Group Name. Default: All elements.</p>
+</li>
+<li>
+<p><strong><code>loadcase</code></strong> (<code>list[str]</code>): Optional. List of load case names. Example: <code>["DL(ST)"]</code>. Default: All load cases.</p>
+</li>
+<li>
+<p><strong><code>components</code></strong> (<code>list[str]</code>): Table components to include. Default: <code>['all']</code>.</p>
+</li>
+<li>
+<p><strong><code>cs_stage</code></strong> (<code>list</code> or <code>'all'</code>): Optional. Construction Stage options. Default: <code>[]</code>.</p>
+</li>
+<li>
+<p><strong><code>avg_nodal_result</code></strong> (<code>bool</code>): Option to average nodal results. Default: <code>False</code>.</p>
+</li>
+<li>
+<p><strong><code>node_flag_center</code></strong> (<code>bool</code>): Retrieve results at the center of the plate. Default: <code>False</code>.</p>
+</li>
+<li>
+<p><strong><code>node_flag_nodes</code></strong> (<code>bool</code>): Retrieve results at the nodes of the plate. Default: <code>True</code>.</p>
+</li>
+<li>
+<p><strong><code>type</code></strong> (<code>str</code>): Plate Force type. Options: <code>Local</code>, <code>Global</code>. Default: <code>Local</code>.</p>
+</li>
+<li>
+<p><strong><code>options</code></strong> (<code>TableOptions</code>): Optional. Table options object for formatting and output settings.</p>
+</li>
+</ul>
+<h4 id="returns_15">Returns</h4>
+<ul>
+<li><strong>Polars DataFrame</strong>: A DataFrame containing the plate force (unit length) result table.</li>
+</ul>
+<h4 id="example-usage_16">Example Usage</h4>
+<div class="highlight"><pre><span></span><code><span class="c1"># Get plate forces per unit length</span>
+<span class="n">plate_ul_df</span> <span class="o">=</span> <span class="n">Result</span><span class="o">.</span><span class="n">TABLE</span><span class="o">.</span><span class="n">PlateForce_UnitLength</span><span class="p">(</span>
+    <span class="n">loadcase</span><span class="o">=</span><span class="p">[</span><span class="s2">"DL(ST)"</span><span class="p">],</span>
+    <span class="n">node_flag_center</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">node_flag_nodes</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="nb">type</span><span class="o">=</span><span class="s2">"Local"</span>
+<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">plate_ul_df</span><span class="p">)</span>
+</code></pre></div>
+<hr>
+<h3 id="plateforce_unitlength_vbm">PlateForce_UnitLength_VBM</h3>
+<p>Fetches Plate Force (Unit Length, View by Max Value) for Local or Global coordinates.</p>
+<p><strong><code>Result.TABLE.PlateForce_UnitLength_VBM(keys=[], loadcase=[], items=['all'], components=['all'], cs_stage=[], avg_nodal_result=False, node_flag_center=False, node_flag_nodes=True, type="Local", options=None)</code></strong></p>
+<h4 id="parameters_17">Parameters</h4>
+<ul>
+<li>
+<p><strong><code>keys</code></strong> (<code>list[int]</code> or <code>str</code>): Optional. List of Element IDs or a Structure Group Name. Default: All elements.</p>
+</li>
+<li>
+<p><strong><code>loadcase</code></strong> (<code>list[str]</code>): Optional. List of load case names. Example: <code>["STLENV_STR(CB:max)"]</code>. Default: All load cases.</p>
+</li>
+<li>
+<p><strong><code>items</code></strong> (<code>list[str]</code>): Items to display: <code>["Fxx", "Fyy", "Mxx"]</code>, etc. Default: <code>['all']</code>.</p>
+</li>
+<li>
+<p><strong><code>components</code></strong> (<code>list[str]</code>): Table components to include. Default: <code>['all']</code>.</p>
+</li>
+<li>
+<p><strong><code>cs_stage</code></strong> (<code>list</code> or <code>'all'</code>): Optional. Construction Stage options. Default: <code>[]</code>.</p>
+</li>
+<li>
+<p><strong><code>avg_nodal_result</code></strong> (<code>bool</code>): Option to average nodal results. Default: <code>False</code>.</p>
+</li>
+<li>
+<p><strong><code>node_flag_center</code></strong> (<code>bool</code>): Retrieve results at the center of the plate. Default: <code>False</code>.</p>
+</li>
+<li>
+<p><strong><code>node_flag_nodes</code></strong> (<code>bool</code>): Retrieve results at the nodes of the plate. Default: <code>True</code>.</p>
+</li>
+<li>
+<p><strong><code>type</code></strong> (<code>str</code>): Plate Force type. Options: <code>Local</code>, <code>Global</code>. Default: <code>Local</code>.</p>
+</li>
+<li>
+<p><strong><code>options</code></strong> (<code>TableOptions</code>): Optional. Table options object for formatting and output settings.</p>
+</li>
+</ul>
+<h4 id="returns_16">Returns</h4>
+<ul>
+<li><strong>Polars DataFrame</strong>: A DataFrame containing the plate force (unit length, view by max) result table.</li>
+</ul>
+<h4 id="example-usage_17">Example Usage</h4>
+<div class="highlight"><pre><span></span><code><span class="c1"># Get maximum plate forces per unit length</span>
+<span class="n">plate_ul_max_df</span> <span class="o">=</span> <span class="n">Result</span><span class="o">.</span><span class="n">TABLE</span><span class="o">.</span><span class="n">PlateForce_UnitLength_VBM</span><span class="p">(</span>
+    <span class="n">loadcase</span><span class="o">=</span><span class="p">[</span><span class="s2">"STLENV_STR(CB:max)"</span><span class="p">],</span>
+    <span class="n">items</span><span class="o">=</span><span class="p">[</span><span class="s2">"Fxx"</span><span class="p">,</span> <span class="s2">"Fyy"</span><span class="p">,</span> <span class="s2">"Mxx"</span><span class="p">],</span>
+    <span class="n">node_flag_center</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">plate_ul_max_df</span><span class="p">)</span>
+</code></pre></div>
+<hr>
+<h3 id="plateforce_unitlength_wa">PlateForce_UnitLength_WA</h3>
+<p>Fetches Plate Force (Unit Length, W-A Moment) result tables.</p>
+<p><strong><code>Result.TABLE.PlateForce_UnitLength_WA(keys=[], loadcase=[], components=['all'], cs_stage=[], avg_nodal_result=False, node_flag_center=False, node_flag_nodes=True, options=None)</code></strong></p>
+<h4 id="parameters_18">Parameters</h4>
+<ul>
+<li>
+<p><strong><code>keys</code></strong> (<code>list[int]</code> or <code>str</code>): Optional. List of Element IDs or a Structure Group Name. Default: All elements.</p>
+</li>
+<li>
+<p><strong><code>loadcase</code></strong> (<code>list[str]</code>): Optional. List of load case names. Example: <code>["DL(ST)"]</code>. Default: All load cases.</p>
+</li>
+<li>
+<p><strong><code>components</code></strong> (<code>list[str]</code>): Table components to include. Default: <code>['all']</code>.</p>
+</li>
+<li>
+<p><strong><code>cs_stage</code></strong> (<code>list</code> or <code>'all'</code>): Optional. Construction Stage options. Default: <code>[]</code>.</p>
+</li>
+<li>
+<p><strong><code>avg_nodal_result</code></strong> (<code>bool</code>): Option to average nodal results. Default: <code>False</code>.</p>
+</li>
+<li>
+<p><strong><code>node_flag_center</code></strong> (<code>bool</code>): Retrieve results at the center of the plate. Default: <code>False</code>.</p>
+</li>
+<li>
+<p><strong><code>node_flag_nodes</code></strong> (<code>bool</code>): Retrieve results at the nodes of the plate. Default: <code>True</code>.</p>
+</li>
+<li>
+<p><strong><code>options</code></strong> (<code>TableOptions</code>): Optional. Table options object for formatting and output settings.</p>
+</li>
+</ul>
+<h4 id="returns_17">Returns</h4>
+<ul>
+<li><strong>Polars DataFrame</strong>: A DataFrame containing the plate force (unit length, W-A moment) result table.</li>
+</ul>
+<h4 id="example-usage_18">Example Usage</h4>
+<div class="highlight"><pre><span></span><code><span class="c1"># Get W-A moment plate forces</span>
+<span class="n">plate_wa_df</span> <span class="o">=</span> <span class="n">Result</span><span class="o">.</span><span class="n">TABLE</span><span class="o">.</span><span class="n">PlateForce_UnitLength_WA</span><span class="p">(</span>
+    <span class="n">loadcase</span><span class="o">=</span><span class="p">[</span><span class="s2">"DL(ST)"</span><span class="p">],</span>
+    <span class="n">node_flag_center</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">node_flag_nodes</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">plate_wa_df</span><span class="p">)</span>
+</code></pre></div>
+<hr>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"></path></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Created by Midas India :  MIDAS CIVIL NX - Python interface
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.indexes", "navigation.instant", "toc.follow", "navigation.top", "search.suggest", "navigation.path", "content.code.copy", "header.autohide", "toc.follow", "search.suggest", "header.autohide", "announce.dismiss"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  
+<script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(()=>{ lightbox.reload(); });
+</script></body></html>

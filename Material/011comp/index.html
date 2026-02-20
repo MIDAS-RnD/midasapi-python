@@ -1,0 +1,4306 @@
+<!DOCTYPE html><html lang="en" class="no-js"><head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+        <meta name="author" content="Sumit Shekhar">
+      
+      
+      
+        <link rel="prev" href="../010creep/">
+      
+      
+        <link rel="next" href="../012tdlink/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.2">
+    
+    
+      
+        <title>Compressive Strength - MIDAS Python</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Flex:300,300i,400,400i,700,700i%7CFragment+Mono:400,400i,700,700i&amp;display=fallback">
+        <style>:root{--md-text-font:"Roboto Flex";--md-code-font:"Fragment Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  <link href="../../assets/stylesheets/glightbox.min.css" rel="stylesheet"><script src="../../assets/javascripts/glightbox.min.js"></script><style id="glightbox-style">
+            html.glightbox-open { overflow: initial; height: 100%; }
+            .gslide-title { margin-top: 0px; user-select: text; }
+            .gslide-desc { color: #666; user-select: text; }
+            .gslide-image img { background: white; }
+            .gscrollbar-fixer { padding-right: 15px; }
+            .gdesc-inner { font-size: 0.75rem; }
+            body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color); }
+            body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color); }
+            body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color); }
+        </style></head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#compressive-strength" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+        <aside class="md-banner">
+          <div class="md-banner__inner md-grid md-typeset">
+            
+              <button class="md-banner__button md-icon" aria-label="Don't show this again">
+                
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+              </button>
+            
+            
+<div class="scroll-banner">
+  <p>🚀 New Features added ‎ ‎ ‎ ‎: 
+    ‎ ‎ ‎ ‎
+    Discussion page for suggestions
+    ‎ ‎ ‎ ‎ ‎ ‎|‎ ‎ ‎ ‎ ‎ ‎
+    Polyline and Spline for Beam - Element.Beam.PLine
+    ‎ ‎ ‎ ‎ ‎ ‎|‎ ‎ ‎ ‎ ‎ ‎
+    Polyline with Offset options - Element.Beam.PLine2
+    ‎ ‎ ‎ ‎ ‎ ‎|‎ ‎ ‎ ‎ ‎ ‎
+    Alignment defintion and Alignment update
+    ‎ ‎ ‎ ‎ ‎ ‎|‎ ‎ ‎ ‎ ‎ ‎
+    Line to Plate conversion
+    ‎ ‎ ‎ ‎ ‎ ‎|‎ ‎ ‎ ‎ ‎ ‎
+    Results Table
+    ‎ ‎ ‎ ‎ ‎ ‎|‎ ‎ ‎ ‎ ‎ ‎
+     </p>
+</div>
+
+          </div>
+          
+            <script>var el=document.querySelector("[data-md-component=announce]");if(el){var content=el.querySelector(".md-typeset");__md_hash(content.innerHTML)===__md_get("__announce")&&(el.hidden=!0)}</script>
+          
+        </aside>
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="MIDAS Python" class="md-header__button md-logo" aria-label="MIDAS Python" data-md-component="logo">
+      
+  <img src="../../assets/midas-logo_White.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"></path></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            MIDAS Python
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Compressive Strength
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="MIDAS Python" class="md-nav__button md-logo" aria-label="MIDAS Python" data-md-component="logo">
+      
+  <img src="../../assets/midas-logo_White.png" alt="logo">
+
+    </a>
+    MIDAS Python
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Introduction
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../model/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Model
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../node/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Node
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4">
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../Element/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Element
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Element
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Element/1D/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ 1D Elements
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Element/2D/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ 2D Elements
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Element/3D/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ 3D Elements
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Element/ElemetScaleFactor/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Stiffness Scale Factor
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5">
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../Section/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Section Properties
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Section Properties
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Section/01_user/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Standard Section
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Section/02_psc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ PSC Section
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Section/03_composite/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Composite Section
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Section/04_taperedgroup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Tapered Group
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Section/09_thickness/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Thickness
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Material Properties
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6" id="__nav_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Material Properties
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../001concrete/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Concrete
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../002steel/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Steel
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../003usermat/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ User-defined
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../010creep/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Creep Shrinkage
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Compressive Strength
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Compressive Strength
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#class-attributes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Class Attributes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Methods
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Methods">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#json" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        json
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        create
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sync" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        sync
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#delete" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        delete
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#codal-provision" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Codal Provision
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Codal Provision">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#irc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        IRC
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aci" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ACI
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ceb_fip" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CEB_FIP
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ohzagi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ohzagi
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#european" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        European
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#russian" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Russian
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#as" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AS
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gilbertranzi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GilbertRanzi
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#japanhydration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        JapanHydration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#japanelastic" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        JapanElastic
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kds" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        KDS
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kci" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        KCI
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#koreanstandard" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        KoreanStandard
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#userdefined" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UserDefined
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../012tdlink/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Time Dependent Link
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7">
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../Group/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Groups
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_7" id="__nav_7_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Groups
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Group/001sg/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Structure Group
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Group/002bg/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Boundary Group
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Group/003lg/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Load Group
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Group/004tg/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Tendon Group
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8">
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../Boundary/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Boundary
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_8" id="__nav_8_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Boundary
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Boundary/01supports/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Supports
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Boundary/02elink/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Elastic Link
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Boundary/03rlink/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Rigid Link
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Boundary/04PointSpring/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Point Spring
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Boundary/05MLFC/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Multi Linear Function
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9">
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../Load/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Load
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_9" id="__nav_9_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Load
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Load/000sw/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Self Weight
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Load/001nodal/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Nodal Load
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Load/002beam/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Beam Load
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Load/003LoadToMass/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Load To Mass
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Load/004NodalMass/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Nodal Mass
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Load/005spDisp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Specified Displacement
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Load/case/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Load Case
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10">
+        
+          
+          <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tendon
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Tendon
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Tendon/001Property/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Tendon Property
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Tendon/002Profile/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Tendon Profile
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Tendon/003Prestress/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Tendon Prestress
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11">
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../Temperature/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Temperature
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_11" id="__nav_11_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_11">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Temperature
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Temperature/001System/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ System
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Temperature/002Element/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Element
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Temperature/003Gradient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Gradient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Temperature/004Nodal/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Nodal
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Temperature/005Beamsection/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Beam Section
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_12">
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../MovingLoad/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Moving Load
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_12" id="__nav_12_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_12_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_12">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Moving Load
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MovingLoad/000Code/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Code
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MovingLoad/001Vehicle/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Vehicle
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MovingLoad/002LineLane/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Line Lane
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MovingLoad/003VHCase/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Case
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_13">
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../Settlement/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Settlement
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_13" id="__nav_13_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_13_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_13">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Settlement
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Settlement/01Group/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Group
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Settlement/02Case/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Case
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_14">
+        
+          
+          <label class="md-nav__link" for="__nav_14" id="__nav_14_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Construction Stage
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_14_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_14">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Construction Stage
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CS/001stage/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Define Construction Stage
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CS/002compsec/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Composite Section for CS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CS/003timeloads/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TIme Loads for CS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CS/004creepcoeffcs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Creep Coefficient for CS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CS/005cambercs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Camber for CS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_15">
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../AnalysisControl/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Analysis Control
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_15" id="__nav_15_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_15_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_15">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Analysis Control
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../AnalysisControl/01MainControlData/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Main Control Data
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../AnalysisControl/02Pdelta/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ PDelta
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../AnalysisControl/03Buckling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Buckling
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../AnalysisControl/04EigenValue/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ EigenValue
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../AnalysisControl/05Settlement/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Settlement
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../AnalysisControl/BoundaryChangeAssignment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Boundary Change Assignment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_16">
+        
+          
+          <label class="md-nav__link" for="__nav_16" id="__nav_16_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Results
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_16_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_16">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Results
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Result/01_loadCombination/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Load Combination
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Result/02_resultTable/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Result Table
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Result/03_userResultTable/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ User Defined Table
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Utilities/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Utilities
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Release%20Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Release Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Examples/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Examples
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Comments/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Discussion
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#class-attributes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Class Attributes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Methods
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Methods">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#json" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        json
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        create
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sync" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        sync
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#delete" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        delete
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#codal-provision" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Codal Provision
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Codal Provision">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#irc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        IRC
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aci" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ACI
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ceb_fip" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CEB_FIP
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ohzagi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ohzagi
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#european" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        European
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#russian" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Russian
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#as" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AS
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gilbertranzi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GilbertRanzi
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#japanhydration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        JapanHydration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#japanelastic" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        JapanElastic
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kds" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        KDS
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kci" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        KCI
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#koreanstandard" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        KoreanStandard
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#userdefined" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UserDefined
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+  <nav class="md-path" aria-label="Navigation">
+    <ol class="md-path__list">
+      
+        
+  
+  
+    <li class="md-path__item">
+      <a href="../.." class="md-path__link">
+        
+  <span class="md-ellipsis">
+    Introduction
+  </span>
+
+      </a>
+    </li>
+  
+
+      
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    Material Properties
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="compressive-strength">Compressive Strength</h1>
+<p>The CompStrength class manages time-dependent compressive strength properties for concrete materials.</p>
+<h2 id="class-attributes">Class Attributes</h2>
+<p><em>CompStrength.mats</em> -&gt; List of all compressive strength instances.   </p>
+<h2 id="methods">Methods</h2>
+<hr>
+<h3 id="json">json</h3>
+<p>Returns a JSON representation of all Compressive Strength properties defined in python.</p>
+<div class="highlight"><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="n">CompStrength</span><span class="o">.</span><span class="n">json</span><span class="p">())</span>
+<span class="c1"># Output:</span>
+<span class="c1"># {'Assign': {1: {'NAME': 'Comp_M25', 'TYPE': 'CODE', ...}}}</span>
+</code></pre></div>
+<h3 id="create">create</h3>
+<p>Sends compressive strength data to Civil NX using a PUT request.</p>
+<div class="highlight"><pre><span></span><code><span class="n">CompStrength</span><span class="o">.</span><span class="n">create</span><span class="p">()</span>
+</code></pre></div>
+<h3 id="get">get</h3>
+<p>Fetches compressive strength data from Civil NX and returns the JSON representation.</p>
+<div class="highlight"><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="n">CompStrength</span><span class="o">.</span><span class="n">get</span><span class="p">())</span>
+</code></pre></div>
+<h3 id="sync">sync</h3>
+<p>Retrieves Compressive Strength data from Civil NX and rebuilds the internal list.</p>
+<div class="highlight"><pre><span></span><code><span class="n">CompStrength</span><span class="o">.</span><span class="n">sync</span><span class="p">()</span>
+</code></pre></div>
+<h3 id="delete">delete</h3>
+<p>Deletes all compressive strength data from both Python and Civil NX.</p>
+<div class="highlight"><pre><span></span><code><span class="n">CompStrength</span><span class="o">.</span><span class="n">delete</span><span class="p">()</span>
+</code></pre></div>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../../assets/separator.png" data-desc-position="bottom"><img alt="TERS" src="../../assets/separator.png"></a></p>
+<h2 id="codal-provision">Codal Provision</h2>
+<details class="sumit_block">
+<summary>IRC Code (112)</summary>
+<h3 id="irc">IRC</h3>
+<p><strong><font color="green"><code>CompStrength.IRC(name, code_year=2020, fck_delta=0, cement_type=1, aggregate_type=0, id =None)</code></font></strong></p>
+<p>Creates IRC standard compressive strength properties for Indian Road Congress standards.</p>
+<h4 id="parameters">Parameters</h4>
+<ul>
+<li><code>name</code> (str): Property name (required)</li>
+<li><code>code_year</code> (int, optional): Year of the IRC standard. Can be 2020, 2011, or 2000. Defaults to 2020.</li>
+<li><code>fck_delta</code> (float): 28-day characteristic compressive strength</li>
+<li><code>cement_type</code> (int, optional): Type of cement used</li>
+<li>1: Slow setting (default)</li>
+<li>2: Normal </li>
+<li>3: Rapid hardening</li>
+<li><code>aggregate_type</code> (int, optional): Type of aggregate used (for IRC:112 only)</li>
+<li>0: Basalt, dense limestone (default)</li>
+<li>1: Quartzite </li>
+<li>2: Limestone </li>
+<li>3: Sandstone</li>
+<li><code>id</code> (int, optional): Unique identifier. Auto-generated if not specified.</li>
+</ul>
+<h4 id="object-attributes">Object Attributes</h4>
+<ul>
+<li><code>ID</code> (int): The ID of the compressive strength definition.</li>
+<li><code>DATA</code> (dict): A dictionary containing the compressive strength properties. Specific keys include:</li>
+<li><code>NAME</code> (str): Name of the compressive strength definition.</li>
+<li><code>TYPE</code> (str): "CODE"</li>
+<li><code>CODENAME</code> (str): Code standard (e.g., "INDIA(IRC:112-2020)").</li>
+<li><code>STRENGTH</code> (float): Concrete characteristic compressive strength fck (delta fck).</li>
+<li><code>iCTYPE</code> (int): Type of cement.</li>
+<li><code>nAGGRE</code> (int): Type of aggregate.</li>
+</ul>
+<h4 id="examples">Examples</h4>
+<div class="highlight"><pre><span></span><code><span class="c1"># IRC 112-2020 with normal cement</span>
+<span class="n">CompStrength</span><span class="o">.</span><span class="n">IRC</span><span class="p">(</span><span class="s2">"C30_IRC2020"</span><span class="p">,</span> <span class="n">code_year</span><span class="o">=</span><span class="mi">2020</span><span class="p">,</span> <span class="n">fck_delta</span><span class="o">=</span><span class="mi">30000</span><span class="p">,</span> <span class="n">cement_type</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="c1"># IRC 18-2000 standard</span>
+<span class="n">CompStrength</span><span class="o">.</span><span class="n">IRC</span><span class="p">(</span><span class="s2">"C25_IRC2000"</span><span class="p">,</span> <span class="n">code_year</span><span class="o">=</span><span class="mi">2000</span><span class="p">,</span> <span class="n">fck_delta</span><span class="o">=</span><span class="mi">25000</span><span class="p">)</span>
+
+<span class="c1"># IRC 112-2011 with rapid hardening cement and quartzite aggregate</span>
+<span class="n">CompStrength</span><span class="o">.</span><span class="n">IRC</span><span class="p">(</span><span class="s2">"C40_IRC2011"</span><span class="p">,</span> <span class="n">code_year</span><span class="o">=</span><span class="mi">2011</span><span class="p">,</span> <span class="n">fck_delta</span><span class="o">=</span><span class="mi">40000</span><span class="p">,</span> <span class="n">cement_type</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">aggregate_type</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</code></pre></div>
+</details>
+<details class="sumit_block">
+<summary>ACI Code</summary>
+<h3 id="aci">ACI</h3>
+<p><strong><font color="green"><code>CompStrength.ACI(name, fck=0, factor_a=1, factor_b=2, id =None)</code></font></strong></p>
+<p>Creates ACI standard compressive strength properties for American Concrete Institute standards.</p>
+<h4 id="parameters_1">Parameters</h4>
+<ul>
+<li><code>name</code> (str): Property name (required)</li>
+<li><code>fck</code> (float): 28-day compressive strength (default=0)</li>
+<li><code>factor_a</code> (float): ACI model parameter A (default=1)</li>
+<li><code>factor_b</code> (float): ACI model parameter B (default=2)</li>
+<li><code>id</code> (int, optional): Unique identifier. Auto-generated if not specified.</li>
+</ul>
+<h4 id="object-attributes_1">Object Attributes</h4>
+<ul>
+<li><code>ID</code> (int): The ID of the compressive strength definition.</li>
+<li><code>DATA</code> (dict): A dictionary containing the compressive strength properties. Specific keys include:</li>
+<li><code>NAME</code> (str): Name of the compressive strength definition.</li>
+<li><code>TYPE</code> (str): "CODE"</li>
+<li><code>CODENAME</code> (str): "ACI"</li>
+<li><code>STRENGTH</code> (float): 28-day compressive strength</li>
+<li><code>A</code> (float): ACI model parameter A</li>
+<li><code>B</code> (float): ACI model parameter B</li>
+</ul>
+<h4 id="examples_1">Examples</h4>
+<div class="highlight"><pre><span></span><code><span class="c1"># Standard ACI material</span>
+<span class="n">CompStrength</span><span class="o">.</span><span class="n">ACI</span><span class="p">(</span><span class="s2">"C30_ACI"</span><span class="p">,</span> <span class="mi">30000</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+
+<span class="c1"># Custom factors</span>
+<span class="n">CompStrength</span><span class="o">.</span><span class="n">ACI</span><span class="p">(</span><span class="s2">"C25_ACI_Custom"</span><span class="p">,</span> <span class="mi">25000</span><span class="p">,</span> <span class="mf">1.2</span><span class="p">,</span> <span class="mf">1.8</span><span class="p">)</span>
+</code></pre></div>
+</details>
+<details class="sumit_block">
+<summary>CEB-FIP Code</summary>
+<h3 id="ceb_fip">CEB_FIP</h3>
+<p><strong><font color="green"><code>CompStrength.CEB_FIP(name, code_year=2010, fck=0, cement_type=1, aggregate_type=0, id =None)</code></font></strong></p>
+<p>Creates CEB-FIP standard compressive strength properties for European concrete standards.</p>
+<h4 id="parameters_2">Parameters</h4>
+<ul>
+<li><code>name</code> (str): Property name (required)</li>
+<li><code>code_year</code> (int, optional): Year of the CEB-FIP standard. Can be 1978, 1990, or 2010. Defaults to 2010.</li>
+<li><code>fck</code> (float): 28-day compressive strength (default=0)</li>
+<li><code>cement_type</code> (int, optional): Type of cement (for 1990 and 2010)</li>
+<li>1: RS: 0.2 / 42.5 R, 52.5 N, 52.5 R: 0.20 (default)</li>
+<li>2: N, R: 0.25 / 32.5 R, 42.5 N: 0.25</li>
+<li>3: SL: 0.38 / 32.5 N: 0.38</li>
+<li><code>aggregate_type</code> (int, optional): Type of aggregate (for 2010 only)</li>
+<li>0: Basalt, dense limestone aggregates (1.2): 0 (default)</li>
+<li>1: Quartzite aggregates: 1</li>
+<li>2: Limestone aggregates: 2</li>
+<li>3: Sandstone aggregates: 3</li>
+<li><code>id</code> (int, optional): Unique identifier. Auto-generated if not specified.</li>
+</ul>
+<h4 id="object-attributes_2">Object Attributes</h4>
+<ul>
+<li><code>ID</code> (int): The ID of the compressive strength definition.</li>
+<li><code>DATA</code> (dict): A dictionary containing the compressive strength properties. Specific keys include:</li>
+<li><code>NAME</code> (str): Name of the compressive strength definition.</li>
+<li><code>TYPE</code> (str): "CODE"</li>
+<li><code>CODENAME</code> (str): Code standard (e.g., "CEB-FIP(2010)").</li>
+<li><code>STRENGTH</code> (float): 28-day compressive strength</li>
+<li><code>iCTYPE</code> (int): Type of cement (for 1990 and 2010).</li>
+<li><code>nAGGRE</code> (int): Type of aggregate (for 2010 only).</li>
+</ul>
+<h4 id="examples_2">Examples</h4>
+<div class="highlight"><pre><span></span><code><span class="c1"># CEB-FIP 2010 with normal cement and basalt aggregate</span>
+<span class="n">CompStrength</span><span class="o">.</span><span class="n">CEB_FIP</span><span class="p">(</span><span class="s2">"C30_CEBFIP2010"</span><span class="p">,</span> <span class="mi">2010</span><span class="p">,</span> <span class="mi">30000</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
+<span class="c1"># CEB-FIP 1990 with slow setting cement</span>
+<span class="n">CompStrength</span><span class="o">.</span><span class="n">CEB_FIP</span><span class="p">(</span><span class="s2">"C25_CEBFIP1990"</span><span class="p">,</span> <span class="mi">1990</span><span class="p">,</span> <span class="mi">25000</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+
+<span class="c1"># CEB-FIP 1978 (no cement/aggregate type)</span>
+<span class="n">CompStrength</span><span class="o">.</span><span class="n">CEB_FIP</span><span class="p">(</span><span class="s2">"C40_CEBFIP1978"</span><span class="p">,</span> <span class="mi">1978</span><span class="p">,</span> <span class="mi">40000</span><span class="p">)</span>
+</code></pre></div>
+</details>
+<details class="sumit_block">
+<summary>Ohzagi Code</summary>
+<h3 id="ohzagi">Ohzagi</h3>
+<p><strong><font color="green"><code>CompStrength.Ohzagi(name, fck=0, cement_type=2, id =None)</code></font></strong></p>
+<p>Creates Ohzagi compressive strength model properties.</p>
+<h4 id="parameters_3">Parameters</h4>
+<ul>
+<li><code>name</code> (str): Property name (required)</li>
+<li><code>fck</code> (float): 28-day compressive strength (default=0)</li>
+<li><code>cement_type</code> (int, optional): Type of cement used</li>
+<li>1: RS</li>
+<li>2: N, R (default)</li>
+<li>3: SL</li>
+<li>4: Fly-ash</li>
+<li><code>id</code> (int, optional): Unique identifier. Auto-generated if not specified.</li>
+</ul>
+<h4 id="object-attributes_3">Object Attributes</h4>
+<ul>
+<li><code>ID</code> (int): The ID of the compressive strength definition.</li>
+<li><code>DATA</code> (dict): A dictionary containing the compressive strength properties. Specific keys include:</li>
+<li><code>NAME</code> (str): Name of the compressive strength definition.</li>
+<li><code>TYPE</code> (str): "CODE"</li>
+<li><code>CODENAME</code> (str): "Ohzagi"</li>
+<li><code>STRENGTH</code> (float): 28-day compressive strength</li>
+<li><code>iCTYPE</code> (int): Type of cement</li>
+</ul>
+<h4 id="examples_3">Examples</h4>
+<div class="highlight"><pre><span></span><code><span class="c1"># Standard Ohzagi material with N,R cement</span>
+<span class="n">CompStrength</span><span class="o">.</span><span class="n">Ohzagi</span><span class="p">(</span><span class="s2">"C30_Ohzagi"</span><span class="p">,</span> <span class="mi">30000</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+
+<span class="c1"># Fly-ash cement type</span>
+<span class="n">CompStrength</span><span class="o">.</span><span class="n">Ohzagi</span><span class="p">(</span><span class="s2">"C25_Ohzagi_FA"</span><span class="p">,</span> <span class="mi">25000</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+</code></pre></div>
+</details>
+<details class="sumit_block">
+<summary>European Code</summary>
+<h3 id="european">European</h3>
+<p><strong><font color="green"><code>CompStrength.European(name, fck=0, cement_type=2, id =None)</code></font></strong></p>
+<p>Creates European compressive strength model properties.</p>
+<h4 id="parameters_4">Parameters</h4>
+<ul>
+<li><code>name</code> (str): Property name (required)</li>
+<li><code>fck</code> (float): 28-day compressive strength (default=0)</li>
+<li><code>cement_type</code> (int, optional): Cement class type</li>
+<li>1: Class R: 0.20</li>
+<li>2: Class N: 0.25 (default)</li>
+<li>3: Class S: 0.38</li>
+<li><code>id</code> (int, optional): Unique identifier. Auto-generated if not specified.</li>
+</ul>
+<h4 id="object-attributes_4">Object Attributes</h4>
+<ul>
+<li><code>ID</code> (int): The ID of the compressive strength definition.</li>
+<li><code>DATA</code> (dict): A dictionary containing the compressive strength properties. Specific keys include:</li>
+<li><code>NAME</code> (str): Name of the compressive strength definition.</li>
+<li><code>TYPE</code> (str): "CODE"</li>
+<li><code>CODENAME</code> (str): "EUROPEAN"</li>
+<li><code>STRENGTH</code> (float): 28-day compressive strength</li>
+<li><code>iCTYPE</code> (int): Cement class type</li>
+</ul>
+<h4 id="examples_4">Examples</h4>
+<div class="highlight"><pre><span></span><code><span class="c1"># European standard with Class N cement</span>
+<span class="n">CompStrength</span><span class="o">.</span><span class="n">European</span><span class="p">(</span><span class="s2">"C30_Euro"</span><span class="p">,</span> <span class="mi">30000</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+
+<span class="c1"># High early strength with Class R cement</span>
+<span class="n">CompStrength</span><span class="o">.</span><span class="n">European</span><span class="p">(</span><span class="s2">"C40_Euro_R"</span><span class="p">,</span> <span class="mi">40000</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+</code></pre></div>
+</details>
+<details class="sumit_block">
+<summary>Russian Code</summary>
+<h3 id="russian">Russian</h3>
+<p><strong><font color="green"><code>CompStrength.Russian(name, fck=0, cement_type=1, curing_method=1, concrete_type=1, max_aggregate_size=0.02, specific_cement_content=0.25, id =None)</code></font></strong></p>
+<p>Creates Russian compressive strength model properties.</p>
+<h4 id="parameters_5">Parameters</h4>
+<ul>
+<li><code>name</code> (str): Property name (required)</li>
+<li><code>fck</code> (float): 28-day compressive strength (default=0)</li>
+<li><code>cement_type</code> (int, optional): Type of cement</li>
+<li>1: Normal (default)</li>
+<li>2: Fast-hardened</li>
+<li>3: Slag</li>
+<li>4: Pozzolan</li>
+<li><code>curing_method</code> (int, optional): Method of curing</li>
+<li>0: Natural cure: 0</li>
+<li>1: Steam cure: 1 (default)</li>
+<li><code>concrete_type</code> (int, optional): Type of concrete</li>
+<li>0: Heavy concrete: 0</li>
+<li>1: Fine-grained concrete: 1 (default)</li>
+<li><code>max_aggregate_size</code> (float): Maximum aggregate size in meters (default=0.02)</li>
+<li><code>specific_cement_content</code> (float): Specific content of cement paste (default=0.25)</li>
+<li><code>id</code> (int, optional): Unique identifier. Auto-generated if not specified.</li>
+</ul>
+<h4 id="object-attributes_5">Object Attributes</h4>
+<ul>
+<li><code>ID</code> (int): The ID of the compressive strength definition.</li>
+<li><code>DATA</code> (dict): A dictionary containing the compressive strength properties. Specific keys include:</li>
+<li><code>NAME</code> (str): Name of the compressive strength definition.</li>
+<li><code>TYPE</code> (str): "CODE"</li>
+<li><code>CODENAME</code> (str): "RUSSIAN"</li>
+<li><code>STRENGTH</code> (float): 28-day compressive strength</li>
+<li><code>iCTYPE</code> (int): Type of cement</li>
+<li><code>CMETH</code> (int): Curing method</li>
+<li><code>CTYPE</code> (int): Concrete type</li>
+<li><code>MAXS</code> (float): Maximum aggregate size</li>
+<li><code>PZ</code> (float): Specific cement content</li>
+</ul>
+<h4 id="examples_5">Examples</h4>
+<div class="highlight"><pre><span></span><code><span class="c1"># Standard Russian concrete</span>
+<span class="n">CompStrength</span><span class="o">.</span><span class="n">Russian</span><span class="p">(</span><span class="s2">"C30_RU"</span><span class="p">,</span> <span class="mi">30000</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">0.02</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
+<span class="c1"># Fast-hardened cement with natural curing</span>
+<span class="n">CompStrength</span><span class="o">.</span><span class="n">Russian</span><span class="p">(</span><span class="s2">"C25_RU_FH"</span><span class="p">,</span> <span class="mi">25000</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.025</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+</code></pre></div>
+</details>
+<details class="sumit_block">
+<summary>Australian Standards Code</summary>
+<h3 id="as">AS</h3>
+<p><strong><font color="green"><code>CompStrength.AS(name, standard="AS5100.5-2017", fck=0, id =None)</code></font></strong></p>
+<p>Creates Australian Standards compressive strength model properties.</p>
+<h4 id="parameters_6">Parameters</h4>
+<ul>
+<li><code>name</code> (str): Property name (required)</li>
+<li><code>standard</code> (str, optional): Australian standard specification</li>
+<li>"AS5100.5-2017": AS 5100.5-2017 (default)</li>
+<li>"AS5100.5-2016": AS 5100.5-2016</li>
+<li>"AS/RTA5100.5-2011": AS/RTA 5100.5-2011</li>
+<li>"AS3600-2009": AS 3600-2009</li>
+<li><code>fck</code> (float): 28-day compressive strength (default=0)</li>
+<li><code>id</code> (int, optional): Unique identifier. Auto-generated if not specified.</li>
+</ul>
+<h4 id="object-attributes_6">Object Attributes</h4>
+<ul>
+<li><code>ID</code> (int): The ID of the compressive strength definition.</li>
+<li><code>DATA</code> (dict): A dictionary containing the compressive strength properties. Specific keys include:</li>
+<li><code>NAME</code> (str): Name of the compressive strength definition.</li>
+<li><code>TYPE</code> (str): "CODE"</li>
+<li><code>CODENAME</code> (str): Australian standard specification</li>
+<li><code>STRENGTH</code> (float): 28-day compressive strength</li>
+</ul>
+<h4 id="examples_6">Examples</h4>
+<div class="highlight"><pre><span></span><code><span class="c1"># AS 5100.5-2017 standard</span>
+<span class="n">CompStrength</span><span class="o">.</span><span class="n">AS</span><span class="p">(</span><span class="s2">"C30_AS2017"</span><span class="p">,</span> <span class="s2">"AS5100.5-2017"</span><span class="p">,</span> <span class="mi">30000</span><span class="p">)</span>
+
+<span class="c1"># AS 3600-2009 standard</span>
+<span class="n">CompStrength</span><span class="o">.</span><span class="n">AS</span><span class="p">(</span><span class="s2">"C25_AS3600"</span><span class="p">,</span> <span class="s2">"AS3600-2009"</span><span class="p">,</span> <span class="mi">25000</span><span class="p">)</span>
+</code></pre></div>
+</details>
+<details class="sumit_block">
+<summary>Gilbert and Ranzi Code</summary>
+<h3 id="gilbertranzi">GilbertRanzi</h3>
+<p><strong><font color="green"><code>CompStrength.GilbertRanzi(name, fck=0, cement_type=1, density=230, id =None)</code></font></strong></p>
+<p>Creates Gilbert and Ranzi compressive strength model properties.</p>
+<h4 id="parameters_7">Parameters</h4>
+<ul>
+<li><code>name</code> (str): Property name (required)</li>
+<li><code>fck</code> (float): 28-day compressive strength (default=0)</li>
+<li><code>cement_type</code> (int, optional): Type of cement</li>
+<li>1: Ordinary Portland cement: 0.38 (default)</li>
+<li>2: High early strength cement: 0.25</li>
+<li><code>density</code> (float): Weight density in kg/m³ (default=230)</li>
+<li><code>id</code> (int, optional): Unique identifier. Auto-generated if not specified.</li>
+</ul>
+<h4 id="object-attributes_7">Object Attributes</h4>
+<ul>
+<li><code>ID</code> (int): The ID of the compressive strength definition.</li>
+<li><code>DATA</code> (dict): A dictionary containing the compressive strength properties. Specific keys include:</li>
+<li><code>NAME</code> (str): Name of the compressive strength definition.</li>
+<li><code>TYPE</code> (str): "CODE"</li>
+<li><code>CODENAME</code> (str): "GILBERT AND RANZI"</li>
+<li><code>STRENGTH</code> (float): 28-day compressive strength</li>
+<li><code>iCTYPE</code> (int): Type of cement</li>
+<li><code>DENSITY</code> (float): Weight density</li>
+</ul>
+<h4 id="examples_7">Examples</h4>
+<div class="highlight"><pre><span></span><code><span class="c1"># Standard Gilbert-Ranzi model</span>
+<span class="n">CompStrength</span><span class="o">.</span><span class="n">GilbertRanzi</span><span class="p">(</span><span class="s2">"C30_GR"</span><span class="p">,</span> <span class="mi">30000</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2400</span><span class="p">)</span>
+
+<span class="c1"># High early strength cement</span>
+<span class="n">CompStrength</span><span class="o">.</span><span class="n">GilbertRanzi</span><span class="p">(</span><span class="s2">"C40_GR_HES"</span><span class="p">,</span> <span class="mi">40000</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2450</span><span class="p">)</span>
+</code></pre></div>
+</details>
+<details class="sumit_block">
+<summary>Japan Hydration Code</summary>
+<h3 id="japanhydration">JapanHydration</h3>
+<p><strong><font color="green"><code>CompStrength.JapanHydration(name, fck=0, cement_type=1, use_concrete_data=True, tensile_strength_factor=3, factor_a=4.5, factor_b=0.95, factor_d=1.11, id =None)</code></font></strong></p>
+<p>Creates Japan Hydration compressive strength model properties.</p>
+<h4 id="parameters_8">Parameters</h4>
+<ul>
+<li><code>name</code> (str): Property name (required)</li>
+<li><code>fck</code> (float): 28-day compressive strength (default=0)</li>
+<li><code>cement_type</code> (int, optional): Type of cement</li>
+<li>0: Normal Portland cement</li>
+<li>1: Moderate Portland cement (default)</li>
+<li>2: High-early-strength Portland cement</li>
+<li><code>use_concrete_data</code> (bool): Enable concrete data option (default=True)</li>
+<li><code>tensile_strength_factor</code> (float): Factor for tensile strength (default=3)</li>
+<li><code>factor_a</code> (float): Model parameter A (default=4.5, used when use_concrete_data=False)</li>
+<li><code>factor_b</code> (float): Model parameter B (default=0.95, used when use_concrete_data=False)</li>
+<li><code>factor_d</code> (float): Model parameter D (default=1.11, used when use_concrete_data=False)</li>
+<li><code>id</code> (int, optional): Unique identifier. Auto-generated if not specified.</li>
+</ul>
+<h4 id="object-attributes_8">Object Attributes</h4>
+<ul>
+<li><code>ID</code> (int): The ID of the compressive strength definition.</li>
+<li><code>DATA</code> (dict): A dictionary containing the compressive strength properties. Specific keys include:</li>
+<li><code>NAME</code> (str): Name of the compressive strength definition.</li>
+<li><code>TYPE</code> (str): "CODE"</li>
+<li><code>CODENAME</code> (str): "Japan(hydration)"</li>
+<li><code>STRENGTH</code> (float): 28-day compressive strength</li>
+<li><code>iCTYPE</code> (int): Type of cement</li>
+<li><code>bUSE</code> (bool): Use concrete data option</li>
+<li><code>TENS_STRN_FACTOR</code> (float): Tensile strength factor</li>
+<li><code>A</code> (float): Model parameter A (when use_concrete_data=False)</li>
+<li><code>B</code> (float): Model parameter B (when use_concrete_data=False)</li>
+<li><code>D</code> (float): Model parameter D (when use_concrete_data=False)</li>
+</ul>
+<h4 id="examples_8">Examples</h4>
+<div class="highlight"><pre><span></span><code><span class="c1"># Standard Japan hydration with concrete data</span>
+<span class="n">CompStrength</span><span class="o">.</span><span class="n">JapanHydration</span><span class="p">(</span><span class="s2">"C30_JH"</span><span class="p">,</span> <span class="mi">30000</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+
+<span class="c1"># Custom factors without concrete data</span>
+<span class="n">CompStrength</span><span class="o">.</span><span class="n">JapanHydration</span><span class="p">(</span><span class="s2">"C25_JH_Custom"</span><span class="p">,</span> <span class="mi">25000</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
+</code></pre></div>
+</details>
+<details class="sumit_block">
+<summary>Japan Elastic Code</summary>
+<h3 id="japanelastic">JapanElastic</h3>
+<p><strong><font color="green"><code>CompStrength.JapanElastic(name, fck=0, elastic_cement_type=0, id =None)</code></font></strong></p>
+<p>Creates Japan Elastic compressive strength model properties.</p>
+<h4 id="parameters_9">Parameters</h4>
+<ul>
+<li><code>name</code> (str): Property name (required)</li>
+<li><code>fck</code> (float): 28-day compressive strength (default=0)</li>
+<li><code>elastic_cement_type</code> (int, optional): Type of cement for elastic model</li>
+<li>0: Normal type: 0 (default)</li>
+<li>1: Rapid type: 1</li>
+<li><code>id</code> (int, optional): Unique identifier. Auto-generated if not specified.</li>
+</ul>
+<h4 id="object-attributes_9">Object Attributes</h4>
+<ul>
+<li><code>ID</code> (int): The ID of the compressive strength definition.</li>
+<li><code>DATA</code> (dict): A dictionary containing the compressive strength properties. Specific keys include:</li>
+<li><code>NAME</code> (str): Name of the compressive strength definition.</li>
+<li><code>TYPE</code> (str): "CODE"</li>
+<li><code>CODENAME</code> (str): "Japan(elastic)"</li>
+<li><code>STRENGTH</code> (float): 28-day compressive strength</li>
+<li><code>iECTYPE</code> (int): Elastic cement type</li>
+</ul>
+<h4 id="examples_9">Examples</h4>
+<div class="highlight"><pre><span></span><code><span class="c1"># Normal type cement</span>
+<span class="n">CompStrength</span><span class="o">.</span><span class="n">JapanElastic</span><span class="p">(</span><span class="s2">"C30_JE"</span><span class="p">,</span> <span class="mi">30000</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
+<span class="c1"># Rapid type cement</span>
+<span class="n">CompStrength</span><span class="o">.</span><span class="n">JapanElastic</span><span class="p">(</span><span class="s2">"C40_JE_Rapid"</span><span class="p">,</span> <span class="mi">40000</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+</code></pre></div>
+</details>
+<details class="sumit_block">
+<summary>KDS-2016 Code</summary>
+<h3 id="kds">KDS</h3>
+<p><strong><font color="green"><code>CompStrength.KDS(name, fck=0, cement_type=1, density=230, id =None)</code></font></strong></p>
+<p>Creates KDS-2016 compressive strength model properties.</p>
+<h4 id="parameters_10">Parameters</h4>
+<ul>
+<li><code>name</code> (str): Property name (required)</li>
+<li><code>fck</code> (float): 28-day compressive strength (default=0)</li>
+<li><code>cement_type</code> (int, optional): Type of cement</li>
+<li>1: N,R moist cured: 0.35 (default)</li>
+<li>2: N,R steam cured: 0.15</li>
+<li>3: RS moist cured: 0.25</li>
+<li>4: RS steam cured: 0.12</li>
+<li>5: SL: 0.40</li>
+<li><code>density</code> (float): Weight density in kg/m³ (default=230)</li>
+<li><code>id</code> (int, optional): Unique identifier. Auto-generated if not specified.</li>
+</ul>
+<h4 id="object-attributes_10">Object Attributes</h4>
+<ul>
+<li><code>ID</code> (int): The ID of the compressive strength definition.</li>
+<li><code>DATA</code> (dict): A dictionary containing the compressive strength properties. Specific keys include:</li>
+<li><code>NAME</code> (str): Name of the compressive strength definition.</li>
+<li><code>TYPE</code> (str): "CODE"</li>
+<li><code>CODENAME</code> (str): "KDS-2016"</li>
+<li><code>STRENGTH</code> (float): 28-day compressive strength</li>
+<li><code>iCTYPE</code> (int): Type of cement</li>
+<li><code>DENSITY</code> (float): Weight density</li>
+</ul>
+<h4 id="examples_10">Examples</h4>
+<div class="highlight"><pre><span></span><code><span class="c1"># Standard KDS with N,R moist cured cement</span>
+<span class="n">CompStrength</span><span class="o">.</span><span class="n">KDS</span><span class="p">(</span><span class="s2">"C30_KDS"</span><span class="p">,</span> <span class="mi">30000</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2400</span><span class="p">)</span>
+
+<span class="c1"># Steam cured cement</span>
+<span class="n">CompStrength</span><span class="o">.</span><span class="n">KDS</span><span class="p">(</span><span class="s2">"C25_KDS_Steam"</span><span class="p">,</span> <span class="mi">25000</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2350</span><span class="p">)</span>
+</code></pre></div>
+</details>
+<details class="sumit_block">
+<summary>KCI-USD12 Code</summary>
+<h3 id="kci">KCI</h3>
+<p><strong><font color="green"><code>CompStrength.KCI(name, fck=0, cement_type=1, id =None)</code></font></strong></p>
+<p>Creates KCI-USD12 compressive strength model properties.</p>
+<h4 id="parameters_11">Parameters</h4>
+<ul>
+<li><code>name</code> (str): Property name (required)</li>
+<li><code>fck</code> (float): 28-day compressive strength (default=0)</li>
+<li><code>cement_type</code> (int, optional): Type of cement</li>
+<li>1: N,R moist cured: 0.35 (default)</li>
+<li>2: N,R steam cured: 0.15</li>
+<li>3: RS moist cured: 0.25</li>
+<li>4: RS steam cured: 0.12</li>
+<li>5: SL: 0.40</li>
+<li><code>id</code> (int, optional): Unique identifier. Auto-generated if not specified.</li>
+</ul>
+<h4 id="object-attributes_11">Object Attributes</h4>
+<ul>
+<li><code>ID</code> (int): The ID of the compressive strength definition.</li>
+<li><code>DATA</code> (dict): A dictionary containing the compressive strength properties. Specific keys include:</li>
+<li><code>NAME</code> (str): Name of the compressive strength definition.</li>
+<li><code>TYPE</code> (str): "CODE"</li>
+<li><code>CODENAME</code> (str): "KCI-USD12"</li>
+<li><code>STRENGTH</code> (float): 28-day compressive strength</li>
+<li><code>iCTYPE</code> (int): Type of cement</li>
+</ul>
+<h4 id="examples_11">Examples</h4>
+<div class="highlight"><pre><span></span><code><span class="n">CompStrength</span><span class="o">.</span><span class="n">KCI</span><span class="p">(</span><span class="s2">"C30_KCI"</span><span class="p">,</span> <span class="mi">30000</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+</code></pre></div>
+</details>
+<details class="sumit_block">
+<summary>Korean Standard Code</summary>
+<h3 id="koreanstandard">KoreanStandard</h3>
+<p><strong><font color="green"><code>CompStrength.KoreanStandard(name, fck=0, factor_a=1, factor_b=2, id =None)</code></font></strong></p>
+<p>Creates Korean Standard compressive strength model properties.</p>
+<h4 id="parameters_12">Parameters</h4>
+<ul>
+<li><code>name</code> (str): Property name (required)</li>
+<li><code>fck</code> (float): 28-day compressive strength (default=0)</li>
+<li><code>factor_a</code> (float): Model parameter A (default=1)</li>
+<li><code>factor_b</code> (float): Model parameter B (default=2)</li>
+<li><code>id</code> (int, optional): Unique identifier. Auto-generated if not specified.</li>
+</ul>
+<h4 id="object-attributes_12">Object Attributes</h4>
+<ul>
+<li><code>ID</code> (int): The ID of the compressive strength definition.</li>
+<li><code>DATA</code> (dict): A dictionary containing the compressive strength properties. Specific keys include:</li>
+<li><code>NAME</code> (str): Name of the compressive strength definition.</li>
+<li><code>TYPE</code> (str): "CODE"</li>
+<li><code>CODENAME</code> (str): "KoreanStandard"</li>
+<li><code>STRENGTH</code> (float): 28-day compressive strength</li>
+<li><code>A</code> (float): Model parameter A</li>
+<li><code>B</code> (float): Model parameter B</li>
+</ul>
+<h4 id="examples_12">Examples</h4>
+<div class="highlight"><pre><span></span><code><span class="c1"># Standard Korean model</span>
+<span class="n">CompStrength</span><span class="o">.</span><span class="n">KoreanStandard</span><span class="p">(</span><span class="s2">"C30_KS"</span><span class="p">,</span> <span class="mi">30000</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+
+<span class="c1"># Custom factors</span>
+<span class="n">CompStrength</span><span class="o">.</span><span class="n">KoreanStandard</span><span class="p">(</span><span class="s2">"C25_KS_Custom"</span><span class="p">,</span> <span class="mi">25000</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">,</span> <span class="mf">1.8</span><span class="p">)</span>
+</code></pre></div>
+</details>
+<details class="sumit_block">
+<summary>User Defined Code</summary>
+<h3 id="userdefined">UserDefined</h3>
+<p><strong><font color="green"><code>CompStrength.UserDefined(name, scale_factor=1, time_data=None, id =None)</code></font></strong></p>
+<p>Creates User Defined compressive strength model properties.</p>
+<h4 id="parameters_13">Parameters</h4>
+<ul>
+<li><code>name</code> (str): Property name (required)</li>
+<li><code>scale_factor</code> (float): Scaling factor for the data (default=1)</li>
+<li><code>time_data</code> (list, optional): Time-dependent strength data. Each object should contain:</li>
+<li><code>TIME</code>: Time in days (number)</li>
+<li><code>COMP</code>: Compression strength (number)</li>
+<li><code>TENS</code>: Tensile strength (number)</li>
+<li><code>ELAST</code>: Elastic modulus (number)</li>
+<li><code>id</code> (int, optional): Unique identifier. Auto-generated if not specified.</li>
+</ul>
+<h4 id="object-attributes_13">Object Attributes</h4>
+<ul>
+<li><code>ID</code> (int): The ID of the compressive strength definition.</li>
+<li><code>DATA</code> (dict): A dictionary containing the compressive strength properties. Specific keys include:</li>
+<li><code>NAME</code> (str): Name of the compressive strength definition.</li>
+<li><code>TYPE</code> (str): "USER"</li>
+<li><code>SCALE</code> (float): Scale factor</li>
+<li><code>aDATA</code> (list): Time-dependent strength data</li>
+</ul>
+</details>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"></path></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Created by Midas India :  MIDAS CIVIL NX - Python interface
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.indexes", "navigation.instant", "toc.follow", "navigation.top", "search.suggest", "navigation.path", "content.code.copy", "header.autohide", "toc.follow", "search.suggest", "header.autohide", "announce.dismiss"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  
+<script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(()=>{ lightbox.reload(); });
+</script></body></html>
