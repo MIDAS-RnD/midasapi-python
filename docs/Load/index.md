@@ -15,63 +15,65 @@ Load.create()
 ## Complete Example
 ---
 ```py
-from midas_civil import*
+from midas_civil import * 
 
-MAPI_KEY("eyJ1ciI6IklOMjQwN0ZZVDIiLCJwZyI6ImNpdmlsIiwi") #Paste your Mapi Key
+#Sets the MAPI Key for Python interface 
+MAPI_KEY('eyJ1ciI6IklOMjQwN0ZZVDIiLCJwZyI6ImNpdmlsIiwiY24iOiJ3X2RJMXYta4e7ce5828bf59424e786222450a') 
 
-for j in range(6):
-    for i in range(2):
-        Node(i*10,j*2,0)
-        Node.create()
-j = 0
+
+for j in range(6): 
+    for i in range(2): 
+        Node(i*10,j*2,0) 
+Node.create() 
+j = 0 
 for k in range(6):   
-    for i in range(1,2):
-        Element.Beam(i +j,i+1 +j)
-        Element.create()
-    j = j + 2
+    for i in range(1,2): 
+        Element.Beam(i +j,i+1 +j) 
+        
+    j = j + 2 
 
-#Load Case
-Load_Case("D","SW")
-Load_Case("L","Nodal Load")
-Load_Case("USER","Test Load 1","Test Load 2","Test Load 3","Test Load 4","Test Load 5","Test Load 6")
+Element.create() 
+#Load Case 
+Load_Case("D","SW") 
+Load_Case("L","Nodal Load") 
+Load_Case("USER","Test Load 1","Test Load 2","Test Load 3","Test Load 4","Test Load 5","Test Load 6") 
 
-Load_Case.create()  #Create Load Case in Civil NX
+Load_Case.create()  #Create Load Case in Civil NX 
 
-#Self Weight Load
+#Self Weight Load 
 
-Load.SW("SW","Z",-1)
+Load.SW("SW","Z",-1) 
 
-#Nodal Load
+#Nodal Load 
 
-Load.Nodal(1,"Nodal Load","",FX=10,FY=20,FZ=-50,id=1)
-Load.Nodal(3,"Nodal Load","",MX=100,MY=20,MZ=-5,id=2)
+Load.Nodal(1,"Nodal Load","",FX=10,FY=20,FZ=-50,id=1) 
+Load.Nodal(3,"Nodal Load","",MX=100,MY=20,MZ=-5,id=2) 
 
-#Concentrated Load
+#Concentrated Load 
 
-Load.Beam(1,"Test Load 1",0,"","GZ",1,[0.3,0.5,0.7],[-20,-30,-40],"BEAM","CONLOAD")
+Load.Beam(1,"Test Load 1","","GZ",1,[0.3,0.5,0.7],[-20,-30,-40],"BEAM","CONLOAD") 
 
-#UDL Load
+#UDL Load 
 
-Load.Beam(2,"Test Load 2",-50,"","GZ")
+Load.Beam(2,"Test Load 2","",-50,"GZ") 
 
-#Trapezoidal load
+#Trapezoidal load 
 
-Load.Beam(3,"Test Load 3",0,"","GZ","",[0,0.3,0.7,1],[0,-20,-50,0])
+Load.Beam(3,"Test Load 3","",0,"GZ",[0,0.3,0.7,1],[0,-20,-50,0]) 
 
-#Concentrated Moment/Torsion
+#Concentrated Moment/Torsion 
 
-Load.Beam(4,"Test Load 4",0,"","GZ","",[0.3,0.7],[-20,-50],"BEAM","CONMOMENT")
+Load.Beam(4,"Test Load 4","",0,"GZ",[0.3,0.7],[-20,-50],"BEAM","CONMOMENT") 
 
-#Uniform Moment/Torsion
+#Uniform Moment/Torsion 
 
-Load.Beam(5,"Test Load 5",0,"","GZ","",[0,1],[-20,-20],"BEAM","UNIMOMENT")
+Load.Beam(5,"Test Load 5","",0,"GZ",[0,1],[-20,-20],"BEAM","UNIMOMENT") 
 
-#Trapezoidal Moment/Torsion
+#Trapezoidal Moment/Torsion 
 
-Load.Beam(6,"Test Load 6",0,"","GZ","",[0.3,0.7],[-30,-50],"BEAM","UNIMOMENT")
+Load.Beam(6,"Test Load 6","",0,"GZ",[0.3,0.7],[-30,-50],"BEAM","UNIMOMENT") 
 
-#Create All load in Civil NX
+#Create All load in Civil NX 
 Load.create()
-
 
 ```
