@@ -266,15 +266,15 @@ print("Creating Base Structure...")
 for j in range(6):
     for i in range(2):
         Node(i*10, j*2, 0)
-        Node.create()
+Node.create()
 
 # Create elements
 j = 0
 for k in range(6):   
     for i in range(1, 2):
         Element.Beam(i + j, i + 1 + j)
-        Element.create()
     j = j + 2
+Element.create()
 
 print("Nodes and Elements Created")
 
@@ -360,7 +360,6 @@ CS.STAGE("Stage 4 - Advanced Options",
    l_group=["Construction Load"], 
    l_day=["FIRST"], 
    l_type=["A"],
-   ad_stage=True,      # Additional stage options
    load_in=True,       # Incremental load application
    nl=6,               # Number of load steps
    addstp=[1, 2, 3])   # Additional step control
