@@ -181,9 +181,11 @@ nav:
 
   - Utilities : Utilities/index.md
 
-  - Release Notes : Release Notes/index.md
-  - Examples : Examples/index.md
+  - Examples :
+    - Examples : Examples/index.md
+    - ‎ ‎ ‎ 3-D Simple 2–Bay Frame : Examples/ex01.md
 
+  - Release Notes : Release Notes/index.md
   - Discussion : Comments/index.md
 
 
