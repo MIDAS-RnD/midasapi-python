@@ -53,7 +53,7 @@ These examples are meant to show the basic structure of a MIDAS Civil NX Python 
 
 <div class="grid">
   <div class="grid-item">
-    <a href="/Examples/ex01/">
+    <a href="Examples/ex01">
       <img src="../Examples/images/EX01.png" alt="Image 1">
       <div class="caption">3-D Simple 2–Bay Frame</div>
     </a>

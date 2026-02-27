@@ -1,5 +1,6 @@
 site_name: "MIDAS Python"
 site_author: "Sumit Shekhar"
+site_url: https://midas-rnd.github.io/midasapi-python/
 
 extra_css:
   - stylesheets/extra.css
