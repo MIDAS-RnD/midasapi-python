@@ -1,5 +1,44 @@
 # Release Notes
 
+## Version 1.5.4
+Released on - 10 March 2026
+
+#### What's New
+* Design Parameters for Tapered PSC Value Section   
+* Auto Generation of Tapered Group
+    NX.autoTaperGroup = True  or
+    Section.TaperedGroup.autoGenerate() before Model.create()
+* NX.print_box() function for easy command line printing
+
+#### Bug Fixes   
+* Fixed `from __future__ import annotations` error
+
+## Version 1.5.3
+Released on - 8 March 2026
+
+#### Bug Fixes   
+* Automatic Transfer length in Tendons      
+
+## Version 1.5.2
+Released on - 1 Mar 2026
+
+#### What's New
+* 3D Alignment transformation  
+* Design Parameters for PSC Value Section
+* Multiple holes support for `Element.Plate.fromPoints()`   
+
+
+## Version 1.5.1
+Released on - 27 Feb 2026
+
+
+#### What's New
+* 3D Alignment - Separate interpolation for Z axis  
+* Data type conversion for Result Tables
+* Structure with names starting with `*` are skipped in Group creation (temporary groups)  
+* Added Tutorial 1 example
+
+
 ## Version 1.5.0
 Released on - 17 Feb 2026
 
@@ -16,7 +55,8 @@ Released on - 17 Feb 2026
         | Poisson's Ratio	|	`mat.V`    |
         | Coeff. Thermal Exp	|	`mat.ALPHA`    |
         | Weight Density	|	`mat.W` 	|
-        | Damping	|	`mat.D`  |
+        | Damping	|	`mat.D`  |   
+
 * Helper Classes for Support, Elastic Link , Rigid Link , MLFC  
 
 #### Bug Fixes   
