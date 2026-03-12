@@ -24,7 +24,7 @@
   }
 
   .grid-item img {
-    height: 250px;
+    height: 200px;
     object-fit: cover;
   }
 
@@ -55,7 +55,25 @@ These examples are meant to show the basic structure of a MIDAS Civil NX Python 
   <div class="grid-item">
     <a href="ex01">
       <img src="../Examples/images/EX01.png" alt="Image 1">
-      <div class="caption">3-D Simple 2–Bay Frame</div>
+      <div class="caption">3-D SIMPLE 2-BAY FRAME</div>
+    </a>
+  </div>
+  <div class="grid-item">
+    <a href="ex02">
+      <img src="../Examples/images/EX02.png" alt="Image 1">
+      <div class="caption">PLANT STRUCTURE </div>
+    </a>
+  </div>
+  <div class="grid-item">
+    <a href="ex03">
+      <img src="../Examples/images/EX03.png" alt="Image 1">
+      <div class="caption">WEB–OPENING DETAIL ANALYSIS</div>
+    </a>
+  </div>
+  <div class="grid-item">
+    <a href="ex04">
+      <img src="../Examples/images/EX04.png" alt="Image 1">
+      <div class="caption">ARCH BRIDGE</div>
     </a>
   </div>
 </div>

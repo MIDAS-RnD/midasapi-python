@@ -1,13 +1,23 @@
 # Release Notes
 
+## Version 1.5.5
+Released on - 13 March 2026
+
+#### What's New
+* Added `Boundary.BeamEndRelease`
+* Structure with names starting with `#` are skipped in Group creation (temporary groups)  
+
+#### Bug Fixes   
+* Fixed missing `CENTER` property for Tension only, Compression only and Solid elements.
+
 ## Version 1.5.4
 Released on - 10 March 2026
 
 #### What's New
 * Design Parameters for Tapered PSC Value Section   
-* Auto Generation of Tapered Group
-    NX.autoTaperGroup = True  or
-    Section.TaperedGroup.autoGenerate() before Model.create()
+* Auto Generation of Tapered Group   
+    NX.autoTaperGroup = True  or   
+    Section.TaperedGroup.autoGenerate() before Model.create()   
 * NX.print_box() function for easy command line printing
 
 #### Bug Fixes   
@@ -35,7 +45,6 @@ Released on - 27 Feb 2026
 #### What's New
 * 3D Alignment - Separate interpolation for Z axis  
 * Data type conversion for Result Tables
-* Structure with names starting with `*` are skipped in Group creation (temporary groups)  
 * Added Tutorial 1 example
 
 

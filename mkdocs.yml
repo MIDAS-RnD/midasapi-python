@@ -184,7 +184,10 @@ nav:
 
   - Examples :
     - Examples : Examples/index.md
-    - ‎ ‎ ‎ 3-D Simple 2–Bay Frame : Examples/ex01.md
+    - ‎ ‎ ‎ 3-D Simple 2-Bay Frame : Examples/ex01.md
+    - ‎ ‎ ‎ Plant Structure : Examples/ex02.md
+    - ‎ ‎ ‎ Web Opening : Examples/ex03.md
+    - ‎ ‎ ‎ Arch Bridge : Examples/ex04.md
 
   - Release Notes : Release Notes/index.md
   - Discussion : Comments/index.md
