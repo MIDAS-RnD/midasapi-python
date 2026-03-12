@@ -5,7 +5,7 @@ Released on - 13 March 2026
 
 #### What's New
 * Added `Boundary.BeamEndRelease`
-* Structure with names starting with `#` are skipped in Group creation (temporary groups)  
+* Structure Groups with name starting with `#` are skipped in Group creation (can be used as temporary groups for selection)   
 
 #### Bug Fixes   
 * Fixed missing `CENTER` property for Tension only, Compression only and Solid elements.
