@@ -1,11 +1,13 @@
 # Release Notes
 
-## Version 1.5.5
+## Version 1.5.6 - 1.5.5 
 Released on - 13 March 2026
 
 #### What's New
 * Added `Boundary.BeamEndRelease`
 * Structure Groups with name starting with `#` are skipped in Group creation (can be used as temporary groups for selection)   
+* Optimised Model.Select.Line() and Model.Select.Box()
+* Output of Model.Select.Line() is ordered on basis of distance from the start point.
 
 #### Bug Fixes   
 * Fixed missing `CENTER` property for Tension only, Compression only and Solid elements.
