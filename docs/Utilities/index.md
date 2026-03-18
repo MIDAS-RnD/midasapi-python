@@ -70,6 +70,7 @@ Uniform and Tapered sections mentioned below can be converted to shell represent
 | Pipe	|	"P"	|
 | Solid Rectangle	|	"SB"	|
 | PSC 1-2 Cell | "1-CEL" & "2-CEL"|
+| Steel Tub Type 1 | "Tub"|
 
 ---
 

@@ -105,7 +105,7 @@ Load.Beam.delete()
 #UDL Load Example
 for i in range(2):
     Node(i*10,0,0)
-    Node.create()
+Node.create()
 
 Element.Beam(1,2)
 Element.create()
@@ -124,21 +124,20 @@ Load.Beam.create()
 #### Trapezoidal Load
 
 ```py
-#Trapezoidal Load Example
 for i in range(2):
     Node(i*10,0,0)
-    Node.create()
+Node.create()
 
 Element.Beam(1,2)
 Element.create()
-    
+
 #Define Load Case
 Load_Case("L","Trapezoidal Load")
 Load_Case.create()
 
 #Apply Trapezoidal Load
 
-Load.Beam(1,"Trapezoidal Load","",0,"GZ","",[0,0.3,0.7,1],[0,-20,-50,0])
+Load.Beam(1,"Trapezoidal Load","",0,"GZ",[0,0.3,0.7,1],[0,-20,-50,0])
 Load.Beam.create()
 ```
 
@@ -146,19 +145,19 @@ Load.Beam.create()
 ```py
 #Concentrated Load Example
 for i in range(2):
-    Node(i*10,0,0)
-    Node.create()
+ Node(i*10,0,0)
+Node.create()
 
 Element.Beam(1,2)
 Element.create()
-    
+
 #Load Case
 Load_Case("L","Test Load")
 Load_Case.create()
 
-#Apply Concentrated Load
+# Apply Concentrated Load
 
-Load.Beam(1,"Test Load","",0,"GZ",1,[0.3,0.5,0.7],[-20,-30,-40],"BEAM","CONLOAD")
+Load.Beam(1,"Test Load","",0,"GZ",[0.3,0.5,0.7],[-20,-30,-40],"BEAM","CONLOAD")
 Load.Beam.create()
 ```
 
@@ -167,7 +166,7 @@ Load.Beam.create()
 #Eccentric Load Example
 for i in range(2):
     Node(i*10,0,0)
-    Node.create()
+Node.create()
 
 Element.Beam(1,2)
 Element.create()
@@ -187,18 +186,18 @@ Load.Beam.create()
 #Concentrated Moment/Torsion Example
 for i in range(2):
     Node(i*10,0,0)
-    Node.create()
+Node.create()
 
 Element.Beam(1,2)
 Element.create()
-    
+
 #Define Load Case
 Load_Case("L","Test Load")
 Load_Case.create()
 
 # Apply Concentrated Moment/Torsion
 
-Load.Beam(1,"Test Load","",0,"GZ","",[0.3,0.7],[-20,-50],"BEAM","CONMOMENT")
+Load.Beam(1,"Test Load","",0,"GZ",[0.3,0.7],[-20,-50],"BEAM","CONMOMENT")
 Load.Beam.create()
 ```
 
@@ -207,22 +206,22 @@ Load.Beam.create()
 #Uniform & Trapezoidal Moment/Torsion Example
 for i in range(3):
     Node(i*10,0,0)
-    Node.create()
+Node.create()
 
 Element.Beam(1,2)
 Element.Beam(2,3)
 Element.create()
-    
+
 #Define Load Case
 Load_Case("L","Test Load 1","Test Load 2")
 Load_Case.create()
 
 #Uniform Moment/Torsion
 
-Load.Beam(1,"Test Load 1","",0,"GZ","",[0,1],[-20,-20],"BEAM","UNIMOMENT")
+Load.Beam(1,"Test Load 1","",0,"GZ",[0,1],[-20,-20],"BEAM","UNIMOMENT")
 
 #Trapezoidal Moment/Torsion
 
-Load.Beam(2,"Test Load 2","",0,"GZ","",[0.3,0.7],[-30,-50],"BEAM","UNIMOMENT")
+Load.Beam(2,"Test Load 2","",0,"GZ",[0.3,0.7],[-30,-50],"BEAM","UNIMOMENT")
 Load.Beam.create()
 ```
