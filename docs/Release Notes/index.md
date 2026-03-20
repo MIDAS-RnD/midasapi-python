@@ -1,5 +1,34 @@
 # Release Notes
 
+## Version 1.5.7
+Released on - 20 March 2026
+
+#### What's New
+- Implemented `Model.getBounds()` method   
+- Added `Model.bound` property  to return the model dimensions   
+- Added `Model.close()` function   
+- Added `Model.saveStageAs()` function   
+
+- Model Selection Option
+    - Line  
+    - Line Along X,Y,Z 
+    - Box  
+    - Plane XY,YZ,XZ  
+    - Type, Material, Section     
+
+- Added `utils.RC Grillage()` function  
+- Added `Model.IMAGE()` function  
+
+- Added `View` class to customise viewport display.
+    - Image Size  
+    - Hidden View 
+    - Active  
+    - Angle  
+
+- Added `Result.IMAGE()` function  
+- Added `ResultGraphic` to customised Result images
+
+
 ## Version 1.5.6 - 1.5.5 
 Released on - 13 March 2026
 

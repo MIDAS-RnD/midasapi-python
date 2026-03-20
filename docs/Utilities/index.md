@@ -154,3 +154,50 @@ for node in Node.nodes:
     node.X , node.Y = utils.Alignment.transformPoint((node.X,node.Y),initial_align,final_align)
 Node.create()
 ```  
+
+---
+
+
+## RC Grillage
+
+**`utils.RC_Grillage(span_length = 20, width = 8, support:Literal['fix','pin']='fix', dia_no=2,start_loc = [0,0,0], girder_depth = 0, girder_width = 0, girder_no = 0, web_thk = 0, slab_thk = 0, dia_depth = 0, dia_width = 0, overhang = 0, skew = 0, mat_E = 30_000_000)`**  
+
+
+![NODE GRID](RC_Grillage.png)
+
+
+RC Grillage Utility wizard to generate an RC grillage model in CIVIL NX with configurable geometry, supports, and material properties.   
+Use `Model.create()` at the end to send data to CIVIL NX.
+
+
+#### Parameters
+
+* `span_length : float` : Span length of the structure (default = 20).
+* `width : float` : Overall deck width (default = 8).
+* `support : {'fix','pin'}` : Support condition at span ends.  
+&emsp;&emsp;&emsp;&emsp;
+**fix**: Fixed support <font color="orange">&nbsp;&nbsp;|&nbsp;&nbsp;</font>
+**pin**: Pinned support  
+
+* `dia_no : int` : Number of diaphragms (default = 2).
+* `start_loc : list[float]` : Starting coordinates `[x, y, z]` for grillage placement.
+* `girder_depth : float` : Depth of girder section.
+* `girder_width : float` : Width of girder section.
+* `girder_no : int` : Number of longitudinal girders.
+* `web_thk : float` : Thickness of girder web.
+* `slab_thk : float` : Thickness of deck slab.
+* `dia_depth : float` : Depth of diaphragm.
+* `dia_width : float` : Width of diaphragm.
+* `overhang : float` : Overhang length beyond outer girders.
+* `skew : float` : Skew angle in degrees.
+* `mat_E : float` : Modulus of elasticity of material (default = 30,000,000).
+
+
+```py
+from midas_civil import *           
+
+utils.RC_Grillage(12,8,'pin',4,start_loc=[0,0,0])
+utils.RC_Grillage(15,8,'pin',6,start_loc=[11,0,0])
+
+Model.create()
+```  

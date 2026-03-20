@@ -172,11 +172,13 @@ nav:
     - ‎ ‎ ‎ Settlement: AnalysisControl/05Settlement.md
     - Boundary Change Assignment : AnalysisControl/BoundaryChangeAssignment.md
     
+  - View: View/01_view.md
 
   - Results :
     - ‎ ‎ ‎ Load Combination : Result/01_loadCombination.md
     - ‎ ‎ ‎ Result Table : Result/02_resultTable.md
     - ‎ ‎ ‎ User Defined Table : Result/03_userResultTable.md
+    - ‎ ‎ ‎ Result Image : Result/04_resultImage.md
   
     
 
