@@ -1,5 +1,17 @@
 # Release Notes
 
+
+## Version 1.5.8
+Released on - 26 March 2026
+
+#### What's New
+* Added `Tendon_Loss` table in Result Table. **`Result.TABLE.Tendon_Loss()`**    
+* Added warning when `midas_civil` is used with GEN NX   
+
+#### Bug Fixes   
+* Fixed Tendon Profile Insertion Point - End location . Earlier always set to `'END-I'`.
+
+
 ## Version 1.5.7
 Released on - 20 March 2026
 

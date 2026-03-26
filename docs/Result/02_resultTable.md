@@ -802,3 +802,40 @@ print(plate_wa_df)
 ```
 
 ---
+
+
+### Tendon_Loss
+
+Fetches Tendon Loss for Tendon/Tendon Group for a particular Construction stage.   
+
+**`Result.TABLE.Tendon_Loss(tdn_group="", cs_stage="", options:TableOptions=None)`**
+
+#### Parameters
+
+- **`tdn_group`** (`str`): Tendon Name or Tendon Group Name.   
+
+- **`cs_stage`** (`str`): Construction Stage name.   
+
+- **`options`** (`TableOptions`): Optional. Table options object for formatting and output settings.
+
+#### Returns
+- **Polars DataFrame**: A DataFrame containing the plate force (unit length) result table.
+
+#### Example Usage
+
+```python
+from midas_civil import *
+
+# SAVES TENDON LOSS TABLE FOR ALL THE TENDON PROFILES
+TableOptions.EXCEL_FILE_LOC='zzz_Test2.xlsx'
+
+CS.STAGE.sync()
+Tendon.Profile.sync()
+
+for stage in CS.STAGE.stages:
+    for profile in Tendon.Profile.profiles:
+        Result.TABLE.Tendon_Loss(profile.NAME,stage.NAME)
+
+```
+
+---
