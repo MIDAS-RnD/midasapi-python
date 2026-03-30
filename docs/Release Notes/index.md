@@ -5,6 +5,11 @@
 Released on - 26 March 2026
 
 #### What's New
+* Added Radius input in Tendon Profiles. New input parameters :   
+    - `prof_xyzR`   
+    - `prof_xyR`   
+    - `prof_xzR`    
+
 * Added `Tendon_Loss` table in Result Table. **`Result.TABLE.Tendon_Loss()`**    
 * Added warning when `midas_civil` is used with GEN NX   
 
