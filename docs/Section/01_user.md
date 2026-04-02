@@ -25,9 +25,56 @@ Details of all available sections can be found [here](https://support.midasuser.
 
 
 
+## Database Section
 
 
-## Constructor
+### Constructor
+---
+**<font color="green">`Section.DB(Name='',Shape='',DB_Name='',Sect_Name:str='',Offset=Offset(),useShear:bool=True,use7Dof:bool=False,id:int=None)`</font>**
+
+Creates codal-based section definition with specified offset, and analysis properties (e.g., shear and DOF settings).
+
+### Parameters
+* `Name`: Section name
+* `Shape`: Section shape code ('SB', 'SR', etc.)
+* `DB_Name`: Codal Database Name eg.('IS', 'BS')
+* `Sect_Name`: DB Section Name eg. ('ISMB 600')
+* `Offset (default=Offset.CC())`: Section offset parameters
+* `useShear (default=True)`: Enable shear deformation
+* `use7Dof (default=False)`: Enable warping (7DOF)
+* `id (default=None)`: Section ID (auto-assigned if 0)
+
+### Object Attributes
+* `ID` (int): Section ID.
+* `NAME` (str): Section name.
+* `TYPE` (str): Type of section, defaults to 'DBUSER'.
+* `SHAPE` (str): Shape code for the section (e.g., 'SB', 'SR').
+* `DB_NAME` (str): Codal Database Name
+* `SECT_NAME` (str):  DB Section Name
+* `OFFSET` (Offset): An `Offset` object defining the section's offset.
+* `USESHEAR` (bool): Flag to indicate if shear deformation is considered (True/False).
+* `USE7DOF` (bool): Flag to indicate if warping effect (7th Degree of Freedom) is considered (True/False).
+* `DATATYPE` (int): Data type for the section, defaults to 2 for standard user-defined sections.
+
+### Examples
+---
+```py
+# Rectangular Section Example
+for i in range(2):
+    Node(i*10, 0, 0)
+    Node.create()
+
+Element.Beam(1, 2)
+Element.create()
+
+# Create ISMB 600 - I Section
+Section.DB('IS Section','H','IS','ISMB 600')
+Section.create()
+```
+
+## User defined Sections
+
+### Constructor
 ---
 **<font color="green">`Section.DBUSER(Name='', Shape='', parameters:list=[], Offset:Offset=Offset.CC(), useShear=True, use7Dof=False, id=None)`</font>**
 
@@ -53,7 +100,7 @@ Creates user-defined sections with specified shape and parameters.
 * `USE7DOF` (bool): Flag to indicate if warping effect (7th Degree of Freedom) is considered (True/False).
 * `DATATYPE` (int): Data type for the section, defaults to 2 for standard user-defined sections.
 
-## Examples
+### Examples
 ---
 ```py
 # Rectangular Section Example
@@ -82,3 +129,4 @@ Element.create()
 Section.DBUSER("Circle_D1", "SR", [1.0], Offset.CT(), True, False, 5)
 Section.create()
 ```
+

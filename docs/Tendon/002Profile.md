@@ -6,7 +6,7 @@ It handles the geometric definition of 2D and 3D tendon profiles and their assig
 
 ## Constructor
 ---
-**`Tendon.Profile(name,tdn_prop,tdn_group=0,elem=[],inp_type='3D',curve_type = 'SPLINE',st_len_begin = 0 , st_len_end = 0,n_typical_tendon=0,                 trans_len_opt='USER', trans_len_begin = 0 , trans_len_end = 0, debon_len_begin=0 , debon_len_end=0,                 ref_axis = 'ELEMENT',                 prof_xyz = [], prof_xy =[],prof_xz=[],                 prof_ins_point_end = 'END-I', prof_ins_point_elem = 0, x_axis_dir_element = 'I-J', x_axis_rot_ang = 0 , projection = True, offset_y = 0 , offset_z = 0,                 prof_ins_point =[0,0,0], x_axis_dir_straight = 'X' , x_axis_dir_vec = [0,0], grad_rot_axis = 'X', grad_rot_ang=0,                 radius_cen = [0,0], offset = 0, dir = 'CW',                 id=None):`**
+**`Tendon.Profile(name,tdn_prop,tdn_group=0,elem=[],inp_type='3D',curve_type = 'SPLINE',st_len_begin = 0 , st_len_end = 0,n_typical_tendon=0,                 trans_len_opt='USER', trans_len_begin = 0 , trans_len_end = 0, debon_len_begin=0 , debon_len_end=0,                 ref_axis = 'ELEMENT',                 prof_xyzR = [], prof_xyR =[],prof_xzR=[],                 prof_ins_point_end = 'END-I', prof_ins_point_elem = 0, x_axis_dir_element = 'I-J', x_axis_rot_ang = 0 , projection = True, offset_y = 0 , offset_z = 0,                 prof_ins_point =[0,0,0], x_axis_dir_straight = 'X' , x_axis_dir_vec = [0,0], grad_rot_axis = 'X', grad_rot_ang=0,                 radius_cen = [0,0], offset = 0, dir = 'CW',                 id=None):`**
 
 
 Creates a tendon profile
@@ -28,10 +28,19 @@ Creates a tendon profile
 - `debon_len_end` (float, default=0): Debonding length at the end.
 - `ref_axis` (str, default='ELEMENT'): Reference axis for the profile shape. Accepts `'ELEMENT'`, `'STRAIGHT'`, or `'CURVE'`.
 
-##### Tendon Co-ordinates Input (when `inp_type = '3D' or '2D'`)
-> - `prof_xyz` (list): List of coordinate points `[[x1, y1, z1],[x2, y2, z2]...]` for a 3D profile.
-- `prof_xy` (list): List of coordinate points `[[x1, y1],[x2, y2]...]` for a 2D profile in the XY-plane.
-- `prof_xz` (list): List of coordinate points `[[x1, z1],[x2, z2]...]` for a 2D profile in the XZ-plane.
+##### Tendon Co-ordinates Input (when `inp_type = '3D' or '2D'`)   
+> - `prof_xyzR` (list): List of coordinate points `[[x1, y1, z1 ,  R1  ],[x2, y2, z2 ,  R2  ]...]` for a 3D profile.     
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SPLINE →  `R : list[float,float]` = `[Ry(deg) , Rz(deg)]`   <font color="orange">&nbsp;&nbsp;|&nbsp;&nbsp;</font> ROUND → `R : float` = `Radius`       
+- `prof_xyR` (list): List of coordinate points `[[x1, y1,  R1 ],[x2, y2,  R2 ]...]` for a 2D profile in the XY-plane.    
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SPLINE →  `R : float` = `Rz(deg)`   <font color="orange">&nbsp;&nbsp;|&nbsp;&nbsp;</font> ROUND → `R : float` = `Radius`   
+- `prof_xzR` (list): List of coordinate points `[[x1, z1,  R1 ],[x2, z2,  R2 ]...]` for a 2D profile in the XZ-plane.   
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SPLINE →  `R : float` = `Ry(deg)`   <font color="orange">&nbsp;&nbsp;|&nbsp;&nbsp;</font> ROUND → `R : float` = `Radius`   
+
+
+R parameter is optional input.   
+For ROUND type tendon, default value is taken as `0`.   
+For SPLINE type tendon, default value is `None` (2D type) or `[None,None]` (3D type)   
+
 ---
 ##### Element Shape Parameters (when `ref_axis = 'ELEMENT'`)
 > - `prof_ins_point_end` (str, default='END-I'): Insertion point end reference. Accepts `'END-I'` or `'END-J'`.
@@ -101,9 +110,9 @@ Creates a tendon profile
 ```py
 prof_xyz = [[0,0,0],[1000,0,-250],[5000,0,0]]
 
-Tendon.Profile('TDN_Profile1',1,0,elemsInGroup('Span1'),'3D','SPLINE',ref_axis='CURVE',prof_xyz=prof_xyz,radius_cen=[0,-50000])
-Tendon.Profile('TDN_Profile2',1,0,elemsInGroup('Span1'),'3D','SPLINE',ref_axis='ELEMENT',prof_xyz=prof_xyz)
-Tendon.Profile('TDN_Profile3',1,0,elemsInGroup('Span1'),'3D','SPLINE',ref_axis='STRAIGHT',prof_xyz=prof_xyz)
+Tendon.Profile('TDN_Profile1',1,0,elemsInGroup('Span1'),'3D','SPLINE',ref_axis='CURVE',prof_xyzR=prof_xyz,radius_cen=[0,-50000])
+Tendon.Profile('TDN_Profile2',1,0,elemsInGroup('Span1'),'3D','SPLINE',ref_axis='ELEMENT',prof_xyzR=prof_xyz)
+Tendon.Profile('TDN_Profile3',1,0,elemsInGroup('Span1'),'3D','SPLINE',ref_axis='STRAIGHT',prof_xyzR=prof_xyz)
 
 for profile in Tendon.Profile.profiles:
     print(f' NAME => {profile.NAME}   |   TYPE =>  {profile.CURVE}   |   REF => {profile.INPUT}  |    REF => {profile.SHAPE}  |')
@@ -119,7 +128,7 @@ Returns a JSON representation of all Tendon Profiles defined in python.
 
 ```py
 prof_xyz = [[0,0,0],[1000,0,-250],[5000,0,0]]
-Tendon.Profile('Tendon_Profile',1,0,elemsInGroup('Span'),'3D','SPLINE',ref_axis='ELEMENT',prof_xyz=prof_xyz)
+Tendon.Profile('Tendon_Profile',1,0,elemsInGroup('Span'),'3D','SPLINE',ref_axis='ELEMENT',prof_xyzR=prof_xyz)
 print(Tendon.Profile.json())
 
 ```
@@ -130,7 +139,7 @@ New profiles are created and existing profiles(same ID) in Civil NX will be upda
 
 ```py
 prof_xyz = [[0,0,0],[1000,0,-250],[5000,0,0]]
-Tendon.Profile('Tendon_Profile',1,0,elemsInGroup('Span'),'3D','SPLINE',ref_axis='ELEMENT',prof_xyz=prof_xyz)
+Tendon.Profile('Tendon_Profile',1,0,elemsInGroup('Span'),'3D','SPLINE',ref_axis='ELEMENT',prof_xyzR=prof_xyz)
 Tendon.Profile.create()
 ```
 
@@ -178,11 +187,11 @@ prof_xz=[[0,0],[2000,-500],[5000,0]]
 
 prof_xyz = [[0,0,0],[1000,0,-250],[5000,0,0]]
 
-Tendon.Profile('TDN_Profile1',1,0,elemsInGroup('Span1'),'3D','SPLINE',ref_axis='CURVE',prof_xyz=prof_xyz,radius_cen=[0,-50000])
-Tendon.Profile('TDN_Profile2',1,0,elemsInGroup('Span1'),'3D','SPLINE',ref_axis='ELEMENT',prof_xyz=prof_xyz)
-Tendon.Profile('TDN_Profile3',1,0,elemsInGroup('Span1'),'3D','SPLINE',ref_axis='STRAIGHT',prof_xyz=prof_xyz)
+Tendon.Profile('TDN_Profile1',1,0,elemsInGroup('Span1'),'3D','SPLINE',ref_axis='CURVE',prof_xyzR=prof_xyz,radius_cen=[0,-50000])
+Tendon.Profile('TDN_Profile2',1,0,elemsInGroup('Span1'),'3D','SPLINE',ref_axis='ELEMENT',prof_xyzR=prof_xyz)
+Tendon.Profile('TDN_Profile3',1,0,elemsInGroup('Span1'),'3D','SPLINE',ref_axis='STRAIGHT',prof_xyzR=prof_xyz)
 
-Tendon.Profile('TDN_Profile4',1,0,elemsInGroup('Span1'),'2D','SPLINE',ref_axis='ELEMENT',prof_xy=prof_xy,prof_xz=prof_xz)
+Tendon.Profile('TDN_Profile4',1,0,elemsInGroup('Span1'),'2D','SPLINE',ref_axis='ELEMENT',prof_xyR=prof_xy,prof_xzR=prof_xz)
 
 
 Model.create()
