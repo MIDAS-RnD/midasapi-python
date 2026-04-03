@@ -4,8 +4,9 @@ summary: to MIDAS Python interface
 
 ![MIDAS PYTHON](assets/banner.png){ .off-glb }
 
-This module provides a Python interface to interact with the MIDAS Civil NX API using HTTP requests. It includes functionality to manage the MAPI key required for authentication and to send API requests using various HTTP methods.
+Welcome to the `midas_civil` and `midas_gen` documentation.
 
+Python libraries provide a powerful and flexible interface for automating structural analysis workflows in MIDAS CIVIL NX and MIDAS GEN NX. Designed for engineers and developers, these libraries enable seamless interaction with modeling, loading, analysis, and results extraction features through Python scripts. By integrating automation into everyday engineering tasks, users can improve efficiency, reduce manual effort, and build customized solutions tailored to complex project requirements.
 
 
 ## Installation
@@ -15,12 +16,18 @@ Make sure you have Python 3 installed.
 Install the MIDAS Python interface via Pip command.
 
 ```py
-pip install midas-civil
+pip install midas-civil                             # FOR CIVIL NX
+```
+```py
+pip install midas-gen                               # FOR GEN NX
 ```
 
 If already installed, upgrade the package to latest version.
-```py
-pip install midas-civil --upgrade
+```py   
+pip install midas-civil --upgrade                   # FOR CIVIL NX
+```
+```py   
+pip install midas-gen --upgrade                     # FOR GEN NX
 ```
 
 Additional libraries required by the modules are
@@ -35,8 +42,12 @@ Additional libraries required by the modules are
 To import the package use the import *
 
 ```py
-from midas_civil import *
+from midas_civil import *   # FOR CIVIL NX
+from midas_gen import *   # FOR CIVIL NX
 ```
+
+!!! info "NOTE"
+    The codes/steps shown uses `midas_civil` but same code can be used with `midas_gen`.
 
 ### Video Guide
 ---
