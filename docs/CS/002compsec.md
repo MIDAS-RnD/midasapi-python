@@ -18,7 +18,14 @@ Creates a composite section for Construction Stage with specified parameters for
 ### Parameters
 * `activation_stage`: Active Stage name (required)
 * `section_id`: Section ID (required)
-* `comp_type (default="GENERAL")`: Composite Type - "GENERAL" or "USER"
+* `comp_type (default="GENERAL")`: Composite Type - "GENERAL" , "USER" or "NORMAL"   
+&emsp;&emsp;&emsp;&emsp;
+1 : `GENERAL` - *for Composite-General Section*   
+&emsp;&emsp;&emsp;&emsp;
+2 : `USER` - *for Value-General Section*    
+&emsp;&emsp;&emsp;&emsp;
+3 : `NORMAL` - *for Normal Composite Section*     
+
 * `tapered_type (default=False)`: Tapered Type - True or False
 * `partinfo`: List of part information lists (required)
 * `id (default=None)`: Manual composite section ID assignment (auto-assigned if None)

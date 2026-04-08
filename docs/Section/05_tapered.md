@@ -1,0 +1,76 @@
+# Tapered Section
+
+A nested class within Section used to create tapered sections.
+
+
+
+## Tapered.DBUSER Section
+
+Created Tapered DB/USER section.
+
+Some common user defined section's Shape notation is givn below:
+
+
+| NAME	 |	SHAPE	|	DIMENSION VALUE                      |
+|--------|-------|-------|
+| Angle	|	"L"	|	[H, B, tw, tf]                               |
+| Channel	|	"C"	|	[H, B1, tw, tf1, B2, tf2, r1, r2]        |
+| H/I-Section	|	"H"	|	[H, B1, tw, tf1, B2, tf2, r1, r2]    |
+| T-Section	|	"T"	|	[H, B, tw, tf]                           |
+| Box	|	"B"	|	[H, B, tw, tf1, C, tf2]                      |
+| Pipe	|	"P"	|	[D, tw]                                      |
+| Double Angle	|	"2L"	|	[H, B, tw, tf, C]                |
+| Double Channel	|	"2C"	|	[H, B, tw, tf, C]            |
+| Solid Rectangle	|	"SB"	|	[H, B]                       |
+| Solid Round	|	"SR"	|	[D]                              |
+
+
+
+Details of all available sections can be found [here](https://support.midasuser.com/hc/en-us/articles/35809067039513-Section-Properties-DB-User).
+
+
+
+### Constructor
+---
+**<font color="green">`Section.DBUSER(Name='' , Shape='' , params_I=[] , params_J=[] , Offset=Offset() , useShear=True , use7Dof=False , id=None)`</font>**
+
+Creates user-defined sections with specified shape and parameters.
+
+### Parameters
+* `Name`: Section name
+* `Shape`: Section shape code ('SB', 'SR', etc.)   
+* `params_I`: List of section parameters of I-End   
+* `params_J`: List of section parameters of I-End    
+* `Offset (default=Offset.CC())`: Section offset parameters   
+* `useShear (default=True)`: Enable shear deformation   
+* `use7Dof (default=False)`: Enable warping (7DOF)   
+* `id (default=None)`: Section ID (auto-assigned if None)   
+
+### Object Attributes
+* `ID` (int): Section ID.
+* `NAME` (str): Section name.
+* `TYPE` (str): Type of section, defaults to 'DBUSER'.
+* `SHAPE` (str): Shape code for the section (e.g., 'SB', 'SR').
+* `PARAMS_I` (list): List of dimensional parameters defining the section's geometry.
+* `PARAMS_J` (list): List of dimensional parameters defining the section's geometry.
+* `OFFSET` (Offset): An `Offset` object defining the section's offset.
+* `USESHEAR` (bool): Flag to indicate if shear deformation is considered (True/False).
+* `USE7DOF` (bool): Flag to indicate if warping effect (7th Degree of Freedom) is considered (True/False).
+* `DATATYPE` (int): Data type for the section, defaults to 2 for standard user-defined sections.
+
+### Examples
+---
+```py
+# Rectangular Section Example
+
+Node(0, 0, 0)
+Node(10, 0, 0)
+Node.create()
+
+Element.Beam(1, 2)
+Element.create()
+
+# Create rectangular section
+Section.DBUSER("Rect_1x0.5", "SB", [1.0, 0.5])
+Section.create()
+```
