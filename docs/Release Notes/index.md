@@ -5,7 +5,7 @@ Released on - 09 April 2026
 
 #### What's New
 * Added `Node.fromList` for quick creation of nodes.    
-* Added `Load.FlooLoadDefine` and `Load.FlooLoadAssign` to create Floor loads.    
+* Added `Load.FloorLoadDefine` and `Load.FloorLoadAssign` to create Floor loads.    
 
 #### Fixes   
 * Defining new structure group with existing name will display warning and updates the group.    
