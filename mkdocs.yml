@@ -121,13 +121,16 @@ nav:
 
   - Load:
     - Load : Load/index.md
+    - Load Case : Load/case.md
     - ‎ ‎ ‎ Self Weight : Load/000sw.md
     - ‎ ‎ ‎ Nodal Load : Load/001nodal.md
     - ‎ ‎ ‎ Beam Load: Load/002beam.md
     - ‎ ‎ ‎ Load To Mass: Load/003LoadToMass.md
     - ‎ ‎ ‎ Nodal Mass: Load/004NodalMass.md
     - ‎ ‎ ‎ Specified Displacement: Load/005spDisp.md
-    - Load Case : Load/case.md
+    - ‎ ‎ ‎ Floor Load Define: Load/006floorloaddefine.md
+    - ‎ ‎ ‎ Floor Load Assign: Load/007floorloadassign.md
+    
   
   - Tendon :
     - ‎ ‎ ‎ Tendon Property : Tendon/001Property.md
