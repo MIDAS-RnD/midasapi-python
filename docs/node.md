@@ -10,22 +10,71 @@ from midas_civil import *
 MAPI_KEY('eyJ1ciI6InN1bWl0QG1pZGFzaXQuY29tIiwicGciO252a81571d')
 ```
 
-
-## Constructor
 ---
+
+### Node
+
 **Node(`x , y , z , id=None , group = '' , merge = 1`)**
 
-### Parameters
+#### Parameters
 * `x, y, z`: Coordinates of the node.
-* `id (default=None)`: Manually assign an ID.   If 0, ID will be auto-assigned.
+* `id (default=None)`: Manually assign an ID.   If None, ID will be auto-assigned.
 * `group (default='')`: Structure group of the node (can be str or list eg. 'SG' or ['SG1','SG2'])
 * `merge (default=1)`: If enabled, checks for existing nodes and return their IDs.  No additional/duplicate node will be created.
 
 
+---
+
+### Node.SE
+
+**Node.SE(`s_loc: list, e_loc: list, n: int = 1, id=None , group = '' , merge = 1`)**
+
+#### Parameters
+* `s_loc`: Start location. [x,y,z]    
+* `e_loc`: End location. [x,y,z]    
+* `n (default=1)`: Number of division. n+1 nodes are created.     
+* `id (default=None)`: Manually assign an ID.   If None, ID will be auto-assigned.    
+* `group (default='')`: Structure group of the node (can be str or list eg. 'SG' or ['SG1','SG2'])    
+* `merge (default=1)`: If enabled, checks for existing nodes and return their IDs.  No additional/duplicate node will be created.   
+
+
+---
+
+### Node.SDL
+
+**Node.SDL(`s_loc: list, dir: list, l: float, n: int = 1, id=None , group = '' , merge = 1`)**
+
+#### Parameters
+* `s_loc`: Start location. [x,y,z]   
+* `dir`: Direction vector [dx, dy, dz]   
+* `l`: Total length of created nodes (see `Element.Beam.SDL`).     
+* `n (default=1)`: Number of division. n+1 nodes are created.    
+* `id (default=None)`: Manually assign an ID.   If None, ID will be auto-assigned.    
+* `group (default='')`: Structure group of the node (can be str or list eg. 'SG' or ['SG1','SG2'])    
+* `merge (default=1)`: If enabled, checks for existing nodes and return their IDs.  No additional/duplicate node will be created.    
+
+
+---
+
+### Node.fromList
+
+**Node.SDL(`nodesList: list, id=None , group = '' , merge = 1`)**
+
+#### Parameters
+* `nodesList`: List of `[x, y, z]` coordinates. e.g. `[[0,0,0], [1,0,0], [2,0,0]]`. 
+* `id (default=None)`: Manually assign an ID.   If None, ID will be auto-assigned.    
+* `group (default='')`: Structure group of the node (can be str or list eg. 'SG' or ['SG1','SG2'])    
+* `merge (default=1)`: If enabled, checks for existing nodes and return their IDs.  No additional/duplicate node will be created.    
+
+
+---
+
 ### Object Attributes
 
-`X, Y, Z`: Coordinates of the node.
-`ID`: Unique identifier.
+`X, Y, Z`: Coordinates of the node.    
+`ID`: Unique identifier.    
+`LOC`: (x,y,z) Coordinates of the node in tuple.     
+`AXIS`: Local direction of the node eg. `[(1,0,0),(0,1,0),(0,0,1)]` represent local X,Y,Z respectively. Created by `bLocalAxis` option of Beam element.        
 
 ### Retrieve Node by ID
 

@@ -1,5 +1,18 @@
 # Release Notes
 
+## Version 1.5.9
+Released on - 09 April 2026
+
+#### What's New
+* Added `Node.fromList` for quick creation of nodes.    
+* Added `Load.FlooLoadDefine` and `Load.FlooLoadAssign` to create Floor loads.    
+
+#### Fixes   
+* Defining new structure group with existing name will display warning and updates the group.    
+* HTTP method request checks added in `MidasAPI` function.    
+* Structure groups now support tuple, set, list and numpy array as input.   
+
+
 
 ## Version 1.5.8
 Released on - 26 March 2026
