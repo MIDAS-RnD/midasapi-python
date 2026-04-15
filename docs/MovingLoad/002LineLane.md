@@ -63,7 +63,7 @@ MovingLoad.LineLane.delete()
 ## Code-Specific Subclasses
 
 ### India
-**<font color="green">`MovingLoad.LineLane.India(Lane_name, Ecc, Wheel_space, elem_list, IF=0, Span=0, id=None, lane_width=0, lane_opt_width=0, Group_Name="", Moving_Direction="BOTH", Skew_start=0, Skew_end=0)`</font>**
+**<font color="green">`MovingLoad.LineLane.India(Lane_name, Ecc, Wheel_space, elem_list, IF=0, Span=0, id=None, width=0, opt_width=0, Group_Name="", Moving_Direction="BOTH", Skew_start=0, Skew_end=0)`</font>**
 
 Creates a traffic lane according to Indian Road Congress (IRC) standards.
 
@@ -75,8 +75,8 @@ Creates a traffic lane according to Indian Road Congress (IRC) standards.
 * `IF` (float, optional): Impact Factor as defined by IRC. Default: 0
 * `Span` (float, optional): Span length for impact factor calculation. Default: 0
 * `id` (int, optional): Unique integer ID for the lane (auto-assigned if None). Default: None
-* `lane_width` (float, optional): Width of the traffic lane. Default: 0
-* `lane_opt_width` (float, optional): Allowable width for auto-positioning. Default: 0
+* `width` (float, optional): Width of the traffic lane. Default: 0
+* `opt_width` (float, optional): Allowable width for auto-positioning. Default: 0
 * `Group_Name` (str, optional): Group name for cross-beam load distribution. Default: ""
 * `Moving_Direction` (str, optional): Vehicle movement direction ("FORWARD", "BACKWARD", "BOTH"). Default: "BOTH"
 * `Skew_start` (float, optional): Bridge skew angle at lane start (degrees). Default: 0
@@ -90,8 +90,8 @@ Creates a traffic lane according to Indian Road Congress (IRC) standards.
 * `IF` (float): Impact factor
 * `Span` (float): Span length
 * `id` (int): Lane ID
-* `lane_width` (float): Lane width
-* `lane_opt_width` (float): Allowable width
+* `width` (float): Lane width
+* `opt_width` (float): Allowable width
 * `Group_Name` (str): Group name for load distribution
 * `Moving_Direction` (str): Movement direction
 * `Skew_start` (float): Start skew angle
@@ -122,7 +122,7 @@ MovingLoad.LineLane.create()
 ---
 
 ### China
-**<font color="green">`MovingLoad.LineLane.China(Lane_name, Ecc, Wheel_space, elem_list, IF=0, Span=0, id=None, lane_opt_width=0, Group_Name="", Moving_Direction="BOTH", Skew_start=0, Skew_end=0)`</font>**
+**<font color="green">`MovingLoad.LineLane.China(Lane_name, Ecc, Wheel_space, elem_list, IF=0, Span=0, id=None, opt_width=0, Group_Name="", Moving_Direction="BOTH", Skew_start=0, Skew_end=0)`</font>**
 
 Creates a traffic lane according to Chinese bridge design standards.
 
@@ -134,7 +134,7 @@ Creates a traffic lane according to Chinese bridge design standards.
 * `IF` (float, optional): Scale Factor as defined by the Chinese code. Default: 0
 * `Span` (float, optional): Span length. Default: 0
 * `id` (int, optional): Unique integer ID (auto-assigned if None). Default: None
-* `lane_opt_width` (float, optional): Allowable width for auto-positioning. Default: 0
+* `opt_width` (float, optional): Allowable width for auto-positioning. Default: 0
 * `Group_Name` (str, optional): Group name for cross-beam load distribution. Default: ""
 * `Moving_Direction` (str, optional): Vehicle movement direction ("FORWARD", "BACKWARD", "BOTH"). Default: "BOTH"
 * `Skew_start` (float, optional): Bridge skew angle at lane start (degrees). Default: 0
@@ -148,7 +148,7 @@ Creates a traffic lane according to Chinese bridge design standards.
 * `IF` (float): Scale factor
 * `Span` (float): Span length
 * `id` (int): Lane ID
-* `lane_opt_width` (float): Allowable width
+* `opt_width` (float): Allowable width
 * `Group_Name` (str): Group name for load distribution
 * `Moving_Direction` (str): Movement direction
 * `Skew_start` (float): Start skew angle
@@ -182,7 +182,7 @@ MovingLoad.LineLane.create()
 ---
 
 ### Korea
-**<font color="green">`MovingLoad.LineLane.Korea(Lane_name, Ecc, Wheel_space, elem_list, IF=0, id=None, lane_opt_width=0, Group_Name="", Moving_Direction="BOTH", Skew_start=0, Skew_end=0)`</font>**
+**<font color="green">`MovingLoad.LineLane.Korea(Lane_name, Ecc, Wheel_space, elem_list, IF=0, id=None, opt_width=0, Group_Name="", Moving_Direction="BOTH", Skew_start=0, Skew_end=0)`</font>**
 
 Creates a traffic lane according to Korean standards. Lane width is fixed at **3 m**.
 
@@ -193,7 +193,7 @@ Creates a traffic lane according to Korean standards. Lane width is fixed at **3
 * `elem_list` (list[int]): List of element IDs defining the continuous path of the lane
 * `IF` (float, optional): Impact Factor. Default: 0
 * `id` (int, optional): Unique integer ID (auto-assigned if None). Default: None
-* `lane_opt_width` (float, optional): Allowable width for auto-positioning. Default: 0
+* `opt_width` (float, optional): Allowable width for auto-positioning. Default: 0
 * `Group_Name` (str, optional): Group name for cross-beam load distribution. Default: ""
 * `Moving_Direction` (str, optional): Vehicle movement direction ("FORWARD", "BACKWARD", "BOTH"). Default: "BOTH"
 * `Skew_start` (float, optional): Bridge skew angle at lane start (degrees). Default: 0
@@ -206,8 +206,8 @@ Creates a traffic lane according to Korean standards. Lane width is fixed at **3
 * `elem_list` (list[int]): List of element IDs
 * `IF` (float): Impact factor
 * `id` (int): Lane ID
-* `lane_width` (float): Fixed at 3 m
-* `lane_opt_width` (float): Allowable width
+* `width` (float): Fixed at 3 m
+* `opt_width` (float): Allowable width
 * `Group_Name` (str): Group name for load distribution
 * `Moving_Direction` (str): Movement direction
 * `Skew_start` (float): Start skew angle
@@ -239,7 +239,7 @@ MovingLoad.LineLane.create()
 ---
 
 ### Taiwan
-**<font color="green">`MovingLoad.LineLane.Taiwan(Lane_name, Ecc, Wheel_space, elem_list, IF=0, id=None, lane_opt_width=0, Group_Name="", Moving_Direction="BOTH", Skew_start=0, Skew_end=0)`</font>**
+**<font color="green">`MovingLoad.LineLane.Taiwan(Lane_name, Ecc, Wheel_space, elem_list, IF=0, id=None, opt_width=0, Group_Name="", Moving_Direction="BOTH", Skew_start=0, Skew_end=0)`</font>**
 
 Creates a traffic lane according to Taiwanese standards. Lane width is fixed at **3 m**.
 
@@ -250,7 +250,7 @@ Creates a traffic lane according to Taiwanese standards. Lane width is fixed at 
 * `elem_list` (list[int]): List of element IDs defining the continuous path of the lane
 * `IF` (float, optional): Impact Factor. Default: 0
 * `id` (int, optional): Unique integer ID (auto-assigned if None). Default: None
-* `lane_opt_width` (float, optional): Allowable width for auto-positioning. Default: 0
+* `opt_width` (float, optional): Allowable width for auto-positioning. Default: 0
 * `Group_Name` (str, optional): Group name for cross-beam load distribution. Default: ""
 * `Moving_Direction` (str, optional): Vehicle movement direction ("FORWARD", "BACKWARD", "BOTH"). Default: "BOTH"
 * `Skew_start` (float, optional): Bridge skew angle at lane start (degrees). Default: 0
@@ -263,8 +263,8 @@ Creates a traffic lane according to Taiwanese standards. Lane width is fixed at 
 * `elem_list` (list[int]): List of element IDs
 * `IF` (float): Impact factor
 * `id` (int): Lane ID
-* `lane_width` (float): Fixed at 3 m
-* `lane_opt_width` (float): Allowable width
+* `width` (float): Fixed at 3 m
+* `opt_width` (float): Allowable width
 * `Group_Name` (str): Group name for load distribution
 * `Moving_Direction` (str): Movement direction
 * `Skew_start` (float): Start skew angle
@@ -286,7 +286,7 @@ MovingLoad.LineLane.create()
 ---
 
 ### AASHTOStandard
-**<font color="green">`MovingLoad.LineLane.AASHTOStandard(Lane_name, Ecc, Wheel_space, elem_list, IF=0, id=None, lane_opt_width=0, Group_Name="", Moving_Direction="BOTH", Skew_start=0, Skew_end=0)`</font>**
+**<font color="green">`MovingLoad.LineLane.AASHTOStandard(Lane_name, Ecc, Wheel_space, elem_list, IF=0, id=None, opt_width=0, Group_Name="", Moving_Direction="BOTH", Skew_start=0, Skew_end=0)`</font>**
 
 Creates a traffic lane according to AASHTO Standard. Lane width is fixed at **3 m**.
 
@@ -297,7 +297,7 @@ Creates a traffic lane according to AASHTO Standard. Lane width is fixed at **3 
 * `elem_list` (list[int]): List of element IDs defining the continuous path of the lane
 * `IF` (float, optional): Impact Factor. Default: 0
 * `id` (int, optional): Unique integer ID (auto-assigned if None). Default: None
-* `lane_opt_width` (float, optional): Allowable width for auto-positioning. Default: 0
+* `opt_width` (float, optional): Allowable width for auto-positioning. Default: 0
 * `Group_Name` (str, optional): Group name for cross-beam load distribution. Default: ""
 * `Moving_Direction` (str, optional): Vehicle movement direction ("FORWARD", "BACKWARD", "BOTH"). Default: "BOTH"
 * `Skew_start` (float, optional): Bridge skew angle at lane start (degrees). Default: 0
@@ -310,8 +310,8 @@ Creates a traffic lane according to AASHTO Standard. Lane width is fixed at **3 
 * `elem_list` (list[int]): List of element IDs
 * `IF` (float): Impact factor
 * `id` (int): Lane ID
-* `lane_width` (float): Fixed at 3 m
-* `lane_opt_width` (float): Allowable width
+* `width` (float): Fixed at 3 m
+* `opt_width` (float): Allowable width
 * `Group_Name` (str): Group name for load distribution
 * `Moving_Direction` (str): Movement direction
 * `Skew_start` (float): Start skew angle
@@ -333,7 +333,7 @@ MovingLoad.LineLane.create()
 ---
 
 ### AASHTOLRFD
-**<font color="green">`MovingLoad.LineLane.AASHTOLRFD(Lane_name, Ecc, Wheel_space, elem_list, centrifugal_force=0, id=None, lane_opt_width=0, Group_Name="", Moving_Direction="BOTH", Skew_start=0, Skew_end=0)`</font>**
+**<font color="green">`MovingLoad.LineLane.AASHTOLRFD(Lane_name, Ecc, Wheel_space, elem_list, centrifugal_force=0, id=None, opt_width=0, Group_Name="", Moving_Direction="BOTH", Skew_start=0, Skew_end=0)`</font>**
 
 Creates a traffic lane according to AASHTO LRFD. Lane width is fixed at **3 m**. The `centrifugal_force` parameter replaces the generic `IF` field for this code.
 
@@ -344,7 +344,7 @@ Creates a traffic lane according to AASHTO LRFD. Lane width is fixed at **3 m**.
 * `elem_list` (list[int]): List of element IDs defining the continuous path of the lane
 * `centrifugal_force` (float, optional): Centrifugal force factor as per AASHTO LRFD. Default: 0
 * `id` (int, optional): Unique integer ID (auto-assigned if None). Default: None
-* `lane_opt_width` (float, optional): Allowable width for auto-positioning. Default: 0
+* `opt_width` (float, optional): Allowable width for auto-positioning. Default: 0
 * `Group_Name` (str, optional): Group name for cross-beam load distribution. Default: ""
 * `Moving_Direction` (str, optional): Vehicle movement direction ("FORWARD", "BACKWARD", "BOTH"). Default: "BOTH"
 * `Skew_start` (float, optional): Bridge skew angle at lane start (degrees). Default: 0
@@ -357,8 +357,8 @@ Creates a traffic lane according to AASHTO LRFD. Lane width is fixed at **3 m**.
 * `elem_list` (list[int]): List of element IDs
 * `IF` (float): Centrifugal force factor
 * `id` (int): Lane ID
-* `lane_width` (float): Fixed at 3 m
-* `lane_opt_width` (float): Allowable width
+* `width` (float): Fixed at 3 m
+* `opt_width` (float): Allowable width
 * `Group_Name` (str): Group name for load distribution
 * `Moving_Direction` (str): Movement direction
 * `Skew_start` (float): Start skew angle
@@ -381,7 +381,7 @@ MovingLoad.LineLane.create()
 ---
 
 ### PENNDOT
-**<font color="green">`MovingLoad.LineLane.PENNDOT(Lane_name, Ecc, Wheel_space, elem_list, id=None, lane_opt_width=0, Group_Name="", Moving_Direction="BOTH", Skew_start=0, Skew_end=0)`</font>**
+**<font color="green">`MovingLoad.LineLane.PENNDOT(Lane_name, Ecc, Wheel_space, elem_list, id=None, opt_width=0, Group_Name="", Moving_Direction="BOTH", Skew_start=0, Skew_end=0)`</font>**
 
 Creates a traffic lane according to AASHTO LRFD (PENNDOT). Lane width is fixed at **3 m**. No impact/scale factor input is required.
 
@@ -391,7 +391,7 @@ Creates a traffic lane according to AASHTO LRFD (PENNDOT). Lane width is fixed a
 * `Wheel_space` (float): Center-to-center distance between vehicle wheels (typically 1.83 m / 6 ft)
 * `elem_list` (list[int]): List of element IDs defining the continuous path of the lane
 * `id` (int, optional): Unique integer ID (auto-assigned if None). Default: None
-* `lane_opt_width` (float, optional): Allowable width for auto-positioning. Default: 0
+* `opt_width` (float, optional): Allowable width for auto-positioning. Default: 0
 * `Group_Name` (str, optional): Group name for cross-beam load distribution. Default: ""
 * `Moving_Direction` (str, optional): Vehicle movement direction ("FORWARD", "BACKWARD", "BOTH"). Default: "BOTH"
 * `Skew_start` (float, optional): Bridge skew angle at lane start (degrees). Default: 0
@@ -403,8 +403,8 @@ Creates a traffic lane according to AASHTO LRFD (PENNDOT). Lane width is fixed a
 * `Wheel_space` (float): Wheel spacing distance
 * `elem_list` (list[int]): List of element IDs
 * `id` (int): Lane ID
-* `lane_width` (float): Fixed at 3 m
-* `lane_opt_width` (float): Allowable width
+* `width` (float): Fixed at 3 m
+* `opt_width` (float): Allowable width
 * `Group_Name` (str): Group name for load distribution
 * `Moving_Direction` (str): Movement direction
 * `Skew_start` (float): Start skew angle
@@ -425,7 +425,7 @@ MovingLoad.LineLane.create()
 ---
 
 ### Canada
-**<font color="green">`MovingLoad.LineLane.Canada(Lane_name, Ecc, Wheel_space, elem_list, id=None, lane_opt_width=0, Group_Name="", Moving_Direction="BOTH", Skew_start=0, Skew_end=0)`</font>**
+**<font color="green">`MovingLoad.LineLane.Canada(Lane_name, Ecc, Wheel_space, elem_list, id=None, opt_width=0, Group_Name="", Moving_Direction="BOTH", Skew_start=0, Skew_end=0)`</font>**
 
 Creates a traffic lane according to Canadian standards. Lane width is fixed at **3 m**. No impact/scale factor input is required.
 
@@ -435,7 +435,7 @@ Creates a traffic lane according to Canadian standards. Lane width is fixed at *
 * `Wheel_space` (float): Center-to-center distance between vehicle wheels
 * `elem_list` (list[int]): List of element IDs defining the continuous path of the lane
 * `id` (int, optional): Unique integer ID (auto-assigned if None). Default: None
-* `lane_opt_width` (float, optional): Allowable width for auto-positioning. Default: 0
+* `opt_width` (float, optional): Allowable width for auto-positioning. Default: 0
 * `Group_Name` (str, optional): Group name for cross-beam load distribution. Default: ""
 * `Moving_Direction` (str, optional): Vehicle movement direction ("FORWARD", "BACKWARD", "BOTH"). Default: "BOTH"
 * `Skew_start` (float, optional): Bridge skew angle at lane start (degrees). Default: 0
@@ -447,8 +447,8 @@ Creates a traffic lane according to Canadian standards. Lane width is fixed at *
 * `Wheel_space` (float): Wheel spacing distance
 * `elem_list` (list[int]): List of element IDs
 * `id` (int): Lane ID
-* `lane_width` (float): Fixed at 3 m
-* `lane_opt_width` (float): Allowable width
+* `width` (float): Fixed at 3 m
+* `opt_width` (float): Allowable width
 * `Group_Name` (str): Group name for load distribution
 * `Moving_Direction` (str): Movement direction
 * `Skew_start` (float): Start skew angle
@@ -469,7 +469,7 @@ MovingLoad.LineLane.create()
 ---
 
 ### BS
-**<font color="green">`MovingLoad.LineLane.BS(Lane_name, Ecc, Wheel_space, elem_list, id=None, lane_width=0, lane_opt_width=0, Group_Name="", Moving_Direction="BOTH", Skew_start=0, Skew_end=0)`</font>**
+**<font color="green">`MovingLoad.LineLane.BS(Lane_name, Ecc, Wheel_space, elem_list, id=None, width=0, opt_width=0, Group_Name="", Moving_Direction="BOTH", Skew_start=0, Skew_end=0)`</font>**
 
 Creates a traffic lane according to British Standards (BS). No impact/scale factor input is required.
 
@@ -479,8 +479,8 @@ Creates a traffic lane according to British Standards (BS). No impact/scale fact
 * `Wheel_space` (float): Center-to-center distance between vehicle wheels
 * `elem_list` (list[int]): List of element IDs defining the continuous path of the lane
 * `id` (int, optional): Unique integer ID (auto-assigned if None). Default: None
-* `lane_width` (float, optional): Width of the traffic lane. Default: 0
-* `lane_opt_width` (float, optional): Allowable width for auto-positioning. Default: 0
+* `width` (float, optional): Width of the traffic lane. Default: 0
+* `opt_width` (float, optional): Allowable width for auto-positioning. Default: 0
 * `Group_Name` (str, optional): Group name for cross-beam load distribution. Default: ""
 * `Moving_Direction` (str, optional): Vehicle movement direction ("FORWARD", "BACKWARD", "BOTH"). Default: "BOTH"
 * `Skew_start` (float, optional): Bridge skew angle at lane start (degrees). Default: 0
@@ -492,8 +492,8 @@ Creates a traffic lane according to British Standards (BS). No impact/scale fact
 * `Wheel_space` (float): Wheel spacing distance
 * `elem_list` (list[int]): List of element IDs
 * `id` (int): Lane ID
-* `lane_width` (float): Lane width
-* `lane_opt_width` (float): Allowable width
+* `width` (float): Lane width
+* `opt_width` (float): Allowable width
 * `Group_Name` (str): Group name for load distribution
 * `Moving_Direction` (str): Movement direction
 * `Skew_start` (float): Start skew angle
@@ -506,7 +506,7 @@ MovingLoad.LineLane.BS(
     Ecc=-1.8,
     Wheel_space=1.8,
     elem_list=list(range(1, 21)),
-    lane_width=3.65
+    width=3.65
 )
 
 MovingLoad.LineLane.create()
@@ -515,7 +515,7 @@ MovingLoad.LineLane.create()
 ---
 
 ### Eurocode
-**<font color="green">`MovingLoad.LineLane.Eurocode(Lane_name, Ecc, Wheel_space, elem_list, ecc_vertical_load=0, id=None, lane_width=0, lane_opt_width=0, Group_Name="", Moving_Direction="BOTH", Skew_start=0, Skew_end=0)`</font>**
+**<font color="green">`MovingLoad.LineLane.Eurocode(Lane_name, Ecc, Wheel_space, elem_list, ecc_vertical_load=0, id=None, width=0, opt_width=0, Group_Name="", Moving_Direction="BOTH", Skew_start=0, Skew_end=0)`</font>**
 
 Creates a traffic lane according to European (Eurocode) standards. The `ecc_vertical_load` parameter replaces the generic `IF` field and represents vertical load eccentricity.
 
@@ -526,8 +526,8 @@ Creates a traffic lane according to European (Eurocode) standards. The `ecc_vert
 * `elem_list` (list[int]): List of element IDs defining the continuous path of the lane
 * `ecc_vertical_load` (float, optional): Vertical load eccentricity as per Eurocode. Default: 0
 * `id` (int, optional): Unique integer ID (auto-assigned if None). Default: None
-* `lane_width` (float, optional): Width of the traffic lane. Default: 0
-* `lane_opt_width` (float, optional): Allowable width for auto-positioning. Default: 0
+* `width` (float, optional): Width of the traffic lane. Default: 0
+* `opt_width` (float, optional): Allowable width for auto-positioning. Default: 0
 * `Group_Name` (str, optional): Group name for cross-beam load distribution. Default: ""
 * `Moving_Direction` (str, optional): Vehicle movement direction ("FORWARD", "BACKWARD", "BOTH"). Default: "BOTH"
 * `Skew_start` (float, optional): Bridge skew angle at lane start (degrees). Default: 0
@@ -540,8 +540,8 @@ Creates a traffic lane according to European (Eurocode) standards. The `ecc_vert
 * `elem_list` (list[int]): List of element IDs
 * `IF` (float): Vertical load eccentricity
 * `id` (int): Lane ID
-* `lane_width` (float): Lane width
-* `lane_opt_width` (float): Allowable width
+* `width` (float): Lane width
+* `opt_width` (float): Allowable width
 * `Group_Name` (str): Group name for load distribution
 * `Moving_Direction` (str): Movement direction
 * `Skew_start` (float): Start skew angle
@@ -555,7 +555,7 @@ MovingLoad.LineLane.Eurocode(
     Wheel_space=2.0,
     elem_list=list(range(10, 31)),
     ecc_vertical_load=0.6,
-    lane_width=3.0
+    width=3.0
 )
 
 MovingLoad.LineLane.create()
@@ -564,7 +564,7 @@ MovingLoad.LineLane.create()
 ---
 
 ### Australia
-**<font color="green">`MovingLoad.LineLane.Australia(Lane_name, Ecc, Wheel_space, elem_list, id=None, lane_width=0, lane_opt_width=0, Group_Name="", Moving_Direction="BOTH", Skew_start=0, Skew_end=0)`</font>**
+**<font color="green">`MovingLoad.LineLane.Australia(Lane_name, Ecc, Wheel_space, elem_list, id=None, width=0, opt_width=0, Group_Name="", Moving_Direction="BOTH", Skew_start=0, Skew_end=0)`</font>**
 
 Creates a traffic lane according to Australian standards. No impact/scale factor input is required.
 
@@ -574,8 +574,8 @@ Creates a traffic lane according to Australian standards. No impact/scale factor
 * `Wheel_space` (float): Center-to-center distance between vehicle wheels
 * `elem_list` (list[int]): List of element IDs defining the continuous path of the lane
 * `id` (int, optional): Unique integer ID (auto-assigned if None). Default: None
-* `lane_width` (float, optional): Width of the traffic lane. Default: 0
-* `lane_opt_width` (float, optional): Allowable width for auto-positioning. Default: 0
+* `width` (float, optional): Width of the traffic lane. Default: 0
+* `opt_width` (float, optional): Allowable width for auto-positioning. Default: 0
 * `Group_Name` (str, optional): Group name for cross-beam load distribution. Default: ""
 * `Moving_Direction` (str, optional): Vehicle movement direction ("FORWARD", "BACKWARD", "BOTH"). Default: "BOTH"
 * `Skew_start` (float, optional): Bridge skew angle at lane start (degrees). Default: 0
@@ -587,8 +587,8 @@ Creates a traffic lane according to Australian standards. No impact/scale factor
 * `Wheel_space` (float): Wheel spacing distance
 * `elem_list` (list[int]): List of element IDs
 * `id` (int): Lane ID
-* `lane_width` (float): Lane width
-* `lane_opt_width` (float): Allowable width
+* `width` (float): Lane width
+* `opt_width` (float): Allowable width
 * `Group_Name` (str): Group name for load distribution
 * `Moving_Direction` (str): Movement direction
 * `Skew_start` (float): Start skew angle
@@ -601,7 +601,7 @@ MovingLoad.LineLane.Australia(
     Ecc=-1.8,
     Wheel_space=1.8,
     elem_list=list(range(1, 21)),
-    lane_width=3.5
+    width=3.5
 )
 
 MovingLoad.LineLane.create()
@@ -610,7 +610,7 @@ MovingLoad.LineLane.create()
 ---
 
 ### Poland
-**<font color="green">`MovingLoad.LineLane.Poland(Lane_name, Ecc, Wheel_space, elem_list, id=None, lane_width=0, lane_opt_width=0, Group_Name="", Moving_Direction="BOTH", Skew_start=0, Skew_end=0)`</font>**
+**<font color="green">`MovingLoad.LineLane.Poland(Lane_name, Ecc, Wheel_space, elem_list, id=None, width=0, opt_width=0, Group_Name="", Moving_Direction="BOTH", Skew_start=0, Skew_end=0)`</font>**
 
 Creates a traffic lane according to Polish standards. No impact/scale factor input is required.
 
@@ -620,8 +620,8 @@ Creates a traffic lane according to Polish standards. No impact/scale factor inp
 * `Wheel_space` (float): Center-to-center distance between vehicle wheels
 * `elem_list` (list[int]): List of element IDs defining the continuous path of the lane
 * `id` (int, optional): Unique integer ID (auto-assigned if None). Default: None
-* `lane_width` (float, optional): Width of the traffic lane. Default: 0
-* `lane_opt_width` (float, optional): Allowable width for auto-positioning. Default: 0
+* `width` (float, optional): Width of the traffic lane. Default: 0
+* `opt_width` (float, optional): Allowable width for auto-positioning. Default: 0
 * `Group_Name` (str, optional): Group name for cross-beam load distribution. Default: ""
 * `Moving_Direction` (str, optional): Vehicle movement direction ("FORWARD", "BACKWARD", "BOTH"). Default: "BOTH"
 * `Skew_start` (float, optional): Bridge skew angle at lane start (degrees). Default: 0
@@ -633,8 +633,8 @@ Creates a traffic lane according to Polish standards. No impact/scale factor inp
 * `Wheel_space` (float): Wheel spacing distance
 * `elem_list` (list[int]): List of element IDs
 * `id` (int): Lane ID
-* `lane_width` (float): Lane width
-* `lane_opt_width` (float): Allowable width
+* `width` (float): Lane width
+* `opt_width` (float): Allowable width
 * `Group_Name` (str): Group name for load distribution
 * `Moving_Direction` (str): Movement direction
 * `Skew_start` (float): Start skew angle
@@ -647,7 +647,7 @@ MovingLoad.LineLane.Poland(
     Ecc=0,
     Wheel_space=2.0,
     elem_list=list(range(1, 21)),
-    lane_width=3.5
+    width=3.5
 )
 
 MovingLoad.LineLane.create()
@@ -656,7 +656,7 @@ MovingLoad.LineLane.create()
 ---
 
 ### Russia
-**<font color="green">`MovingLoad.LineLane.Russia(Lane_name, Ecc, Wheel_space, elem_list, id=None, lane_width=0, lane_opt_width=0, Group_Name="", Moving_Direction="BOTH", Skew_start=0, Skew_end=0)`</font>**
+**<font color="green">`MovingLoad.LineLane.Russia(Lane_name, Ecc, Wheel_space, elem_list, id=None, width=0, opt_width=0, Group_Name="", Moving_Direction="BOTH", Skew_start=0, Skew_end=0)`</font>**
 
 Creates a traffic lane according to Russian standards. No impact/scale factor input is required.
 
@@ -666,8 +666,8 @@ Creates a traffic lane according to Russian standards. No impact/scale factor in
 * `Wheel_space` (float): Center-to-center distance between vehicle wheels
 * `elem_list` (list[int]): List of element IDs defining the continuous path of the lane
 * `id` (int, optional): Unique integer ID (auto-assigned if None). Default: None
-* `lane_width` (float, optional): Width of the traffic lane. Default: 0
-* `lane_opt_width` (float, optional): Allowable width for auto-positioning. Default: 0
+* `width` (float, optional): Width of the traffic lane. Default: 0
+* `opt_width` (float, optional): Allowable width for auto-positioning. Default: 0
 * `Group_Name` (str, optional): Group name for cross-beam load distribution. Default: ""
 * `Moving_Direction` (str, optional): Vehicle movement direction ("FORWARD", "BACKWARD", "BOTH"). Default: "BOTH"
 * `Skew_start` (float, optional): Bridge skew angle at lane start (degrees). Default: 0
@@ -679,8 +679,8 @@ Creates a traffic lane according to Russian standards. No impact/scale factor in
 * `Wheel_space` (float): Wheel spacing distance
 * `elem_list` (list[int]): List of element IDs
 * `id` (int): Lane ID
-* `lane_width` (float): Lane width
-* `lane_opt_width` (float): Allowable width
+* `width` (float): Lane width
+* `opt_width` (float): Allowable width
 * `Group_Name` (str): Group name for load distribution
 * `Moving_Direction` (str): Movement direction
 * `Skew_start` (float): Start skew angle
@@ -693,7 +693,7 @@ MovingLoad.LineLane.Russia(
     Ecc=0,
     Wheel_space=1.8,
     elem_list=list(range(1, 21)),
-    lane_width=3.75
+    width=3.75
 )
 
 MovingLoad.LineLane.create()
@@ -702,7 +702,7 @@ MovingLoad.LineLane.create()
 ---
 
 ### SouthAfrica
-**<font color="green">`MovingLoad.LineLane.SouthAfrica(Lane_name, Ecc, Wheel_space, elem_list, id=None, lane_width=0, lane_opt_width=0, Group_Name="", Moving_Direction="BOTH", Skew_start=0, Skew_end=0)`</font>**
+**<font color="green">`MovingLoad.LineLane.SouthAfrica(Lane_name, Ecc, Wheel_space, elem_list, id=None, width=0, opt_width=0, Group_Name="", Moving_Direction="BOTH", Skew_start=0, Skew_end=0)`</font>**
 
 Creates a traffic lane according to South African standards. No impact/scale factor input is required.
 
@@ -712,8 +712,8 @@ Creates a traffic lane according to South African standards. No impact/scale fac
 * `Wheel_space` (float): Center-to-center distance between vehicle wheels
 * `elem_list` (list[int]): List of element IDs defining the continuous path of the lane
 * `id` (int, optional): Unique integer ID (auto-assigned if None). Default: None
-* `lane_width` (float, optional): Width of the traffic lane. Default: 0
-* `lane_opt_width` (float, optional): Allowable width for auto-positioning. Default: 0
+* `width` (float, optional): Width of the traffic lane. Default: 0
+* `opt_width` (float, optional): Allowable width for auto-positioning. Default: 0
 * `Group_Name` (str, optional): Group name for cross-beam load distribution. Default: ""
 * `Moving_Direction` (str, optional): Vehicle movement direction ("FORWARD", "BACKWARD", "BOTH"). Default: "BOTH"
 * `Skew_start` (float, optional): Bridge skew angle at lane start (degrees). Default: 0
@@ -725,8 +725,8 @@ Creates a traffic lane according to South African standards. No impact/scale fac
 * `Wheel_space` (float): Wheel spacing distance
 * `elem_list` (list[int]): List of element IDs
 * `id` (int): Lane ID
-* `lane_width` (float): Lane width
-* `lane_opt_width` (float): Allowable width
+* `width` (float): Lane width
+* `opt_width` (float): Allowable width
 * `Group_Name` (str): Group name for load distribution
 * `Moving_Direction` (str): Movement direction
 * `Skew_start` (float): Start skew angle
@@ -739,7 +739,7 @@ MovingLoad.LineLane.SouthAfrica(
     Ecc=0,
     Wheel_space=1.8,
     elem_list=list(range(1, 21)),
-    lane_width=3.7
+    width=3.7
 )
 
 MovingLoad.LineLane.create()
@@ -748,7 +748,7 @@ MovingLoad.LineLane.create()
 ---
 
 ### KSCELSD15
-**<font color="green">`MovingLoad.LineLane.KSCELSD15(Lane_name, Ecc, Wheel_space, elem_list, id=None, lane_opt_width=0, Group_Name="", Moving_Direction="BOTH", Skew_start=0, Skew_end=0)`</font>**
+**<font color="green">`MovingLoad.LineLane.KSCELSD15(Lane_name, Ecc, Wheel_space, elem_list, id=None, opt_width=0, Group_Name="", Moving_Direction="BOTH", Skew_start=0, Skew_end=0)`</font>**
 
 Creates a traffic lane according to KSCE-LSD15 standards. Lane width is fixed at **3 m**. No impact/scale factor input is required.
 
@@ -758,7 +758,7 @@ Creates a traffic lane according to KSCE-LSD15 standards. Lane width is fixed at
 * `Wheel_space` (float): Center-to-center distance between vehicle wheels
 * `elem_list` (list[int]): List of element IDs defining the continuous path of the lane
 * `id` (int, optional): Unique integer ID (auto-assigned if None). Default: None
-* `lane_opt_width` (float, optional): Allowable width for auto-positioning. Default: 0
+* `opt_width` (float, optional): Allowable width for auto-positioning. Default: 0
 * `Group_Name` (str, optional): Group name for cross-beam load distribution. Default: ""
 * `Moving_Direction` (str, optional): Vehicle movement direction ("FORWARD", "BACKWARD", "BOTH"). Default: "BOTH"
 * `Skew_start` (float, optional): Bridge skew angle at lane start (degrees). Default: 0
@@ -770,8 +770,8 @@ Creates a traffic lane according to KSCE-LSD15 standards. Lane width is fixed at
 * `Wheel_space` (float): Wheel spacing distance
 * `elem_list` (list[int]): List of element IDs
 * `id` (int): Lane ID
-* `lane_width` (float): Fixed at 3 m
-* `lane_opt_width` (float): Allowable width
+* `width` (float): Fixed at 3 m
+* `opt_width` (float): Allowable width
 * `Group_Name` (str): Group name for load distribution
 * `Moving_Direction` (str): Movement direction
 * `Skew_start` (float): Start skew angle
