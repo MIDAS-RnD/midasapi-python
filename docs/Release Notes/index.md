@@ -1,5 +1,28 @@
 # Release Notes
 
+
+## Version 1.6.1
+Released on - 15 April 2026
+
+#### Fixes   
+* Fixed error with node assignment.    
+* Restores original parameter name for lane width and allowable width for backwards compatibility.   
+
+
+## Version 1.6.0
+Released on - 13 April 2026
+
+#### What's New
+* Added `Mdodel.getSelected` for retrieving selected nodes/elements ID.    
+* Added `Load.Misc.PreCompositeSection`.    
+* Added `maxID` in Node for faster automatic Node ID assignment.       
+* Added error messages ouput if request fails (eg. beam load applied to truss now returns clear error instead of silently failing).       
+
+#### Fixes   
+* Speed improvement in `utils.Line2Plate`.     
+* Clear Parameter names for Line Lanes.     
+
+
 ## Version 1.5.9
 Released on - 09 April 2026
 
