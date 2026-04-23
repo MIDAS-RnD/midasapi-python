@@ -1,0 +1,4440 @@
+<!DOCTYPE html><html lang="en" class="no-js"><head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+        <meta name="author" content="Sumit Shekhar">
+      
+      
+        <link rel="canonical" href="https://midas-rnd.github.io/midasapi-python/Result/04_resultImage/">
+      
+      
+        <link rel="prev" href="../03_userResultTable/">
+      
+      
+        <link rel="next" href="../../Utilities/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>‎ ‎ ‎ Result Image - MIDAS Python</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Flex:300,300i,400,400i,700,700i%7CFragment+Mono:400,400i,700,700i&amp;display=fallback">
+        <style>:root{--md-text-font:"Roboto Flex";--md-code-font:"Fragment Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  <link href="../../assets/stylesheets/glightbox.min.css" rel="stylesheet"><script src="../../assets/javascripts/glightbox.min.js"></script><style id="glightbox-style">
+            html.glightbox-open { overflow: initial; height: 100%; }
+            .gslide-title { margin-top: 0px; user-select: text; }
+            .gslide-desc { color: #666; user-select: text; }
+            .gslide-image img { background: white; }
+            .gscrollbar-fixer { padding-right: 15px; }
+            .gdesc-inner { font-size: 0.75rem; }
+            body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color); }
+            body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color); }
+            body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color); }
+        </style></head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#result-image" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+        <aside class="md-banner">
+          <div class="md-banner__inner md-grid md-typeset">
+            
+              <button class="md-banner__button md-icon" aria-label="Don't show this again">
+                
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+              </button>
+            
+            
+<div class="scroll-banner">
+  <p>🚀 New Features added ‎ ‎ ‎ ‎: 
+    ‎ ‎ ‎ ‎
+    Model.IMAGE
+    ‎ ‎ ‎ ‎ ‎ ‎|‎ ‎ ‎ ‎ ‎ ‎
+    Result.IMAGE
+    ‎ ‎ ‎ ‎ ‎ ‎|‎ ‎ ‎ ‎ ‎ ‎
+    View
+    ‎ ‎ ‎ ‎ ‎ ‎|‎ ‎ ‎ ‎ ‎ ‎
+    Result Graphic
+    ‎ ‎ ‎ ‎ ‎ ‎|‎ ‎ ‎ ‎ ‎ ‎
+    Model.Select
+    ‎ ‎ ‎ ‎ ‎ ‎|‎ ‎ ‎ ‎ ‎ ‎
+    Model.close
+    ‎ ‎ ‎ ‎ ‎ ‎|‎ ‎ ‎ ‎ ‎ ‎
+     </p>
+</div>
+
+          </div>
+          
+            <script>var el=document.querySelector("[data-md-component=announce]");if(el){var content=el.querySelector(".md-typeset");__md_hash(content.innerHTML)===__md_get("__announce")&&(el.hidden=!0)}</script>
+          
+        </aside>
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="MIDAS Python" class="md-header__button md-logo" aria-label="MIDAS Python" data-md-component="logo">
+      
+  <img src="../../assets/midas-logo_White.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"></path></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            MIDAS Python
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              ‎ ‎ ‎ Result Image
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required="">
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix="">
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="MIDAS Python" class="md-nav__button md-logo" aria-label="MIDAS Python" data-md-component="logo">
+      
+  <img src="../../assets/midas-logo_White.png" alt="logo">
+
+    </a>
+    MIDAS Python
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix="">
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Introduction
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../model/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Model
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../node/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Node
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4">
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../Element/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Element
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Element
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Element/1D/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ 1D Elements
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Element/2D/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ 2D Elements
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Element/3D/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ 3D Elements
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Element/ElemetScaleFactor/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Stiffness Scale Factor
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5">
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../Section/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Section Properties
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Section Properties
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Section/01_user/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Standard Section
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Section/02_psc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ PSC Section
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Section/03_composite/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Composite Section
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Section/04_taperedgroup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Tapered Group
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Section/09_thickness/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Thickness
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6">
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../Material/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Material Properties
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6" id="__nav_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Material Properties
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Material/001concrete/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Concrete
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Material/002steel/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Steel
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Material/003usermat/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ User-defined
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Material/010creep/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Creep Shrinkage
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Material/011comp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Compressive Strength
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Material/012tdlink/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Time Dependent Link
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7">
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../Group/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Groups
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_7" id="__nav_7_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Groups
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Group/001sg/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Structure Group
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Group/002bg/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Boundary Group
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Group/003lg/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Load Group
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Group/004tg/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Tendon Group
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8">
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../Boundary/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Boundary
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_8" id="__nav_8_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Boundary
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Boundary/01supports/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Supports
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Boundary/02elink/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Elastic Link
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Boundary/03rlink/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Rigid Link
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Boundary/04PointSpring/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Point Spring
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Boundary/05MLFC/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Multi Linear Function
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9">
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../Load/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Load
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_9" id="__nav_9_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Load
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Load/case/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Load Case
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Load/000sw/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Self Weight
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Load/001nodal/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Nodal Load
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Load/002beam/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Beam Load
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Load/003LoadToMass/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Load To Mass
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Load/004NodalMass/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Nodal Mass
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Load/005spDisp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Specified Displacement
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Load/006floorload/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Floor Load
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10">
+        
+          
+          <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tendon
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Tendon
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Tendon/001Property/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Tendon Property
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Tendon/002Profile/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Tendon Profile
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Tendon/003Prestress/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Tendon Prestress
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11">
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../Temperature/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Temperature
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_11" id="__nav_11_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_11">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Temperature
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Temperature/001System/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ System
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Temperature/002Element/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Element
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Temperature/003Gradient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Gradient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Temperature/004Nodal/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Nodal
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Temperature/005Beamsection/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Beam Section
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_12">
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../MovingLoad/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Moving Load
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_12" id="__nav_12_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_12_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_12">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Moving Load
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MovingLoad/000Code/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Code
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MovingLoad/001Vehicle/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Vehicle
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MovingLoad/002LineLane/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Line Lane
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MovingLoad/003VHCase/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Case
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_13">
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../Settlement/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Settlement
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_13" id="__nav_13_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_13_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_13">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Settlement
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Settlement/01Group/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Group
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Settlement/02Case/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Case
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_14">
+        
+          
+          <label class="md-nav__link" for="__nav_14" id="__nav_14_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Construction Stage
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_14_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_14">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Construction Stage
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CS/001stage/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Define Construction Stage
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CS/002compsec/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Composite Section for CS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CS/003timeloads/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TIme Loads for CS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CS/004creepcoeffcs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Creep Coefficient for CS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CS/005cambercs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Camber for CS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_15">
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../AnalysisControl/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Analysis Control
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_15" id="__nav_15_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_15_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_15">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Analysis Control
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../AnalysisControl/01MainControlData/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Main Control Data
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../AnalysisControl/02Pdelta/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ PDelta
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../AnalysisControl/03Buckling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Buckling
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../AnalysisControl/04EigenValue/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ EigenValue
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../AnalysisControl/05Settlement/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Settlement
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../AnalysisControl/BoundaryChangeAssignment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Boundary Change Assignment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../View/01_view/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    View
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_17" checked="">
+        
+          
+          <label class="md-nav__link" for="__nav_17" id="__nav_17_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Results
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_17_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_17">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Results
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01_loadCombination/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Load Combination
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02_resultTable/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Result Table
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03_userResultTable/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ User Defined Table
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Result Image
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Result Image
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+      
+        <li class="md-nav__item">
+  <a href="#resultimage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Result.IMAGE
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Result.IMAGE">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example Usage
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#result-graphic" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Result Graphic
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#display-options" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Display options
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Display options">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#contour" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Contour
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#legend" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Legend
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#values" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Values
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deform" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Deform
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#results-images" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Results Images
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Results Images">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#beam-diagram" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Beam Diagram
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#displacement-contour" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Displacement Contour
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reaction-forces-moments" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reaction Forces &amp; Moments
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deformed-shape" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Deformed Shape
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#beam-forces-moments" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Beam Forces &amp; Moments
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#plate-forces-moments" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Plate Forces &amp; Moments
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#beam-stresses" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Beam Stresses
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#truss-stresses" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Truss Stresses
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vibration-mode-shapes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Vibration Mode Shapes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#buckling-mode-shapes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Buckling Mode Shapes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Utilities/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Utilities
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_19">
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../Examples/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Examples
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_19" id="__nav_19_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_19_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_19">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Examples
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Examples/ex01/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ 3-D Simple 2-Bay Frame
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Examples/ex02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Plant Structure
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Examples/ex03/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Web Opening
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Examples/ex04/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Arch Bridge
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Release%20Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Release Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Comments/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Discussion
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+      
+        <li class="md-nav__item">
+  <a href="#resultimage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Result.IMAGE
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Result.IMAGE">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example Usage
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#result-graphic" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Result Graphic
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#display-options" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Display options
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Display options">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#contour" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Contour
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#legend" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Legend
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#values" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Values
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deform" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Deform
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#results-images" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Results Images
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Results Images">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#beam-diagram" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Beam Diagram
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#displacement-contour" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Displacement Contour
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reaction-forces-moments" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reaction Forces &amp; Moments
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deformed-shape" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Deformed Shape
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#beam-forces-moments" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Beam Forces &amp; Moments
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#plate-forces-moments" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Plate Forces &amp; Moments
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#beam-stresses" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Beam Stresses
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#truss-stresses" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Truss Stresses
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vibration-mode-shapes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Vibration Mode Shapes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#buckling-mode-shapes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Buckling Mode Shapes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+  <nav class="md-path" aria-label="Navigation">
+    <ol class="md-path__list">
+      
+        
+  
+  
+    <li class="md-path__item">
+      <a href="../.." class="md-path__link">
+        
+  <span class="md-ellipsis">
+    Introduction
+  </span>
+
+      </a>
+    </li>
+  
+
+      
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../01_loadCombination/" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    Results
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<style>
+
+.md-typeset table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 8px;
+  border: none !important;
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+/* Remove all borders */
+.md-typeset th,
+.md-typeset td {
+  border: none !important;
+  padding: 0px 0px;   /* ↓ reduces height */
+  line-height: 0.7;    /* tighter rows */
+}
+
+/* Header styling (optional clean look) */
+.md-typeset th {
+  background-color: transparent;
+  font-weight: 600;
+  text-align: left;
+}
+
+
+</style>
+
+<h1 id="result-image">Result Image</h1>
+<p>Captures Result Images from MIDAS CIVIL NX.</p>
+<hr>
+<h2 id="resultimage">Result.IMAGE</h2>
+<p><strong><code>Result.IMAGE(ResultGraphic,location='',image_size = View.Image_Size , CS_StageName='',_bOutputImage=True):</code></strong>   </p>
+<p>The <code>IMAGE</code> function captures a result graphic image from CIVIL NX using a provided result graphic definition. <br>
+It allows you to control image size, output location, and optional construction stage settings.</p>
+<h4 id="parameters">Parameters</h4>
+<ul>
+<li>
+<p><code>ResultGraphic</code> (<code>ResultGraphic</code>): ResultGraphic object defining the result</p>
+</li>
+<li>
+<p><code>location</code> (<code>str</code>): Optional. File path where the image will be saved</p>
+</li>
+<li>
+<p><code>image_size</code> (<code>tuple</code>): (Width , Height) of the output image in pixels. Default to View.Image_Size</p>
+</li>
+<li>
+<p><code>CS_StageName</code> (<code>str</code>): Optional. Construction stage name</p>
+</li>
+<li>
+<p><code>_bOutputImage</code> (<code>bool</code>): Optional. Whether to return <code>Image</code> object or JSON.</p>
+</li>
+</ul>
+<h4 id="returns">Returns</h4>
+<ul>
+<li>Pillow <code>Image</code> object  or</li>
+<li>JSON dictionary</li>
+</ul>
+<h3 id="example-usage">Example Usage</h3>
+<h4 id="1-saving-displacement-contour-image">1. Saving Displacement Contour image</h4>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">midas_civil</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+
+<span class="n">ResultGraphic</span><span class="o">.</span><span class="n">Deform</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>          <span class="c1"># Set the Deform option to true</span>
+<span class="n">resG_deform</span> <span class="o">=</span> <span class="n">ResultGraphic</span><span class="o">.</span><span class="n">DisplacementContour</span><span class="p">(</span><span class="s1">'ST'</span><span class="p">,</span><span class="s1">'Dead Load'</span><span class="p">)</span>
+<span class="n">image_deform</span> <span class="o">=</span> <span class="n">Result</span><span class="o">.</span><span class="n">IMAGE</span><span class="p">(</span><span class="n">resG_deform</span><span class="p">,</span><span class="s2">"E://API//temp//deformation.jpg"</span><span class="p">)</span>
+</code></pre></div>
+<h4 id="2-saving-batch-images-of-all-construction-stages">2. Saving Batch images of all Construction stages</h4>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">midas_civil</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+
+<span class="n">View</span><span class="o">.</span><span class="n">Angle</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span> <span class="c1"># SIDE VIEW (ELEVATION)</span>
+
+<span class="n">output_path</span> <span class="o">=</span> <span class="s2">"E://API//temp//"</span>
+
+<span class="n">resG_bmd</span> <span class="o">=</span> <span class="n">ResultGraphic</span><span class="o">.</span><span class="n">BeamDiagram</span><span class="p">(</span><span class="s1">'CS'</span><span class="p">,</span><span class="s1">'Summation'</span><span class="p">,</span><span class="n">component</span><span class="o">=</span><span class="s1">'My'</span><span class="p">,</span><span class="n">fidelity</span><span class="o">=</span><span class="s1">'5 Points'</span><span class="p">,</span><span class="n">fill</span><span class="o">=</span><span class="s1">'Line'</span><span class="p">)</span>   <span class="c1"># BMD for CS Summation case</span>
+
+<span class="n">CS</span><span class="o">.</span><span class="n">STAGE</span><span class="o">.</span><span class="n">sync</span><span class="p">()</span> <span class="c1"># Get all the Construction stage data</span>
+<span class="k">for</span> <span class="n">stage</span> <span class="ow">in</span> <span class="n">CS</span><span class="o">.</span><span class="n">STAGE</span><span class="o">.</span><span class="n">stages</span><span class="p">:</span>
+    <span class="n">stg_name</span> <span class="o">=</span> <span class="n">stage</span><span class="o">.</span><span class="n">NAME</span>   <span class="c1"># CS Stage name</span>
+    <span class="n">stg_file_BMD</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">output_path</span><span class="si">}</span><span class="s2">BMD_</span><span class="si">{</span><span class="n">stg_name</span><span class="si">}</span><span class="s2">.jpg"</span>   <span class="c1"># Image file location for each stage</span>
+    <span class="n">Result</span><span class="o">.</span><span class="n">IMAGE</span><span class="p">(</span><span class="n">resG_bmd</span><span class="p">,</span><span class="n">stg_file_BMD</span><span class="p">,</span><span class="n">CS_StageName</span><span class="o">=</span><span class="n">stg_name</span><span class="p">)</span>    <span class="c1"># Image Capture command</span>
+</code></pre></div>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../../assets/separator.png" data-desc-position="bottom"><img alt="SEPARATOR" src="../../assets/separator.png"></a></p>
+<h2 id="result-graphic">Result Graphic</h2>
+<p>The <code>ResultGraphic</code> class provides utilities to define and generate <strong>result visualization settings</strong> and <strong>JSON data</strong> for CIVIL NX.</p>
+<p>It includes: <br>
+- Display configuration (Contour, Legend, Values, Deform) <br>
+- Result graphic generators (Beam Diagram, Displacement Contour, etc.)   </p>
+<hr>
+<h2 id="display-options">Display options</h2>
+<p>These options can be defined before ResultGraphic definition to configure the result image display.</p>
+<h3 id="contour">Contour</h3>
+<p>Controls contour visualization.</p>
+<h4 id="parameters_1">Parameters</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>use</code></td>
+<td>bool</td>
+<td>True</td>
+<td>Enable/disable contour</td>
+</tr>
+<tr>
+<td><code>num_color</code></td>
+<td>int</td>
+<td>12</td>
+<td>Number of contour colors (6, 12, 18, 24)</td>
+</tr>
+<tr>
+<td><code>color</code></td>
+<td>str</td>
+<td>"rgb"</td>
+<td>Color scheme (<code>"vrgb"</code>, <code>"rgb"</code>, <code>"rbg"</code>, <code>"gray scaled"</code>)</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">midas_civil</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+
+<span class="c1"># Single definition</span>
+<span class="n">ResultGraphic</span><span class="o">.</span><span class="n">Contour</span><span class="p">(</span> <span class="n">use</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">num_color</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">'rgb'</span><span class="p">)</span>
+
+<span class="c1">#OR Individual definition</span>
+<span class="n">ResultGraphic</span><span class="o">.</span><span class="n">Contour</span><span class="o">.</span><span class="n">use</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">ResultGraphic</span><span class="o">.</span><span class="n">Contour</span><span class="o">.</span><span class="n">num_color</span> <span class="o">=</span> <span class="mi">12</span>
+<span class="n">ResultGraphic</span><span class="o">.</span><span class="n">Contour</span><span class="o">.</span><span class="n">color</span> <span class="o">=</span> <span class="s1">'rgb</span>
+</code></pre></div>
+<hr>
+<h3 id="legend">Legend</h3>
+<p>Controls legend display.</p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>use</code></td>
+<td>bool</td>
+<td>True</td>
+<td>Show/hide legend</td>
+</tr>
+<tr>
+<td><code>position</code></td>
+<td>str</td>
+<td>right</td>
+<td>left/right</td>
+</tr>
+<tr>
+<td><code>bExponent</code></td>
+<td>bool</td>
+<td>False</td>
+<td>Use exponential format</td>
+</tr>
+<tr>
+<td><code>num_decimal</code></td>
+<td>int</td>
+<td>2</td>
+<td>Decimal precision</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">midas_civil</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+
+<span class="c1"># Single definition</span>
+<span class="n">ResultGraphic</span><span class="o">.</span><span class="n">Legend</span><span class="p">(</span><span class="n">use</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">position</span> <span class="o">=</span> <span class="s1">'right'</span><span class="p">,</span><span class="n">bExponent</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span><span class="n">num_decimal</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="c1">#OR Individual definition</span>
+<span class="n">ResultGraphic</span><span class="o">.</span><span class="n">Legend</span><span class="o">.</span><span class="n">use</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">ResultGraphic</span><span class="o">.</span><span class="n">Legend</span><span class="o">.</span><span class="n">position</span> <span class="o">=</span> <span class="s1">'right</span>
+<span class="n">ResultGraphic</span><span class="o">.</span><span class="n">Legend</span><span class="o">.</span><span class="n">bExponent</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="n">ResultGraphic</span><span class="o">.</span><span class="n">Legend</span><span class="o">.</span><span class="n">num_decimal</span> <span class="o">=</span> <span class="mi">2</span>
+</code></pre></div>
+<hr>
+<h3 id="values">Values</h3>
+<p>Controls value display.</p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>use</code></td>
+<td>bool</td>
+<td>False</td>
+<td>Show/hide values</td>
+</tr>
+<tr>
+<td><code>bExpo</code></td>
+<td>bool</td>
+<td>False</td>
+<td>Use exponential format</td>
+</tr>
+<tr>
+<td><code>num_decimal</code></td>
+<td>int</td>
+<td>2</td>
+<td>Decimal precision</td>
+</tr>
+<tr>
+<td><code>orient_angle</code></td>
+<td>int</td>
+<td>0</td>
+<td>Orientation angle (0–90° , 15° increment)</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">midas_civil</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+
+<span class="c1"># Single definition</span>
+<span class="n">ResultGraphic</span><span class="o">.</span><span class="n">Values</span><span class="p">(</span><span class="n">use</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">bExpo</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">num_decimal</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span> <span class="n">orient_angle</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
+
+<span class="c1">#OR Individual definition</span>
+<span class="n">ResultGraphic</span><span class="o">.</span><span class="n">Values</span><span class="o">.</span><span class="n">use</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">ResultGraphic</span><span class="o">.</span><span class="n">Values</span><span class="o">.</span><span class="n">bExpo</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="n">ResultGraphic</span><span class="o">.</span><span class="n">Values</span><span class="o">.</span><span class="n">num_decimal</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">ResultGraphic</span><span class="o">.</span><span class="n">Values</span><span class="o">.</span><span class="n">orient_angle</span> <span class="o">=</span> <span class="mi">0</span>
+</code></pre></div>
+<hr>
+<h3 id="deform">Deform</h3>
+<p>Controls deformation display.</p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>use</code></td>
+<td>bool</td>
+<td>False</td>
+<td>Enable deformation display</td>
+</tr>
+<tr>
+<td><code>scale</code></td>
+<td>float</td>
+<td>1.0</td>
+<td>Scale factor</td>
+</tr>
+<tr>
+<td><code>bRealDeform</code></td>
+<td>bool</td>
+<td>False</td>
+<td>Real deformation vs nodal</td>
+</tr>
+<tr>
+<td><code>bRealDisp</code></td>
+<td>bool</td>
+<td>False</td>
+<td>Show real displacement</td>
+</tr>
+<tr>
+<td><code>bRelativeDisp</code></td>
+<td>bool</td>
+<td>False</td>
+<td>Relative displacement</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">midas_civil</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+
+<span class="c1"># Single definition</span>
+<span class="n">ResultGraphic</span><span class="o">.</span><span class="n">Deform</span><span class="p">(</span> <span class="n">use</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">scale</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">,</span><span class="n">bRealDeform</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">bRealDisp</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">bRelativeDisp</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
+
+<span class="c1">#OR Individual definition</span>
+<span class="n">ResultGraphic</span><span class="o">.</span><span class="n">Deform</span><span class="o">.</span><span class="n">use</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">ResultGraphic</span><span class="o">.</span><span class="n">Deform</span><span class="o">.</span><span class="n">scale</span> <span class="o">=</span> <span class="mf">1.0</span>
+<span class="n">ResultGraphic</span><span class="o">.</span><span class="n">Deform</span><span class="o">.</span><span class="n">bRealDeform</span> <span class="o">=</span> <span class="kc">False</span>
+</code></pre></div>
+<hr>
+<h2 id="results-images">Results Images</h2>
+<p>Parameters common in below Result Graphic generators.   </p>
+<ul>
+<li>
+<p><code>lcase_type</code> (<code>str</code>): Load case type. Options: <code>"ST"</code>, <code>"CS"</code>, <code>"RS"</code>, <code>"TH"</code>, <code>"MV"</code>, <code>"SM"</code>, <code>"CB"</code></p>
+</li>
+<li>
+<p><code>lcase_name</code> (<code>str</code>): Load case or combination name. Example: <code>"Dead Load"</code></p>
+</li>
+<li>
+<p><code>lcase_minmax</code> (<code>str</code>): Load type. Options: <code>"Max"</code>, <code>"Min"</code>, <code>"All"</code> (Default: <code>"Max"</code>)</p>
+</li>
+</ul>
+<h3 id="beam-diagram">Beam Diagram</h3>
+<p><strong><code>ResultGraphic.BeamDiagram(lcase_type:str, lcase_name:str, lcase_minmax:str="Max", part:str="total", component:str="My", fidelity:str="Exact", fill:str="Solid", scale:float=1.0)</code></strong>   </p>
+<p>Generates JSON for Beam Diagrams Result Graphic.  </p>
+<ul>
+<li>
+<p><code>part</code> (<code>str</code>): Component Part. Options: <code>"total"</code>, <code>"part1"</code>, <code>"part2"</code> (Default: <code>"total"</code>)</p>
+</li>
+<li>
+<p><code>component</code> (<code>str</code>): Component Name. Options: <code>"Fx"</code>, <code>"Fy"</code>, <code>"Fz"</code>, <code>"Mx"</code>, <code>"My"</code>, <code>"Mz"</code> (Default: <code>"My"</code>)</p>
+</li>
+<li>
+<p><code>fidelity</code> (<code>str</code>): Fidelity of the diagram. Options: <code>"Exact"</code>, <code>"5 Points"</code>, ... (Default: <code>"Exact"</code>)</p>
+</li>
+<li>
+<p><code>fill</code> (<code>str</code>): Fill of Diagram. Options: <code>"No"</code>, <code>"Line"</code>, <code>"Solid"</code> (Default: <code>"Solid"</code>)</p>
+</li>
+<li>
+<p><code>scale</code> (<code>float</code>): Scale of Diagram (Default: <code>1.0</code>)</p>
+</li>
+</ul>
+<hr>
+<h3 id="displacement-contour">Displacement Contour</h3>
+<p><strong><code>ResultGraphic.DisplacementContour(lcase_type:str, lcase_name:str, lcase_minmax:str="Max", component:str="DXYZ",th_option:str="Displacement", opt_local_check:bool=False)</code></strong></p>
+<p>Generates JSON for Displacement Contour Result Graphic.  </p>
+<ul>
+<li>
+<p><code>component</code> (<code>str</code>): Component Name. Options: <code>"DX"</code>, <code>"DY"</code>, <code>"DZ"</code>, <code>"DXY"</code>, <code>"DYZ"</code>, <code>"DXZ"</code>, <code>"DXYZ"</code>, <code>"RX"</code>, <code>"RY"</code>, <code>"RZ"</code>, <code>"RW"</code> (Default: <code>"DXYZ"</code>)  </p>
+</li>
+<li>
+<p><code>th_option</code> (<code>str</code>): Time History Function Type. Options: <code>"Displacement"</code>, <code>"Velocity"</code>, <code>"Acceleration"</code> (Default: <code>"Displacement"</code>)  </p>
+</li>
+<li>
+<p><code>opt_local_check</code> (<code>bool</code>): Use Node Local Axis (<code>True</code>) or Global Coord System (<code>False</code>) (Default: <code>False</code>)  </p>
+</li>
+</ul>
+<hr>
+<h3 id="reaction-forces-moments">Reaction Forces &amp; Moments</h3>
+<p><strong><code>ResultGraphic.ReactionForcesMoments(lcase_type:str, lcase_name:str, lcase_minmax:str="Max", component:str="FXYZ", opt_local_check:bool=False, arrow_scale_factor:float=1.0)</code></strong></p>
+<p>Generates JSON for Reaction Forces and Moments Result Graphic.  </p>
+<ul>
+<li>
+<p><code>component</code> (<code>str</code>): Component Name. Options: <code>"FX"</code>, <code>"FY"</code>, <code>"FZ"</code>, <code>"FXYZ"</code>, <code>"MX"</code>, <code>"MY"</code>, <code>"MZ"</code>, <code>"MXYZ"</code>, <code>"Mb"</code> (Default: <code>"FXYZ"</code>)</p>
+</li>
+<li>
+<p><code>opt_local_check</code> (<code>bool</code>): Use Node Local Axis (<code>True</code>) or Global Coord System (<code>False</code>) (Default: <code>False</code>)</p>
+</li>
+<li>
+<p><code>arrow_scale_factor</code> (<code>float</code>): Scale factor for reaction arrows (Default: <code>1.0</code>)</p>
+</li>
+</ul>
+<hr>
+<h3 id="deformed-shape">Deformed Shape</h3>
+<p><strong><code>ResultGraphic.DeformedShape(lcase_type:str, lcase_name:str, lcase_minmax:str="Max", component:str="DZ", th_option:str="Displacement", opt_local_check:bool=False)</code></strong></p>
+<p>Generates JSON for Deformed Shape Result Graphic.  </p>
+<ul>
+<li>
+<p><code>component</code> (<code>str</code>): Component Name. Options: <code>"DX"</code>, <code>"DY"</code>, <code>"DZ"</code>, <code>"DXY"</code>, <code>"DYZ"</code>, <code>"DXZ"</code>, <code>"DXYZ"</code> (Default: <code>"DZ"</code>)</p>
+</li>
+<li>
+<p><code>th_option</code> (<code>str</code>): Time History Function Type. Options: <code>"Displacement"</code>, <code>"Velocity"</code>, <code>"Acceleration"</code> (Default: <code>"Displacement"</code>)</p>
+</li>
+<li>
+<p><code>opt_local_check</code> (<code>bool</code>): Use Node Local Axis (<code>True</code>) or Global Coord System (<code>False</code>) (Default: <code>False</code>)</p>
+</li>
+</ul>
+<hr>
+<h3 id="beam-forces-moments">Beam Forces &amp; Moments</h3>
+<p><strong><code>ResultGraphic.BeamForcesMoments(lcase_type:str, lcase_name:str, lcase_minmax:str="Max", part:str="total", component:str="Fx")</code></strong></p>
+<p>Generates JSON for Beam Forces &amp; Moments Result Graphic.  </p>
+<ul>
+<li>
+<p><code>part</code> (<code>str</code>): Component Part. Options: <code>"total"</code>, ... (Default: <code>"total"</code>)</p>
+</li>
+<li>
+<p><code>component</code> (<code>str</code>): Component Name. Options: <code>"Fx"</code>, <code>"Fy"</code>, <code>"Fz"</code>, <code>"Mx"</code>, <code>"My"</code>, <code>"Mz"</code> (Default: <code>"Fx"</code>)</p>
+</li>
+</ul>
+<hr>
+<h3 id="plate-forces-moments">Plate Forces &amp; Moments</h3>
+<p><strong><code>ResultGraphic.PlateForcesMoments(lcase_type:str, lcase_name:str, lcase_minmax:str="Max", component:str="MMax", local_ucs_type:str="Local", avg_nodal_type:str="Element", wood_armer_pos:str="Top", wood_armer_dir:str="Dir.1", vector_opt_pos:bool=True, vector_opt_neg:bool=False)</code></strong></p>
+<p>Generates JSON for Plate Forces &amp; Moments Result Graphic.  </p>
+<ul>
+<li>
+<p><code>component</code> (<code>str</code>): Component. Options: <code>"Fxx"</code>, <code>"Mxx"</code>, <code>"MMax"</code>, <code>"WoodArmerMoment"</code>, <code>"Mvector"</code> (Default: <code>"MMax"</code>)</p>
+</li>
+<li>
+<p><code>local_ucs_type</code> (<code>str</code>): Coordinate System. Options: <code>"Local"</code>, <code>"UCS"</code> (Default: <code>"Local"</code>)</p>
+</li>
+<li>
+<p><code>avg_nodal_type</code> (<code>str</code>): Avg. Calculation. Options: <code>"Element"</code>, <code>"Avg.Nodal"</code> (Default: <code>"Element"</code>)</p>
+</li>
+<li>
+<p><code>wood_armer_pos</code> (<code>str</code>): For <code>"WoodArmerMoment"</code>. Options: <code>"Top"</code>, <code>"Bottom"</code> (Default: <code>"Top"</code>)</p>
+</li>
+<li>
+<p><code>wood_armer_dir</code> (<code>str</code>): For <code>"WoodArmerMoment"</code>. Options: <code>"Dir.1"</code>, <code>"Dir.2"</code> (Default: <code>"Dir.1"</code>)</p>
+</li>
+<li>
+<p><code>vector_opt_pos</code> (<code>bool</code>): For <code>"Mvector"</code>/<code>"Fvector"</code>, display positive (Default: <code>True</code>)</p>
+</li>
+<li>
+<p><code>vector_opt_neg</code> (<code>bool</code>): For <code>"Mvector"</code>/<code>"Fvector"</code>, display negative (Default: <code>False</code>)</p>
+</li>
+</ul>
+<hr>
+<h3 id="beam-stresses">Beam Stresses</h3>
+<p><strong><code>ResultGraphic.BeamStresses(lcase_type:str, lcase_name:str, part:str="Total", component:str="Combined", comp_sub:str="Maximum", output_loc:str="Max",                 comp_7th_dof:str="Combined(Ssy)")</code></strong></p>
+<p>Generates JSON for Beam Stresses Result Graphic.  </p>
+<ul>
+<li>
+<p><code>part</code> (<code>str</code>): Part Name (Default: <code>"Total"</code>)</p>
+</li>
+<li>
+<p><code>component</code> (<code>str</code>): Component. Options: <code>"Sax"</code>, <code>"Ssy"</code>, <code>"Ssz"</code>, <code>"Sby"</code>, <code>"Sbz"</code>, <code>"Combined"</code>, <code>"7thDOF"</code> (Default: <code>"Combined"</code>)</p>
+</li>
+<li>
+<p><code>comp_sub</code> (<code>str</code>): Sub-component. Options: <code>"Maximum"</code>, <code>"1(-y,+z)"</code>, ... (Default: <code>"Maximum"</code>)</p>
+</li>
+<li>
+<p><code>output_loc</code> (<code>str</code>): Output Section Location. Options: <code>"Max"</code>, <code>"All"</code> (Default: <code>"Max"</code>)</p>
+</li>
+<li>
+<p><code>comp_7th_dof</code> (<code>str</code>): 7th DOF Component. Options: <code>"Sax(Warping)"</code>, <code>"Combined(Ssy)"</code>, ... (Default: <code>"Combined(Ssy)"</code>)</p>
+</li>
+</ul>
+<hr>
+<h3 id="truss-stresses">Truss Stresses</h3>
+<p><strong><code>ResultGraphic.TrussStresses(lcase_type:str, lcase_name:str, component:str="All", output_loc:str="All")</code></strong></p>
+<p>Generates JSON for Truss Stresses Result Graphic.  </p>
+<ul>
+<li>
+<p><code>component</code> (<code>str</code>): Component. Options: <code>"All"</code>, <code>"Tens."</code>, <code>"Comp."</code> (Default: <code>"All"</code>)</p>
+</li>
+<li>
+<p><code>output_loc</code> (<code>str</code>): Output Section Location. Options: <code>"I"</code>, <code>"J"</code>, <code>"Max"</code>, <code>"All"</code> (Default: <code>"All"</code>)</p>
+</li>
+</ul>
+<hr>
+<h3 id="vibration-mode-shapes">Vibration Mode Shapes</h3>
+<p><strong><code>ResultGraphic.VibrationModeShapes(mode_name:str, component:str="Md-XYZ")</code></strong></p>
+<p>Generates JSON for Vibration Mode Shapes Result Graphic.  </p>
+<ul>
+<li>
+<p><code>mode_name</code> (<code>str</code>): Mode Name. Example: <code>"Mode 6"</code></p>
+</li>
+<li>
+<p><code>component</code> (<code>str</code>): Component Name. Options: <code>"Md-X"</code>, <code>"Md-Y"</code>, <code>"Md-Z"</code>, <code>"Md-XY"</code>, <code>"Md-YZ"</code>, <code>"Md-XZ"</code>, <code>"Md-XYZ"</code> (Default: <code>"Md-XYZ"</code>) </p>
+</li>
+</ul>
+<hr>
+<h3 id="buckling-mode-shapes">Buckling Mode Shapes</h3>
+<p><strong><code>ResultGraphic.BucklingModeShapes(mode_name:str, component:str="Md-XYZ")</code></strong></p>
+<p>Generates JSON for Buckling Mode Shapes Result Graphic.  </p>
+<ul>
+<li>
+<p><code>mode_name</code> (<code>str</code>): Mode Name. Example: <code>"Mode 2 "</code></p>
+</li>
+<li>
+<p><code>component</code> (<code>str</code>): Component Name. Options: <code>"Md-X"</code>, <code>"Md-Y"</code>, <code>"Md-Z"</code>, <code>"Md-XY"</code>, <code>"Md-YZ"</code>, <code>"Md-XZ"</code>, <code>"Md-XYZ"</code> (Default: <code>"Md-XYZ"</code>)</p>
+</li>
+</ul>
+<hr>
+<hr>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden="">
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"></path></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Created by Midas India :  MIDAS CIVIL NX - Python interface
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.indexes", "navigation.instant", "toc.follow", "navigation.top", "search.suggest", "navigation.path", "content.code.copy", "header.autohide", "toc.follow", "search.suggest", "header.autohide", "announce.dismiss"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  
+<script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(()=>{ lightbox.reload(); });
+</script></body></html>
