@@ -43,7 +43,7 @@ To import the package use the import *
 
 ```py
 from midas_civil import *   # FOR CIVIL NX
-from midas_gen import *   # FOR CIVIL NX
+from midas_gen import *   # FOR GEN NX
 ```
 
 !!! info "NOTE"
