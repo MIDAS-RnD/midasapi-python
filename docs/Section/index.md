@@ -91,12 +91,24 @@ Creates offset parameters for sections with specified reference point and offset
 
 #### Parameters
 * `OffsetPoint (default='CC')`: Offset reference point ('CC', 'CT', etc.)
-* `CenterLocation (default=0)`: Center location parameter
-* `HOffset (default=0)`: Horizontal offset value
-* `HOffOpt (default=0)`: Horizontal offset option
-* `VOffset (default=0)`: Vertical offset value
-* `VOffOpt (default=0)`: Vertical offset option
-* `UsrOffOpt (default=0)`: User offset option
+* `CenterLocation (default=0)`: Center location parameter     
+&emsp;&emsp;&emsp;&emsp;
+0 : Centroid <font color="orange">&nbsp;&nbsp;|&nbsp;&nbsp;</font> 
+1 : Centre of Section   
+* `HOffset (default=0)`: Horizontal offset value    
+* `HOffOpt (default=0)`: Horizontal offset option    
+&emsp;&emsp;&emsp;&emsp;
+0 : Extreme fiber <font color="orange">&nbsp;&nbsp;|&nbsp;&nbsp;</font> 
+1 : User   
+* `VOffset (default=0)`: Vertical offset value    
+* `VOffOpt (default=0)`: Vertical offset option    
+&emsp;&emsp;&emsp;&emsp;
+0 : Extreme fiber <font color="orange">&nbsp;&nbsp;|&nbsp;&nbsp;</font> 
+1 : User    
+* `UsrOffOpt (default=0)`: User offset option    
+&emsp;&emsp;&emsp;&emsp;
+0 : Centroid <font color="orange">&nbsp;&nbsp;|&nbsp;&nbsp;</font> 
+1 : Centre of Section    
 
 ```py
 # Create center-center offset

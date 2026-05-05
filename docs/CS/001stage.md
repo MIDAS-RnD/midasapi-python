@@ -115,13 +115,14 @@ CS.STAGE.delete()
 for j in range(6):
     for i in range(2):
         Node(i*10,j*2,0)
-        Node.create()
+Node.create()
 j = 0
 for k in range(6):   
     for i in range(1,2):
         Element.Beam(i +j,i+1 +j)
-        Element.create()
-    j = j + 2
+    j = j + 2   
+    
+Element.create()
 
 
 # Create structural groups
@@ -148,13 +149,15 @@ CS.STAGE.create()
 for j in range(6):
     for i in range(2):
         Node(i*10,j*2,0)
-        Node.create()
+Node.create()
+
 j = 0
 for k in range(6):   
     for i in range(1,2):
         Element.Beam(i +j,i+1 +j)
-        Element.create()
-    j = j + 2
+    j = j + 2        
+
+Element.create()
 
 
 # Create structural groups
@@ -215,13 +218,14 @@ CS.STAGE.create()
 for j in range(6):
     for i in range(2):
         Node(i*10,j*2,0)
-        Node.create()
+Node.create()
 j = 0
 for k in range(6):   
     for i in range(1,2):
         Element.Beam(i +j,i+1 +j)
-        Element.create()
-    j = j + 2
+    j = j + 2    
+    
+Element.create()
 
 
 # Create structural groups
@@ -239,8 +243,7 @@ Group.create()
 
 #Create Stage
 CS.STAGE("Stage 1",7,"CS1",10,"A","BG1","DEFORMED","A","Load Group 1","FIRST","A")
-CS.STAGE("Stage 2",20,"CS2",10,"A","BG2","DEFORMED","A",sr_stage=True, ad_stage=True, load_in=True, nl=6, addstp=[1, 2, 3])
-CS.STAGE.create
+CS.STAGE("Stage 2",20,"CS2",10,"A","BG2","DEFORMED","A",sv_result=True, sv_step=True, load_in=True, nl=6, addstp=[1, 2, 3])
 CS.STAGE.create()
 ```
 

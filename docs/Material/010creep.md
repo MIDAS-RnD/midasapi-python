@@ -79,7 +79,7 @@ CreepShrinkage.delete()
     #### Examples
     ```py
     # Create IRC:112-2011 creep and shrinkage properties
-    cs1 = CreepShrinkage.IRC("IRC_M30_2011", code_year=2011, fck=30, notional_size=150, relative_humidity=75, age_shrinkage=7, type_cement='R', id=1)
+    cs1 = CreepShrinkage.IRC("IRC_M30_2011", code_year=2011, fck=30, notional_size=150, relative_humidity=75, age_shrinkage=7, type_cement='RS', id=1)
 
     # Create IRC:18-2000 creep and shrinkage properties
     cs2 = CreepShrinkage.IRC("IRC_M25_2000", code_year=2000, fck=25, notional_size=200, relative_humidity=70, age_shrinkage=3, type_cement='NR', id=2)
