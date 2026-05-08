@@ -1,5 +1,43 @@
 # Release Notes
 
+## Version 1.6.3
+Released on - 5 May 2026
+
+#### What's New
+* `order` option in `elemsInGroup` and `nodesInGroup` to sort the output.   
+```py
+elemsInGroup('StrGroupName',order='XYZ')
+```
+* Moving Load Cases option for KSCELSD15, Korea, AASHTO Standard, AASHTO LRFD, PENNDOT, Taiwan, Canada, Australia, Russia are added.   
+* Added `bDistOutput` in nodesInRadius function to obtain tuple (node IDs , distance) from the given point location.   
+* Added `Offset.LC()`, `Offset.LT()`, `Offset.LB()`, `Offset.RC()`, `Offset.RB()`, `Offset.RT()` functions in Offset.   
+* Added `reverse` parameter in LineToPlate function.      
+
+
+#### Fixes   
+* Loads with all zero inputs (ie. Nodal force with FX,FY,FZ,MX,MY,MZ =0) are discarded.   
+
+
+## Version 1.6.2
+Released on - 20 April 2026
+
+#### What's New
+* View.Display() option to view loads in the viewport. 
+* Added CS.STAGE.clear() command.   
+* STEP_INDEX parameter in CS.STAGE for easier step selection in result image/table.   
+* CS_StepIndex parameter in RESULT.IMAGE command.      
+```py
+for stage in CS.STAGE.stages:
+    stg_file_BMD = f"SFD_{stage.NAME}.jpg"
+    Result.IMAGE(resG_bmd, stg_file_BMD, CS_StageName=stg_name,
+        CS_StepIndex=stage.STEP_INDEX[-1]  									# Use last step index
+    )
+```
+
+#### Fixes   
+* Model.create() will now create floor loads.   
+
+
 
 ## Version 1.6.1
 Released on - 15 April 2026
