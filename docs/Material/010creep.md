@@ -51,23 +51,23 @@ CreepShrinkage.delete()
 ??? sumit_block "IRC Code (18 & 112)"
 
     ### IRC
-    **<font color="green">`CreepShrinkage.IRC(name='', code_year=2011, fck=0, notional_size=1, relative_humidity=70, age_shrinkage=3, type_cement='NR', id =None)`</font>**
+    **<font color="green">`CreepShrinkage.IRC(name='', code_year=2011, fck=0, notional_size=1, relative_humidity=70, age_shrinkage=3, type_cement='NR', type_aggregate='Basalt', id =None)`</font>**
 
     Creates IRC standard creep and shrinkage properties.
 
     #### Parameters
     * `name (str)`: Property name
-    * `code_year (int, optional)`: The year of the IRC code. Can be 2000, 2011 or 2020. Defaults to 2000.     
-        **2000** : IRC 18 (2000)    
-        **2011** : IRC 112 (2011)    
-        **2020** : IRC 112 (2020)    
-    * `fck (float)`: 28-day characteristic compressive strength
-    * `notional_size (float, optional)`: The notional size of the member. Defaults to 1.
-    * `relative_humidity (float, optional)`: Relative humidity (40-99%). Defaults to 70.
-    * `age_shrinkage (int, optional)`: Age at start of shrinkage (days). Defaults to 3.
-    * `type_cement (str, optional)`: Type of cement ('SL'= Slow Setting cement, 'NR'= Normal cement, 'RS'=Rapid hardening cement). Only for IRC:112-2011 and IRC:112-2020. Defaults to 'NR'.     
-    * `type_aggregate (str, optional)`: Type of aggregate ('Basalt' , 'Quartzite' , 'Limestone' , 'Sandstone'). Only for IRC:112-2020. Defaults to 'Basalt'.    
-    * `id (int, optional)`: Manual ID assignment. Defaults to 0.
+    * `code_year (int, optional)`: The year of the IRC code. Can be 2000, 2011 or 2020. Defaults to 2000.    
+        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;**2000** : IRC 18 (2000)    
+        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;**2011** : IRC 112 (2011)    
+        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;**2020** : IRC 112 (2020)    
+    * `fck (float)`: 28-day characteristic compressive strength      
+    * `notional_size (float, optional)`: The notional size of the member. Defaults to 1.   
+    * `relative_humidity (float, optional)`: Relative humidity (40-99%). Defaults to 70.   
+    * `age_shrinkage (int, optional)`: Age at start of shrinkage (days). Defaults to 3.   
+    * `type_cement (str, optional)`: Type of cement ('SL'= Slow Setting cement, 'NR'= Normal cement, 'RS'=Rapid hardening cement). Only for IRC:112-2011 and IRC:112-2020. Defaults to 'NR'.      
+    * `type_aggregate (str, optional)`: Type of aggregate ('Basalt' , 'Quartzite' , 'Limestone' , 'Sandstone'). Only for IRC:112-2020. Defaults to 'Basalt'.      
+    * `id (int, optional)`: Manual ID assignment. Defaults to 0.   
 
     #### Object Attributes
     * `ID` (int): The ID of the creep/shrinkage definition.
