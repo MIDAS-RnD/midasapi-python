@@ -84,28 +84,28 @@ Boundary.Support.create()
 #Elastic Link
 
 #Create General Elastic Link    
-Boundary.ElasticLink(1, 13, "", 1, "GEN", 1000, 1000, 1000, 100, 100, 100)
-Boundary.ElasticLink(2, 14, "", 2, "GEN", 1000, 1000, 1000, 100, 100, 100)
+Boundary.ElasticLink(1, 13, "","GEN", 1000, 1000, 1000, 100, 100, 100)
+Boundary.ElasticLink(2, 14, "","GEN", 1000, 1000, 1000, 100, 100, 100)
 
 #Rigid Link
  
-Boundary.ElasticLink(3, 15, "", 3, "RIGID")
+Boundary.ElasticLink(3, 15, "","RIGID")
 
 #Create Saddle type Link    
 
-Boundary.ElasticLink(4, 16, "", 4, "SADDLE")
+Boundary.ElasticLink(4, 16, "","SADDLE")
 
 #Tension-Onl & Compression-Only Link    
-Boundary.ElasticLink(5, 17, "", 5, "TENS",500)
-Boundary.ElasticLink(6, 18, "", 6, "COMP",600)
+Boundary.ElasticLink(5, 17, "", "TENS",500)
+Boundary.ElasticLink(6, 18, "", "COMP",600)
 
 
 
 # Rail track interaction link
-Boundary.ElasticLink(7, 19, "", 7, "RAIL INTERACT", dir="Dy", func_id=1)
+Boundary.ElasticLink(7, 19, "","RAIL INTERACT", dir="Dy", func_id=1)
 
 #Multi-linear link
-Boundary.ElasticLink(8, 20, "", 8, "MULTI LINEAR", dir="Dy", func_id=1)
+Boundary.ElasticLink(8, 20, "","MULTI LINEAR", dir="Dy", func_id=1)
 # Note: Before running this code, the Rail Interaction & Force-Deformation function must be created in Civil NX to avoid any errors.
 
 #Create all the Elastic link
@@ -114,8 +114,8 @@ Boundary.ElasticLink.create()
 
 #Rigid Link
 
-Boundary.RigidLink(9,[21],"",1,111111)
-Boundary.RigidLink(10,[22,24],"",2,111111)
+Boundary.RigidLink(9,[21],"",111111)
+Boundary.RigidLink(10,[22,24],"",111111)
 
 Boundary.RigidLink.create()
 
