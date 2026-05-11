@@ -57,12 +57,16 @@ CreepShrinkage.delete()
 
     #### Parameters
     * `name (str)`: Property name
-    * `code_year (int, optional)`: The year of the IRC code. Can be 2000 or 2011. Defaults to 2011.
+    * `code_year (int, optional)`: The year of the IRC code. Can be 2000, 2011 or 2020. Defaults to 2000.     
+        **2000** : IRC 18 (2000)    
+        **2011** : IRC 112 (2011)    
+        **2020** : IRC 112 (2020)    
     * `fck (float)`: 28-day characteristic compressive strength
     * `notional_size (float, optional)`: The notional size of the member. Defaults to 1.
     * `relative_humidity (float, optional)`: Relative humidity (40-99%). Defaults to 70.
     * `age_shrinkage (int, optional)`: Age at start of shrinkage (days). Defaults to 3.
-    * `type_cement (str, optional)`: Type of cement ('SL'= Slow Setting cement, 'NR'= Normal cement, 'RS'=Rapid hardening cement). Only for IRC:112-2011. Defaults to 'NR'.
+    * `type_cement (str, optional)`: Type of cement ('SL'= Slow Setting cement, 'NR'= Normal cement, 'RS'=Rapid hardening cement). Only for IRC:112-2011 and IRC:112-2020. Defaults to 'NR'.     
+    * `type_aggregate (str, optional)`: Type of aggregate ('Basalt' , 'Quartzite' , 'Limestone' , 'Sandstone'). Only for IRC:112-2020. Defaults to 'Basalt'.    
     * `id (int, optional)`: Manual ID assignment. Defaults to 0.
 
     #### Object Attributes
@@ -73,16 +77,22 @@ CreepShrinkage.delete()
       * `STR` (float): Characteristic compressive cylinder strength fck.
       * `HU` (float): Relative humidity (%).
       * `AGE` (float): Age of concrete at beginning of shrinkage (days).
-      * `MSIZE` (float): Notional size of member.
-      * `CTYPE` (str): Type of cement (e.g., "NR").
+      * `MSIZE` (float): Notional size of member.   
+      * `CTYPE` (str): Type of cement (e.g., "NR").   
+      * `TYPEOFAFFR` (str): Type of aggregate (e.g., 0 : Basalt , 1 : Quartzite , 2 : Limestone , 3 : Sandstone).   
 
     #### Examples
     ```py
+    # Create IRC:112-2020 creep and shrinkage properties
+    cs1 = CreepShrinkage.IRC("IRC_M30_2020", code_year=2020, fck=30, notional_size=150, relative_humidity=75, age_shrinkage=7, type_cement='RS', type_aggregate = 'Basalt', id=1)
+
     # Create IRC:112-2011 creep and shrinkage properties
-    cs1 = CreepShrinkage.IRC("IRC_M30_2011", code_year=2011, fck=30, notional_size=150, relative_humidity=75, age_shrinkage=7, type_cement='RS', id=1)
+    cs2 = CreepShrinkage.IRC("IRC_M30_2011", code_year=2011, fck=30, notional_size=150, relative_humidity=75, age_shrinkage=7, type_cement='RS', id=2)
 
     # Create IRC:18-2000 creep and shrinkage properties
-    cs2 = CreepShrinkage.IRC("IRC_M25_2000", code_year=2000, fck=25, notional_size=200, relative_humidity=70, age_shrinkage=3, type_cement='NR', id=2)
+    cs3 = CreepShrinkage.IRC("IRC_M25_2000", code_year=2000, fck=25, notional_size=200, relative_humidity=70, age_shrinkage=3, type_cement='NR', id=3)
+
+    
 
     CreepShrinkage.create()
     ```
