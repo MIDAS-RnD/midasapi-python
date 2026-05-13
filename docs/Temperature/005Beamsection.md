@@ -4,30 +4,24 @@ A nested class within Temperature used to create beam section temperature loads 
 
 ## Constructor
 ---
-**<font color="green">`Temperature.BeamSection(element, lcname, section_type='General', type='Element', group="", id=None, dir='LZ', ref_pos='Centroid', val_b=0, val_h1=0, val_h2=0, val_t1=0, val_t2=0, elast=None, thermal=None, psc_ref=0, psc_opt_b=1, psc_opt_h1=3, psc_opt_h2=3)`</font>**
+**<font color="green">`Temperature.BeamSection(element, lcname, section_type='General', type='Element', group="", dir='LZ', ref_pos='Centroid', value=None, psc_ref='Top', elast=None, thermal=None, id=None)`</font>**
 
 Creates beam section temperature loads that apply temperature variations across beam cross-sections.
 
 ### Parameters
-* `element`: Element ID to apply the load (Required)
+* `element`: Single Element ID or list of Element IDs to apply the load (Required)
 * `lcname`: Load case name (Required)
-* `section_type (default='General')`: 'General' or 'PSC'
-* `type (default='Element')`: 'Element' or 'Input'
+* `section_type (default='General')`: `'General'` or `'PSC'`
+* `type (default='Element')`: `'Element'` or `'Input'`
 * `group (default="")`: Load group name
+* `dir (default='LZ')`: Direction, `'LY'` or `'LZ'`
+* `ref_pos (default='Centroid')`: Reference Position, `'Centroid'`, `'Top'`, or `'Bot'`
+* `value (default=None)`: List of temperature profile rows. Each row is `[val_b, val_h1, val_h2, val_t1, val_t2]`. Defaults to `[[0, 0, 0, 0, 0]]` if not provided.
+* `psc_ref (default='Top')`: PSC reference side, `'Top'` or `'Bot'` *(PSC sections only)*
+* `elast (default=None)`: Modulus of Elasticity (required for `'Input'` type)
+* `thermal (default=None)`: Thermal Coefficient (required for `'Input'` type)
 * `id (default=None)`: Load ID (auto-generated if None)
-* `dir (default='LZ')`: Direction, 'LY' or 'LZ'
-* `ref_pos (default='Centroid')`: Reference Position, 'Centroid', 'Top', or 'Bot'
-* `val_b (default=0)`: B Value
-* `val_h1 (default=0)`: H1 Value
-* `val_h2 (default=0)`: H2 Value
-* `val_t1 (default=0)`: T1 Value
-* `val_t2 (default=0)`: T2 Value
-* `elast (default=None)`: Modulus of Elasticity (required for 'Input' type)
-* `thermal (default=None)`: Thermal Coefficient (required for 'Input' type)
-* `psc_ref (default=0)`: Reference for PSC, 0 for Top, 1 for Bottom
-* `psc_opt_b (default=1)`: B-Type option for PSC (0 for Section type)
-* `psc_opt_h1 (default=3)`: H1-Type option for PSC (0-Z1, 1-Z2, 2-Z2)
-* `psc_opt_h2 (default=3)`: H2-Type option for PSC (0-Z1, 1-Z2, 2-Z2)
+
 
 ### Object Attributes
 * `ELEMENT` (int): The element ID where temperature is applied.
@@ -72,6 +66,7 @@ Deletes all beam section temperature loads from both Python and Civil NX.
 Temperature.BeamSection.delete()
 ```
 
+
 ## Examples
 ---
 ```py
@@ -81,24 +76,22 @@ Load_Case("T", "Temperature Case 1")
 Load_Case("T", "Temperature Case 2")
 Load_Case.create()
 
-# Create load group 
+# Create load group
 Group.Load("Temperature Loads")
 Group.Load.create()
 
 # Define Beam Section Temperature - General Section with Element type
 Temperature.BeamSection(
-    element=1, 
-    lcname="Temperature Case 1", 
+    element=1,
+    lcname="Temperature Case 1",
     section_type='General',
     type='Element',
     group="Temperature Loads",
     dir='LZ',
     ref_pos='Centroid',
-    val_b=10.0,
-    val_h1=15.0,
-    val_h2=20.0,
-    val_t1=5.0,
-    val_t2=8.0
+    value=[
+        [0, 10.0, 15.0, 5.0, 8.0],
+    ]
 )
 
 # Define Beam Section Temperature - Input type with material properties
@@ -108,15 +101,56 @@ Temperature.BeamSection(
     section_type='General',
     type='Input',
     group="Temperature Loads",
-    val_b=12.0,
-    val_h1=18.0,
-    val_t1=6.0,
-    elast=30000000,  # Required for Input type
-    thermal=0.0011  # Required for Input type
+    value=[
+        [0, 12.0, 18.0, 6.0, 0],
+    ],
+    elast=30000000,   # Required for Input type
+    thermal=0.0011    # Required for Input type
 )
-
 
 # Create all beam section temperature loads
 Temperature.BeamSection.create()
+```
 
+```py
+# PSC Gradient Example
+
+# Positive Temp. Gradient — applied to elements 7, 8, 9 
+Temperature.BeamSection(
+    element=[7, 8, 9],          # list of IDs
+    lcname="Positive Temp. Grad",
+    section_type='PSC',
+    type='Element',
+    dir='LZ',
+    ref_pos='Top',
+    psc_ref='Top',
+    elast=0,
+    thermal=0,
+    value=[
+        [0, 0,    0.15, 17.8, 4  ],
+        [0, 0.15, 0.4,  4,    0  ],
+        [0, 2.85, 3,    0,    2.1],
+    ],
+)
+
+# Negative Temp. Gradient — same elements
+Temperature.BeamSection(
+    element=[7, 8, 9],          # list of IDs
+    lcname="Negative Temp. Grad",
+    section_type='PSC',
+    type='Element',
+    dir='LZ',
+    ref_pos='Top',
+    psc_ref='Top',
+    elast=0,
+    thermal=0,
+    value=[
+        [0, 0,    0.25, -10.3, -0.7],
+        [0, 0.25, 0.5,  -0.7,   0  ],
+        [0, 2.5,  2.75,  0,    -0.8],
+    ],
+)
+
+# Create all beam section temperature loads
+Temperature.BeamSection.create()
 ```
