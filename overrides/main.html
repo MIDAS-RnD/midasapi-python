@@ -18,4 +18,12 @@
     ‎ ‎ ‎ ‎ ‎ ‎|‎ ‎ ‎ ‎ ‎ ‎
      </p>
 </div>
-{% endblock %}      
+{% endblock %}
+
+{% block extrahead %}
+  {{ super() }}
+
+  <script data-goatcounter="https://sumitshekhar.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+
+{% endblock %}
