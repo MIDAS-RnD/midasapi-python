@@ -73,6 +73,7 @@ Load.LoadToMass.delete()
 # Create load cases first
 Load_Case("D", "Dead Load")
 Load_Case("L", "Live Load")
+Load_Case("D", "Seismic")
 Load_Case.create()
 
 # Define Load to Mass conversion
