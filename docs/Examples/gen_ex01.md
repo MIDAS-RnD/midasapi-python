@@ -11,148 +11,242 @@ The script generates:
 * Self-weight + floor load
 * Construction stages
 
-The structure behaves as a 3D rigid steel frame resisting both gravity and lateral wind loads.
-
 
 ## Complete Code
 
 ```python
-
+# Importing the midas-gen package
 from midas_gen import *
+
+# Sets the MAPI Key 
 MAPI_KEY('xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx')
 
-Floor_Height = ["1@5,4@3,6@8,1@3.15"] # Format: "number of floors @ height of each floor"
-length = 8
-width = 6.75
-Num_x = 7   # Number of divisions in x-direction
-Num_y = 3   # Number of divisions in y-direction
+# ============= INPUT =========================================================
 
-def expand_floor_heights(Floor_Height):
+Floor_Height = 3.15
+Num_of_Floors = 15
+Grnd_Floor_Height = 4
+length = 8     # Bay Width in X Direction
+width = 6.75   # Bay Width in Y Direction
+Num_x = 10     # Number of Bay in X Direction
+Num_y = 5      # Number of Bay in Y Direction
+
+
+#================================= Main Code===================================
+from math import atan2
+def find_all_closed_loops(edge_list):
+    """Finds all minimal closed faces (slab panels) from a list of 2D edges."""
+    unique_edges = set()
+    for a, b in edge_list:
+        unique_edges.add((min(a, b), max(a, b)))
+
+    adj = {}
+    for (a, b) in unique_edges:
+        adj.setdefault(a, []).append(b)
+        adj.setdefault(b, []).append(a)
+
+    for pt, nbrs in adj.items():
+        nbrs.sort(key=lambda n: atan2(n[1] - pt[1], n[0] - pt[0]))
+
+    def next_half_edge(u, v):
+        nbrs = adj[v]
+        idx  = nbrs.index(u)
+        w    = nbrs[(idx - 1) % len(nbrs)]
+        return w
+
+    visited = set()
+    faces   = []
+
+    for (a, b) in unique_edges:
+        for (start_u, start_v) in [(a, b), (b, a)]:
+            if (start_u, start_v) in visited:
+                continue
+
+            face   = []
+            u, v   = start_u, start_v
+            safety = 0
+            max_steps = len(unique_edges) * 2 + 10
+
+            while (u, v) not in visited:
+                visited.add((u, v))
+                face.append(u)
+                u, v   = v, next_half_edge(u, v)
+                safety += 1
+                if safety > max_steps:
+                    break
+
+            if len(face) >= 3:
+                faces.append(face)
+
+    def signed_area(poly):
+        n, acc = len(poly), 0.0
+        for i in range(n):
+            x0, y0 = poly[i]
+            x1, y1 = poly[(i + 1) % n]
+            acc   += (x0 * y1 - x1 * y0)
+        return acc / 2.0
+
+    if not faces:
+        return []
+
+    outer_idx   = max(range(len(faces)), key=lambda i: abs(signed_area(faces[i])))
+    inner_faces = [f for i, f in enumerate(faces) if i != outer_idx]
+
     result = []
-    for item in Floor_Height[0].split(','):
-        rep_str, val_str = item.split('@')
-        val = float(val_str)
-        int_rep = int(rep_str)
-        result.extend([val] * int_rep)
+    for f in inner_faces:
+        if signed_area(f) < 0:
+            f = f[::-1]
+        result.append(f)
+
     return result
 
-Floor_Heights_expanded = expand_floor_heights(Floor_Height)
-Num_of_Floors = len(Floor_Heights_expanded)
+# ====================================================================
+# 2D GRID GENERATION
 
-Model.units("KN","M")  
+nodes_xy = set()
+beams_xy = []
+walls_xy = []
 
-#-----------M A T E R I A L -----------
+# Generate all XY Nodes
+for i in range(Num_x + 1):
+    for j in range(Num_y + 1):
+        nodes_xy.add((i * length, j * width))
+
+# Generate Beams in X-direction
+for i in range(Num_x):
+    for j in range(Num_y + 1):
+        s = (i * length, j * width)
+        t = ((i + 1) * length, j * width)
+        beams_xy.append((s, t))
+
+# Generate Beams and Walls in Y-direction
+for i in range(Num_x + 1):
+    for j in range(Num_y):
+        s = (i * length, j * width)
+        t = (i * length, (j + 1) * width)
+        
+        # Original script logic: walls are located at X=1 & X=Num_x-1, spanning Y=1 to Y=2.
+        if (i == 1 or i == Num_x - 1) and (j == 1):
+            walls_xy.append((s, t))
+        else:
+            beams_xy.append((s, t))
+
+
+all_horizontal_edges_xy = beams_xy + walls_xy
+all_loops_xy = find_all_closed_loops(all_horizontal_edges_xy)
+
+# ====================================================================
+# Define Material & Section
+Model.units()  
+
 Material.CONC('M30', "IS(RC)", 'M30', 1)
-CreepShrinkage.IRC("M30",fck = 40000)               
+CreepShrinkage.IRC("M30", fck = 40000)               
 CompStrength.IRC("M30", 2011, 42000, 2)       
 TDMatLink(1, "M30", "M30")
 
-#-----------S E C T I O N   &  T H I C K N E S S -----------
-Section.DBUSER("Column", "SB", [0.6,0.6],Offset.CC(), True, False,1)   
-Section.DBUSER("Beam", "SB", [0.5,0.6],Offset.CC(), True, False,2)     
-Thickness(0.45, name = "1")
+Section.DBUSER("Column", "SB", [0.6, 0.6], Offset.CC(), True, False, 1)   
+Section.DBUSER("Beam", "SB", [0.5, 0.6], Offset.CC(), True, False, 2)     
+Thickness(0.45, name="1")
+
+# ====================================================================
+# Model Creation
+
+z_levels = [0.0, Grnd_Floor_Height]
+for i in range(1, Num_of_Floors + 1):
+    z_levels.append(Grnd_Floor_Height + i * Floor_Height)
+
+node_id_counter = [0]
+xyz_to_node_id  = {}
+
+def _r(v): return round(v, 3)
+
+def register_node(x, y, z):
+    """Simulates MIDAS implicit node numbering so we can access IDs for Loads/Walls."""
+    key = (_r(x), _r(y), _r(z))
+    if key not in xyz_to_node_id:
+        node_id_counter[0] += 1
+        xyz_to_node_id[key] = node_id_counter[0]
+    return xyz_to_node_id[key]
+
+nodes_xy_list = sorted(list(nodes_xy))
+
+# ──  Columns (Vertical Elements) ──
+for (x, y) in nodes_xy_list:
+    for i in range(len(z_levels) - 1):
+        z1 = z_levels[i]
+        z2 = z_levels[i + 1]
+        register_node(x, y, z1)
+        register_node(x, y, z2)
+        Element.Beam.SE([x, y, z1], [x, y, z2], n=1, mat=1, sect=1, angle=0, group=f'CS{i+1}')
+
+# ──  Beams (Horizontal Elements) ──
+for (s_xy, e_xy) in beams_xy:
+    for i in range(1, len(z_levels)):
+        z = z_levels[i]
+        register_node(s_xy[0], s_xy[1], z)
+        register_node(e_xy[0], e_xy[1], z)
+        Element.Beam.SE([s_xy[0], s_xy[1], z], [e_xy[0], e_xy[1], z], n=1, mat=1, sect=2, angle=0, group=f'CS{i}')
+
+# ──  Walls (Vertical Panels) ──
+for (s_xy, e_xy) in walls_xy:
+    for i in range(1, len(z_levels)):
+        z1 = z_levels[i-1]
+        z2 = z_levels[i]
+        
+        n1 = register_node(s_xy[0], s_xy[1], z1)
+        n2 = register_node(e_xy[0], e_xy[1], z1)
+        n3 = register_node(e_xy[0], e_xy[1], z2)
+        n4 = register_node(s_xy[0], s_xy[1], z2)
+        
+        Element.Wall([n1, n2, n3, n4], 1, 0, group=f'CS{i}')
 
 
-#------------G EO M E T R Y------------
+# ====================================================================
+# SUPPORTS & LOAD CASES
 
-# Columns
-for i in range(Num_x + 1):
-    for j in range(Num_y + 1):         
-        Element.Beam.SE([i*length,j*width,0],[i*length,j*width,Floor_Heights_expanded[0]],1, group = "CS1")
-        z = Floor_Heights_expanded[0]
-        for k in range(1, len(Floor_Heights_expanded)):
-            height = Floor_Heights_expanded[k]
-            Element.Beam.SE([i*length,j*width,z],[i*length,j*width,z + height],1, group = f'CS{k+1}')
-            z += height
+Boundary.Support(Model.Select.Plane_XY((0, 0, 0), "NODE_ID"), 1111111, "Supports")
 
-# Beams along x-direction
-z = 0
-for i in range(len(Floor_Heights_expanded)):
-    height = Floor_Heights_expanded[i]
-    z += height
-    for j in range(1,Num_x + 1):
-        for k in range(0,Num_y + 1):
-            Element.Beam.SE([(j-1)*length,k * width,z],[(j)*length,k * width,z],1,1,2, group= f'CS{i+1}')
-
-# Beams along y-direction
-z=0
-for i in range(len(Floor_Heights_expanded)):
-    height = Floor_Heights_expanded[i]
-    z += height
-    for j in range(1,Num_y + 1):
-        for k in range(0,Num_x + 1):
-            
-            if i == 0:
-                if k ==1 or k == Num_x - 1:
-                    if j != 2:
-                        Element.Beam.SE([k * length,(j-1)*width,z],[k * length,(j)*width,z],1,1,2, group = "CS1")
-                    elif j == 2 and k == 1:
-                        Element.Wall([((Num_y + 1)*(Num_of_Floors + 1) + (Num_of_Floors + 1) + i+1),((Num_y + 1)*(Num_of_Floors + 1) + (2 * (Num_of_Floors + 1)) + i+1), ((Num_y + 1)*(Num_of_Floors + 1) + (2 * (Num_of_Floors + 1)) + i+1 + 1), ((Num_y + 1)*(Num_of_Floors + 1) + (Num_of_Floors + 1) + i+1 + 1) ] , 1, 0, group= "CS1")
-                    elif j == 2 and k == Num_x - 1:    
-                        Element.Wall([((Num_of_Floors + 1)*(Num_y + 1)*(Num_x+1) - (Num_of_Floors + 1)*(2*(Num_y + 1) - 1) + i+1),((Num_of_Floors + 1)*(Num_y + 1)*(Num_x+1) - (Num_of_Floors + 1)*(2*(Num_y + 1) - 1) + (Num_of_Floors + 1) + i+1),((Num_of_Floors + 1)*(Num_y + 1)*(Num_x+1) - (Num_of_Floors + 1)*(2*(Num_y + 1) - 1) + (Num_of_Floors + 1) + i+1 + 1), ((Num_of_Floors + 1)*(Num_y + 1)*(Num_x+1) - (Num_of_Floors + 1)*(2*(Num_y + 1) - 1) + i+1 + 1) ] , 1, 0, group= "CS1")
-                else:
-                    Element.Beam.SE([k * length,(j-1)*width,z],[k * length,(j)*width,z],1,1,2, group= "CS1")
-           
-            elif i != 0: 
-                
-                if k ==1 or k == Num_x - 1:
-                    if j != 2:
-                        Element.Beam.SE([k * length,(j-1)*width,z],[k * length,(j)*width,z],1,1,2, group= f'CS{i+1}')
-                    elif j == 2 and k == 1 and  i != 1:
-                        Element.Wall([((Num_y + 1)*(Num_of_Floors + 1) + (Num_of_Floors + 1) + i),((Num_y + 1)*(Num_of_Floors + 1) + (2 * (Num_of_Floors + 1)) + i), ((Num_y + 1)*(Num_of_Floors + 1) + (2 * (Num_of_Floors + 1)) + i + 1), ((Num_y + 1)*(Num_of_Floors + 1) + (Num_of_Floors + 1) + i + 1) ] , 1, 0,group= f'CS{i}')
-                    elif j == 2 and k == Num_x - 1 and i != 1:  
-                        Element.Wall([((Num_of_Floors + 1)*(Num_y + 1)*(Num_x+1) - (Num_of_Floors + 1)*(2*(Num_y + 1) - 1) + i),((Num_of_Floors + 1)*(Num_y + 1)*(Num_x+1) - (Num_of_Floors + 1)*(2*(Num_y + 1) - 1) + (Num_of_Floors + 1) + i),((Num_of_Floors + 1)*(Num_y + 1)*(Num_x+1) - (Num_of_Floors + 1)*(2*(Num_y + 1) - 1) + (Num_of_Floors + 1) + i + 1), ((Num_of_Floors + 1)*(Num_y + 1)*(Num_x+1) - (Num_of_Floors + 1)*(2*(Num_y + 1) - 1) + i + 1) ] , 1, 0, group= f'CS{i}')
-                else:               
-                    Element.Beam.SE([k * length,(j-1)*width,z],[k * length,(j)*width,z],1,1,2, group= f'CS{i+1}')
-
-# Walls for last floor
-i = len(Floor_Heights_expanded)
-Element.Wall([((Num_y + 1)*(Num_of_Floors + 1) + (Num_of_Floors + 1) + i),((Num_y + 1)*(Num_of_Floors + 1) + (2 * (Num_of_Floors + 1)) + i), ((Num_y + 1)*(Num_of_Floors + 1) + (2 * (Num_of_Floors + 1)) + i + 1), ((Num_y + 1)*(Num_of_Floors + 1) + (Num_of_Floors + 1) + i + 1) ] , 1, 0,group= f'CS{i}')
-Element.Wall([((Num_of_Floors + 1)*(Num_y + 1)*(Num_x+1) - (Num_of_Floors + 1)*(2*(Num_y + 1) - 1) + i),((Num_of_Floors + 1)*(Num_y + 1)*(Num_x+1) - (Num_of_Floors + 1)*(2*(Num_y + 1) - 1) + (Num_of_Floors + 1) + i),((Num_of_Floors + 1)*(Num_y + 1)*(Num_x+1) - (Num_of_Floors + 1)*(2*(Num_y + 1) - 1) + (Num_of_Floors + 1) + i + 1), ((Num_of_Floors + 1)*(Num_y + 1)*(Num_x+1) - (Num_of_Floors + 1)*(2*(Num_y + 1) - 1) + i + 1) ] , 1, 0, group= f'CS{i}')
-
-
-#------------B O U N D A R Y   C O N D I T I O N S------------
-Boundary.Support(Model.Select.Plane_XY((0,0,0),"NODE_ID"), 1111111, "Supports")
-
-
-#------------L O A D   G R O U P S------------
-for i in range(1,Num_of_Floors+1):
-    Group.Load(f'CS{i}')
-Group.Load("LiveLoad")
-
-#------------L O A D I N G S------------
-
-# Static load Cases
 Load_Case("D", "DL")
 Load_Case("L", "LL")
 Load_Case("L", "FL1")
+Load_Case("L", "FL2")
 
-Load.SW("DL","Z", -1, load_group = "self_weight")
-
-# Floor Loads
-Load.FloorLoadDefine("FL Type 1",[["LL",-2, False]])
-Load.FloorLoadDefine("FL Type 2",[["DL", -8, True],["FL1",-5.5, False]])
-
-listi = []
-for i in range(1, Num_of_Floors+1):
-    listi.append([i+1,((Num_of_Floors+1) *Num_y)+1 +i, ((Num_of_Floors+1)*(Num_y+1) * Num_x) + ((Num_of_Floors+1) * Num_y) +1+i , ((Num_of_Floors+1)*(Num_y+1) * Num_x) + 1 +i])
-
-
-for i in range(len(listi)):
-    Load.FloorLoadAssign("FL Type 1",  distribution_type=2, direction="GZ", node_list= listi[i], group="LiveLoad")
-
-for i in range(len(listi)):
-    Load.FloorLoadAssign("FL Type 2",  distribution_type=2, direction="GZ", node_list= listi[i],group=f'CS{i+1}')
+Group.Load("SW")
+for i in range(1, len(z_levels)):
+    Group.Load(f'CS{i}')
     
+Load.SW("DL", "Z", -1, "SW")
 
-#------------C O N S T R U C T I O N   S T A G E S------------
+Load.FloorLoadDefine("FL Type 1", [["FL1", -6.5, True], ["LL", -2, False]])
+Load.FloorLoadDefine("FL Type 2", [["FL2", -5.5, True]])
 
-for k in range(Num_of_Floors):
-    l_group = ["self_weight", f'CS{k+1}'] if k == 0 else (["LiveLoad", f'CS{k+1}'] if k==Num_of_Floors-1 else f'CS{k+1}')
-    CS.STAGE(f'CS{k+1}', 7, f'CS{k+1}', 7, b_group="Supports" if k == 0 else None, l_group = l_group)
+# ====================================================================
+# FLOOR LOAD ASSIGNMENTS
 
+for floor_idx in range(1, len(z_levels)):
+    z = z_levels[floor_idx]
+    
+    for loop_idx, loop_xy in enumerate(all_loops_xy):
+        loop_node_ids = []
+        for (x, y) in loop_xy:
+            key = (_r(x), _r(y), _r(z))
+            if key in xyz_to_node_id:
+                loop_node_ids.append(xyz_to_node_id[key])
+        
+        if len(loop_node_ids) >= 3:
+            Load.FloorLoadAssign("FL Type 1", distribution_type=2, direction="GZ", node_list=loop_node_ids, group=f'CS{floor_idx}')
+            Load.FloorLoadAssign("FL Type 2", distribution_type=2, direction="GZ", node_list=loop_node_ids, group=f'CS{floor_idx}')
+
+# ====================================================================
+# CONSTRUCTION STAGES
+
+for k in range(1, len(z_levels)):
+    b_group = "Supports" if k == 1 else None
+    l_group = ["SW", "CS1"] if k == 1 else f'CS{k}'
+    CS.STAGE(f'CS{k}', 7, f'CS{k}', 7, b_group=b_group, l_group=l_group)
 
 Model.create()
+
  
 ```
 
