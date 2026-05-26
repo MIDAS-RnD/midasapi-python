@@ -16,6 +16,9 @@
     text-decoration: none;
     color: inherit;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+    max-width: 460px;
+
   }
 
   .grid-item a:hover {
@@ -78,6 +81,38 @@ These examples are meant to show the basic structure of a MIDAS Civil NX Python 
   </div>
 </div>
 
+
+![WAITING](../assets/separator.png)
+
+## GEN NX Tutorials
+---
+
+<div class="grid">
+  <div class="grid-item">
+    <a href="gen_ex01">
+      <img src="../Examples/images/GEN_EX01.png" alt="Image 1">
+      <div class="caption">RC BUILDING</div>
+    </a>
+  </div>
+  <!-- <div class="grid-item">
+    <a href="ex02">
+      <img src="../Examples/images/EX02.png" alt="Image 1">
+      <div class="caption">PLANT STRUCTURE </div>
+    </a>
+  </div>
+  <div class="grid-item">
+    <a href="ex03">
+      <img src="../Examples/images/EX03.png" alt="Image 1">
+      <div class="caption">WEB–OPENING DETAIL ANALYSIS</div>
+    </a>
+  </div>
+  <div class="grid-item">
+    <a href="ex04">
+      <img src="../Examples/images/EX04.png" alt="Image 1">
+      <div class="caption">ARCH BRIDGE</div>
+    </a>
+  </div> -->
+</div>
 
 
 ---
