@@ -9,7 +9,7 @@ A nested class within Temperature used to create nodal temperature loads that ap
 Creates nodal temperature loads that apply temperature changes to specific nodes in the structure.
 
 ### Parameters
-* `node`: Node ID (Required)
+* `node`: Single Node ID or list of Node IDs(Required)
 * `temperature`: Temperature value (Required)
 * `lcname`: Load case name (Required)
 * `group (default="")`: Load group name

@@ -838,4 +838,67 @@ for stage in CS.STAGE.stages:
 
 ```
 
+
+---
+
+### Story Displacement
+
+Fetches Story displacement - Story result tables.     
+
+**`Result.TABLE.Story_Displacement(SD_type:_SD_Type = "X", loadcase:list=[], options:TableOptions=None)`**
+
+#### Parameters
+
+- **`SD_type`** (`str`): Story Displacement direction. Can be `X` , `Y` or `COMB`.   
+
+- **`loadcase`** (`list`): List of load case names, e.g., ["Selfweight(ST)"].   
+
+- **`options`** (`TableOptions`): Optional. Table options object for formatting and output settings.
+
+#### Returns
+- **Polars DataFrame**: A DataFrame containing the Story displacement result table.
+
+#### Example Usage
+
+```python
+from midas_civil import *
+
+disp = Result.TABLE.Story_Displacement(SD_type = "COMB", loadcase=["Selfweight(ST)"])
+print(disp)
+
+```
+
+
+---
+
+### Story Drift
+
+Fetches Story drift - Story result tables.     
+
+**`Result.TABLE.Story_Drift(SD_type:_SD_Type = "X", loadcase:list=[], allowable_ratio:float = 0.0015, options:TableOptions=None)`**
+
+#### Parameters
+
+- **`SD_type`** (`str`): Story Displacement direction. Can be `X` , `Y` or `COMB`.   
+
+- **`loadcase`** (`list`): List of load case names, e.g., ["Selfweight(ST)"].   
+
+- **`allowable_ratio`** (`float`): Allowable Story Drift Ratio. Default is `0.0015`.   
+
+- **`options`** (`TableOptions`): Optional. Table options object for formatting and output settings.
+
+#### Returns
+- **Polars DataFrame**: A DataFrame containing the Story drift result table.
+
+#### Example Usage
+
+```python
+from midas_civil import *
+
+drift = Result.TABLE.Story_Drift(SD_type = "COMB", loadcase=["Selfweight(ST)"],allowable_ratio=0.002)
+print(drift)
+
+```
+
+
 ---

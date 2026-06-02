@@ -9,7 +9,7 @@ A nested class within Temperature used to create temperature gradient loads for 
 Creates temperature gradient loads that apply temperature differences across element cross-sections.
 
 ### Parameters
-* `element`: Element ID to apply the gradient (Required)
+* `element`:  Single Element ID or list of Element IDs to apply the gradient (Required)
 * `type`: Element type, either 'Beam' or 'Plate' (Required)
 * `lcname`: Load Case Name (Required)
 * `tz`: Temperature difference in the local z-direction (T2z - T1z) (Required)

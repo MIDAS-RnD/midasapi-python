@@ -85,12 +85,12 @@ Section.delete()
 #### Constructor
 To create section offset parameters, use the Offset constructor.
 
-**<font color="green">`Offset(OffsetPoint='CC', CenterLocation=0, HOffset=0, HOffOpt=0, VOffset=0, VOffOpt=0, UsrOffOpt=0)`</font>**
+**<font color="green">`Offset(OffsetPoint='CC', CenterLocation=0, HOffset=0, HOffOpt=0, VOffset=0, VOffOpt=0, UsrOffOpt=0, HOffset_J=None, VOffset_J=None))`</font>**
 
 Creates offset parameters for sections with specified reference point and offset values.
 
 #### Parameters
-* `OffsetPoint (default='CC')`: Offset reference point ('CC', 'CT', etc.)
+* `OffsetPoint (default='CC')`: Offset reference point ('LT','CT','RT','LC','CC','RC','LB','CB','RB')
 * `CenterLocation (default=0)`: Center location parameter     
 &emsp;&emsp;&emsp;&emsp;
 0 : Centroid <font color="orange">&nbsp;&nbsp;|&nbsp;&nbsp;</font> 
@@ -108,7 +108,10 @@ Creates offset parameters for sections with specified reference point and offset
 * `UsrOffOpt (default=0)`: User offset option    
 &emsp;&emsp;&emsp;&emsp;
 0 : Centroid <font color="orange">&nbsp;&nbsp;|&nbsp;&nbsp;</font> 
-1 : Centre of Section    
+1 : Extreme fiber       
+
+* `HOffset_J (default=None)`: Horizontal offset value at J end. If `None` is entered then HOffset value is used.       
+* `VOffset_J (default=None)`: Vertical offset value at J end. If `None` is entered then VOffset value is used.       
 
 ```py
 # Create center-center offset

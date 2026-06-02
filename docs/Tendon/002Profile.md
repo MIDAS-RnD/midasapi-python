@@ -86,19 +86,22 @@ For SPLINE type tendon, default value is `None` (2D type) or `[None,None]` (3D t
 - `DeBondBLEN` : Debonding length at the beginning.
 - `DeBondELEN` : Debonding length at the end.
 - `SHAPE` : Reference axis shape (`'ELEMENT'`, `'STRAIGHT'`, `'CURVE'`).
-- `P_XYZ` (list): For 3D profiles, a list of `POINT` objects representing coordinates.   
+- `P_XYZR` (list): For 3D profiles, a list of `POINT` objects representing coordinates.   
 &emsp;&emsp;&emsp;&emsp;
 **point.X** = X-coordinate <font color="orange">&nbsp;&nbsp;|&nbsp;&nbsp;</font> 
 **point.Y** = Y-coordinate <font color="orange">&nbsp;&nbsp;|&nbsp;&nbsp;</font> 
-**point.Z** = Z-coordinate 
-- `P_XY` (list): For 2D profiles, a list of `POINT` objects for the XY-plane projection.  
+**point.Z** = Z-coordinate <font color="orange">&nbsp;&nbsp;|&nbsp;&nbsp;</font> 
+**point.R** = Radius or Rotation angle 
+- `P_XYR` (list): For 2D profiles, a list of `POINT` objects for the XY-plane projection.  
 &emsp;&emsp;&emsp;&emsp;
 **point.X** = X-coordinate <font color="orange">&nbsp;&nbsp;|&nbsp;&nbsp;</font> 
-**point.Y** = Y-coordinate 
-- `P_XZ` (list): For 2D profiles, a list of `POINT` objects for the XZ-plane projection.  
+**point.Y** = Y-coordinate <font color="orange">&nbsp;&nbsp;|&nbsp;&nbsp;</font> 
+**point.R** = Radius or Rotation angle 
+- `P_XZR` (list): For 2D profiles, a list of `POINT` objects for the XZ-plane projection.  
 &emsp;&emsp;&emsp;&emsp;
 **point.X** = X-coordinate <font color="orange">&nbsp;&nbsp;|&nbsp;&nbsp;</font> 
-**point.Z** = Z-coordinate 
+**point.ZX** = Z-coordinate <font color="orange">&nbsp;&nbsp;|&nbsp;&nbsp;</font> 
+**point.R** = Radius or Rotation angle 
 
 
 

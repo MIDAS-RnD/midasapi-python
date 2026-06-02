@@ -98,7 +98,7 @@ Creates PSC I-sections with symmetric or asymmetric flanges.
 #### Parameters
 * `Name`: Section name
 * `Symm (default=True)`: Symmetric section flag
-* `Joint`: List of 9 joint connectivity values
+* `Joint`: List of 9 joint connectivity values [J1, JL1, JL2, JL3, JL4, JR1, JR2, JR3, JR4]
 * `H1`: Web height
 * `HL1-HL5, HL21, HL22, HL41, HL42`: Left flange parameters
 * `BL1-BL4, BL21, BL22, BL41, BL42`: Left flange width parameters

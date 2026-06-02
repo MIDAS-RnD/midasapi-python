@@ -4,7 +4,7 @@ A nested class within Temperature used to create beam section temperature loads 
 
 ## Constructor
 ---
-**<font color="green">`Temperature.BeamSection(element, lcname, section_type='General', type='Element', group="", dir='LZ', ref_pos='Centroid', value=None, psc_ref='Top', elast=None, thermal=None, id=None)`</font>**
+**<font color="green">`Temperature.BeamSection(element, lcname, section_type='General', type='Element', group="", dir='LZ', ref_pos='Centroid', b_value=0, value=None, elast=None, thermal=None, id=None)`</font>**
 
 Creates beam section temperature loads that apply temperature variations across beam cross-sections.
 
@@ -16,8 +16,10 @@ Creates beam section temperature loads that apply temperature variations across 
 * `group (default="")`: Load group name
 * `dir (default='LZ')`: Direction, `'LY'` or `'LZ'`
 * `ref_pos (default='Centroid')`: Reference Position, `'Centroid'`, `'Top'`, or `'Bot'`
-* `value (default=None)`: List of temperature profile rows. Each row is `[val_b, val_h1, val_h2, val_t1, val_t2]`. Defaults to `[[0, 0, 0, 0, 0]]` if not provided.
-* `psc_ref (default='Top')`: PSC reference side, `'Top'` or `'Bot'` *(PSC sections only)*
+* `b_value (default=0)`: The `val_b` parameter applied uniformly to all rows.
+* `value (default=None)`: List of temperature profile rows. Each row is `[val_h1, val_h2, val_t1, val_t2]` (4 values) or a short row `[val_h1, val_h2, val_t1]` (3 values, auto-padded with `val_t2=0`). Defaults to `[[0, 0, 0, 0]]` if not provided.
+  * **General sections:** numeric values only — e.g. `[[0.1, 0.2, 3.0, 12.4]]`
+  * **PSC sections:** `val_h1` and `val_h2` accept either a Z-string (`'Z1'`, `'Z2'`, `'Z3'`) or a numeric value — e.g. `[["Z1", "Z2", 17.8, 4], [0.15, 0.4, 4, 0]]`
 * `elast (default=None)`: Modulus of Elasticity (required for `'Input'` type)
 * `thermal (default=None)`: Thermal Coefficient (required for `'Input'` type)
 * `id (default=None)`: Load ID (auto-generated if None)
@@ -81,6 +83,7 @@ Group.Load("Temperature Loads")
 Group.Load.create()
 
 # Define Beam Section Temperature - General Section with Element type
+# Each row: [val_h1, val_h2, val_t1, val_t2]
 Temperature.BeamSection(
     element=1,
     lcname="Temperature Case 1",
@@ -89,8 +92,9 @@ Temperature.BeamSection(
     group="Temperature Loads",
     dir='LZ',
     ref_pos='Centroid',
+    b_value=0,
     value=[
-        [0, 10.0, 15.0, 5.0, 8.0],
+        [10.0, 15.0, 5.0, 8.0],
     ]
 )
 
@@ -101,8 +105,9 @@ Temperature.BeamSection(
     section_type='General',
     type='Input',
     group="Temperature Loads",
+    b_value=0,
     value=[
-        [0, 12.0, 18.0, 6.0, 0],
+        [12.0, 18.0, 6.0, 0],
     ],
     elast=30000000,   # Required for Input type
     thermal=0.0011    # Required for Input type
@@ -114,22 +119,22 @@ Temperature.BeamSection.create()
 
 ```py
 # PSC Gradient Example
+# Each row: [val_h1, val_h2, val_t1, val_t2]
+# val_h1 / val_h2 accept 'Z1', 'Z2', 'Z3' (section-defined depths) or numeric values
 
-# Positive Temp. Gradient — applied to elements 7, 8, 9 
+# Positive Temp. Gradient — applied to elements 7, 8, 9
 Temperature.BeamSection(
     element=[7, 8, 9],          # list of IDs
     lcname="Positive Temp. Grad",
     section_type='PSC',
     type='Element',
-    dir='LZ',
     ref_pos='Top',
-    psc_ref='Top',
     elast=0,
     thermal=0,
     value=[
-        [0, 0,    0.15, 17.8, 4  ],
-        [0, 0.15, 0.4,  4,    0  ],
-        [0, 2.85, 3,    0,    2.1],
+        [0,    0.15, 17.8, 4  ],
+        [0.15, 0.4,  4,    0  ],
+        [2.85, 3,    0,    2.1],
     ],
 )
 
@@ -139,18 +144,37 @@ Temperature.BeamSection(
     lcname="Negative Temp. Grad",
     section_type='PSC',
     type='Element',
-    dir='LZ',
     ref_pos='Top',
-    psc_ref='Top',
     elast=0,
     thermal=0,
     value=[
-        [0, 0,    0.25, -10.3, -0.7],
-        [0, 0.25, 0.5,  -0.7,   0  ],
-        [0, 2.5,  2.75,  0,    -0.8],
+        [0,    0.25, -10.3, -0.7],
+        [0.25, 0.5,  -0.7,   0  ],
+        [2.5,  2.75,  0,    -0.8],
     ],
 )
 
 # Create all beam section temperature loads
+Temperature.BeamSection.create()
+```
+
+```py
+# PSC with Z-string depths Example
+# Use 'Z1', 'Z2', 'Z3' for val_h1/val_h2 to reference section-defined depth zones
+
+Temperature.BeamSection(
+    element=[7, 8, 9],
+    lcname="PSC Z-String Grad",
+    section_type='PSC',
+    type='Element',
+    dir='LZ',
+    ref_pos='Top',
+    b_value=0,
+    value=[
+        ["Z1", "Z2", 17.8, 4],   # val_h1="Z1", val_h2="Z2" → section-defined depths
+        [0.15,  0.4,  4,   0],   # numeric depths
+    ],
+)
+
 Temperature.BeamSection.create()
 ```

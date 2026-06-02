@@ -89,7 +89,8 @@ nav:
     - ‎ ‎ ‎ Standard Section : Section/01_user.md
     - ‎ ‎ ‎ PSC Section: Section/02_psc.md
     - ‎ ‎ ‎ Composite Section : Section/03_composite.md
-    - ‎ ‎ ‎ Tapered Group : Section/04_taperedgroup.md
+    - ‎ ‎ ‎ Tapered Section : Section/04_tapered.md
+    - ‎ ‎ ‎ Tapered Group : Section/05_taperedgroup.md
     - Thickness : Section/09_thickness.md
 
   - Material Properties:
@@ -145,12 +146,19 @@ nav:
     - ‎ ‎ ‎ Nodal: Temperature/004Nodal.md
     - ‎ ‎ ‎ Beam Section: Temperature/005Beamsection.md
 
+  - Dynamic Load:
+    # - Index : Dynamic/index.md
+    - Response Spectrum:
+        - RS Function: Dynamic/ResponseSpectrum/RSfunc.md
+        - RS Case: Dynamic/ResponseSpectrum/RScase.md
+
+
   - Moving Load:
-    - Moving Load : MovingLoad/index.md
-    - ‎ ‎ ‎ Code: MovingLoad/000Code.md
-    - ‎ ‎ ‎ Vehicle: MovingLoad/001Vehicle.md
-    - ‎ ‎ ‎ Line Lane: MovingLoad/002LineLane.md
-    - ‎ ‎ ‎ Case: MovingLoad/003VHCase.md
+    - Moving Load : MovingLoad/index.md    
+    - ‎ ‎ ‎ Code: MovingLoad/000Code.md    
+    - ‎ ‎ ‎ Vehicle: MovingLoad/001Vehicle.md    
+    - ‎ ‎ ‎ Line Lane: MovingLoad/002LineLane.md    
+    - ‎ ‎ ‎ Case: MovingLoad/003VHCase.md     
   
   - Settlement:
     - Settlement : Settlement/index.md
@@ -192,6 +200,8 @@ nav:
     - ‎ ‎ ‎ Plant Structure : Examples/ex02.md
     - ‎ ‎ ‎ Web Opening : Examples/ex03.md
     - ‎ ‎ ‎ Arch Bridge : Examples/ex04.md
+    - ‎ ‎ ‎ PSC Box Girder Bridge : Examples/ex05.md
+    - ‎ ‎ ‎ PSC-I Composite Bridge : Examples/ex06.md
     - ‎ ‎ ‎ RC Building : Examples/gen_ex01.md
 
   - Release Notes : Release Notes/index.md

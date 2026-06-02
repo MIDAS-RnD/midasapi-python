@@ -66,13 +66,6 @@ AnalysisControl.Buckling(
     load_case_data=[["DL", 1.0, 1], ["LL", 1.0, 0]]
 )
 
-# Eigen Value Analysis Control - LANCZOS method
-AnalysisControl.EigenValue(
-    analysis_type="LANCZOS",
-    ifreq=15,
-    frequency_range=[0, 1600],
-    bstrum=True
-)
 
 # Settlement Analysis Control
 AnalysisControl.Settlement(

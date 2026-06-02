@@ -9,7 +9,7 @@ A nested class within Temperature used to create element-specific temperature lo
 Creates element temperature loads that apply temperature changes to specific elements.
 
 ### Parameters
-* `element`: Element ID (Required)
+* `element`:  Single Element ID or list of Element IDs (Required)
 * `temperature`: Temperature value (Required)
 * `lcname`: Load case name (Required)
 * `group (default="")`: Load group name
