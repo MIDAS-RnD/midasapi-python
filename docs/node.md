@@ -58,7 +58,7 @@ MAPI_KEY('eyJ1ciI6InN1bWl0QG1pZGFzaXQuY29tIiwicGciO252a81571d')
 
 ### Node.fromList
 
-**Node.SDL(`nodesList: list, id=None , group = '' , merge = 1`)**
+**Node.fromList(`nodesList: list, id=None , group = '' , merge = 1`)**
 
 #### Parameters
 * `nodesList`: List of `[x, y, z]` coordinates. e.g. `[[0,0,0], [1,0,0], [2,0,0]]`. 

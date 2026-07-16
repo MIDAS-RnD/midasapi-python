@@ -1,5 +1,69 @@
 # Release Notes
 
+## Version 1.6.8
+Released on - 9 July 2026
+
+#### What's New
+*  Added Story feature (GEN NX) and `Story.autoGenerate()` to replicate GEN NX functionality.   
+*  Added `Plate.extrudeLine` to create plates from existing 1D elements.    
+*  Value type section inputs :  (Area, Ixx, Iyy, Izz).    
+
+
+#### Fixes   
+*  Failed `Model.IMAGE` and `Result.IMAGE` returns an image with details.    
+
+
+## Version 1.6.7
+Released on - 17 June 2026
+
+#### What's New
+*  Added `yEcc` option in `utils.Alignment`.    
+*  Added `RS.Function.Peru` to create RS as per E030:2026 Peru code.   
+*  Added Plane Load function - `Load.PlaneLoad_Define` and `Load.PlaneLoad_Assign`.    
+*  Added Hydrostatic Pressure function - `Load.HydrostaticPressure`.  
+*  Added Solid modelling options - `Solid.extudeFromPlates` , `Solid.fromPoints` and `Solid.fromMSHfile`
+
+
+## Version 1.6.6
+Released on - 2 June 2026
+
+#### What's New
+*  Simplified Eigen Value Analysis control function.   
+*  Added Response Spectrum function and Case.   
+    - `RS.Function.User`   
+    - `RS.Function.India`   
+    - `RS.ModalCombination`      
+    - `RS.Damping.Modal`   
+    - `RS.Damping.MassStiffness`   
+    - `RS.Damping.StrainEnergy`   
+    - `RS.Case`    
+*  Added Tapered Composite PSC-I section.    
+*  Added J end tapering option for `Offset` function.   
+*  Improved Temperature load defintion.   
+*  Added `R` - Round , Radius option to tendon profile input.   
+
+
+#### Fixes   
+*  Disabled warnings when syncing Load Combinations.   
+
+
+## Version 1.6.5
+Released on - 13 May 2026
+
+#### Fixes   
+*  Fixes Moving load Case function.
+
+
+## Version 1.6.4
+Released on - 11 May 2026
+
+#### What's New
+*  Updates to `Analysis Control` functions.   
+*  Added `CS.clear()` to clear all CS data (Stage, Timeload, CreepCoeff, Camber and Composite Section for CS).   
+*  Added helper / type hints to functions.   
+*  Added `utils.SoftSelection()` function. Returns node IDs with a weight corresponding to distance from a point.   
+
+
 ## Version 1.6.3
 Released on - 5 May 2026
 
