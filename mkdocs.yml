@@ -119,6 +119,7 @@ nav:
     - ‎ ‎ ‎ Rigid Link : Boundary/03rlink.md
     - ‎ ‎ ‎ Point Spring : Boundary/04PointSpring.md
     - ‎ ‎ ‎ Multi Linear Function : Boundary/05MLFC.md
+    - ‎ ‎ ‎ Beam End Release : Boundary/06beamendrelease.md
 
   - Load:
     - Load : Load/index.md
