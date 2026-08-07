@@ -160,7 +160,7 @@ Section.create()
 ## PSC Value Section
 ---
 #### Constructor
-**`Section.PSC.I(Name: str,   OuterPolygon: list,   InnerPolygon: list = [],       Offset: Offset = Offset.CC(),     useShear: bool = True,     use7Dof: bool = False,   id: int = 0):`**
+**`Section.PSC.Value(Name: str,   OuterPolygon: list,   InnerPolygon: list = [],       Offset: Offset = Offset.CC(),     useShear: bool = True,     use7Dof: bool = False,   id: int = 0):`**
 
 Creates PSC Value section based on section co-ordinates.
 
