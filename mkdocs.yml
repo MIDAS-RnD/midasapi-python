@@ -67,6 +67,9 @@ markdown_extensions:
  - pymdownx.blocks.caption
      
 
+extra_javascript:
+  - https://cdn.jsdelivr.net/npm/echarts@5.5.1/dist/echarts.min.js
+  - assets/tree.js
 
 copyright: "Created by Midas India :  MIDAS CIVIL NX - Python interface"
 
@@ -91,6 +94,7 @@ nav:
     - ‎ ‎ ‎ Composite Section : Section/03_composite.md
     - ‎ ‎ ‎ Tapered Section : Section/04_tapered.md
     - ‎ ‎ ‎ Tapered Group : Section/05_taperedgroup.md
+    - ‎ ‎ ‎ Value Section : Section/06_value.md
     - Thickness : Section/09_thickness.md
 
   - Material Properties:
@@ -127,6 +131,7 @@ nav:
     - ‎ ‎ ‎ Self Weight : Load/000sw.md
     - ‎ ‎ ‎ Nodal Load : Load/001nodal.md
     - ‎ ‎ ‎ Beam Load: Load/002beam.md
+    - ‎ ‎ ‎ Line Beam Load: Load/002Linebeam.md
     - ‎ ‎ ‎ Load To Mass: Load/003LoadToMass.md
     - ‎ ‎ ‎ Nodal Mass: Load/004NodalMass.md
     - ‎ ‎ ‎ Specified Displacement: Load/005spDisp.md
@@ -154,7 +159,12 @@ nav:
     - Response Spectrum:
         - RS Function: Dynamic/ResponseSpectrum/RSfunc.md
         - RS Case: Dynamic/ResponseSpectrum/RScase.md
-
+    - Time History :
+        - Time History Case: Dynamic/TimeHistory/1_Timehistorycase.md
+        - Dynamic Nodal Loads: Dynamic/TimeHistory/DynamicNodalLoads.md
+        - Time Varying Static Loads: Dynamic/TimeHistory/TimeVaryingStaticLoads.md
+        - Ground Acceleration: Dynamic/TimeHistory/GroundAcceleration.md
+        - Multiple Support Excitation: Dynamic/TimeHistory/MultipleSupportExcitation.md
 
   - Moving Load:
     - Moving Load : MovingLoad/index.md    
@@ -167,12 +177,15 @@ nav:
     - Settlement : Settlement/index.md
     - ‎ ‎ ‎ Group: Settlement/01Group.md
     - ‎ ‎ ‎ Case: Settlement/02Case.md
+
+  - Story:
+    - Story : Story/index.md
   
     
   - Construction Stage:
     - Define Construction Stage: CS/001stage.md
     - Composite Section for CS: CS/002compsec.md
-    - TIme Loads for CS: CS/003timeloads.md
+    - Time Loads for CS: CS/003timeloads.md
     - Creep Coefficient for CS: CS/004creepcoeffcs.md
     - Camber for CS: CS/005cambercs.md
   
@@ -183,6 +196,7 @@ nav:
     - ‎ ‎ ‎ Buckling: AnalysisControl/03Buckling.md
     - ‎ ‎ ‎ EigenValue: AnalysisControl/04EigenValue.md
     - ‎ ‎ ‎ Settlement: AnalysisControl/05Settlement.md
+    - ‎ ‎ ‎ Heat of Hydration: AnalysisControl/06HeatOfHydration.md
     - Boundary Change Assignment : AnalysisControl/BoundaryChangeAssignment.md
     
   - View: View/01_view.md
@@ -192,8 +206,16 @@ nav:
     - ‎ ‎ ‎ Result Table : Result/02_resultTable.md
     - ‎ ‎ ‎ User Defined Table : Result/03_userResultTable.md
     - ‎ ‎ ‎ Result Image : Result/04_resultImage.md
-  
-    
+
+  - Heat of Hydration :  
+    - ‎ ‎ ‎ Ambient Temperature Function : HoH/001AmbientTemperatureFunction.md
+    - ‎ ‎ ‎ Convection Coefficient Function : HoH/003ConvectionCoefficientFunction.md
+    - ‎ ‎ ‎ Prescribed Temperature : HoH/007PrescribedTemperature.md
+    - ‎ ‎ ‎ Heat Source Functions : HoH/005HeatSourceFunction.md
+    - ‎ ‎ ‎ Assign Heat Source : HoH/002AssignHeatSource.md
+    - ‎ ‎ ‎ Pipe Cooling : HoH/006PipeCooling.md
+    - ‎ ‎ ‎ Construction Stage Definition: HoH/004CsStage.md
+    - ‎ ‎ ‎ HY Result Graph : HoH/008ResultGraph.md
 
   - Utilities : Utilities/index.md
 
@@ -207,6 +229,7 @@ nav:
     - ‎ ‎ ‎ PSC-I Composite Bridge : Examples/ex06.md
     - ‎ ‎ ‎ RC Building : Examples/gen_ex01.md
 
+  # - Graphs : funGRAPH/index.md
   - Release Notes : Release Notes/index.md
   - Discussion : Comments/index.md
 

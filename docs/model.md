@@ -169,6 +169,33 @@ Checks whether a model has been analyzed. If not, saves it and then analysis.
 ```py
 Model.analyse()
 ```
+## <font style="font-size:0px">Model.</font>maxID
+
+Retrieves the maximum ID currently assigned to a specific database item (such as nodes, elements, materials, etc.). If no data exists for the specified database, it returns `0`.
+
+**`Model.maxID(dbNAME='NODE', fast=False)`**
+
+#### Parameters
+* `dbNAME`: The name of the database to query. Default is `'NODE'`. Expected values:   
+&emsp;&emsp;&emsp;&emsp;
+`'NODE'` : Nodes <font color="orange">&nbsp;&nbsp;|&nbsp;&nbsp;</font> 
+`'ELEM'` : Elements <font color="orange">&nbsp;&nbsp;|&nbsp;&nbsp;</font> 
+`'MATL'` : Materials <font color="orange">&nbsp;&nbsp;|&nbsp;&nbsp;</font> 
+`'SECT'` : Sections <font color="orange">&nbsp;&nbsp;|&nbsp;&nbsp;</font> 
+&emsp;&emsp;&emsp;&emsp;
+`'THIK'` : Thicknesses <font color="orange">&nbsp;&nbsp;|&nbsp;&nbsp;</font> 
+`'ELNK'` : Elastic Links <font color="orange">&nbsp;&nbsp;|&nbsp;&nbsp;</font> 
+`'RIGD'` : Rigid Links
+
+* `fast`: A boolean flag (`True` or `False`). If set to `True`, it fetches the maximum ID quickly by querying the project status data rather than loading the entire database. Default is `False`.
+
+#### Returns
+* `int`: The highest ID present in the specified database.
+
+#### Examples
+```py
+Model.maxID()
+```
 
 ---
 
@@ -306,6 +333,40 @@ Selects elements based on type, material and section properties
 * `secID`: `int` or `list[int]` of Section IDs.         Eg. `secID=1` or `secID=[1,2,3]`
 * `output`: Output of the Select command. `ELEM_ID` or `ELEM`
 
+
+### Model.Select.Polygon
+
+**`Model.Select.Element(points:list,output:_SelectOutput='NODE_ID')`**
+
+Selects nodes / elements that lies inside or on the edge of the polygon defined by the input points.    
+For elements, the selection is based on whether its mid-point lies inside the polygon or not.    
+
+#### Parameters
+* `points`: `list[(x,y,z)]` List of points that forms the selection polygon.       Eg. `[(0,0,0),(1,0,0),(0,0,1)]`
+* `output`: Output of the Select command.
+---
+
+
+## <font style="font-size:0px">Model.</font>getSelected
+
+Retrieves the IDs of nodes or elements that are currently selected.
+
+**`Model.getSelected(item="ELEM_ID")`**
+
+#### Parameters
+* `item`: Specifies the type of selected items to retrieve. Expected values:   
+&emsp;&emsp;&emsp;&emsp;
+`'ELEM_ID'` : Returns a list of selected Element IDs (Default) <font color="orange">&nbsp;&nbsp;|&nbsp;&nbsp;</font> 
+`'NODE_ID'` : Returns a list of selected Node IDs
+
+#### Returns
+* `list`: A list containing the IDs (`int`) of the selected nodes or elements. Returns an empty list `[]` if no items are currently selected.
+
+#### Examples
+```py
+Model.getSelected()
+```
+
 ---
 
 ## <font style="font-size:0px">Model.</font>IMAGE
@@ -337,4 +398,90 @@ It allows you to control image size, output location, and optional construction 
 
 ```py
 Model.IMAGE("E://API//temp//ModelImage.jpg")
+```
+
+---
+
+## <font style="font-size:0px">Model.</font>snap
+Captures a snapshot of the current geometry.      
+The snapshot can be viewed by `Model.visualise()` or attached to external application as plotly chart via `Model.goFigure()`.    
+
+**`Model.snap()`**
+
+
+```py
+Model.snap()
+```
+
+
+---
+
+## <font style="font-size:0px">Model.</font>visualise
+Display plotly figure representing the model geometry in browser.   
+**`Model.visualise(id=None, bGrid=True, bNode=True, bNodeID=False, bElementID=False, bSupport=True, bPointSpring=True, bElink=True, bRigidLink=True)`**
+
+
+#### Parameters
+
+- `id` (`int`): ID of the snapshot. If None is provided, a snapshot will be taken at the point of Model.visualise().    
+
+- `bGrid` (`bool`): Whether to display Grid or not.
+
+- `bNode` (`bool`): Whether to display Node(as circle) or not.
+
+- `bNodeID` (`bool`): Whether to display Node ID or not.
+
+- `bElementID` (`bool`): Whether to display Element ID or not.
+
+- `bSupport` (`bool`): Whether to display Supprt (diamond shape) or not.
+
+- `bPointSpring` (`bool`): Whether to display Point Spring (circle) or not.
+
+- `bElink` (`bool`): Whether to display Elastic Link (dashed line) or not.
+
+- `bRigidLink` (`bool`): Whether to display Rigid Link (dashed line) or not.
+
+
+```py
+Model.visualise()
+```
+
+
+---
+
+## <font style="font-size:0px">Model.</font>goFigure
+Returns a plotly go figure of the captured snapshot (captured via `Model.snap()`).      
+This go figure can be attached to webapps to display the model in webbrowser.    
+
+
+**`Model.goFigure(id=None, bGrid=True, bNode=True, bNodeID=False, bElementID=False, bSupport=True, bPointSpring=True, bElink=True, bRigidLink=True)`**
+
+
+#### Parameters
+
+- `id` (`int`): ID of the snapshot. 
+
+- `bGrid` (`bool`): Whether to display Grid or not.
+
+- `bNode` (`bool`): Whether to display Node(as circle) or not.
+
+- `bNodeID` (`bool`): Whether to display Node ID or not.
+
+- `bElementID` (`bool`): Whether to display Element ID or not.
+
+- `bSupport` (`bool`): Whether to display Supprt (diamond shape) or not.
+
+- `bPointSpring` (`bool`): Whether to display Point Spring (circle) or not.
+
+- `bElink` (`bool`): Whether to display Elastic Link (dashed line) or not.
+
+- `bRigidLink` (`bool`): Whether to display Rigid Link (dashed line) or not.
+
+#### Returns
+
+- Plotly GO figure
+
+
+```py
+Model.goFigure()
 ```

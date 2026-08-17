@@ -376,7 +376,7 @@ print(beam_max_df)
 
 Fetches Beam Force (Static Prestress) result tables.
 
-**Note:** Construction Stage options are not applicable to this table type.
+> **Note:** Construction Stage options are not applicable to this table type.
 
 **`Result.TABLE.BeamForce_StaticPrestress(keys=[], loadcase=[], parts=["PartI", "PartJ"], components=['all'], options=None)`**
 
@@ -841,7 +841,7 @@ for stage in CS.STAGE.stages:
 
 ---
 
-### Story Displacement
+### Story_Displacement
 
 Fetches Story displacement - Story result tables.     
 
@@ -871,7 +871,7 @@ print(disp)
 
 ---
 
-### Story Drift
+### Story_Drift
 
 Fetches Story drift - Story result tables.     
 
@@ -900,5 +900,953 @@ print(drift)
 
 ```
 
+---
+
+### HoH_Stress
+
+Fetches Heat of Hydration Stress result tables.
+
+**`Result.TABLE.HoH_Stress(keys=[], Stress_option="Local", node_flag_center=False, node_flag_nodes=True, components=['all'], cs_stage=[], options=None)`**
+
+#### Parameters
+
+- **`keys`** (`list[int]` or `str`): Optional. List of Element IDs or a Structure Group Name. Default: All elements.
+
+- **`Stress_option`** (`str`): Stress Option for `"Local"` or `"Global"`. Default: `"Local"`.
+
+- **`node_flag_center`** (`bool`): Retrieve results at the center of the solid element. Default: `False`.
+
+- **`node_flag_nodes`** (`bool`): Retrieve results at the nodes of the solid element. Default: `True`.
+
+- **`components`** (`list[str]`): Table components to include. Default: `['all']`. Available: `Elem`, `Stage`, `Step`, `Time`, `Node`, `Sig-xx`, `Sig-yy`, `Sig-zz`, `Sig-xy`, `Sig-yz`, `Sig-xz`,`Sig-P1`,`Sig-P2`,`Sig-P3`, `Max-Shear`, `Sig-EFF`,`Sig-OCT`.
+
+- **`cs_stage`** (`list` or `'all'`): Optional. Construction Stage options. Default: `[]`.
+
+- **`options`** (`TableOptions`): Optional. Table options object for formatting and output settings.
+
+#### Returns
+- **Polars DataFrame**: A DataFrame containing the heat of hydration stress result table.
+
+#### Example Usage
+
+```python
+# Get local heat of hydration stresses for specific elements
+hoh_stress_df = Result.TABLE.HoH_Stress(
+    keys=[10, 11, 12],
+    Stress_option="Local",
+    node_flag_center=False,
+    node_flag_nodes=True,
+    cs_stage=["CS2:013"]
+)
+print(hoh_stress_df)
+```
 
 ---
+
+### HoH_Temperature
+
+Fetches Heat of Hydration Temperature result tables.
+
+**`Result.TABLE.HoH_Temperature(keys=[], components=['all'], cs_stage=[], options=None)`**
+
+#### Parameters
+
+- **`keys`** (`list[int]` or `str`): Optional. List of Element IDs or a Structure Group Name. Default: All elements.
+
+- **`components`** (`list[str]`): Table components to include. Default: `['all']`. Available: `Node`, `Stage`, `Step`, `Time`, `Temperature`.
+
+- **`cs_stage`** (`list` or `'all'`): Optional. Construction Stage options. Default: `[]`.
+
+- **`options`** (`TableOptions`): Optional. Table options object for formatting and output settings.
+
+#### Returns
+- **Polars DataFrame**: A DataFrame containing the heat of hydration temperature result table.
+
+#### Example Usage
+
+```python
+# Get heat of hydration temperatures for a specific stage
+hoh_temp_df = Result.TABLE.HoH_Temperature(
+    cs_stage=["CS2:013"]
+)
+print(hoh_temp_df)
+```
+
+---
+
+### HoH_Displacement
+
+Fetches Heat of Hydration Displacement result tables.
+
+**`Result.TABLE.HoH_Displacement(keys=[], components=['all'], cs_stage=[], options=None)`**
+
+#### Parameters
+
+- **`keys`** (`list[int]` or `str`): Optional. List of Element IDs or a Structure Group Name. Default: All elements.
+
+- **`components`** (`list[str]`): Table components to include. Default: `['all']`. Available: `Node`, `Stage`, `Step`, `Time`, `DX`, `DY`, `DZ`, `RX`, `RY`, `RZ`.
+
+- **`cs_stage`** (`list` or `'all'`): Optional. Construction Stage options. Default: `[]`.
+
+- **`options`** (`TableOptions`): Optional. Table options object for formatting and output settings.
+
+#### Returns
+- **Polars DataFrame**: A DataFrame containing the heat of hydration displacement result table.
+
+#### Example Usage
+
+```python
+# Get heat of hydration displacements with custom options
+options = TableOptions(len_unit='MM', ExcelFileLoc="hoh_results.xlsx")
+hoh_disp_df = Result.TABLE.HoH_Displacement(
+    keys="Bridge_Deck_Group",
+    options=options,
+    cs_stage=["CS2:013"]
+)
+print(hoh_disp_df)
+```
+
+---
+
+### HoH_Tensile_Stress
+
+Fetches Heat of Hydration Allowable Tensile Stress result tables.
+
+**`Result.TABLE.HoH_Tensile_Stress(keys=[], components=['all'], cs_stage=[], options=None)`**
+
+#### Parameters
+
+- **`keys`** (`list[int]` or `str`): Optional. List of Element IDs or a Structure Group Name. Default: All elements.
+
+- **`components`** (`list[str]`): Table components to include. Default: `['all']`. Available: `Node`, `Stage`, `Step`, `Time`, `Stress`.
+
+- **`cs_stage`** (`list` or `'all'`): Optional. Construction Stage options. Default: `[]`.
+
+- **`options`** (`TableOptions`): Optional. Table options object for formatting and output settings.
+
+#### Returns
+- **Polars DataFrame**: A DataFrame containing the heat of hydration allowable tensile stress result table.
+
+#### Example Usage
+
+```python
+# Get allowable tensile stresses for all elements
+hoh_tensile_df = Result.TABLE.HoH_Tensile_Stress(cs_stage=["CS2:013"])
+print(hoh_tensile_df)
+```
+
+---
+
+### HoH_Pipe_Node_Temperature
+
+Fetches Heat of Hydration Pipe Cooling Nodal Temperature result tables.
+
+**`Result.TABLE.HoH_Pipe_Node_Temperature(keys=[], components=['all'], cs_stage=[], options=None)`**
+
+#### Parameters
+
+- **`keys`** (`list[int]` or `str`): Optional. List of Element IDs or a Structure Group Name. Default: All elements.
+
+- **`components`** (`list[str]`): Table components to include. Default: `['all']`. Available: `Pipe Cooling`, `Node`, `Stage`, `Step`, `Time`, `Temperature`.
+
+- **`cs_stage`** (`list` or `'all'`): Optional. Construction Stage options. Default: `[]`.
+
+- **`options`** (`TableOptions`): Optional. Table options object for formatting and output settings.
+
+#### Returns
+- **Polars DataFrame**: A DataFrame containing the heat of hydration pipe cooling nodal temperature result table.
+
+#### Example Usage
+
+```python
+# Get pipe cooling nodal temperatures for specific nodes
+hoh_pipe_temp_df = Result.TABLE.HoH_Pipe_Node_Temperature(
+    keys=[1001, 1002, 1003],
+    cs_stage=['all']
+)
+print(hoh_pipe_temp_df)
+```
+
+---
+
+### TH_Disp
+
+Fetches Time History Displacement (Node) result tables.
+
+**`Result.TABLE.TH_Disp(th_case:list, keys=[], step_from:float=0, step_to:float=1, step_interval:int=1, components=['all'], ref_pt:str="Ground", anr_node:int=None, options:TableOptions=None)`**
+
+#### Parameters
+
+- **`th_case`** (`list`): Required. Time history load case names, e.g., `["Elcent"]`.
+
+- **`keys`** (`list[int]` or `str`): Optional. List of Node IDs or a Structure Group Name. Default: All nodes.
+
+- **`step_from`** (`float`): Start time. Default: `0`.
+
+- **`step_to`** (`float`): End time. Default: `1`.
+
+- **`step_interval`** (`int`): Time interval (STEPS). Default: `1`.
+
+- **`components`** (`list[str]`): Table components to include. Default: `['all']`.
+
+- **`ref_pt`** (`str`): Reference point (Method 1). Options: `Ground`, `AddGroundMotion`. Default: `Ground`. Ignored if `anr_node` is provided.
+
+- **`anr_node`** (`int`): Reference point (Method 2) - another node number. Optional.
+
+- **`options`** (`TableOptions`): Optional. Table options object for formatting and output settings.
+
+#### Returns
+- **Polars DataFrame**: A DataFrame containing the time history displacement result table.
+
+#### Example Usage
+
+```python
+from midas_civil import *
+
+disp = Result.TABLE.TH_Disp(
+    th_case=["Elcent"],
+    keys=[10],
+    step_from=0.1, step_to=0.5, step_interval=1
+)
+print(disp)
+```
+
+---
+
+### TH_Velocity
+
+Fetches Time History Velocity (Node) result tables.
+
+**`Result.TABLE.TH_Velocity(th_case:list, keys=[], step_from:float=0, step_to:float=1, step_interval:int=1, components=['all'], ref_pt:str="Ground", anr_node:int=None, options:TableOptions=None)`**
+
+#### Parameters
+
+- **`th_case`** (`list`): Required. Time history load case names, e.g., `["Elcent"]`.
+
+- **`keys`** (`list[int]` or `str`): Optional. List of Node IDs or a Structure Group Name. Default: All nodes.
+
+- **`step_from`** (`float`): Start time. Default: `0`.
+
+- **`step_to`** (`float`): End time. Default: `1`.
+
+- **`step_interval`** (`int`): Time interval (STEPS). Default: `1`.
+
+- **`components`** (`list[str]`): Table components to include. Default: `['all']`.
+
+- **`ref_pt`** (`str`): Reference point (Method 1). Options: `Ground`, `AddGroundMotion`. Default: `Ground`. Ignored if `anr_node` is provided.
+
+- **`anr_node`** (`int`): Reference point (Method 2) - another node number. Optional.
+
+- **`options`** (`TableOptions`): Optional. Table options object for formatting and output settings.
+
+#### Returns
+- **Polars DataFrame**: A DataFrame containing the time history velocity result table.
+
+#### Example Usage
+
+```python
+from midas_civil import *
+
+vel = Result.TABLE.TH_Velocity(
+    th_case=["Elcent"],
+    keys=[10],
+    step_from=0.1, step_to=0.5, step_interval=1
+)
+print(vel)
+```
+
+---
+
+### TH_Acceleration
+
+Fetches Time History Acceleration (Node) result tables.
+
+**`Result.TABLE.TH_Acceleration(th_case:list, keys=[], step_from:float=0, step_to:float=1, step_interval:int=1, components=['all'], ref_pt:str="Ground", anr_node:int=None, options:TableOptions=None)`**
+
+#### Parameters
+
+- **`th_case`** (`list`): Required. Time history load case names, e.g., `["Elcent"]`.
+
+- **`keys`** (`list[int]` or `str`): Optional. List of Node IDs or a Structure Group Name. Default: All nodes.
+
+- **`step_from`** (`float`): Start time. Default: `0`.
+
+- **`step_to`** (`float`): End time. Default: `1`.
+
+- **`step_interval`** (`int`): Time interval (STEPS). Default: `1`.
+
+- **`components`** (`list[str]`): Table components to include. Default: `['all']`.
+
+- **`ref_pt`** (`str`): Reference point (Method 1). Options: `Ground`, `AddGroundMotion`. Default: `Ground`. Ignored if `anr_node` is provided.
+
+- **`anr_node`** (`int`): Reference point (Method 2) - another node number. Optional.
+
+- **`options`** (`TableOptions`): Optional. Table options object for formatting and output settings.
+
+#### Returns
+- **Polars DataFrame**: A DataFrame containing the time history acceleration result table.
+
+#### Example Usage
+
+```python
+from midas_civil import *
+
+accel = Result.TABLE.TH_Acceleration(
+    th_case=["Elcent"],
+    keys=[10],
+    step_from=0.1, step_to=0.5, step_interval=1
+)
+print(accel)
+```
+
+---
+
+### TH_BeamForce
+
+Fetches Time History Beam Force result tables.
+
+**`Result.TABLE.TH_BeamForce(th_case, keys=[], parts=["PartI", "PartJ"], step_from=0, step_to=1, step_interval=1, components=['all'], options=None)`**
+
+#### Parameters
+
+- **`th_case`** (`list`): Required. Time history load case names. Example: `["Elcent"]`.
+
+- **`keys`** (`list[int]`): Required. List of Beam Element IDs.
+
+- **`parts`** (`list[str]`): Element parts. Options: `PartI`, `PartJ`. Default: `["PartI", "PartJ"]`.
+
+- **`step_from`** (`float`): Start time. Default: `0`.
+
+- **`step_to`** (`float`): End time. Default: `1`.
+
+- **`step_interval`** (`int`): Time interval (STEPS). Default: `1`.
+
+- **`components`** (`list[str]`): Table components to include. Default: `['all']`. Available: `Elem`, `Load`, `Part`, `Time/Step`, `Axial`, `Shear-y`, `Shear-z`, `Torsion`, `Moment-y`, `Moment-z`.
+
+- **`options`** (`TableOptions`): Optional. Table options object for formatting and output settings.
+
+#### Returns
+- **Polars DataFrame**: A DataFrame containing the time history beam force result table.
+
+#### Example Usage
+
+```python
+# Get time history beam forces for a specific element
+th_beam_df = Result.TABLE.TH_BeamForce(
+    th_case=["Elcent"],
+    keys=[5],
+    parts=["PartI", "PartJ"],
+    step_from=0.1, step_to=0.5, step_interval=1
+)
+print(th_beam_df)
+```
+
+---
+
+### TH_TrussForce
+
+Fetches Time History Truss Force result tables.
+
+**`Result.TABLE.TH_TrussForce(th_case, keys=[], step_from=0, step_to=1, step_interval=1, components=['all'], options=None)`**
+
+#### Parameters
+
+- **`th_case`** (`list`): Required. Time history load case names. Example: `["Elcent"]`.
+
+- **`keys`** (`list[int]`): Required. List of Truss Element IDs.
+
+- **`step_from`** (`float`): Start time. Default: `0`.
+
+- **`step_to`** (`float`): End time. Default: `1`.
+
+- **`step_interval`** (`int`): Time interval (STEPS). Default: `1`.
+
+- **`components`** (`list[str]`): Table components to include. Default: `['all']`. Available: `Elem`, `Load`, `Time/Step`, `Force-I`, `Force-J`.
+
+- **`options`** (`TableOptions`): Optional. Table options object for formatting and output settings.
+
+> **Note:** Truss elements do not support the `parts` argument, since results are reported directly at the I and J ends.
+
+#### Returns
+- **Polars DataFrame**: A DataFrame containing the time history truss force result table.
+
+#### Example Usage
+
+```python
+# Get time history truss forces for a specific element
+th_truss_df = Result.TABLE.TH_TrussForce(
+    th_case=["Elcent"],
+    keys=[55],
+    step_from=0.1, step_to=0.5, step_interval=1
+)
+print(th_truss_df)
+```
+
+---
+
+### TH_PlaneStressForce
+
+Fetches Time History Plane Stress Element Force result tables.
+
+**`Result.TABLE.TH_PlaneStressForce(th_case, keys=[], parts=["PartI", "PartJ", "PartK", "PartL"], step_from=0, step_to=1, step_interval=1, components=['all'], options=None)`**
+
+#### Parameters
+
+- **`th_case`** (`list`): Required. Time history load case names. Example: `["Elcent"]`.
+
+- **`keys`** (`list[int]`): Required. List of Plane Stress Element IDs.
+
+- **`parts`** (`list[str]`): Element parts. Options: `PartI`, `PartJ`, `PartK`, `PartL`. Default: `["PartI", "PartJ", "PartK", "PartL"]`.
+
+- **`step_from`** (`float`): Start time. Default: `0`.
+
+- **`step_to`** (`float`): End time. Default: `1`.
+
+- **`step_interval`** (`int`): Time interval (STEPS). Default: `1`.
+
+- **`components`** (`list[str]`): Table components to include. Default: `['all']`. Available: `Elem`, `Load`, `Time/Step`, `Part`, `Fx`, `Fy`.
+
+- **`options`** (`TableOptions`): Optional. Table options object for formatting and output settings.
+
+#### Returns
+- **Polars DataFrame**: A DataFrame containing the time history plane stress force result table.
+
+#### Example Usage
+
+```python
+# Get time history plane stress forces for a specific element
+th_ps_force_df = Result.TABLE.TH_PlaneStressForce(
+    th_case=["Elcent"],
+    keys=[50],
+    step_from=0.1, step_to=0.3, step_interval=1
+)
+print(th_ps_force_df)
+```
+
+---
+
+### TH_PlaneStrainForce
+
+Fetches Time History Plane Strain Element Force result tables.
+
+**`Result.TABLE.TH_PlaneStrainForce(th_case, keys=[], parts=["PartI", "PartJ", "PartK", "PartL"], step_from=0, step_to=1, step_interval=1, components=['all'], options=None)`**
+
+#### Parameters
+
+- **`th_case`** (`list`): Required. Time history load case names. Example: `["Elcent"]`.
+
+- **`keys`** (`list[int]`): Required. List of Plane Strain Element IDs.
+
+- **`parts`** (`list[str]`): Element parts. Options: `PartI`, `PartJ`, `PartK`, `PartL`. Default: `["PartI", "PartJ", "PartK", "PartL"]`.
+
+- **`step_from`** (`float`): Start time. Default: `0`.
+
+- **`step_to`** (`float`): End time. Default: `1`.
+
+- **`step_interval`** (`int`): Time interval (STEPS). Default: `1`.
+
+- **`components`** (`list[str]`): Table components to include. Default: `['all']`. Available: `Elem`, `Load`, `Time/Step`, `Part`, `Fx`, `Fy`, `Fz`.
+
+- **`options`** (`TableOptions`): Optional. Table options object for formatting and output settings.
+
+#### Returns
+- **Polars DataFrame**: A DataFrame containing the time history plane strain force result table.
+
+#### Example Usage
+
+```python
+# Get time history plane strain forces for a specific element
+th_pstrain_force_df = Result.TABLE.TH_PlaneStrainForce(
+    th_case=["Elcent"],
+    keys=[49],
+    step_from=0.1, step_to=0.3, step_interval=1
+)
+print(th_pstrain_force_df)
+```
+
+---
+
+### TH_SolidForce
+
+Fetches Time History Solid Element Force result tables.
+
+**`Result.TABLE.TH_SolidForce(th_case, keys=[], parts=["PartI", "PartJ", "PartK", "PartL", "PartM", "PartN", "PartO", "PartP"], step_from=0, step_to=1, step_interval=1, components=['all'], options=None)`**
+
+#### Parameters
+
+- **`th_case`** (`list`): Required. Time history load case names. Example: `["Elcent"]`.
+
+- **`keys`** (`list[int]`): Required. List of Solid Element IDs.
+
+- **`parts`** (`list[str]`): Element parts. Options: `PartI` through `PartP` (8 corner parts). Default: `["PartI", "PartJ", "PartK", "PartL", "PartM", "PartN", "PartO", "PartP"]`.
+
+- **`step_from`** (`float`): Start time. Default: `0`.
+
+- **`step_to`** (`float`): End time. Default: `1`.
+
+- **`step_interval`** (`int`): Time interval (STEPS). Default: `1`.
+
+- **`components`** (`list[str]`): Table components to include. Default: `['all']`. Available: `Elem`, `Load`, `Time/Step`, `Part`, `Fx`, `Fy`, `Fz`.
+
+- **`options`** (`TableOptions`): Optional. Table options object for formatting and output settings.
+
+#### Returns
+- **Polars DataFrame**: A DataFrame containing the time history solid force result table.
+
+#### Example Usage
+
+```python
+# Get time history solid forces for a specific element
+th_solid_force_df = Result.TABLE.TH_SolidForce(
+    th_case=["Elcent"],
+    keys=[53],
+    step_from=0.1, step_to=0.2, step_interval=1
+)
+print(th_solid_force_df)
+```
+
+---
+
+### TH_PlateForce
+
+Fetches Time History Plate Force result tables.
+
+**`Result.TABLE.TH_PlateForce(th_case, keys=[], parts=["PartI", "PartJ", "PartK", "PartL"], step_from=0, step_to=1, step_interval=1, components=['all'], options=None)`**
+
+#### Parameters
+
+- **`th_case`** (`list`): Required. Time history load case names. Example: `["Elcent"]`.
+
+- **`keys`** (`list[int]`): Required. List of Plate Element IDs .
+
+- **`parts`** (`list[str]`): Element parts. Options: `PartI`, `PartJ`, `PartK`, `PartL`. Default: `["PartI", "PartJ", "PartK", "PartL"]`.
+
+- **`step_from`** (`float`): Start time. Default: `0`.
+
+- **`step_to`** (`float`): End time. Default: `1`.
+
+- **`step_interval`** (`int`): Time interval (STEPS). Default: `1`.
+
+- **`components`** (`list[str]`): Table components to include. Default: `['all']`. Available: `Elem`, `Load`, `Time/Step`, `Part`, `FX`, `FY`, `FZ`, `MX`, `MY`, `MZ`.
+
+- **`options`** (`TableOptions`): Optional. Table options object for formatting and output settings.
+
+#### Returns
+- **Polars DataFrame**: A DataFrame containing the time history plate force result table.
+
+#### Example Usage
+
+```python
+# Get time history plate forces for a specific element
+th_plate_df = Result.TABLE.TH_PlateForce(
+    th_case=["Elcent"],
+    keys=[51],
+    step_from=0.1, step_to=0.3, step_interval=1
+)
+print(th_plate_df)
+```
+
+---
+
+### TH_PlateUnitForce
+
+Fetches Time History Plate Force (Unit Length) result tables.
+
+**`Result.TABLE.TH_PlateUnitForce(th_case, keys=[], parts=["PartC", "PartI", "PartJ", "PartK", "PartL"], step_from=0, step_to=1, step_interval=1, components=['all'], options=None)`**
+
+#### Parameters
+
+- **`th_case`** (`list`): Required. Time history load case names. Example: `["Elcent"]`.
+
+- **`keys`** (`list[int]`): Required. List of Plate Element IDs.
+
+- **`parts`** (`list[str]`): Element parts. Options: `PartC`, `PartI`, `PartJ`, `PartK`, `PartL`. Default: `["PartC", "PartI", "PartJ", "PartK", "PartL"]`.
+
+- **`step_from`** (`float`): Start time. Default: `0`.
+
+- **`step_to`** (`float`): End time. Default: `1`.
+
+- **`step_interval`** (`int`): Time interval (STEPS). Default: `1`.
+
+- **`components`** (`list[str]`): Table components to include. Default: `['all']`. Available: `Elem`, `Load`, `Time/Step`, `Part`, `Fxx`, `Fyy`, `Fxy`, `Mxx`, `Myy`, `Mxy`, `Vxx`, `Vyy`.
+
+- **`options`** (`TableOptions`): Optional. Table options object for formatting and output settings.
+
+#### Returns
+- **Polars DataFrame**: A DataFrame containing the time history plate force (unit length) result table.
+
+#### Example Usage
+
+```python
+# Get time history plate unit forces for a specific element
+th_plate_ul_df = Result.TABLE.TH_PlateUnitForce(
+    th_case=["Elcent"],
+    keys=[51],
+    step_from=0.1, step_to=0.2, step_interval=1
+)
+print(th_plate_ul_df)
+```
+
+---
+
+### TH_WallForce
+
+Fetches Time History Wall Force result tables.
+
+**`Result.TABLE.TH_WallForce(th_case, keys=[], parts=["PartI", "PartJ"], step_from=0, step_to=1, step_interval=1, components=['all'], options=None)`**
+
+#### Parameters
+
+- **`th_case`** (`list`): Required. Time history load case names. Example: `["EQ1"]`.
+
+- **`keys`** (`list[int]`): Required. List of Wall Element IDs.
+
+- **`parts`** (`list[str]`): Element parts. Options: `PartI`, `PartJ`. Default: `["PartI", "PartJ"]`.
+
+- **`step_from`** (`float`): Start time. Default: `0`.
+
+- **`step_to`** (`float`): End time. Default: `1`.
+
+- **`step_interval`** (`int`): Time interval (STEPS). Default: `1`.
+
+- **`components`** (`list[str]`): Table components to include. Default: `['all']`. Available: `WallID`, `Load`, `Time/Step`, `Part`, `Axial`, `Shear-y`, `Shear-z`, `Torsion`, `Moment-y`, `Moment-z`.
+
+- **`options`** (`TableOptions`): Optional. Table options object for formatting and output settings.
+
+#### Returns
+- **Polars DataFrame**: A DataFrame containing the time history wall force result table.
+
+#### Example Usage
+
+```python
+# Get time history wall forces for a specific element
+th_wall_df = Result.TABLE.TH_WallForce(
+    th_case=["EQ1"],
+    keys=[466],
+    step_from=0.1, step_to=0.2, step_interval=1
+)
+print(th_wall_df)
+```
+
+---
+
+### TH_BeamStress
+
+Fetches Time History Beam Stress result tables.
+
+**`Result.TABLE.TH_BeamStress(th_case, keys=[], parts=["PartI", "PartJ"], step_from=0, step_to=1, step_interval=1, components=['all'], options=None)`**
+
+#### Parameters
+
+- **`th_case`** (`list`): Required. Time history load case names. Example: `["Elcent"]`.
+
+- **`keys`** (`list[int]`): Required. List of Beam Element IDs.
+
+- **`parts`** (`list[str]`): Element parts. Options: `PartI`, `PartJ`. Default: `["PartI", "PartJ"]`.
+
+- **`step_from`** (`float`): Start time. Default: `0`.
+
+- **`step_to`** (`float`): End time. Default: `1`.
+
+- **`step_interval`** (`int`): Time interval (STEPS). Default: `1`.
+
+- **`components`** (`list[str]`): Table components to include. Default: `['all']`. Available: `Elem`, `Load`, `Time/Step`, `Part`, `Axial`, `Shear-y`, `Shear-z`, `Bend(+y)`, `Bend(-y)`, `Bend(+z)`, `Bend(-z)`.
+
+- **`options`** (`TableOptions`): Optional. Table options object for formatting and output settings.
+
+#### Returns
+- **Polars DataFrame**: A DataFrame containing the time history beam stress result table.
+
+#### Example Usage
+
+```python
+# Get time history beam stresses for a specific element
+th_beam_stress_df = Result.TABLE.TH_BeamStress(
+    th_case=["Elcent"],
+    keys=[5],
+    step_from=0.1, step_to=0.4, step_interval=1
+)
+print(th_beam_stress_df)
+```
+
+---
+
+### TH_TrussStress
+
+Fetches Time History Truss Stress result tables.
+
+**`Result.TABLE.TH_TrussStress(th_case, keys=[], step_from=0, step_to=1, step_interval=1, components=['all'], options=None)`**
+
+#### Parameters
+
+- **`th_case`** (`list`): Required. Time history load case names. Example: `["Elcent"]`.
+
+- **`keys`** (`list[int]`): Required. List of Truss Element IDs.
+
+- **`step_from`** (`float`): Start time. Default: `0`.
+
+- **`step_to`** (`float`): End time. Default: `1`.
+
+- **`step_interval`** (`int`): Time interval (STEPS). Default: `1`.
+
+- **`components`** (`list[str]`): Table components to include. Default: `['all']`. Available: `Elem`, `Load`, `Time/Step`, `Stress-I`, `Stress-J`.
+
+- **`options`** (`TableOptions`): Optional. Table options object for formatting and output settings.
+
+> **Note:** Truss elements do not support the `parts` argument, since results are reported directly at the I and J ends.
+
+#### Returns
+- **Polars DataFrame**: A DataFrame containing the time history truss stress result table.
+
+#### Example Usage
+
+```python
+# Get time history truss stresses for a specific element
+th_truss_stress_df = Result.TABLE.TH_TrussStress(
+    th_case=["Elcent"],
+    keys=[55],
+    step_from=0.1, step_to=0.5, step_interval=1
+)
+print(th_truss_stress_df)
+```
+
+---
+
+### TH_PlateStress
+
+Fetches Time History Plate Element Stress result tables.
+
+**`Result.TABLE.TH_PlateStress(th_case, keys=[], parts=["PartC", "PartI", "PartJ", "PartK", "PartL"], step_from=0, step_to=1, step_interval=1, components=['all'], options=None)`**
+
+#### Parameters
+
+- **`th_case`** (`list`): Required. Time history load case names. Example: `["Elcent"]`.
+
+- **`keys`** (`list[int]`): Required. List of Plate Element IDs.
+
+- **`parts`** (`list[str]`): Element parts. Options: `PartC`, `PartI`, `PartJ`, `PartK`, `PartL`. Default: `["PartC", "PartI", "PartJ", "PartK", "PartL"]`.
+
+- **`step_from`** (`float`): Start time. Default: `0`.
+
+- **`step_to`** (`float`): End time. Default: `1`.
+
+- **`step_interval`** (`int`): Time interval (STEPS). Default: `1`.
+
+- **`components`** (`list[str]`): Table components to include. Default: `['all']`. Available: `Elem`, `Load`, `Time/Step`, `Part`, `Sig-xx(Top)`, `Sig-yy(Top)`, `Sig-xy(Top)`, `Sig-xx(Bot)`, `Sig-yy(Bot)`, `Sig-xy(Bot)`.
+
+- **`options`** (`TableOptions`): Optional. Table options object for formatting and output settings.
+
+#### Returns
+- **Polars DataFrame**: A DataFrame containing the time history plane stress element stress result table.
+
+#### Example Usage
+
+```python
+# Get time history plane stress element stresses for a specific element
+th_plate_stress_df = Result.TABLE.TH_PlateStress(
+    th_case=["Elcent"],
+    keys=[50],
+    step_from=0.1, step_to=0.3, step_interval=1
+)
+print(th_plate_stress_df)
+```
+
+---
+
+### TH_PlaneStress_Stress
+
+Fetches Time History Plane Stress Element Stress result tables.
+
+**`Result.TABLE.TH_PlaneStress_Stress(th_case, keys=[], parts=["PartC", "PartI", "PartJ", "PartK", "PartL"], step_from=0, step_to=1, step_interval=1, components=['all'], options=None)`**
+
+#### Parameters
+
+- **`th_case`** (`list`): Required. Time history load case names. Example: `["Elcent"]`.
+
+- **`keys`** (`list[int]`): Required. List of Plane Stress Element IDs.
+
+- **`parts`** (`list[str]`): Element parts. Options: `PartC`, `PartI`, `PartJ`, `PartK`, `PartL`. Default: `["PartC", "PartI", "PartJ", "PartK", "PartL"]`.
+
+- **`step_from`** (`float`): Start time. Default: `0`.
+
+- **`step_to`** (`float`): End time. Default: `1`.
+
+- **`step_interval`** (`int`): Time interval (STEPS). Default: `1`.
+
+- **`components`** (`list[str]`): Table components to include. Default: `['all']`. Available: `Elem`, `Load`, `Time/Step`, `Part`, `Sig-xx`, `Sig-yy`, `Sig-xy`.
+
+- **`options`** (`TableOptions`): Optional. Table options object for formatting and output settings.
+
+#### Returns
+- **Polars DataFrame**: A DataFrame containing the time history plane stress element stress result table.
+
+#### Example Usage
+
+```python
+# Get time history plane stress element stresses for a specific element
+th_ps_stress_df = Result.TABLE.TH_PlaneStress_Stress(
+    th_case=["Elcent"],
+    keys=[50],
+    step_from=0.1, step_to=0.3, step_interval=1
+)
+print(th_ps_stress_df)
+```
+
+---
+
+### TH_PlaneStrain_Stress
+
+Fetches Time History Plane Strain Element Stress result tables.
+
+**`Result.TABLE.TH_PlaneStrain_Stress(th_case, keys=[], parts=["PartC", "PartI", "PartJ", "PartK", "PartL"], step_from=0, step_to=1, step_interval=1, components=['all'], options=None)`**
+
+#### Parameters
+
+- **`th_case`** (`list`): Required. Time history load case names. Example: `["Elcent"]`.
+
+- **`keys`** (`list[int]`): Required. List of Plane Strain Element IDs.
+
+- **`parts`** (`list[str]`): Element parts. Options: `PartC`, `PartI`, `PartJ`, `PartK`, `PartL`. Default: `["PartC", "PartI", "PartJ", "PartK", "PartL"]`.
+
+- **`step_from`** (`float`): Start time. Default: `0`.
+
+- **`step_to`** (`float`): End time. Default: `1`.
+
+- **`step_interval`** (`int`): Time interval (STEPS). Default: `1`.
+
+- **`components`** (`list[str]`): Table components to include. Default: `['all']`. Available: `Elem`, `Load`, `Time/Step`, `Part`, `Sig-xx`, `Sig-yy`, `Sig-zz`, `Sig-xy`.
+
+- **`options`** (`TableOptions`): Optional. Table options object for formatting and output settings.
+
+#### Returns
+- **Polars DataFrame**: A DataFrame containing the time history plane strain element stress result table.
+
+#### Example Usage
+
+```python
+# Get time history plane strain element stresses for a specific element
+th_pstrain_stress_df = Result.TABLE.TH_PlaneStrain_Stress(
+    th_case=["Elcent"],
+    keys=[49],
+    step_from=0.1, step_to=0.3, step_interval=1
+)
+print(th_pstrain_stress_df)
+```
+
+---
+
+### TH_SolidStress
+
+Fetches Time History Solid Element Stress result tables.
+
+**`Result.TABLE.TH_SolidStress(th_case, keys=[], parts=["PartI", "PartJ", "PartK", "PartL", "PartM", "PartN", "PartO", "PartP"], step_from=0, step_to=1, step_interval=1, components=['all'], options=None)`**
+
+#### Parameters
+
+- **`th_case`** (`list`): Required. Time history load case names. Example: `["Elcent"]`.
+
+- **`keys`** (`list[int]`): Required. List of Solid Element IDs.
+
+- **`parts`** (`list[str]`): Element parts. Options: `PartI` through `PartP` (8 corner parts). Default: `["PartI", "PartJ", "PartK", "PartL", "PartM", "PartN", "PartO", "PartP"]`.
+
+- **`step_from`** (`float`): Start time. Default: `0`.
+
+- **`step_to`** (`float`): End time. Default: `1`.
+
+- **`step_interval`** (`int`): Time interval (STEPS). Default: `1`.
+
+- **`components`** (`list[str]`): Table components to include. Default: `['all']`. Available: `Elem`, `Load`, `Time/Step`, `Part`, `Sig-xx`, `Sig-yy`, `Sig-zz`, `Sig-xy`, `Sig-yz`, `Sig-xz`.
+
+- **`options`** (`TableOptions`): Optional. Table options object for formatting and output settings.
+
+#### Returns
+- **Polars DataFrame**: A DataFrame containing the time history solid element stress result table.
+
+#### Example Usage
+
+```python
+# Get time history solid element stresses for a specific element
+th_solid_stress_df = Result.TABLE.TH_SolidStress(
+    th_case=["Elcent"],
+    keys=[53],
+    step_from=0.1, step_to=0.2, step_interval=1
+)
+print(th_solid_stress_df)
+```
+
+---
+
+### VibrationModeShapes
+
+Fetches Vibration Mode Shape (Eigenvalue Mode) result tables.
+**`Result.TABLE.VibrationModeShapes(modes, nodeIDs=[], output="EigenVector", options=None)`**
+
+#### Parameters
+
+- **`modes`** (`str`, `int`, or `list`): Mode number(s) to fetch. Example: `1`, `'Mode 1'`, `['Mode1', 'Mode2']`, or `[1, 2]`.
+
+- **`nodeIDs`** (`list[int]` or `str`): Optional. List of Node IDs or a Structure Group Name. Default: All nodes.
+
+- **`output`** (`str`): The specific eigenvalue analysis result to output. Options include:
+    - **`EigenVector`** (Default: Outputs eigenvector for each degree of freedom)
+    - **`Eigenvalue_Analysis`** (Summary table of natural periods and participating masses)
+    - **`Modal_Participation_Percent`**
+    - **`Modal_Participation_Mass`**
+    - **`Modal_Participation_Factor`**
+    - **`Modal_Direction_Factor`**
+
+- **`options`** (`TableOptions`): Optional. Table options object for formatting and output settings.
+
+#### Returns
+
+- **Polars DataFrame**: A DataFrame containing the specified vibration mode shape result table.
+
+#### Example Usage
+
+```python
+from midas_civil import *
+
+# Get eigenvectors for Modes 1 and 2 for specific nodes
+eigen_vector_df = Result.TABLE.VibrationModeShapes(
+    modes=[1, 2],
+    nodeIDs=[10, 20, 30],
+    output="EigenVector"
+)
+```
+
+---
+
+### BucklingModeShapes
+
+Fetches Buckling Mode Shape result tables.
+
+**`Result.TABLE.BucklingModeShapes(modes, nodeIDs=[], output="BucklingVector", options=None)`**
+
+#### Parameters
+
+- **`modes`** (`str`, `int`, or `list`): Mode number(s) to fetch. Example: `1`, `'Mode 1'`, `['Mode1', 'Mode2']`, or `[1, 2]`.
+
+- **`nodeIDs`** (`list[int]` or `str`): Optional. List of Node IDs or a Structure Group Name. Default: All nodes.
+
+- **`output`** (`str`): The specific buckling analysis result to output. Options include:
+    - **`BucklingVector`** (Default: Outputs the buckling mode vectors)
+    - **`Buckling_Analysis`** (Outputs critical buckling coefficients from the summary table)
+
+- **`options`** (`TableOptions`): Optional. Table options object for formatting and output settings.
+
+#### Returns
+
+- **Polars DataFrame**: A DataFrame containing the specified buckling mode shape result table.
+
+#### Example Usage
+
+```python
+from midas_civil import *
+
+# Get buckling mode vectors for Mode 1
+buckling_vector_df = Result.TABLE.BucklingModeShapes(
+    modes='Mode 1',
+    output="BucklingVector"
+)
+print(buckling_vector_df)
+```

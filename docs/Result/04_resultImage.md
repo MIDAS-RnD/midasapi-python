@@ -106,6 +106,8 @@ The `ResultGraphic` class provides utilities to define and generate **result vis
 It includes:   
 - Display configuration (Contour, Legend, Values, Deform)   
 - Result graphic generators (Beam Diagram, Displacement Contour, etc.)   
+- Cutting Line and Cutting Plane generator      
+
 
 ---
 
@@ -215,6 +217,37 @@ ResultGraphic.Deform( use = False, scale = 1.0,bRealDeform = False, bRealDisp = 
 ResultGraphic.Deform.use = True
 ResultGraphic.Deform.scale = 1.0
 ResultGraphic.Deform.bRealDeform = False
+
+
+```
+
+---
+
+### Cutting Diagram
+
+Controls Cutting Diagram display.
+
+| Parameter      | Type | Default | Description |
+|---------------|------|--------|-------------|
+| `use`           | bool | True   | Show/hide cutting diagram |
+| `mode`      | str  | right  | `line` or `plane` |
+| `cutting_names`     | list | []  | List of cutting line/plane names |
+| `scale`   | float  | 1.0      | Scale of diagram |
+| `bNormal`      | bool  | True  | Display diagram normal to Plate elements |
+| `bReverse`     | bool | False  | Reverse the diagram orientation |
+| `bValueOutput`   | bool  | True      | Show values in viewport |
+| `bMinMaxOnly`     | bool | True  | Show only Min/Max value |
+
+
+```python
+from midas_civil import *
+
+# Single definition
+ResultGraphic.CuttingDiagram(use=True,mode = 'right',cutting_names=['Line1','Line2'])
+
+#OR Individual definition
+ResultGraphic.CuttingDiagram.use = True
+ResultGraphic.CuttingDiagram.mode = 'line
 
 
 ```
@@ -393,5 +426,176 @@ Generates JSON for Buckling Mode Shapes Result Graphic.
 
 ---
 
+### Plate Stress
+
+**`ResultGraphic.PlateStress(lcase_type: _LCaseType, lcase_name: str, lcase_minmax: _MinMaxType = "Max", component: _CompPlateStress = 'Sig-eff', local_ucs_type: str = "UCS", ucs_name:str = "CurrentUCS", avg_nodal_type: str = "Element", res_surface:str = 'Top',)`**
+
+Generates JSON for Plate Stress Result Graphic.  
+
+
+- `component` (`str`): Component. Options: `"Sig-xx", "Sig-yy", "Sig-zz", "Sig-xy", "Sig-yz", "Sig-xz", "Sig-max", "Sig-min", "Sig-eff", "Max-Shear"` (Default: `"Sig-eff"`)
+
+- `local_ucs_type` (`str`): Coordinate System. Options: `"Local"`, `"UCS"` (Default: `"UCS"`)
+
+- `ucs_name` (`str`): Name of the UserCS (Default: `"CurrentUCS"`)
+
+- `avg_nodal_type` (`str`): Avg. Calculation. Options: `"Element"`, `"Avg.Nodal"` (Default: `"Element"`)
+
+- `res_surface` (`str`): Location of result. Options: `"Top"`, `"Bottom"` (Default: `"Top"`)
+
+---
+
+
+## Cutting Line
+
+It supports defining cutting line via coordinate points and provides functionality for creating these planes.
+
+
+#### Constructor
+
+**`ResultGraphic.CuttingLine(Name,Pt1,Pt2, id=None)`**
+
+
+#### Parameters
+
+* `Name (str)`: Name of the cutting line.
+* `Pt1 (tuple)` : Coordinates of the first point defining the line as `(X, Y, Z)`.
+* `Pt2 (tuple)` : Coordinates of the second point defining the line as `(X, Y, Z)`.
+* `id (int)` : Unique identifier. Auto-incremented if set to `None`.
+
+
+#### Object Attributes
+   
+* `NAME`: Name of the Cutting Line   
+* `POINT_1`: Tuple containing X, Y, Z coordinates for Point 1    
+* `POINT_2`: Tuple containing X, Y, Z coordinates for Point 2     
+* `ID`: ID of the Plate Cutting Line Diagram    
+
+
+#### Methods
+---
+
+#### json
+
+Returns a JSON dictionary of the defined plate cutting line .
+
+```py
+ResultGraphic.CuttingLine('CL1', (0, 4, 3), (0, 8, 3),)
+
+print(ResultGraphic.CuttingLine.json())
+# Output
+#{'Assign': {1: {'NAME': 'CL1', 'DIR': 'NORMAL', 'PT1X': 0, 'PT1Y': 4, 'PT1Z': 3, 'PT2X': 0, 'PT2Y': 8, 'PT2Z': 3, 'R': 255, 'G': 0, 'B': 0, 'TYPE': 0}}}
+```
+
+
+
+#### create
+
+Creates (or replaces) cutting line in the MIDAS model.
+
+```py
+ResultGraphic.CuttingLine('CL1', (0, 4, 3), (0, 8, 3),)
+
+ResultGraphic.CuttingLine.create()
+```
+
+---
+
+## Cutting Plane
+
+It supports defining cutting planes via coordinate points and provides functionality for creating, syncing, retrieving, and deleting these planes.
+
+
+#### Constructor
+
+**`ResultGraphic.CuttingPlane(Name, Direction, Point1, Point2, Point3, id=None)`**
+
+
+#### Parameters
+
+* `Name (str)`: Name of the cutting Plane.
+
+* `Direction (str)` : Direction of the cutting plane. Must be one of :     
+‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎
+`NORMAL` <font color="orange">&nbsp;&nbsp;|&nbsp;&nbsp;</font>
+`PLANE`
+
+* `Point1 (tuple)` : Coordinates of the first point defining the plane as `(X, Y, Z)`.
+* `Point2 (tuple)` : Coordinates of the second point defining the plane as `(X, Y, Z)`.
+* `Point3 (tuple)` : Coordinates of the third point defining the plane as `(X, Y, Z)`.
+* `id (int)` : Unique identifier. Auto-incremented if set to `None`.
+
+
+#### Object Attributes
+   
+* `NAME`: Name of the Cutting Line   
+* `DIR`: Direction type (NORMAL, PLANE)    
+* `PT1`: Tuple containing X, Y, Z coordinates for Point 1    
+* `PT2`: Tuple containing X, Y, Z coordinates for Point 2    
+* `PT3`: Tuple containing X, Y, Z coordinates for Point 3     
+* `ID`: ID of the Plate Cutting Line Diagram    
+
+
+#### Methods
+---
+
+#### json
+
+Returns a JSON dictionary of the defined plate cutting line diagrams.
+
+```py
+ResultGraphic.CuttingPlane('CL1', 'PLANE', (0, 4, 3), (0, 8, 3), (3, 9, 3))
+
+print(ResultGraphic.CuttingPlane.json())
+# Output
+#{'Assign': {'1': {'NAME': 'CL1', 'DIR': 'PLANE', 'PT1X': 0, 'PT1Y': 4, 'PT1Z': 3, 'PT2X': 0, 'PT2Y': 8, 'PT2Z': 3, 'PT3X': 3, 'PT3Y': 9, 'PT3Z': 3, 'R': 255, 'G': 0, 'B': 0}}}
+```
+
+
+
+#### create
+
+Creates (or replaces) cutting planes in the MIDAS model.
+
+```py
+ResultGraphic.CuttingPlane('CL1', 'PLANE', (0, 4, 3), (0, 8, 3), (3, 9, 3))
+
+ResultGraphic.CuttingPlane.create()
+```
+
+
+#### get
+
+Gets plate cutting line diagrams from the MIDAS CIVIL NX model.
+
+```py
+print(ResultGraphic.CuttingPlane.get())
+# Output
+# {'CLWP': {'1': {'NAME': 'CL1', 'DIR': 'PLANE', 'PT1X': 0, 'PT1Y': 4, 'PT1Z': 3, 'PT2X': 0, 'PT2Y': 8, 'PT2Z': 3, 'PT3X': 3, 'PT3Y': 9, 'PT3Z': 3, 'R': 0, 'G': 0, 'B': 0}}}
+```
+
+
+#### sync
+
+Synchronizes internal Python data with what's present in the MIDAS CIVIL NX model.
+
+```py
+ResultGraphic.CuttingPlane.sync()
+
+for cl in ResultGraphic.CuttingPlane.planes:
+    print(f'Name -> {cl.NAME}  | Direction -> {cl.DIR}  | PT1 -> {cl.PT1}')
+
+# Output
+# Name -> CL1  | Direction -> PLANE  | PT1 -> (0, 4, 3)
+```
+
+
+#### delete
+
+Deletes the cutting planes from the MIDAS model and clears local Python data.
+
+```py
+ResultGraphic.CuttingPlane.delete()
+```
 
 ---

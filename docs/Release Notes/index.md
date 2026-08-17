@@ -115,7 +115,7 @@ Released on - 15 April 2026
 Released on - 13 April 2026
 
 #### What's New
-* Added `Mdodel.getSelected` for retrieving selected nodes/elements ID.    
+* Added `Model.getSelected` for retrieving selected nodes/elements ID.    
 * Added `Load.Misc.PreCompositeSection`.    
 * Added `maxID` in Node for faster automatic Node ID assignment.       
 * Added error messages ouput if request fails (eg. beam load applied to truss now returns clear error instead of silently failing).       

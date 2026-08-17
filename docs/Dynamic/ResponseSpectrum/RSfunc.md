@@ -99,3 +99,62 @@ RS.Function.India(name="EQX_RS", code="IS1893(2002)", soilType="Hard", zone="IV"
 RS.Function.create()
 
 ```
+
+---
+
+## Peru
+---
+
+Create User-defined Response Spectrum function based on the Peruvian seismic design code (Norma Técnica E.030).   
+
+**`RS.Function.Peru(name , zone=1 , soilType='S0' , usage_cat='A1' , RRF=1.5 , max_period=6 , spectral_type='Normalized Accel', scaling=1 ,max_value=None , gravity=None , damping_rat = 0.05 , desc="" , id=None)`**  
+
+
+#### Parameters
+* `name`: Name of the response spectrum function.
+
+* `zone`: Seismic zone factor (Z). Expected values:   
+&emsp;&emsp;&emsp;&emsp;
+`1` <font color="orange">&nbsp;&nbsp;|&nbsp;&nbsp;</font> 
+`2` <font color="orange">&nbsp;&nbsp;|&nbsp;&nbsp;</font> 
+`3` <font color="orange">&nbsp;&nbsp;|&nbsp;&nbsp;</font> 
+`4`   
+
+* `soilType`: Soil profile classification (S). Expected values:  
+&emsp;&emsp;&emsp;&emsp;
+"S0" <font color="orange">&nbsp;&nbsp;|&nbsp;&nbsp;</font> 
+"S1"  <font color="orange">&nbsp;&nbsp;|&nbsp;&nbsp;</font> 
+"S2"  <font color="orange">&nbsp;&nbsp;|&nbsp;&nbsp;</font> 
+"S3"  
+
+* `usage_cat`: Usage category of the building (U). Expected values:  
+&emsp;&emsp;&emsp;&emsp;
+"A1" <font color="orange">&nbsp;&nbsp;|&nbsp;&nbsp;</font> 
+"A2"  <font color="orange">&nbsp;&nbsp;|&nbsp;&nbsp;</font> 
+"B"  <font color="orange">&nbsp;&nbsp;|&nbsp;&nbsp;</font> 
+"C"   
+
+* `RRF`: Response Reduction Factor (R).   
+* `max_period`: Maximum time period considered in the spectrum.     
+* `spectral_type`: Type of spectral data represented by the function. Expected values:   
+&emsp;&emsp;&emsp;&emsp;
+'Normalized Accel' <font color="orange">&nbsp;&nbsp;|&nbsp;&nbsp;</font> 
+'Acceleration'  <font color="orange">&nbsp;&nbsp;|&nbsp;&nbsp;</font> 
+'Velocity'  <font color="orange">&nbsp;&nbsp;|&nbsp;&nbsp;</font> 
+'Displacement'  
+* `scaling`: Scale factor applied to the response spectrum values.   
+* `max_value`: Maximum spectral value associated with the function.   
+* `gravity`: Gravitational acceleration used for normalization.
+    If `None`, the value returned by `Model.gravity()` is used.   
+* `damping_rat`: Damping ratio of the response spectrum. Default is `0.05` (5% damping).   
+* `desc`: Description of the response spectrum function. If `desc = ""` , a sample description is automatically generated.        
+* `id`: Manually assign an ID.   If **None**, ID will be auto-assigned.
+
+
+#### Examples
+```py
+
+RS.Function.Peru(name="EQX_PERU", zone=4, soilType="S2", usage_cat="A1", RRF=8.0)
+
+RS.Function.create()
+```

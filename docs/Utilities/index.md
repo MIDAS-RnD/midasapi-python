@@ -13,9 +13,9 @@ MAPI_KEY('eyJ1ciI6InN1bWl0QG1pZGFzaXQuY29tIiwicGciO252k81571d')
 
 ## LineToPlate
 
-**`utils.LineToPlate(nDiv:int = 10 , mSizeDiv:float = 0, bRigdLnk:bool=True , meshSize:float=0.5, elemList:list=None)`**  
+**`utils.LineToPlate(nDiv:int = 10 , mSizeDiv:float = 0, bRigdLnk:bool=True , meshSize:float=0.5, elemList:list=None, reverse=False)`**  
 The LineToPlate converts selected or specified line elements into shell (plate) elements in CIVIL NX.  
-It provides flexible options for controlling the mesh density, division method, and boundary connectivity between elements.
+It provides flexible options for controlling the mesh density, division method, boundary connectivity between elements, and handling of asymmetric cross-sections.
 
 ![NODE GRID](Line2Plate.png)
 
@@ -29,6 +29,7 @@ It provides flexible options for controlling the mesh density, division method, 
 * `meshSize : float` : Desired mesh size (in meters) for the resulting plate elements. Controls plate element fineness.
 * `elemList : list[int]` : List of element IDs to be converted.
 If `None`, the currently selected elements in CIVIL NX are used.
+* `reverse : bool` : Reverses the logical I-to-J end direction during the conversion process. This is particularly useful for ensuring correct orientation when converting tapered sections where the start and end dimensions are asymmetric.
 
 !!! info "Note."
     Either `nDiv` or `mSizeDiv` should be specified (not both simultaneously):  
@@ -54,7 +55,9 @@ utils.LineToPlate(elemList=[101, 102, 103], bRigdLnk=False)
 # Example 4: Use custom mesh size for the plate elements
 utils.LineToPlate(mSizeDiv=0.5,meshSize=0.5)
 
-```  
+# Example 5: Convert selected tapered line elements, reversing the I and J ends
+utils.LineToPlate(nDiv=10, reverse=True)
+```
 
 #### Supported Sections
 
@@ -75,17 +78,17 @@ Uniform and Tapered sections mentioned below can be converted to shell represent
 ---
 
 ## Alignment
-**`utils.Alignment(points:list, type: str = 'cubic')`**  
+**`utils.Alignment(points:list, type: str = 'cubic', xz_interp: str = 'linear', yEcc: float = 0)`**  
 
-The Alignment class creates a smooth curve (alignment) that interpolates between a series of given (x, y) points.
+The Alignment class creates a smooth curve (alignment) that interpolates between a series of given (x, y) or (x, y, z) points.
 It provides an interpolated curve representation (e.g. cubic spline, Akima, Makima, PCHIP) that can be later used to:   
 
 * Transform points from one alignment system to another.
 
 
 #### Parameters
-* `points : list`: A list of coordinate pairs [[x₁, y₁], [x₂, y₂], ...] defining the alignment path.
-* `type : str`: The type of interpolation used to generate the alignment curve. Options:  
+* `points : list`: A list of coordinate pairs `[[x₁, y₁], [x₂, y₂], ...]` or `[[x₁, y₁, z₁], [x₂, y₂, z₂], ...]` defining the alignment path.
+* `type : str`: The type of interpolation used to generate the alignment curve in X-Y. Options:  
 &emsp;&emsp;&emsp;&emsp;
 1 : `cubic` - Cubic Spline (default)   
 &emsp;&emsp;&emsp;&emsp;
@@ -94,7 +97,14 @@ It provides an interpolated curve representation (e.g. cubic spline, Akima, Maki
 3 : `makima` - Modified Akima spline  
 &emsp;&emsp;&emsp;&emsp;
 4 : `pchip` - Piecewise Cubic Hermite Interpolating Polynomial  
-
+* `xz_interp : str`: The type of interpolation used to generate the alignment curve in X-Z. Options:  
+&emsp;&emsp;&emsp;&emsp;
+1 : `linear` - Linear interpolation (default)   
+&emsp;&emsp;&emsp;&emsp;
+2 : `quadratic` - Quadratic interpolation  
+&emsp;&emsp;&emsp;&emsp;
+3 : `cubic` - Cubic interpolation  
+* `yEcc : float`: Eccentricity offset applied to the points in the local Y direction before interpolation (default = `0`).
 
 
 !!! info "Note."
@@ -201,3 +211,56 @@ utils.RC_Grillage(15,8,'pin',6,start_loc=[11,0,0])
 
 Model.create()
 ```  
+
+## SoftSelection
+
+**`utils.SoftSelection(location=(0,0,0), radius:float=5, falloffType='Linear')`**  
+The SoftSelection function finds all nodes within a specified radius from a given location (or list of locations) and assigns them a proportional weight from 0.0 to 1.0 based on their distance from the center. 
+
+![NODE GRID](SoftSelection.png)
+
+#### Parameters
+* `location`: Center of the selection area. Can be a coordinate tuple `(x, y, z)` or a list of node IDs/locations. Default is `(0, 0, 0)`.
+* `radius : float`: The radius of influence around the location(s).
+* `falloffType`: The mathematical curve used to calculate the weight as distance increases. Options:  
+&emsp;&emsp;&emsp;&emsp;
+`'Linear'` : Weight decreases linearly (Default). <font color="orange">&nbsp;&nbsp;|&nbsp;&nbsp;</font> 
+`'Parabolic'` : Weight follows a quadratic curve. <font color="orange">&nbsp;&nbsp;|&nbsp;&nbsp;</font> 
+`'Smooth'` : Weight follows a smooth cubic curve.
+
+#### Returns
+* `list`: A list of tuples containing the Node ID and its calculated weight, e.g., `[(nodeID_1, weight_1), (nodeID_2, weight_2), ...]`.
+
+!!! info "Note."
+    The function returns the calculated weights but does not apply any automatic modifications to the model itself:  
+    ‎ ‎ ‎ 1. The weight evaluates to `1.0` at the center of the selection and decays to `0.0` at the edge of the radius.  
+    ‎ ‎ ‎ 2. These weights are meant to be used as multipliers for custom transformations (e.g., smoothly raising/lowering a mesh, proportional load distribution, tapering thicknesses, etc.), leaving you free to apply them however you see fit.
+
+#### Examples
+
+```py
+from midas_civil import *
+
+MAPI_KEY("eyJ1ciI6InAuaGFyc2hAbWlkYXNpdC5jb20iLCJwZyI6ImNpdmlsIiwiY24iOiJMOGU0Q3B1M1NBIn0.5945a6d1c34ef0f9317fdc9b09517110a345286557457cf9d556415984ea74d8")
+Model.clear()
+
+# Create baseline nodes for extrusion
+loft = []
+for i in range(14):
+    Node(i,0,0)
+    loft.append(Node(i,0,0).ID)
+
+# Extrude nodes to create a plate mesh
+Element.Plate.extrude('NODE_ID', loft, [0,10,0], 5, False, 2)
+
+# Perform a Soft Selection at coordinate (6.5, 5, 0) with a radius of 5 units
+test = utils.SoftSelection((6.5, 5, 0), radius=5, falloffType='Linear')
+
+# Use the obtained weights to modify the Z-coordinates of the selected nodes proportionally
+for data in test:
+    nodeByID(data[0]).Z += data[1] * 1.12
+
+# Push the newly created nodes and elements to Civil NX
+Node.create()
+Element.create()
+```
