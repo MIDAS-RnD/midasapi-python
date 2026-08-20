@@ -123,6 +123,38 @@ Model.units(force='TONF') # Set the Force unit to Tonf
 
 
 
+## <font style="font-size:0px">Model.</font>getUnits
+Get the model's working units.  Can be used with Model.units().   
+`Model.getUnits()`  
+
+
+```py
+# Get the current model units
+old_unit = Model.getUnits()
+
+# Set the model force unit to N
+Model.units(force='N')
+# ANY OPERATION ON MODEL
+
+
+# Reverting the units to old unit
+Model.units(old_unit)
+
+```
+
+
+## <font style="font-size:0px">Model.</font>syncUnits
+Sync the python model units with CIVIL NX model's working units.  
+`Model.syncUnits()`  
+
+```py
+Model.syncUnits()
+print(NX.units)
+# Output :
+# {'FORCE': 'KN', 'DIST': 'M', 'HEAT': 'BTU', 'TEMPER': 'F'}
+
+```
+
 ## <font style="font-size:0px">Model.</font>type
 Sets structure and mass type information for the model.  
 `Model.type(strc_type=0, mass_type=1, gravity=0, mass_dir=1)`  

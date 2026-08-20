@@ -1,5 +1,66 @@
 # Release Notes
 
+
+## Version 1.7.0
+
+Released on - 17 Aug 2026
+
+#### What's New
+
+- Added `Model.snap()`, `Model.visualise()`, and `Model.goFigure()`.
+- Added `Model.Select.Polygon`.
+- Added Cutting Line (`ResultGraphic.CuttingLine`) and Cutting Plane(`ResultGraphic.CuttingLine`).
+- Added Plate Stress result graphic (`ResultGraphic.PlateStress`).
+- Added Cutting Diagram option for Plate diagrams(`ResultGraphic.CuttingDiagram`).
+- Added Heat of Hydration:
+    - Analysis control (`AnalysisControl.HeatOfHydration`)
+    - Ambient Temperature function (`HoH.Ambient_Temperature_Function`)
+    - Convection Coefficient function (`HoH.Convection.Coefficient_Function`)
+    - Convection Boundary (`HoH.Convection.Coefficient_Function`)
+    - Prescribed Temperature (`HoH.PrescribedTemperature`)
+    - Heat Source Function(`HoH.HeatSource.AssignHeatSource`)
+    - Assign Heat Source (`HoH.HeatSource.Function`)
+    - Pipe Cooling (`HoH.PipeCooling`)
+    - Construction stages (`HoH.CS`)
+- Added Angle and T-shape in Shape (`Shape.angle_shape` and `Shape.t_shape`).
+- Added Result Table for:
+    - **HOH:** Stress, Temp, Disp, Tensile Stress, Pipe Temp
+    - **TH:** Disp, Vel, Acc, Beam Force, Truss Force, Plate Force, Solid, Wall, Stress
+    - **Vibration:** Mode Shape
+    - **Buckling:** Mode Shapes
+- Added Time History loading:
+    - TH Case (`TH.Case`)
+    - TH Function  (`TH.Function`)
+    - Dynamic Nodal Load (`TH.DynamicNodalLoad`)
+    - Time Varying Static Loads (`TH.TimeVaryingStaticLoad`)
+    - Ground Acceleration (`TH.GroundAccel`)
+    - Multiple Support Excitation (`TH.MultipleSupportExcitation`)
+
+#### Fixes
+
+- Fixed `Model.save()` not working with default parameters.
+- Fixed `Element.sync()` not working with Solid elements.
+- Added `create` and `clear` commands for Specified Displacement to `Load.create` and `Load.clear`.
+- Undefined load cases and load groups are now created automatically; previously, an error was raised.
+- Improved Moving Lane application; no Moving Code request is sent each time.
+
+
+## Version 1.6.9
+Released on - 21 July 2026
+
+#### What's New
+*  Added `Material.ChangeProperty`
+*  `Model.getUnits()` to get current unit system of model.    
+*  `Model.syncUnits()` to sync python model units with model (used for gravity value).    
+*  Added `Section.fromShape`
+*  Added `Shape` function to generate parametric shapes.
+
+
+#### Fixes   
+*  Fixed `Load_case` id and number reset when sync is used.
+
+
+
 ## Version 1.6.8
 Released on - 9 July 2026
 

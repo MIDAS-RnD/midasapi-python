@@ -108,6 +108,7 @@ nav:
     - Creep Shrinkage : Material/010creep.md
     - Compressive Strength : Material/011comp.md
     - Time Dependent Link : Material/012tdlink.md  
+    - Change Property :  Material/013changeProp.md
 
   - Groups:
     - Groups  : Group/index.md
@@ -211,12 +212,13 @@ nav:
   - Heat of Hydration :  
     - ‎ ‎ ‎ Ambient Temperature Function : HoH/001AmbientTemperatureFunction.md
     - ‎ ‎ ‎ Convection Coefficient Function : HoH/003ConvectionCoefficientFunction.md
-    - ‎ ‎ ‎ Prescribed Temperature : HoH/007PrescribedTemperature.md
-    - ‎ ‎ ‎ Heat Source Functions : HoH/005HeatSourceFunction.md
+    - ‎ ‎ ‎ Convection Coefficient Function : HoH/004ConvectionBoundary.md
+    - ‎ ‎ ‎ Prescribed Temperature : HoH/008PrescribedTemperature.md
+    - ‎ ‎ ‎ Heat Source Functions : HoH/006HeatSourceFunction.md
     - ‎ ‎ ‎ Assign Heat Source : HoH/002AssignHeatSource.md
-    - ‎ ‎ ‎ Pipe Cooling : HoH/006PipeCooling.md
-    - ‎ ‎ ‎ Construction Stage Definition: HoH/004CsStage.md
-    - ‎ ‎ ‎ HY Result Graph : HoH/008ResultGraph.md
+    - ‎ ‎ ‎ Pipe Cooling : HoH/007PipeCooling.md
+    - ‎ ‎ ‎ Construction Stage Definition: HoH/005CsStage.md
+    - ‎ ‎ ‎ HY Result Graph : HoH/009ResultGraph.md
 
   - Utilities : Utilities/index.md
 
