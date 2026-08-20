@@ -8,7 +8,7 @@ A nested class within `HoH.Convection` used to define convection boundary.
 
 Assigns a constant convection coefficient.
 
-**`HoH.Convection.Coefficient_Function.Constant(elmID:int,faceID:int,conv_coeff_func:str='',amb_temp_func:str='',group:str='',id:int=None)`**
+**`HoH.Convection.Boundary(elmID:int,faceID:int,conv_coeff_func:str='',amb_temp_func:str='',group:str='',id:int=None)`**
 
 #### Parameters
 * `elmID`: Element ID of solid element.   
@@ -37,7 +37,7 @@ Assigns a constant convection coefficient.
 ## Methods
 ---
 
-### bySelectedNodes(nodeIDs:list,conv_coeff_func:str='',amb_temp_func:str='',group:str='')
+### bySelectedNodes
 
 **`HoH.Convection.Boundary.bySelectedNodes(elmID:int,faceID:int,conv_coeff_func:str='',amb_temp_func:str='',group:str='',id:int=None)`**
 
@@ -56,6 +56,7 @@ Automatically get face IDs based on entered node id list.
 HoH.Convection.Boundary.bySelectedNodes([1,2,3],'CONV_FN','AMB_FN','BG_GROUP')
 ```
 
+---
 
 #### json
 Generates the properly formatted JSON payload for MidasAPI.
