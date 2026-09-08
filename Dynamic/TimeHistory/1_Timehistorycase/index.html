@@ -1,0 +1,5510 @@
+<!DOCTYPE html><html lang="en" class="no-js"><head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+        <meta name="author" content="Sumit Shekhar">
+      
+      
+        <link rel="canonical" href="https://midas-rnd.github.io/midasapi-python/Dynamic/TimeHistory/1_Timehistorycase/">
+      
+      
+        <link rel="prev" href="../../ResponseSpectrum/RScase/">
+      
+      
+        <link rel="next" href="../DynamicNodalLoads/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Time History Case - MIDAS Python</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Flex:300,300i,400,400i,700,700i%7CFragment+Mono:400,400i,700,700i&amp;display=fallback">
+        <style>:root{--md-text-font:"Roboto Flex";--md-code-font:"Fragment Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  
+
+  <script data-goatcounter="https://sumitshekhar.goatcounter.com/count" async="" src="//gc.zgo.at/count.js"></script>
+
+
+  <link href="../../../assets/stylesheets/glightbox.min.css" rel="stylesheet"><script src="../../../assets/javascripts/glightbox.min.js"></script><style id="glightbox-style">
+            html.glightbox-open { overflow: initial; height: 100%; }
+            .gslide-title { margin-top: 0px; user-select: text; }
+            .gslide-desc { color: #666; user-select: text; }
+            .gslide-image img { background: white; }
+            .gscrollbar-fixer { padding-right: 15px; }
+            .gdesc-inner { font-size: 0.75rem; }
+            body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color); }
+            body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color); }
+            body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color); }
+        </style></head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#time-history-case" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+        <aside class="md-banner">
+          <div class="md-banner__inner md-grid md-typeset">
+            
+              <button class="md-banner__button md-icon" aria-label="Don't show this again">
+                
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+              </button>
+            
+            
+<div class="scroll-banner">
+  <p>🚀 New Features added ‎ ‎ ‎ ‎: 
+    ‎ ‎ ‎ ‎
+    Model.IMAGE
+    ‎ ‎ ‎ ‎ ‎ ‎|‎ ‎ ‎ ‎ ‎ ‎
+    Result.IMAGE
+    ‎ ‎ ‎ ‎ ‎ ‎|‎ ‎ ‎ ‎ ‎ ‎
+    View
+    ‎ ‎ ‎ ‎ ‎ ‎|‎ ‎ ‎ ‎ ‎ ‎
+    Result Graphic
+    ‎ ‎ ‎ ‎ ‎ ‎|‎ ‎ ‎ ‎ ‎ ‎
+    Model.Select
+    ‎ ‎ ‎ ‎ ‎ ‎|‎ ‎ ‎ ‎ ‎ ‎
+    Model.close
+    ‎ ‎ ‎ ‎ ‎ ‎|‎ ‎ ‎ ‎ ‎ ‎
+     </p>
+</div>
+
+          </div>
+          
+            <script>var el=document.querySelector("[data-md-component=announce]");if(el){var content=el.querySelector(".md-typeset");__md_hash(content.innerHTML)===__md_get("__announce")&&(el.hidden=!0)}</script>
+          
+        </aside>
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="MIDAS Python" class="md-header__button md-logo" aria-label="MIDAS Python" data-md-component="logo">
+      
+  <img src="../../../assets/midas-logo_White.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"></path></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            MIDAS Python
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Time History Case
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required="">
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix="">
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="MIDAS Python" class="md-nav__button md-logo" aria-label="MIDAS Python" data-md-component="logo">
+      
+  <img src="../../../assets/midas-logo_White.png" alt="logo">
+
+    </a>
+    MIDAS Python
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix="">
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Introduction
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../model/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Model
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../node/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Node
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4">
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../Element/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Element
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Element
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Element/1D/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ 1D Elements
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Element/2D/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ 2D Elements
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Element/3D/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ 3D Elements
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Element/ElemetScaleFactor/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Stiffness Scale Factor
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5">
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../Section/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Section Properties
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Section Properties
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Section/01_user/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Standard Section
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Section/02_psc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ PSC Section
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Section/03_composite/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Composite Section
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Section/04_tapered/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Tapered Section
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Section/05_taperedgroup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Tapered Group
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Section/06_value/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Value Section
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Section/07_shape/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Shape
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Section/09_thickness/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Thickness
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6">
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../Material/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Material Properties
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6" id="__nav_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Material Properties
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Material/001concrete/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Concrete
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Material/002steel/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Steel
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Material/003usermat/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ User-defined
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Material/010creep/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Creep Shrinkage
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Material/011comp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Compressive Strength
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Material/012tdlink/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Time Dependent Link
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Material/013changeProp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Change Property
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7">
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../Group/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Groups
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_7" id="__nav_7_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Groups
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Group/001sg/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Structure Group
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Group/002bg/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Boundary Group
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Group/003lg/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Load Group
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Group/004tg/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Tendon Group
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8">
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../Boundary/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Boundary
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_8" id="__nav_8_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Boundary
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Boundary/01supports/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Supports
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Boundary/02elink/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Elastic Link
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Boundary/03rlink/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Rigid Link
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Boundary/04PointSpring/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Point Spring
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Boundary/05MLFC/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Multi Linear Function
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Boundary/06beamendrelease/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Beam End Release
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9">
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../Load/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Load
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_9" id="__nav_9_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Load
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Load/case/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Load Case
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Load/000sw/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Self Weight
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Load/001nodal/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Nodal Load
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Load/002beam/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Beam Load
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Load/002Linebeam/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Line Beam Load
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Load/003LoadToMass/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Load To Mass
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Load/004NodalMass/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Nodal Mass
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Load/005spDisp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Specified Displacement
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Load/006floorload/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Floor Load
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Load/007Pressureload/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Pressure Load
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Load/008Hydrostaticpressure/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Hydrostatic Pressure Load
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10">
+        
+          
+          <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tendon
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Tendon
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Tendon/001Property/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Tendon Property
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Tendon/002Profile/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Tendon Profile
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Tendon/003Prestress/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Tendon Prestress
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11">
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../Temperature/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Temperature
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_11" id="__nav_11_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_11">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Temperature
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Temperature/001System/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ System
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Temperature/002Element/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Element
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Temperature/003Gradient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Gradient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Temperature/004Nodal/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Nodal
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Temperature/005Beamsection/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Beam Section
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_12" checked="">
+        
+          
+          <label class="md-nav__link" for="__nav_12" id="__nav_12_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dynamic Load
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_12_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_12">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Dynamic Load
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_12_1">
+        
+          
+          <label class="md-nav__link" for="__nav_12_1" id="__nav_12_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Response Spectrum
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_12_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_12_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Response Spectrum
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ResponseSpectrum/RSfunc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    RS Function
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ResponseSpectrum/RScase/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    RS Case
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_12_2" checked="">
+        
+          
+          <label class="md-nav__link" for="__nav_12_2" id="__nav_12_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Time History
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_12_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_12_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Time History
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Time History Case
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Time History Case
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+      
+        <li class="md-nav__item">
+  <a href="#damping-control" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Damping Control
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Damping Control">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#modal-damping" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Modal Damping
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mass-and-stiffness-proportional-damping" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mass and Stiffness Proportional Damping
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#strain-energy-proportional-damping" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Strain Energy Proportional Damping
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#element-mass-and-stiffness-proportional-damping" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Element Mass and Stiffness Proportional Damping
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#load-control" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Load Control
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Load Control">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#initial-load-global-control" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Initial Load (Global Control)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#subsequent-control" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Subsequent Control
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#nonlinear-iteration-control" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Nonlinear Iteration Control
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#case" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Case
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Case">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#linear-modal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Linear Modal
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nonlinear-modal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Nonlinear Modal
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#linear-direct-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Linear Direct Integration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nonlinear-direct-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Nonlinear Direct Integration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nonlinear-static" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Nonlinear Static
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Methods
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Examples
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DynamicNodalLoads/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dynamic Nodal Loads
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../TimeVaryingStaticLoads/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Time Varying Static Loads
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../GroundAcceleration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ground Acceleration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../MultipleSupportExcitation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Multiple Support Excitation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_13">
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../MovingLoad/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Moving Load
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_13" id="__nav_13_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_13_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_13">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Moving Load
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../MovingLoad/000Code/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Code
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../MovingLoad/001Vehicle/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Vehicle
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../MovingLoad/002LineLane/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Line Lane
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../MovingLoad/003VHCase/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Case
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_14">
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../Settlement/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Settlement
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_14" id="__nav_14_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_14_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_14">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Settlement
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Settlement/01Group/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Group
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Settlement/02Case/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Case
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_15">
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../Story/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Story
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_15_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_15">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Story
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_16">
+        
+          
+          <label class="md-nav__link" for="__nav_16" id="__nav_16_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Construction Stage
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_16_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_16">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Construction Stage
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../CS/001stage/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Define Construction Stage
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../CS/002compsec/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Composite Section for CS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../CS/003timeloads/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Time Loads for CS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../CS/004creepcoeffcs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Creep Coefficient for CS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../CS/005cambercs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Camber for CS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_17">
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../AnalysisControl/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Analysis Control
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_17" id="__nav_17_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_17_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_17">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Analysis Control
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../AnalysisControl/01MainControlData/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Main Control Data
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../AnalysisControl/02Pdelta/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ PDelta
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../AnalysisControl/03Buckling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Buckling
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../AnalysisControl/04EigenValue/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ EigenValue
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../AnalysisControl/05Settlement/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Settlement
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../AnalysisControl/06HeatOfHydration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Heat of Hydration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../AnalysisControl/BoundaryChangeAssignment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Boundary Change Assignment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../View/01_view/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    View
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_19">
+        
+          
+          <label class="md-nav__link" for="__nav_19" id="__nav_19_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Results
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_19_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_19">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Results
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Result/01_loadCombination/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Load Combination
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Result/02_resultTable/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Result Table
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Result/03_userResultTable/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ User Defined Table
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Result/04_resultImage/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Result Image
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_20">
+        
+          
+          <label class="md-nav__link" for="__nav_20" id="__nav_20_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Heat of Hydration
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_20_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_20">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Heat of Hydration
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../HoH/001AmbientTemperatureFunction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Ambient Temperature Function
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../HoH/003ConvectionCoefficientFunction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Convection Coefficient Function
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../HoH/004ConvectionBoundary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Convection Boundary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../HoH/008PrescribedTemperature/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Prescribed Temperature
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../HoH/006HeatSourceFunction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Heat Source Functions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../HoH/002AssignHeatSource/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Assign Heat Source
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../HoH/007PipeCooling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Pipe Cooling
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../HoH/005CsStage/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Construction Stage Definition
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../HoH/009ResultGraph/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ HY Result Graph
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Utilities/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Utilities
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_22">
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../Examples/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Examples
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_22" id="__nav_22_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_22_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_22">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Examples
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Examples/ex01/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ 3-D Simple 2-Bay Frame
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Examples/ex02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Plant Structure
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Examples/ex03/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Web Opening
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Examples/ex04/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ Arch Bridge
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Examples/ex05/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ PSC Box Girder Bridge
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Examples/ex06/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ PSC-I Composite Bridge
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Examples/gen_ex01/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ‎ ‎ ‎ RC Building
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Release%20Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Release Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Comments/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Discussion
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+      
+        <li class="md-nav__item">
+  <a href="#damping-control" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Damping Control
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Damping Control">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#modal-damping" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Modal Damping
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mass-and-stiffness-proportional-damping" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mass and Stiffness Proportional Damping
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#strain-energy-proportional-damping" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Strain Energy Proportional Damping
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#element-mass-and-stiffness-proportional-damping" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Element Mass and Stiffness Proportional Damping
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#load-control" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Load Control
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Load Control">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#initial-load-global-control" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Initial Load (Global Control)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#subsequent-control" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Subsequent Control
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#nonlinear-iteration-control" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Nonlinear Iteration Control
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#case" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Case
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Case">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#linear-modal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Linear Modal
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nonlinear-modal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Nonlinear Modal
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#linear-direct-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Linear Direct Integration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nonlinear-direct-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Nonlinear Direct Integration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nonlinear-static" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Nonlinear Static
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Methods
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Examples
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+  <nav class="md-path" aria-label="Navigation">
+    <ol class="md-path__list">
+      
+        
+  
+  
+    <li class="md-path__item">
+      <a href="../../.." class="md-path__link">
+        
+  <span class="md-ellipsis">
+    Introduction
+  </span>
+
+      </a>
+    </li>
+  
+
+      
+      
+        
+  
+  
+    
+    
+      
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../../ResponseSpectrum/RSfunc/" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    Dynamic Load
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="./" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    Time History
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="time-history-case">Time History Case</h1>
+<h2 id="damping-control">Damping Control</h2>
+<h3 id="modal-damping">Modal Damping</h3>
+<h4 id="constructor">Constructor</h4>
+<p><strong><code>TH.Damping.Modal(dampRatioAllMode=0.05, ModeDampingOverrides=None)</code></strong></p>
+<p>Constructs Damping control with Modal damping</p>
+<h4 id="parameters">Parameters</h4>
+<ul>
+<li><code>dampRatioAllMode</code>: Damping ratio applied to all modes. Default is <code>0.05</code> (5% damping).</li>
+<li><code>ModeDampingOverrides</code>: Optional list of <code>(ModeNumber, DampingRatio)</code> tuples to override the damping ratio for specific modes, e.g. <code>[(1, 0.006), (2, 0.007)]</code>.</li>
+</ul>
+<h4 id="example">Example</h4>
+<div class="highlight"><pre><span></span><code><span class="n">damp</span> <span class="o">=</span> <span class="n">TH</span><span class="o">.</span><span class="n">Damping</span><span class="o">.</span><span class="n">Modal</span><span class="p">(</span>
+    <span class="n">dampRatioAllMode</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span>
+    <span class="n">ModeDampingOverrides</span><span class="o">=</span><span class="p">[(</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.006</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mf">0.007</span><span class="p">)]</span>
+<span class="p">)</span>
+<span class="n">TH</span><span class="o">.</span><span class="n">Case</span><span class="o">.</span><span class="n">LinearModal</span><span class="p">(</span><span class="n">Name</span><span class="o">=</span><span class="s2">"TH_1"</span><span class="p">,</span> <span class="n">damping_control</span><span class="o">=</span><span class="n">damp</span><span class="p">)</span>
+</code></pre></div>
+<hr>
+<h3 id="mass-and-stiffness-proportional-damping">Mass and Stiffness Proportional Damping</h3>
+<h4 id="constructor_1">Constructor</h4>
+<p><strong><code>TH.Damping.MassStiffness(inpType=1, massProp=None, stiffProp=None, freq1=None, damp1=0, freq2=None, damp2=0, period1=None, period2=None)</code></strong></p>
+<p>Constructs Damping control with Mass &amp; Stiffness (Rayleigh) Proportional damping</p>
+<h4 id="parameters_1">Parameters</h4>
+<ul>
+<li><code>inpType</code>: Damping input method/type.<br>
+    
+1 : Constant (Direct Specification) <font color="orange">&nbsp;&nbsp;|&nbsp;&nbsp;</font> 
+2 : Frequency-Proportional (Calc. from Frequency/Period)</li>
+<li><code>massProp</code>: Mass proportional damping coefficient. Used when <code>inpType=1</code>.</li>
+<li><code>stiffProp</code>: Stiffness proportional damping coefficient. Used when <code>inpType=1</code>.</li>
+<li><code>freq1</code>: First reference frequency for damping calculation. Used when <code>inpType=2</code>.</li>
+<li><code>damp1</code>: Damping ratio corresponding to <code>freq1</code> (or <code>period1</code>).</li>
+<li><code>freq2</code>: Second reference frequency for damping calculation. Used when <code>inpType=2</code>.</li>
+<li><code>damp2</code>: Damping ratio corresponding to <code>freq2</code> (or <code>period2</code>).</li>
+<li><code>period1</code>: First reference period for damping calculation. Alternative to <code>freq1</code> — used when <code>inpType=2</code>.</li>
+<li><code>period2</code>: Second reference period for damping calculation. Alternative to <code>freq2</code> — used when <code>inpType=2</code>.</li>
+</ul>
+<blockquote>
+<p>Provide either <code>freq1</code>/<code>freq2</code> <strong>or</strong> <code>period1</code>/<code>period2</code>, not both.</p>
+</blockquote>
+<h4 id="example_1">Example</h4>
+<div class="highlight"><pre><span></span><code><span class="c1"># Constant Mass &amp; Stiffness Proportional damping</span>
+<span class="n">damp1</span> <span class="o">=</span> <span class="n">TH</span><span class="o">.</span><span class="n">Damping</span><span class="o">.</span><span class="n">MassStiffness</span><span class="p">(</span><span class="n">inpType</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">massProp</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">stiffProp</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="c1"># Frequency-Proportional damping, by frequency</span>
+<span class="n">damp2</span> <span class="o">=</span> <span class="n">TH</span><span class="o">.</span><span class="n">Damping</span><span class="o">.</span><span class="n">MassStiffness</span><span class="p">(</span>
+    <span class="n">inpType</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">freq1</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">damp1</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">freq2</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">damp2</span><span class="o">=</span><span class="mf">0.05</span>
+<span class="p">)</span>
+
+<span class="n">TH</span><span class="o">.</span><span class="n">Case</span><span class="o">.</span><span class="n">LinearDirectInt</span><span class="p">(</span><span class="n">Name</span><span class="o">=</span><span class="s2">"TH_2"</span><span class="p">,</span> <span class="n">damping_control</span><span class="o">=</span><span class="n">damp1</span><span class="p">,</span> <span class="n">time_integration_params</span><span class="o">=</span><span class="s2">"CONSTANT"</span><span class="p">)</span>
+</code></pre></div>
+<hr>
+<h3 id="strain-energy-proportional-damping">Strain Energy Proportional Damping</h3>
+<h4 id="constructor_2">Constructor</h4>
+<p><strong><code>TH.Damping.StrainEnergy()</code></strong></p>
+<p>Constructs Damping control with Strain Energy Proportional damping</p>
+<h4 id="example_2">Example</h4>
+<div class="highlight"><pre><span></span><code><span class="n">damp</span> <span class="o">=</span> <span class="n">TH</span><span class="o">.</span><span class="n">Damping</span><span class="o">.</span><span class="n">StrainEnergy</span><span class="p">()</span>
+<span class="n">TH</span><span class="o">.</span><span class="n">Case</span><span class="o">.</span><span class="n">LinearModal</span><span class="p">(</span><span class="n">Name</span><span class="o">=</span><span class="s2">"TH_3"</span><span class="p">,</span> <span class="n">damping_control</span><span class="o">=</span><span class="n">damp</span><span class="p">)</span>
+</code></pre></div>
+<hr>
+<h3 id="element-mass-and-stiffness-proportional-damping">Element Mass and Stiffness Proportional Damping</h3>
+<h4 id="constructor_3">Constructor</h4>
+<p><strong><code>TH.Damping.ElementMassStiffness()</code></strong></p>
+<p>Constructs Damping control with Element-Level Mass &amp; Stiffness Proportional damping</p>
+<h4 id="example_3">Example</h4>
+<div class="highlight"><pre><span></span><code><span class="n">damp</span> <span class="o">=</span> <span class="n">TH</span><span class="o">.</span><span class="n">Damping</span><span class="o">.</span><span class="n">ElementMassStiffness</span><span class="p">()</span>
+<span class="n">TH</span><span class="o">.</span><span class="n">Case</span><span class="o">.</span><span class="n">LinearModal</span><span class="p">(</span><span class="n">Name</span><span class="o">=</span><span class="s2">"TH_4"</span><span class="p">,</span> <span class="n">damping_control</span><span class="o">=</span><span class="n">damp</span><span class="p">)</span>
+</code></pre></div>
+<hr>
+<h2 id="load-control">Load Control</h2>
+<hr>
+<h3 id="initial-load-global-control">Initial Load (Global Control)</h3>
+<h4 id="constructor_4">Constructor</h4>
+<p><strong><code>TH.InitialLoad_Control(Use_Initial_Load=True, Cumulate_DVA_Results=False, Keep_Final_Step_Loads_Constant=False, Geometricnonlinearity_type=False)</code></strong></p>
+<p>Constructs a starting condition control that begins the case from the Initial Load (Global Control) condition</p>
+<h4 id="parameters_2">Parameters</h4>
+<ul>
+<li><code>Use_Initial_Load</code>: Whether to use the Initial Load (Global Control) option.</li>
+<li><code>Cumulate_DVA_Results</code>: Cumulate the Displacement/Velocity/Acceleration results. Applied only when <code>Use_Initial_Load=True</code>.</li>
+<li><code>Keep_Final_Step_Loads_Constant</code>: Keep the loads of the final step constant for the remainder of the analysis. Applied only when <code>Use_Initial_Load=True</code>.</li>
+<li><code>Geometricnonlinearity_type</code>: Geometric nonlinearity control.<br>
+    
+False : Standard <font color="orange">&nbsp;&nbsp;|&nbsp;&nbsp;</font> 
+True : Large Displacement</li>
+</ul>
+<h4 id="example_4">Example</h4>
+<div class="highlight"><pre><span></span><code><span class="n">ilc</span> <span class="o">=</span> <span class="n">TH</span><span class="o">.</span><span class="n">InitialLoad_Control</span><span class="p">(</span>
+    <span class="n">Use_Initial_Load</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">Cumulate_DVA_Results</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">Keep_Final_Step_Loads_Constant</span><span class="o">=</span><span class="kc">False</span>
+<span class="p">)</span>
+<span class="n">TH</span><span class="o">.</span><span class="n">Case</span><span class="o">.</span><span class="n">NonLinearDirectInt</span><span class="p">(</span>
+    <span class="n">Name</span><span class="o">=</span><span class="s2">"TH_Seismic_2"</span><span class="p">,</span>
+    <span class="n">endTime</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span>
+    <span class="n">timeIncrement</span><span class="o">=</span><span class="mf">0.001</span><span class="p">,</span>
+    <span class="n">subsequent_control</span><span class="o">=</span><span class="n">ilc</span><span class="p">,</span>
+    <span class="n">damping_control</span><span class="o">=</span><span class="n">TH</span><span class="o">.</span><span class="n">Damping</span><span class="o">.</span><span class="n">MassStiffness</span><span class="p">(</span><span class="n">inpType</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">massProp</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">stiffProp</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span>
+    <span class="n">time_integration_params</span><span class="o">=</span><span class="s2">"CONSTANT"</span>
+<span class="p">)</span>
+</code></pre></div>
+<hr>
+<h3 id="subsequent-control">Subsequent Control</h3>
+<h4 id="constructor_5">Constructor</h4>
+<p><strong><code>TH.Subsequent_Control(load_case=None, Initial_element_forces_table=False, Initial_forces_geometric_stiffness=False, Geometricnonlinearity_type=False)</code></strong></p>
+<p>Constructs Subsequent Control data.</p>
+<h4 id="parameters_3">Parameters</h4>
+<ul>
+<li><code>load_case</code>: List <code>[LoadCaseType, LoadCaseName]</code> identifying the preceding load case to continue from, e.g. <code>["ST", "SIDL"]</code>. If <code>LoadCaseType</code> is <code>"TH"</code>, two optional input can be add in list: <code>[LoadCaseType, LoadCaseName, Cumulate_DVA_Results, Keep_Final_Step_Loads_Constant]</code>.</li>
+<li><code>Initial_element_forces_table</code>: Continue from the Initial Element Forces (Table). Only valid when <code>Geometricnonlinearity_type=False</code>.</li>
+<li><code>Initial_forces_geometric_stiffness</code>: Continue using Initial Forces for Geometric Stiffness. Only valid when <code>Geometricnonlinearity_type=True</code>.</li>
+<li><code>Geometricnonlinearity_type</code>: Geometric nonlinearity control.<br>
+    
+False : Standard <font color="orange">&nbsp;&nbsp;|&nbsp;&nbsp;</font> 
+True : Large Displacement</li>
+</ul>
+<h4 id="example_5">Example</h4>
+<div class="highlight"><pre><span></span><code><span class="c1"># 1.With the Static Load Case</span>
+<span class="n">sc1</span> <span class="o">=</span> <span class="n">TH</span><span class="o">.</span><span class="n">Subsequent_Control</span><span class="p">(</span><span class="n">load_case</span><span class="o">=</span><span class="p">[</span><span class="s2">"ST"</span><span class="p">,</span> <span class="s2">"Case Name"</span><span class="p">])</span>
+<span class="n">TH</span><span class="o">.</span><span class="n">Case</span><span class="o">.</span><span class="n">LinearModal</span><span class="p">(</span><span class="n">Name</span><span class="o">=</span><span class="s2">"TH_A"</span><span class="p">,</span> <span class="n">THtype</span><span class="o">=</span><span class="s2">"Periodic"</span><span class="p">,</span> <span class="n">subsequent_control</span><span class="o">=</span><span class="n">sc1</span><span class="p">)</span>
+
+<span class="c1"># 2. With the Initial Element Forces (Table)</span>
+<span class="n">sc2</span> <span class="o">=</span> <span class="n">TH</span><span class="o">.</span><span class="n">Subsequent_Control</span><span class="p">(</span><span class="n">Initial_element_forces_table</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">TH</span><span class="o">.</span><span class="n">Case</span><span class="o">.</span><span class="n">LinearModal</span><span class="p">(</span><span class="n">Name</span><span class="o">=</span><span class="s2">"TH_B"</span><span class="p">,</span> <span class="n">THtype</span><span class="o">=</span><span class="s2">"Periodic"</span><span class="p">,</span> <span class="n">subsequent_control</span><span class="o">=</span><span class="n">sc2</span><span class="p">)</span>
+</code></pre></div>
+<hr>
+<h2 id="nonlinear-iteration-control">Nonlinear Iteration Control</h2>
+<hr>
+<h4 id="constructor_6">Constructor</h4>
+<p><strong><code>TH.NonlinearIteration_Control(Maximum_Iteration=10, Minimum_Step_Size=1e-05, Max_num_of_sub_steps=10, Displacement_norm=None, Force_norm=None, Energy_norm=None, Startline_search_Iteration=None, Runge_kutta_method="FEHLBERG", Tolerance=1e-08, Check_Convergence=True)</code></strong></p>
+<p>Constructs the nonlinear iteration/convergence settings used by nonlinear Time History cases</p>
+<h4 id="parameters_4">Parameters</h4>
+<ul>
+<li><code>Maximum_Iteration</code>: Maximum number of iterations per step.</li>
+<li><code>Minimum_Step_Size</code>: Minimum allowable sub-step size. Not applied for <code>NonLinearStatic</code> cases.</li>
+<li><code>Max_num_of_sub_steps</code>: Maximum number of sub-steps.</li>
+<li><code>Displacement_norm</code>: Convergence tolerance for the displacement norm. If <strong>None</strong>, the displacement norm check is disabled.</li>
+<li><code>Force_norm</code>: Convergence tolerance for the force norm. If <strong>None</strong>, the force norm check is disabled.</li>
+<li><code>Energy_norm</code>: Convergence tolerance for the energy norm. If <strong>None</strong>, the energy norm check is disabled.</li>
+<li><code>Startline_search_Iteration</code>: Iteration number at which line search begins. If <strong>None</strong>, line search is disabled.</li>
+<li><code>Runge_kutta_method</code>: Runge-Kutta integration method.<br>
+    
+'FEHLBERG' <font color="orange">&nbsp;&nbsp;|&nbsp;&nbsp;</font> 
+'CASHKARP'</li>
+<li><code>Tolerance</code>: Convergence tolerance.</li>
+<li><code>Check_Convergence</code>: Enables convergence checking.</li>
+</ul>
+<h4 id="example_6">Example</h4>
+<div class="highlight"><pre><span></span><code><span class="n">nl_iter</span> <span class="o">=</span> <span class="n">TH</span><span class="o">.</span><span class="n">NonlinearIteration_Control</span><span class="p">(</span>
+    <span class="n">Maximum_Iteration</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+    <span class="n">Minimum_Step_Size</span><span class="o">=</span><span class="mf">1e-05</span><span class="p">,</span>
+    <span class="n">Displacement_norm</span><span class="o">=</span><span class="mf">0.001</span><span class="p">,</span>
+    <span class="n">Force_norm</span><span class="o">=</span><span class="mf">0.001</span><span class="p">,</span>
+    <span class="n">Runge_kutta_method</span><span class="o">=</span><span class="s2">"FEHLBERG"</span><span class="p">,</span>
+    <span class="n">Tolerance</span><span class="o">=</span><span class="mf">1e-08</span><span class="p">,</span>
+    <span class="n">Check_Convergence</span><span class="o">=</span><span class="kc">False</span>
+<span class="p">)</span>
+<span class="n">TH</span><span class="o">.</span><span class="n">Case</span><span class="o">.</span><span class="n">NonLinearModal</span><span class="p">(</span>
+    <span class="n">Name</span><span class="o">=</span><span class="s2">"TH_NL_1"</span><span class="p">,</span>
+    <span class="n">endTime</span><span class="o">=</span><span class="mi">22</span><span class="p">,</span>
+    <span class="n">timeIncrement</span><span class="o">=</span><span class="mf">0.0001</span><span class="p">,</span>
+    <span class="n">damping_control</span><span class="o">=</span><span class="n">TH</span><span class="o">.</span><span class="n">Damping</span><span class="o">.</span><span class="n">Modal</span><span class="p">(</span><span class="n">dampRatioAllMode</span><span class="o">=</span><span class="mf">0.0106079</span><span class="p">),</span>
+    <span class="n">NonlinearIteration_Control</span><span class="o">=</span><span class="n">nl_iter</span>
+<span class="p">)</span>
+</code></pre></div>
+<hr>
+<h2 id="case">Case</h2>
+<h3 id="linear-modal">Linear Modal</h3>
+<h4 id="constructor_7">Constructor</h4>
+<p><strong><code>TH.Case.LinearModal(Name, THtype='Transient', endTime=1, timeIncrement=0.01, stepIncOutput=1, subsequent_control=None, damping_control=None, id=None)</code></strong></p>
+<p>Constructs a Linear Time History Load Case</p>
+<h4 id="parameters_5">Parameters</h4>
+<ul>
+<li><code>Name</code>: Name of the time history load case.</li>
+<li><code>THtype</code>: Time history analysis type.<br>
+    
+'Transient' <font color="orange">&nbsp;&nbsp;|&nbsp;&nbsp;</font> 
+'Periodic'</li>
+<li><code>endTime</code>: Analysis end time.</li>
+<li><code>timeIncrement</code>: Time step increment.</li>
+<li><code>stepIncOutput</code>: Output every N-th step.</li>
+<li><code>subsequent_control</code>: Starting condition control object — <code>TH.InitialLoad_Control</code> or <code>TH.Subsequent_Control</code>.</li>
+<li><code>damping_control</code>: Damping control object — <code>TH.Damping.Modal</code>, <code>.MassStiffness</code>, <code>.StrainEnergy</code>, or <code>.ElementMassStiffness</code>.</li>
+<li><code>id</code>: Manually assign an ID. If <strong>None</strong>, ID will be auto-assigned.</li>
+</ul>
+<h4 id="example_7">Example</h4>
+<div class="highlight"><pre><span></span><code><span class="n">TH</span><span class="o">.</span><span class="n">Case</span><span class="o">.</span><span class="n">LinearModal</span><span class="p">(</span>
+    <span class="n">Name</span><span class="o">=</span><span class="s2">"TH_Modal_1"</span><span class="p">,</span>
+    <span class="n">THtype</span><span class="o">=</span><span class="s2">"Transient"</span><span class="p">,</span>
+    <span class="n">endTime</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span>
+    <span class="n">timeIncrement</span><span class="o">=</span><span class="mf">0.0001</span><span class="p">,</span>
+    <span class="n">stepIncOutput</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">subsequent_control</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">damping_control</span><span class="o">=</span><span class="n">TH</span><span class="o">.</span><span class="n">Damping</span><span class="o">.</span><span class="n">Modal</span><span class="p">(</span><span class="n">dampRatioAllMode</span><span class="o">=</span><span class="mf">0.0106079</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="n">TH</span><span class="o">.</span><span class="n">Case</span><span class="o">.</span><span class="n">create</span><span class="p">()</span>
+</code></pre></div>
+<hr>
+<h3 id="nonlinear-modal">Nonlinear Modal</h3>
+<h4 id="constructor_8">Constructor</h4>
+<p><strong><code>TH.Case.NonLinearModal(Name, endTime=1, timeIncrement=0.01, stepIncOutput=1, subsequent_control=None, damping_control=None, NonlinearIteration_Control=None, id=None)</code></strong></p>
+<p>Constructs a Nonlinear Time History Load Case (Transient only)</p>
+<h4 id="parameters_6">Parameters</h4>
+<ul>
+<li><code>Name</code>: Name of the time history load case.</li>
+<li><code>endTime</code>: Analysis end time.</li>
+<li><code>timeIncrement</code>: Time step increment.</li>
+<li><code>stepIncOutput</code>: Output every N-th step.</li>
+<li><code>subsequent_control</code>: Starting condition control object — <code>TH.InitialLoad_Control</code> or <code>TH.Subsequent_Control</code>.</li>
+<li><code>damping_control</code>: Damping control object.</li>
+<li><code>NonlinearIteration_Control</code>: Nonlinear iteration control object — <code>TH.NonlinearIteration_Control</code>.</li>
+<li><code>id</code>: Manually assign an ID. If <strong>None</strong>, ID will be auto-assigned.</li>
+</ul>
+<h4 id="example_8">Example</h4>
+<div class="highlight"><pre><span></span><code><span class="n">TH</span><span class="o">.</span><span class="n">Case</span><span class="o">.</span><span class="n">NonLinearModal</span><span class="p">(</span>
+    <span class="n">Name</span><span class="o">=</span><span class="s2">"TH_NLModal_1"</span><span class="p">,</span>
+    <span class="n">endTime</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span>
+    <span class="n">timeIncrement</span><span class="o">=</span><span class="mf">0.0001</span><span class="p">,</span>
+    <span class="n">stepIncOutput</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">subsequent_control</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">damping_control</span><span class="o">=</span><span class="n">TH</span><span class="o">.</span><span class="n">Damping</span><span class="o">.</span><span class="n">Modal</span><span class="p">(</span><span class="n">dampRatioAllMode</span><span class="o">=</span><span class="mf">0.0106079</span><span class="p">),</span>
+    <span class="n">NonlinearIteration_Control</span><span class="o">=</span><span class="n">TH</span><span class="o">.</span><span class="n">NonlinearIteration_Control</span><span class="p">(</span>
+        <span class="n">Maximum_Iteration</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+        <span class="n">Displacement_norm</span><span class="o">=</span><span class="mf">0.001</span><span class="p">,</span>
+        <span class="n">Check_Convergence</span><span class="o">=</span><span class="kc">False</span>
+    <span class="p">)</span>
+<span class="p">)</span>
+<span class="n">TH</span><span class="o">.</span><span class="n">Case</span><span class="o">.</span><span class="n">create</span><span class="p">()</span>
+</code></pre></div>
+<hr>
+<h3 id="linear-direct-integration">Linear Direct Integration</h3>
+<h4 id="constructor_9">Constructor</h4>
+<p><strong><code>TH.Case.LinearDirectInt(Name, endTime=1, timeIncrement=0.01, stepIncOutput=1, subsequent_control=None, damping_control=None, time_integration_params="LINEAR", id=None)</code></strong></p>
+<p>Constructs a Linear, Direct-Integration Time History Load Case</p>
+<h4 id="parameters_7">Parameters</h4>
+<ul>
+<li><code>Name</code>: Name of the time history load case.</li>
+<li><code>endTime</code>: Analysis end time.</li>
+<li><code>timeIncrement</code>: Time step increment.</li>
+<li><code>stepIncOutput</code>: Output every N-th step.</li>
+<li><code>subsequent_control</code>: Starting condition control object — <code>TH.InitialLoad_Control</code> or <code>TH.Subsequent_Control</code>.</li>
+<li><code>damping_control</code>: Damping control object.</li>
+<li><code>time_integration_params</code>: Newmark integration parameters.<br>
+    
+'CONSTANT' : Average (Constant) Acceleration <font color="orange">&nbsp;&nbsp;|&nbsp;&nbsp;</font> 
+'LINEAR' : Linear Acceleration <font color="orange">&nbsp;&nbsp;|&nbsp;&nbsp;</font> 
+<code>(GAMMA, BETA)</code> : User Input</li>
+<li><code>id</code>: Manually assign an ID. If <strong>None</strong>, ID will be auto-assigned.</li>
+</ul>
+<h4 id="example_9">Example</h4>
+<div class="highlight"><pre><span></span><code><span class="n">TH</span><span class="o">.</span><span class="n">Case</span><span class="o">.</span><span class="n">LinearDirectInt</span><span class="p">(</span>
+    <span class="n">Name</span><span class="o">=</span><span class="s2">"TH_Direct_1"</span><span class="p">,</span>
+    <span class="n">endTime</span><span class="o">=</span><span class="mi">34</span><span class="p">,</span>
+    <span class="n">timeIncrement</span><span class="o">=</span><span class="mf">0.0001</span><span class="p">,</span>
+    <span class="n">stepIncOutput</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">subsequent_control</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">damping_control</span><span class="o">=</span><span class="n">TH</span><span class="o">.</span><span class="n">Damping</span><span class="o">.</span><span class="n">MassStiffness</span><span class="p">(</span><span class="n">inpType</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">massProp</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">stiffProp</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span>
+    <span class="n">time_integration_params</span><span class="o">=</span><span class="s2">"CONSTANT"</span>
+<span class="p">)</span>
+<span class="n">TH</span><span class="o">.</span><span class="n">Case</span><span class="o">.</span><span class="n">create</span><span class="p">()</span>
+</code></pre></div>
+<hr>
+<h3 id="nonlinear-direct-integration">Nonlinear Direct Integration</h3>
+<h4 id="constructor_10">Constructor</h4>
+<p><strong><code>TH.Case.NonLinearDirectInt(Name, endTime=1, timeIncrement=0.01, stepIncOutput=1, subsequent_control=None, damping_control=None, time_integration_params="LINEAR", NonlinearIteration_Control=None, damping_matrix_update="NO", id=None)</code></strong></p>
+<p>Constructs a Nonlinear, Direct-Integration Time History Load Case</p>
+<h4 id="parameters_8">Parameters</h4>
+<ul>
+<li><code>Name</code>: Name of the time history load case.</li>
+<li><code>endTime</code>: Analysis end time.</li>
+<li><code>timeIncrement</code>: Time step increment.</li>
+<li><code>stepIncOutput</code>: Output every N-th step.</li>
+<li><code>subsequent_control</code>: Starting condition control object — <code>TH.InitialLoad_Control</code> or <code>TH.Subsequent_Control</code>.</li>
+<li><code>damping_control</code>: Damping control object.</li>
+<li><code>time_integration_params</code>: Newmark integration parameters.<br>
+    
+'CONSTANT' <font color="orange">&nbsp;&nbsp;|&nbsp;&nbsp;</font> 
+'LINEAR' <font color="orange">&nbsp;&nbsp;|&nbsp;&nbsp;</font> 
+<code>(GAMMA, BETA)</code></li>
+<li><code>NonlinearIteration_Control</code>: Nonlinear iteration control object.</li>
+<li><code>damping_matrix_update</code>: Update the damping matrix at each step.<br>
+    
+'YES' <font color="orange">&nbsp;&nbsp;|&nbsp;&nbsp;</font> 
+'NO'</li>
+<li><code>id</code>: Manually assign an ID. If <strong>None</strong>, ID will be auto-assigned.</li>
+</ul>
+<h4 id="example_10">Example</h4>
+<div class="highlight"><pre><span></span><code><span class="n">TH</span><span class="o">.</span><span class="n">Case</span><span class="o">.</span><span class="n">NonLinearDirectInt</span><span class="p">(</span>
+    <span class="n">Name</span><span class="o">=</span><span class="s2">"TH_NLDirect_1"</span><span class="p">,</span>
+    <span class="n">endTime</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span>
+    <span class="n">timeIncrement</span><span class="o">=</span><span class="mf">0.0001</span><span class="p">,</span>
+    <span class="n">stepIncOutput</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">subsequent_control</span><span class="o">=</span><span class="n">TH</span><span class="o">.</span><span class="n">InitialLoad_Control</span><span class="p">(</span><span class="n">Use_Initial_Load</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+    <span class="n">damping_control</span><span class="o">=</span><span class="n">TH</span><span class="o">.</span><span class="n">Damping</span><span class="o">.</span><span class="n">MassStiffness</span><span class="p">(</span><span class="n">inpType</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">massProp</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">stiffProp</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span>
+    <span class="n">time_integration_params</span><span class="o">=</span><span class="s2">"CONSTANT"</span><span class="p">,</span>
+    <span class="n">NonlinearIteration_Control</span><span class="o">=</span><span class="n">TH</span><span class="o">.</span><span class="n">NonlinearIteration_Control</span><span class="p">(</span><span class="n">Maximum_Iteration</span><span class="o">=</span><span class="mi">10</span><span class="p">),</span>
+    <span class="n">damping_matrix_update</span><span class="o">=</span><span class="s2">"NO"</span>
+<span class="p">)</span>
+<span class="n">TH</span><span class="o">.</span><span class="n">Case</span><span class="o">.</span><span class="n">create</span><span class="p">()</span>
+</code></pre></div>
+<hr>
+<h3 id="nonlinear-static">Nonlinear Static</h3>
+<h4 id="constructor_11">Constructor</h4>
+<p><strong><code>TH.Case.NonLinearStatic(Name, endTime=1, incrementSteps=1, subsequent_control=None, load_control_scale_factor=1, global_control_maximum_translation_displacement=0, master_node_control=None, load_output_option=False, NonlinearIteration_Control=True, id=None)</code></strong></p>
+<p>Constructs a Nonlinear Static Time History Load Case</p>
+<h4 id="parameters_9">Parameters</h4>
+<ul>
+<li><code>Name</code>: Name of the time history load case.</li>
+<li><code>endTime</code>: Analysis end time.</li>
+<li><code>incrementSteps</code>: Number of increment steps.</li>
+<li><code>subsequent_control</code>: Starting condition control object — <code>TH.InitialLoad_Control</code> or <code>TH.Subsequent_Control</code>.</li>
+<li><code>load_control_scale_factor</code>: Scale factor used when Load Control governs the increment.</li>
+<li><code>global_control_maximum_translation_displacement</code>: Maximum translational displacement for Global (Displacement) Control. Non-zero enables Global Control.</li>
+<li><code>master_node_control</code>: Tuple <code>(MasterNode, Direction, TargetIncrement)</code> enabling Master-Node Displacement Control.</li>
+<li><code>load_output_option</code>: Output cumulative load results.</li>
+<li><code>NonlinearIteration_Control</code>: Nonlinear iteration control object. If a plain truthy value is passed instead of a control object, a built-in default iteration setting is used.</li>
+<li><code>id</code>: Manually assign an ID. If <strong>None</strong>, ID will be auto-assigned.</li>
+</ul>
+<h4 id="example_11">Example</h4>
+<div class="highlight"><pre><span></span><code><span class="n">TH</span><span class="o">.</span><span class="n">Case</span><span class="o">.</span><span class="n">NonLinearStatic</span><span class="p">(</span>
+    <span class="n">Name</span><span class="o">=</span><span class="s2">"TH_NLStatic_1"</span><span class="p">,</span>
+    <span class="n">endTime</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">incrementSteps</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">subsequent_control</span><span class="o">=</span><span class="n">TH</span><span class="o">.</span><span class="n">InitialLoad_Control</span><span class="p">(</span><span class="n">Use_Initial_Load</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+    <span class="n">load_control_scale_factor</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">load_output_option</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">NonlinearIteration_Control</span><span class="o">=</span><span class="n">TH</span><span class="o">.</span><span class="n">NonlinearIteration_Control</span><span class="p">(</span><span class="n">Maximum_Iteration</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="n">TH</span><span class="o">.</span><span class="n">Case</span><span class="o">.</span><span class="n">create</span><span class="p">()</span>
+</code></pre></div>
+<hr>
+<h3 id="methods">Methods</h3>
+<p><em>(Shared across all five case types above — <code>LinearModal</code>, <code>NonLinearModal</code>, <code>LinearDirectInt</code>, <code>NonLinearDirectInt</code>, <code>NonLinearStatic</code>)</em></p>
+<h4 id="json">json</h4>
+<p>Returns JSON representation of all Time History Load Cases.
+</p><div class="highlight"><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="n">TH</span><span class="o">.</span><span class="n">Case</span><span class="o">.</span><span class="n">json</span><span class="p">())</span>
+</code></pre></div><p></p>
+<h4 id="create">create</h4>
+<p>Sends all Time History Load Cases to Civil NX.
+</p><div class="highlight"><pre><span></span><code><span class="n">TH</span><span class="o">.</span><span class="n">Case</span><span class="o">.</span><span class="n">create</span><span class="p">()</span>
+</code></pre></div><p></p>
+<h4 id="get">get</h4>
+<p>Fetches Time History Load Case data from Civil NX.
+</p><div class="highlight"><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="n">TH</span><span class="o">.</span><span class="n">Case</span><span class="o">.</span><span class="n">get</span><span class="p">())</span>
+</code></pre></div><p></p>
+<h4 id="sync">sync</h4>
+<p>Synchronizes Time History Load Cases from Civil NX, rebuilding the correct case type along with its <code>Damping</code>, <code>InitialLoad_Control</code>/<code>Subsequent_Control</code>, and <code>NonlinearIteration_Control</code> sub-objects.
+</p><div class="highlight"><pre><span></span><code><span class="n">TH</span><span class="o">.</span><span class="n">Case</span><span class="o">.</span><span class="n">sync</span><span class="p">()</span>
+</code></pre></div><p></p>
+<h4 id="delete">delete</h4>
+<p>Deletes all Time History Load Cases from both Python and Civil NX.
+</p><div class="highlight"><pre><span></span><code><span class="n">TH</span><span class="o">.</span><span class="n">Case</span><span class="o">.</span><span class="n">delete</span><span class="p">()</span>
+</code></pre></div><p></p>
+<hr>
+<h3 id="examples">Examples</h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># 1. Linear Modal, Transient, Modal damping</span>
+<span class="n">TH</span><span class="o">.</span><span class="n">Case</span><span class="o">.</span><span class="n">LinearModal</span><span class="p">(</span>
+    <span class="n">Name</span><span class="o">=</span><span class="s2">"TH_Modal_1"</span><span class="p">,</span>
+    <span class="n">THtype</span><span class="o">=</span><span class="s2">"Transient"</span><span class="p">,</span>
+    <span class="n">endTime</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span>
+    <span class="n">timeIncrement</span><span class="o">=</span><span class="mf">0.0001</span><span class="p">,</span>
+    <span class="n">damping_control</span><span class="o">=</span><span class="n">TH</span><span class="o">.</span><span class="n">Damping</span><span class="o">.</span><span class="n">Modal</span><span class="p">(</span><span class="mf">0.0106079</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="c1"># 2. Linear Direct Integration, Mass &amp; Stiffness (constant) damping</span>
+<span class="n">TH</span><span class="o">.</span><span class="n">Case</span><span class="o">.</span><span class="n">LinearDirectInt</span><span class="p">(</span>
+    <span class="n">Name</span><span class="o">=</span><span class="s2">"TH_Direct_1"</span><span class="p">,</span>
+    <span class="n">endTime</span><span class="o">=</span><span class="mi">34</span><span class="p">,</span>
+    <span class="n">timeIncrement</span><span class="o">=</span><span class="mf">0.0001</span><span class="p">,</span>
+    <span class="n">damping_control</span><span class="o">=</span><span class="n">TH</span><span class="o">.</span><span class="n">Damping</span><span class="o">.</span><span class="n">MassStiffness</span><span class="p">(</span><span class="n">inpType</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">massProp</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">stiffProp</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span>
+    <span class="n">time_integration_params</span><span class="o">=</span><span class="s2">"CONSTANT"</span>
+<span class="p">)</span>
+
+<span class="c1"># 3. Nonlinear Modal, Modal damping, with nonlinear iteration control</span>
+<span class="n">TH</span><span class="o">.</span><span class="n">Case</span><span class="o">.</span><span class="n">NonLinearModal</span><span class="p">(</span>
+    <span class="n">Name</span><span class="o">=</span><span class="s2">"TH_NLModal_1"</span><span class="p">,</span>
+    <span class="n">endTime</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span>
+    <span class="n">timeIncrement</span><span class="o">=</span><span class="mf">0.0001</span><span class="p">,</span>
+    <span class="n">damping_control</span><span class="o">=</span><span class="n">TH</span><span class="o">.</span><span class="n">Damping</span><span class="o">.</span><span class="n">Modal</span><span class="p">(</span><span class="mf">0.0106079</span><span class="p">),</span>
+    <span class="n">NonlinearIteration_Control</span><span class="o">=</span><span class="n">TH</span><span class="o">.</span><span class="n">NonlinearIteration_Control</span><span class="p">(</span>
+        <span class="n">Maximum_Iteration</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+        <span class="n">Displacement_norm</span><span class="o">=</span><span class="mf">0.001</span><span class="p">,</span>
+        <span class="n">Check_Convergence</span><span class="o">=</span><span class="kc">False</span>
+    <span class="p">)</span>
+<span class="p">)</span>
+
+<span class="c1"># 4. Nonlinear Direct Integration, subsequent to Initial Load</span>
+<span class="n">TH</span><span class="o">.</span><span class="n">Case</span><span class="o">.</span><span class="n">NonLinearDirectInt</span><span class="p">(</span>
+    <span class="n">Name</span><span class="o">=</span><span class="s2">"TH_NLDirect_1"</span><span class="p">,</span>
+    <span class="n">endTime</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span>
+    <span class="n">timeIncrement</span><span class="o">=</span><span class="mf">0.0001</span><span class="p">,</span>
+    <span class="n">subsequent_control</span><span class="o">=</span><span class="n">TH</span><span class="o">.</span><span class="n">InitialLoad_Control</span><span class="p">(</span><span class="n">Use_Initial_Load</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+    <span class="n">damping_control</span><span class="o">=</span><span class="n">TH</span><span class="o">.</span><span class="n">Damping</span><span class="o">.</span><span class="n">MassStiffness</span><span class="p">(</span><span class="n">inpType</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">massProp</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">stiffProp</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span>
+    <span class="n">time_integration_params</span><span class="o">=</span><span class="s2">"CONSTANT"</span><span class="p">,</span>
+    <span class="n">NonlinearIteration_Control</span><span class="o">=</span><span class="n">TH</span><span class="o">.</span><span class="n">NonlinearIteration_Control</span><span class="p">(</span><span class="n">Maximum_Iteration</span><span class="o">=</span><span class="mi">10</span><span class="p">),</span>
+    <span class="n">damping_matrix_update</span><span class="o">=</span><span class="s2">"NO"</span>
+<span class="p">)</span>
+
+<span class="c1"># 5. Nonlinear Static, Load Control, subsequent to Initial Load</span>
+<span class="n">TH</span><span class="o">.</span><span class="n">Case</span><span class="o">.</span><span class="n">NonLinearStatic</span><span class="p">(</span>
+    <span class="n">Name</span><span class="o">=</span><span class="s2">"TH_NLStatic_1"</span><span class="p">,</span>
+    <span class="n">subsequent_control</span><span class="o">=</span><span class="n">TH</span><span class="o">.</span><span class="n">InitialLoad_Control</span><span class="p">(</span><span class="n">Use_Initial_Load</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+    <span class="n">load_control_scale_factor</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">NonlinearIteration_Control</span><span class="o">=</span><span class="n">TH</span><span class="o">.</span><span class="n">NonlinearIteration_Control</span><span class="p">(</span><span class="n">Maximum_Iteration</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="n">TH</span><span class="o">.</span><span class="n">Case</span><span class="o">.</span><span class="n">create</span><span class="p">()</span>
+</code></pre></div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden="">
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"></path></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Created by Midas India :  MIDAS CIVIL NX - Python interface
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.indexes", "navigation.instant", "toc.follow", "navigation.top", "search.suggest", "navigation.path", "content.code.copy", "header.autohide", "toc.follow", "search.suggest", "header.autohide", "announce.dismiss"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/echarts@5.5.1/dist/echarts.min.js"></script>
+      
+        <script src="../../../assets/tree.js"></script>
+      
+    
+  
+<script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(()=>{ lightbox.reload(); });
+</script></body></html>

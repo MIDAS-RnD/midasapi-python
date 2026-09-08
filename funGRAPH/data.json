@@ -1,0 +1,143 @@
+{
+  "name": "Acme Corp",
+  "category": "root",
+  "info": {
+    "title": "Chief Executive Officer",
+    "person": "Dana Rivers",
+    "location": "New York, HQ",
+    "team": 240
+  },
+  "children": [
+    {
+      "name": "Engineering",
+      "category": "engineering",
+      "info": {
+        "title": "VP of Engineering",
+        "person": "Sam Okoro",
+        "location": "Austin",
+        "team": 96
+      },
+      "children": [
+        {
+          "name": "Platform",
+          "info": {
+            "title": "Director, Platform",
+            "person": "Priya Nair",
+            "location": "Remote",
+            "team": 34
+          },
+          "children": [
+            {
+              "name": "Infra Squad",
+              "info": {
+                "title": "Eng Manager",
+                "person": "Leo Chen",
+                "location": "Austin",
+                "team": 8
+              }
+            },
+            {
+              "name": "Data Squad",
+              "info": {
+                "title": "Eng Manager",
+                "person": "Marta Silva",
+                "location": "Remote",
+                "team": 7
+              }
+            }
+          ]
+        },
+        {
+          "name": "Product Eng",
+          "info": {
+            "title": "Director, Product Eng",
+            "person": "Ibrahim Aziz",
+            "location": "Austin",
+            "team": 41
+          },
+          "children": [
+            {
+              "name": "Web Team",
+              "info": {
+                "title": "Eng Manager",
+                "person": "Chloe Park",
+                "location": "Remote",
+                "team": 9
+              }
+            },
+            {
+              "name": "Mobile Team",
+              "info": {
+                "title": "Eng Manager",
+                "person": "Tom Becker",
+                "location": "Berlin",
+                "team": 6
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Sales",
+      "category": "sales",
+      "info": {
+        "title": "VP of Sales",
+        "person": "Nadia Haddad",
+        "location": "London",
+        "team": 72
+      },
+      "children": [
+        {
+          "name": "Enterprise",
+          "info": {
+            "title": "Director, Enterprise",
+            "person": "Greg Malloy",
+            "location": "London",
+            "team": 30
+          }
+        },
+        {
+          "name": "SMB",
+          "info": {
+            "title": "Director, SMB",
+            "person": "Aiko Tanaka",
+            "location": "Singapore",
+            "team": 28
+          }
+        }
+      ]
+    },
+    {
+      "name": "Marketing",
+      "category": "marketing",
+      "info": {
+        "title": "VP of Marketing",
+        "person": "Owen Fitzgerald",
+        "location": "New York, HQ",
+        "team": 34
+      },
+      "children": [
+        {
+          "name": "Brand",
+          "info": {
+            "title": "Director, Brand",
+            "person": "Sofia Rossi",
+            "location": "Milan",
+            "team": 15
+          }
+        },
+        {
+          "name": "Growth",
+          "itemStyle": { "color": "#fac858" },
+          "info": {
+            "title": "Director, Growth",
+            "person": "Kwame Mensah",
+            "location": "Remote",
+            "team": 17
+          }
+        }
+      ]
+    }
+  ]
+}
