@@ -1,5 +1,23 @@
 # Release Notes
 
+## Version 1.7.1
+Released on - 24 Aug 2026
+
+#### What's New
+*  Added HOH creation in model creation.
+*  Added nodal mass creation and clearing in Load.
+*  Added ChangeProperty support in `Material.create()`, `Material.delete()`, and `Material.clear()`.
+*  Added Plate edge display in model visualisation, `Model.visualise()`.
+*  Added thermal properties input for Materials (Heat Conduction and Specific Heat).
+*  Improved selection logic for better performance, especially with larger sparse models. `Model.Select`
+
+#### Fixes  
+*  Fixed issues affecting the displacement result table.
+*  Fixed `Load.SW` clearing during sync.
+*  Multiple support definition at a single node.
+
+
+
 
 ## Version 1.7.0
 

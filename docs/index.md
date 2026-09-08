@@ -34,9 +34,15 @@ Additional libraries required by the modules are
 
 * Numpy
 * Polars
-* xlsxwriter
+* Openpyxl
 * Requests 
 * SciPy
+* Gmsh
+* Pillow
+* Pandas
+* Colorama
+* Tqdm
+
 
 ---
 To import the package use the import *
