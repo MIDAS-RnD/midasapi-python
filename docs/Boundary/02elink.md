@@ -14,8 +14,8 @@ Creates elastic links between two nodes with specified spring properties and beh
 * `j_node`: Second node ID
 * `group (default="")`: Boundary group name
 * `link_type (default="GEN")`: Type of elastic link
-* `sdx, sdy, sdz (default=0)`: Translational spring stiffness in X, Y, Z directions
-* `srx, sry, srz (default=0)`: Rotational spring stiffness about X, Y, Z axes
+* `sdx, sdy, sdz (float or 'rigid')`: Translational spring stiffness in X, Y, Z directions . Enter `'rigid'` for making the corresponding dof rigid.    
+* `srx, sry, srz (float or 'rigid')`: Rotational spring stiffness about X, Y, Z axes. Enter `'rigid'` for making the corresponding dof rigid.      
 * `shear (default=False)`: Consider shear effects
 * `dr_y, dr_z (default=0.5)`: Distance ratios for Y and Z directions
 * `beta_angle (default=0)`: Rotation angle in degrees

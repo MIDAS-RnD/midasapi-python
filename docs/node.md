@@ -216,3 +216,202 @@ for j in range(40):
     Node.create()
 ```
 ![NODE GRID](assets/node_rotate.png)
+
+     
+     
+![alt text](assets/separator.png) 
+
+
+## Node Local Axis
+In MIDAS CIVIL NX, nodes can have a local axis orientation different from the global axis. This is used to apply boundary conditions or interpret results in a skewed (rotated) coordinate system.
+
+
+**NodeLocalAxis(`nodeID: int, type: Literal['X','Y','Z','XYZ','Vector'], angle`)**
+
+
+Two definition methods are supported:
+
+- **Angle** (``type='X'``, ``'Y'``, ``'Z'``, or ``'XYZ'``): Rotations
+    about one or more global axes in degrees. Corresponds to API
+    ``iMETHOD = 1``.
+- **Vector** (``type='Vector'``): Explicit definition of the local X and Y
+    axes as unit vectors. Corresponds to API ``iMETHOD = 3``.
+
+
+
+#### Parameters
+
+- `nodeID`: ID of the node to assign the local axis to.
+- `type`: Method used to define the local axis.
+    * `'X'` - Rotation angle (degrees) about the global X-axis.
+    * `'Y'` - Rotation angle (degrees) about the global Y-axis.
+    * `'Z'` - Rotation angle (degrees) about the global Z-axis.
+    * `'XYZ'` - Three rotation angles `[rx, ry, rz]` (degrees) about global X, Y and Z.
+    * `'Vector'` - Two direction vectors `[[v1x,v1y,v1z],[v2x,v2y,v2z]]` defining the local X and Y axes explicitly.
+- `angle`: Value matching the chosen `type`.
+    * `'X'`, `'Y'`, `'Z'` : a single angle in degrees. e.g. `30`
+    * `'XYZ'` : list of three angles. e.g. `[0, 0, 45]`
+    * `'Vector'` : list of two vectors. e.g. `[[1,0,0],[0,0,1]]`
+
+!!! note
+    If a local axis is defined again for a node that already has one, the existing definition is updated.        
+    When `type` is `'X'`, `'Y'` or `'Z'`, the angles of the other two axes are preserved from the existing definition.
+
+---
+
+#### Object Attributes
+
+`ID`: Node ID to which the local axis is assigned.  
+`TYPE`: Definition method. `'ANGLE'` for `'X'`, `'Y'`, `'Z'`, `'XYZ'` and `'VEC'` for `'Vector'`.  
+`ANGLE`: Rotation angles `[rx, ry, rz]` in degrees. Used when `TYPE = 'ANGLE'`.  
+`VEC`: Local X and Y axis vectors `[[v1x,v1y,v1z],[v2x,v2y,v2z]]`. Used when `TYPE = 'VEC'`.
+
+#### Class Attributes
+
+*NodeLocalAxis.skew* -> List of all node local axis objects.  
+*NodeLocalAxis.ids* -> List of node IDs having a local axis.
+
+```py
+NodeLocalAxis(10, 'Z', 30)
+NodeLocalAxis(20, 'Vector', [[1,0,0],[0,0,1]])
+
+for ax in NodeLocalAxis.skew:
+    print(f' NODE ID = {ax.ID} | TYPE = {ax.TYPE}')
+
+# Output :
+# NODE ID = 10 | TYPE = ANGLE
+# NODE ID = 20 | TYPE = VEC
+```
+
+## Methods
+
+---
+
+### <font style="font-size:0px">NodeLocalAxis.</font>json
+
+Returns a JSON representation of all node local axes defined in python.  
+Angle based definitions use `iMETHOD = 1` and vector based definitions use `iMETHOD = 3`.
+
+```py
+NodeLocalAxis(10, 'Z', 30)
+NodeLocalAxis(20, 'Vector', [[1,0,0],[0,0,1]])
+
+print(NodeLocalAxis.json())
+
+# Output :
+# {'Assign': {10: {'iMETHOD': 1, 'ANGLE_X': 0, 'ANGLE_Y': 0, 'ANGLE_Z': 30},
+#             20: {'iMETHOD': 3, 'V1X': 1, 'V1Y': 0, 'V1Z': 0, 'V2X': 0, 'V2Y': 0, 'V2Z': 1}}}
+```
+
+### <font style="font-size:0px">NodeLocalAxis.</font>create
+
+Sends the current node local axis list to the Civil NX using a PUT request.  
+New local axes are created and existing ones (same node) in Civil NX will be updated.
+
+```py
+NodeLocalAxis(10, 'Z', 30)
+NodeLocalAxis(20, 'Vector', [[1,0,0],[0,0,1]])
+
+NodeLocalAxis.create()
+```
+
+### <font style="font-size:0px">NodeLocalAxis.</font>get
+
+Fetches node local axis data from the Civil NX and returns the JSON representation.
+
+```py
+print(NodeLocalAxis.get())
+```
+
+### <font style="font-size:0px">NodeLocalAxis.</font>sync
+
+Retrieves node local axis data from the Civil NX and rebuilds the internal list.  
+Angle based (`iMETHOD = 1`) axes are imported as `'XYZ'` and vector based (`iMETHOD = 3`) axes are imported as `'Vector'`.  
+A warning is printed for nodes whose local axis type is not supported.
+
+```py
+NodeLocalAxis.sync()
+for ax in NodeLocalAxis.skew:
+    print(f' NODE ID = {ax.ID} | TYPE = {ax.TYPE}')
+```
+
+### <font style="font-size:0px">NodeLocalAxis.</font>clear
+
+Deletes all node local axis data from Python.
+
+```py
+NodeLocalAxis.clear()
+```
+
+### <font style="font-size:0px">NodeLocalAxis.</font>delete
+
+Deletes all node local axis data from both Python and Civil NX.
+
+```py
+NodeLocalAxis.delete()
+```
+
+## Examples
+
+---
+
+#### 1. Rotation about a single axis
+
+```py
+Node(0,0,0,1)
+Node(5,0,0,2)
+
+NodeLocalAxis(2, 'Z', 30)      # Rotate local axis of node 2 by 30° about global Z
+
+Node.create()
+NodeLocalAxis.create()
+```
+
+
+#### 2. Combining rotations
+
+Defining a single-axis rotation again for the same node keeps the previous angles of the other axes.
+
+```py
+NodeLocalAxis(10, 'Z', 30)
+NodeLocalAxis(10, 'X', 15)     # Node 10 now has X = 15° , Y = 0° , Z = 30°
+
+print(NodeLocalAxis.json())
+
+# Output :
+# {'Assign': {10: {'iMETHOD': 1, 'ANGLE_X': 15, 'ANGLE_Y': 0, 'ANGLE_Z': 30}}}
+```
+
+
+
+#### 3. Three angles at once
+
+```py
+NodeLocalAxis(20, 'XYZ', [0, 45, 0])    # Rotate 45° about global Y
+
+NodeLocalAxis.create()
+```
+
+
+
+#### 4. Using vectors
+
+Define the local X and Y axes directly. The local Z axis follows from these two.
+
+```py
+NodeLocalAxis(30, 'Vector', [[1,0,0],[0,0,1]])    # Local X = global X , Local Y = global Z
+
+NodeLocalAxis.create()
+```
+
+
+#### 5. Skewed support at multiple nodes
+
+```py
+import math
+
+for i, nID in enumerate([1, 2, 3, 4]):
+    NodeLocalAxis(nID, 'Z', i*15)      # Progressive rotation of 0°, 15°, 30°, 45°
+
+NodeLocalAxis.create()
+```

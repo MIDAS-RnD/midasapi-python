@@ -1,5 +1,50 @@
 # Release Notes
 
+
+
+## Version 1.7.3
+
+Released on - 25 Sep 2026
+
+#### What's New
+
+- Request session added for faster sequential requests.
+
+#### Fixes
+
+- Improved chunking logic (uses `math.ceil`).
+
+
+
+## Version 1.7.2
+
+Released on - 22 Sep 2026
+
+#### What's New
+
+- Elastic Link: added `rigid` flag for linear springs.
+- Added Wall stiffness scale factor (`Element.Wall_StiffnessScaleFactor`).
+- Added option to send data in chunks (`NX.SEND_IN_CHUNKS = True`).
+- Added option to send MCT(`Model.sendMCT('')`).
+- Added Result Table Backend option to obtain data in desired format (`TableOptions.BACKEND = 'JSON' or 'Pandas' or 'Polars'`).
+- Added `create` and sync delete function.
+- Added sync for:
+    * Plane Load (`Load.PlaneLoad`)
+    * Local Axis
+    * Response Spectrum function (`RS.Function`)
+    * Time History function (`TH.Function`)
+    * Construction Stage (CS)
+    * Heat of Hydration (HOH)
+    * Prestress
+- Added delete (and clear) for:
+    * Construction Stage (CS)
+    * Heat of Hydration (HOH)
+    * Prestress
+- Improved Line to Plate to support complex offsets and tapered sections.
+- Added `Node` set for fast creation of nodes.
+- Added `Element` set for fast creation of elements.
+
+
 ## Version 1.7.1
 Released on - 24 Aug 2026
 

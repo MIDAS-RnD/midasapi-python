@@ -16,7 +16,7 @@ Opens an existing model file.
 
 
 ```py
-Model.open("D://model.mcb")
+Model.open("D:\\model.mcb")
 ```
 
 ## <font style="font-size:0px">Model.</font>close
@@ -36,13 +36,13 @@ Saves the current model. For first-time saves, provide a path.
 
 ```py
 Model.save()
-Model.save("D://model.mcb")
+Model.save("D:\\model.mcb")
 ```
 
 ## <font style="font-size:0px">Model.</font>saveAs
 Saves the model to the specified file path.
 ```py
-Model.saveAs("D://model.mcb")
+Model.saveAs("D:\\model.mcb")
 ```
 
 ## <font style="font-size:0px">Model.</font>saveStageAs
@@ -50,7 +50,7 @@ Save Construction Stage as separate model
 
 
 ```py
-Model.saveStageAs("CS0","D://Stage_CS0.mcb")
+Model.saveStageAs("CS0","D:\\Stage_CS0.mcb")
 ```
 
 ## <font style="font-size:0px">Model.</font>importMCT
