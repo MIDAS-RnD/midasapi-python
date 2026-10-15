@@ -65,8 +65,9 @@ markdown_extensions:
  - md_in_html
  - attr_list
  - pymdownx.blocks.caption
-     
-
+ - pymdownx.tabbed:
+      alternate_style: true
+      combine_header_slug: true
 extra_javascript:
   - https://cdn.jsdelivr.net/npm/echarts@5.5.1/dist/echarts.min.js
   - assets/tree.js

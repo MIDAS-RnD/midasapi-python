@@ -37,6 +37,11 @@
   border: 1px solid rgb(235, 235, 235);
 }
 
+.auto-iframe {
+  display: block;
+  width: 100%;
+  border: none;
+}
 
 /* :root,[data-md-color-scheme=default] {
 --md-code-fg-color: #36464e !important;

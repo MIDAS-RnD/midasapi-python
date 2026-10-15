@@ -1,0 +1,832 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Truss Frame Builder</title>
+  <link rel="icon" href="data:image/x-icon;base64,AAABAAEAICAAAAEAIACoEAAAFgAAACgAAAAgAAAAQAAAAAEAIAAAAAAAABAAACMuAAAjLgAAAAAAAAAAAAAAAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8TExP/eHh4/5mZmf+ampr/YWFh/wMDA/8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AwMD/2FhYf+ampr/mZmZ/3h4eP8TExP/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/yAgIP/Ly8v///////////+kpKT/BQUF/wAAAP8AAAD/AAAA/wICAv9BQUH/Q0ND/wMDA/8AAAD/AAAA/wAAAP8FBQX/pKSk////////////y8vL/yAgIP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/ICAg/8vLy////////////6SkpP8FBQX/AAAA/wAAAP8AAAD/TU1N/93d3f/f39//UFBQ/wEBAf8AAAD/AAAA/wUFBf+kpKT////////////Ly8v/ICAg/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8gICD/y8vL////////////pKSk/wUFBf8AAAD/AgIC/0xMTP/d3d3////////////f39//T09P/wICAv8AAAD/BQUF/6SkpP///////////8vLy/8gICD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/yAgIP/Ly8v///////////+kpKT/BQUF/wAAAP9NTU3/3d3d///////////////////////e3t7/UVFR/wAAAP8FBQX/pKSk////////////y8vL/yAgIP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/ICAg/8vLy////////////6SkpP8HBwf/TExM/9zc3P/////////////////////////////////e3t7/T09P/wcHB/+jo6P////////////Ly8v/ICAg/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8gICD/y8vL////////////paWl/1NTU//d3d3////////////////////////////////////////////f39//VlZW/6Wlpf///////////8vLy/8gICD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/yAgIP/Ly8v////////////c3Nz/3t7e///////////////////////////////////////////////////////g4OD/3d3d////////////y8vL/yAgIP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/ICAg/8vLy////////////////////////////////////////////9PT0//S0tL////////////////////////////////////////////Ly8v/ICAg/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8gICD/y8vL///////////////////////////////////////IyMj/Nzc3/zU1Nf/Gxsb//////////////////////////////////////8vLy/8gICD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/yAgIP/Ly8v/////////////////////////////////y8vL/zY2Nv8AAAD/AAAA/zMzM//IyMj/////////////////////////////////y8vL/yAgIP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/ICAg/8vLy////////////////////////////8jIyP83Nzf/AAAA/wAAAP8AAAD/AAAA/zQ0NP/Gxsb////////////////////////////Ly8v/ICAg/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8gICD/y8vL///////////////////////Ly8v/Nzc3/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/zQ0NP/IyMj//////////////////////8vLy/8gICD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/yAgIP/Ly8v/////////////////ycnJ/zY2Nv8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/zQ0NP/Gxsb/////////////////y8vL/yAgIP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/GBgY/5iYmP/CwsL/wcHB/6urq/84ODj/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/zY2Nv+rq6v/wcHB/8LCwv+YmJj/GBgY/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8CAgL/Dw8P/xMTE/8TExP/DQ0N/wEBAf8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AQEB/w0NDf8TExP/ExMT/w8PD/8CAgL/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;600&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ---------- theme: blue, follows the system light/dark setting ---------- */
+    :root {
+      color-scheme: light dark;
+      --primary: #1a73e8;
+      --primary-hover: #1557b0;
+      --ring: rgba(26, 115, 232, 0.35);
+      --bg: #ffffff;
+      --text: #1f2430;
+      --sec-bg: #eef3fb;
+      --border: rgba(31, 36, 48, 0.16);
+      --muted: rgba(31, 36, 48, 0.62);
+      --track: rgba(26, 115, 232, 0.18);
+      --info-bg: rgba(26, 115, 232, 0.1);   --info-fg: #0b4a9e;
+      --ok-bg: rgba(33, 195, 84, 0.12);     --ok-fg: #177233;
+      --err-bg: rgba(255, 43, 43, 0.09);    --err-fg: #8a2b33;
+      --warn-bg: rgba(255, 196, 0, 0.14);   --warn-fg: #7a5a00;
+      --err-strong: #d93025;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --primary: #4c94f0;
+        --primary-hover: #74acf4;
+        --ring: rgba(76, 148, 240, 0.4);
+        --bg: #0e1117;
+        --text: #f2f4f8;
+        --sec-bg: #1c2433;
+        --border: rgba(242, 244, 248, 0.16);
+        --muted: rgba(242, 244, 248, 0.6);
+        --track: rgba(76, 148, 240, 0.22);
+        --info-bg: rgba(76, 148, 240, 0.18);  --info-fg: #cfe2ff;
+        --ok-bg: rgba(61, 213, 109, 0.18);    --ok-fg: #dffde9;
+        --err-bg: rgba(255, 108, 108, 0.18);  --err-fg: #ffdede;
+        --warn-bg: rgba(255, 213, 79, 0.18);  --warn-fg: #fff3c4;
+        --err-strong: #ff6b6b;
+      }
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; height: 100%; }
+    body {
+      font-family: "Source Sans 3", "Source Sans Pro", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      font-size: 14px; line-height: 1.45; color: var(--text); background: var(--bg);
+      -webkit-font-smoothing: antialiased; overflow: hidden;
+    }
+    code, pre, .mono { font-family: "Source Code Pro", ui-monospace, SFMono-Regular, Menlo, monospace; }
+
+    /* ---------- 2×2 grid sized to the frame (built for 1000×650) ---------- */
+    .app {
+      height: 100vh; padding: 8px; gap: 8px;
+      display: grid; grid-template-columns: 300px minmax(0, 1fr); grid-template-rows: minmax(0, 1fr) auto;
+    }
+    .left  { grid-column: 1; grid-row: 1; min-height: 0; overflow: auto; display: flex; flex-direction: column; gap: 6px; }
+    .view  { grid-column: 2; grid-row: 1; min-height: 0; position: relative; border: 1px solid var(--border);
+             border-radius: 8px; overflow: hidden; }
+    .conn-left  { grid-column: 1; grid-row: 2; }
+    .conn-right { grid-column: 2; grid-row: 2; display: flex; gap: 8px; }
+    .conn-right .field { flex: 1; min-width: 0; }
+    .spacer { flex: 1; }
+    @media (max-width: 640px) {
+      body { overflow: auto; }
+      .app { height: auto; grid-template-columns: 1fr; grid-template-rows: none; }
+      .left, .view, .conn-left, .conn-right { grid-column: 1; grid-row: auto; }
+      .view { height: 420px; }
+    }
+
+    /* ---------- field: label and input in one box ---------- */
+    .field { display: flex; align-items: stretch; height: 34px; border-radius: 6px; background: var(--sec-bg);
+      border: 1px solid transparent; overflow: visible; }
+    .field:focus-within { border-color: var(--primary); box-shadow: 0 0 0 2px var(--ring); }
+    .field .lbl { flex: none; width: 168px; padding: 0 8px; display: flex; align-items: center; gap: 5px;
+      font-size: 12px; font-weight: 600; letter-spacing: 0.01em; color: var(--muted);
+      border-right: 1px solid var(--border); white-space: nowrap; }
+    .field .lbl.auto { width: auto; }
+    .field input[type=number], .field input[type=text], .field input[type=password] {
+      flex: 1; min-width: 0; border: 0; background: transparent; color: var(--text);
+      font: inherit; font-size: 14px; padding: 0 8px; outline: none; }
+    .field input::placeholder { color: var(--muted); }
+    .field input::-webkit-outer-spin-button, .field input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+    .field input[type=number] { -moz-appearance: textfield; }
+    .field .stepbtn { width: 28px; flex: none; border: 0; background: transparent; color: var(--text); font-size: 16px;
+      cursor: pointer; display: flex; align-items: center; justify-content: center; }
+    .field .stepbtn:last-child { border-radius: 0 5px 5px 0; }
+    .field .stepbtn:hover:not(:disabled) { background: var(--primary); color: #fff; }
+    .field .stepbtn:disabled { color: var(--muted); opacity: 0.45; cursor: not-allowed; }
+    .field .iconbtn { width: 34px; flex: none; border: 0; background: transparent; color: var(--muted); cursor: pointer;
+      display: flex; align-items: center; justify-content: center; border-radius: 0 5px 5px 0; }
+    .field .iconbtn:hover { color: var(--text); }
+
+    /* slider inside a field */
+    .field.range { padding-right: 8px; }
+    .field.range input[type=range] { -webkit-appearance: none; appearance: none; flex: 1; min-width: 0; height: 4px;
+      margin: auto 10px; border-radius: 4px; background: var(--track); outline: none; cursor: pointer; }
+    .field.range input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 14px; height: 14px;
+      border-radius: 50%; background: var(--primary); border: 2px solid var(--bg); box-shadow: 0 0 0 1px var(--primary); }
+    .field.range input[type=range]::-moz-range-thumb { width: 12px; height: 12px; border-radius: 50%; background: var(--primary);
+      border: 2px solid var(--bg); box-shadow: 0 0 0 1px var(--primary); }
+    .field.range .val { width: 24px; flex: none; align-self: center; text-align: right; color: var(--primary); font-weight: 600; font-size: 13px; }
+
+    /* help tooltip */
+    .help { position: relative; display: inline-flex; width: 14px; height: 14px; border-radius: 50%;
+      border: 1px solid var(--muted); color: var(--muted); font-size: 10px; align-items: center; justify-content: center; cursor: help; }
+    .help .tip { display: none; position: absolute; left: -8px; bottom: 150%; background: var(--text); color: var(--bg);
+      padding: 6px 10px; border-radius: 6px; font-size: 12px; font-weight: 400; width: 220px; z-index: 10; white-space: normal; }
+    .help:hover .tip, .help:focus .tip { display: block; }
+
+    /* ---------- button ---------- */
+    .btn-primary { flex: none; height: 34px; padding: 0 16px; border-radius: 6px; border: 1px solid var(--primary);
+      background: var(--primary); color: #fff; font: inherit; font-size: 14px; font-weight: 600; cursor: pointer;
+      display: inline-flex; align-items: center; gap: 6px; white-space: nowrap; }
+    .btn-primary:hover:not(:disabled) { background: var(--primary-hover); border-color: var(--primary-hover); }
+    .btn-primary:focus-visible { outline: none; box-shadow: 0 0 0 3px var(--ring); }
+    .btn-primary:disabled { background: transparent; border-color: var(--border); color: var(--muted); cursor: not-allowed; }
+
+    /* ---------- messages / caption / code / expander / spinner ---------- */
+    .stack { display: flex; flex-direction: column; gap: 6px; }
+    .alert { padding: 8px 10px; border-radius: 6px; font-size: 13px; line-height: 1.4; word-break: break-word; }
+    .alert.info { background: var(--info-bg); color: var(--info-fg); }
+    .alert.ok { background: var(--ok-bg); color: var(--ok-fg); }
+    .alert.err { background: var(--err-bg); color: var(--err-fg); }
+    .alert.warn { background: var(--warn-bg); color: var(--warn-fg); }
+    .caption { font-size: 12px; color: var(--muted); }
+    pre.code { margin: 0; padding: 8px 10px; border-radius: 6px; background: var(--sec-bg); font-size: 12px;
+      white-space: pre-wrap; word-break: break-word; max-height: 140px; overflow: auto; }
+    details.exp { border: 1px solid var(--border); border-radius: 6px; }
+    details.exp > summary { list-style: none; cursor: pointer; padding: 6px 10px; font-size: 12px;
+      display: flex; justify-content: space-between; align-items: center; }
+    details.exp > summary::-webkit-details-marker { display: none; }
+    details.exp > summary::after { content: ""; width: 6px; height: 6px; border-right: 2px solid var(--muted);
+      border-bottom: 2px solid var(--muted); transform: rotate(45deg); transition: transform 0.15s; margin-right: 3px; }
+    details.exp[open] > summary::after { transform: rotate(-135deg); }
+    details.exp > .body { padding: 0 10px 8px; font-size: 12px; }
+    details.exp > .body p { margin: 0; }
+    .spin { display: flex; align-items: center; gap: 8px; font-size: 13px; }
+    .spin::before { content: ""; width: 14px; height: 14px; border-radius: 50%; flex: none;
+      border: 2px solid var(--sec-bg); border-top-color: var(--primary); animation: spin 0.9s linear infinite; }
+    #messages:empty, #load-errors:empty { display: none; }
+
+    /* ---------- 3D area: plot, loading panel, error ---------- */
+    #plot { width: 100%; height: 100%; }
+    #plot-error { padding: 10px; height: 100%; overflow: auto; }
+    .panel { height: 100%; padding: 16px; display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 10px; text-align: center; overflow: auto; }
+    .panel-title { font-size: 16px; font-weight: 600; }
+    .progress { width: min(340px, 100%); height: 6px; border-radius: 6px; background: var(--sec-bg); overflow: hidden; }
+    .progress-fill { width: 0; height: 100%; border-radius: 6px; background: var(--primary); transition: width 0.3s ease; }
+    .panel.failed .progress-fill { background: var(--muted); }
+    .steps { list-style: none; margin: 2px 0 0; padding: 0; text-align: left; font-size: 13px; display: grid; gap: 5px; }
+    .steps li { display: flex; align-items: center; gap: 8px; color: var(--muted); }
+    .steps li.active, .steps li.done { color: var(--text); }
+    .steps li.error { color: var(--err-fg); }
+    .steps .detail { color: var(--muted); }
+    .steps .ico { width: 14px; height: 14px; flex: none; border-radius: 50%; border: 2px solid var(--border);
+      display: inline-flex; align-items: center; justify-content: center; font-size: 9px; line-height: 1; }
+    .steps li.active .ico { border-color: var(--sec-bg); border-top-color: var(--primary); animation: spin 0.9s linear infinite; }
+    .steps li.done .ico { border-color: var(--primary); background: var(--primary); }
+    .steps li.done .ico::after { content: "✓"; color: #fff; font-weight: 700; }
+    .steps li.error .ico { border-color: var(--err-strong); background: var(--err-strong); }
+    .steps li.error .ico::after { content: "✕"; color: #fff; font-weight: 700; }
+    .load-errors { width: min(520px, 100%); text-align: left; }
+
+    .hidden { display: none !important; }
+
+    /* ---------- Splash (white, M logo, blue accents) ---------- */
+    #splash {
+      position: fixed; inset: 0; z-index: 9999;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 18px; background: #ffffff; color: #1f2430; transition: opacity 0.5s ease;
+    }
+    #splash.hide { opacity: 0; pointer-events: none; }
+    .splash-logo { width: 64px; height: 64px; border-radius: 12px; animation: bob 2.4s ease-in-out infinite; }
+    @keyframes bob { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+    .splash-title { font-size: 18px; font-weight: 650; }
+    .splash-sub { font-size: 13px; color: #5f6b7a; max-width: 340px; text-align: center; line-height: 1.5; }
+    .spinner { width: 40px; height: 40px; border-radius: 50%;
+      border: 4px solid rgba(0,0,0,0.08); border-top-color: #1a73e8; animation: spin 0.9s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .bar { width: 200px; height: 4px; border-radius: 4px; background: rgba(0,0,0,0.08); overflow: hidden; }
+    .bar::before { content: ""; display: block; width: 40%; height: 100%; border-radius: 4px;
+      background: linear-gradient(90deg, #1a73e8, #7fb2f5); animation: slide 1.3s ease-in-out infinite; }
+    @keyframes slide { 0% { transform: translateX(-100%); } 100% { transform: translateX(320%); } }
+  </style>
+</head>
+<body>
+  <div id="splash">
+    <img class="splash-logo" alt="M" src="data:image/x-icon;base64,AAABAAEAICAAAAEAIACoEAAAFgAAACgAAAAgAAAAQAAAAAEAIAAAAAAAABAAACMuAAAjLgAAAAAAAAAAAAAAAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8TExP/eHh4/5mZmf+ampr/YWFh/wMDA/8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AwMD/2FhYf+ampr/mZmZ/3h4eP8TExP/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/yAgIP/Ly8v///////////+kpKT/BQUF/wAAAP8AAAD/AAAA/wICAv9BQUH/Q0ND/wMDA/8AAAD/AAAA/wAAAP8FBQX/pKSk////////////y8vL/yAgIP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/ICAg/8vLy////////////6SkpP8FBQX/AAAA/wAAAP8AAAD/TU1N/93d3f/f39//UFBQ/wEBAf8AAAD/AAAA/wUFBf+kpKT////////////Ly8v/ICAg/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8gICD/y8vL////////////pKSk/wUFBf8AAAD/AgIC/0xMTP/d3d3////////////f39//T09P/wICAv8AAAD/BQUF/6SkpP///////////8vLy/8gICD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/yAgIP/Ly8v///////////+kpKT/BQUF/wAAAP9NTU3/3d3d///////////////////////e3t7/UVFR/wAAAP8FBQX/pKSk////////////y8vL/yAgIP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/ICAg/8vLy////////////6SkpP8HBwf/TExM/9zc3P/////////////////////////////////e3t7/T09P/wcHB/+jo6P////////////Ly8v/ICAg/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8gICD/y8vL////////////paWl/1NTU//d3d3////////////////////////////////////////////f39//VlZW/6Wlpf///////////8vLy/8gICD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/yAgIP/Ly8v////////////c3Nz/3t7e///////////////////////////////////////////////////////g4OD/3d3d////////////y8vL/yAgIP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/ICAg/8vLy////////////////////////////////////////////9PT0//S0tL////////////////////////////////////////////Ly8v/ICAg/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8gICD/y8vL///////////////////////////////////////IyMj/Nzc3/zU1Nf/Gxsb//////////////////////////////////////8vLy/8gICD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/yAgIP/Ly8v/////////////////////////////////y8vL/zY2Nv8AAAD/AAAA/zMzM//IyMj/////////////////////////////////y8vL/yAgIP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/ICAg/8vLy////////////////////////////8jIyP83Nzf/AAAA/wAAAP8AAAD/AAAA/zQ0NP/Gxsb////////////////////////////Ly8v/ICAg/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8gICD/y8vL///////////////////////Ly8v/Nzc3/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/zQ0NP/IyMj//////////////////////8vLy/8gICD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/yAgIP/Ly8v/////////////////ycnJ/zY2Nv8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/zQ0NP/Gxsb/////////////////y8vL/yAgIP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/GBgY/5iYmP/CwsL/wcHB/6urq/84ODj/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/zY2Nv+rq6v/wcHB/8LCwv+YmJj/GBgY/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8CAgL/Dw8P/xMTE/8TExP/DQ0N/wEBAf8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AQEB/w0NDf8TExP/ExMT/w8PD/8CAgL/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=" />
+    <div class="splash-title">Starting the app…</div>
+    <div class="bar"></div>
+    <div class="splash-sub">
+      Loading the python environment and interface.
+    </div>
+    <div class="spinner"></div>
+  </div>
+
+  <main class="app">
+    <!-- ============ top-left: parameters, messages ============ -->
+    <section class="left" id="left">
+      <div id="w-BAY_WIDTH"></div>
+      <div id="w-BAY_HEIGHT"></div>
+      <div id="w-BAY_LENGTH"></div>
+      <div id="w-NO_BAYS"></div>
+      <div id="w-BAY_LEN_DIV"></div>
+      <div id="w-BAY_HEIGHT_DIV"></div>
+      <div id="w-GAP_TRUSS"></div>
+      <div id="w-TRUSS_DIV"></div>
+      <div id="w-TRUSS_CENTRE_HEIGHT"></div>
+      <div class="spacer"></div>
+      <div id="create-note" class="caption hidden"></div>
+      <div id="messages" class="stack" aria-live="polite"></div>
+    </section>
+
+    <!-- ============ top-right: 3D view ============ -->
+    <section class="view" id="right">
+      <div id="loader" class="panel">
+        <div class="panel-title" id="loader-title">Loading the model engine…</div>
+        <div class="progress" id="progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+          <div class="progress-fill" id="progress-fill"></div>
+        </div>
+        <div class="caption mono" id="loader-pct">0%</div>
+        <ul class="steps" id="steps"></ul>
+        <div class="caption" id="loader-hint">You can set the parameters on the left while this loads.</div>
+        <div id="load-errors" class="stack load-errors"></div>
+      </div>
+      <div id="plot-error" class="stack hidden"></div>
+      <div id="plot" class="hidden"></div>
+    </section>
+
+    <!-- ============ bottom-left: base URL ============ -->
+    <div class="conn-left">
+      <div class="field">
+        <label class="lbl auto" for="base-url">Base URL
+          <span class="help" tabindex="0">?<span class="tip">Leave empty to auto-detect the URL from the key.</span></span>
+        </label>
+        <input id="base-url" type="text" autocomplete="off" spellcheck="false"
+          value="https://moa-engineers.midasit.com:443/civil" />
+      </div>
+    </div>
+
+    <!-- ============ bottom-right: MAPI-Key + CREATE ============ -->
+    <div class="conn-right">
+      <div class="field">
+        <label class="lbl auto" for="mapi-key">MAPI-Key</label>
+        <input id="mapi-key" type="text" autocomplete="off" spellcheck="false" placeholder="paste your CIVIL NX MAPI key" />
+      </div>
+      <button class="btn-primary" id="create" type="button">✏️ CREATE</button>
+    </div>
+  </main>
+
+  <!-- Your model, run with the midas-civil library (Python, via Pyodide) -->
+  <script type="text/python" id="midas-model">
+import io, json as _json, re, sys
+from midas_civil import *
+import midas_civil._mapi as _mapi
+
+
+# =====================================================================
+#  YOUR MODEL — same code as output.py (inputs come from the page)
+# =====================================================================
+def build_model(BAY_WIDTH, BAY_HEIGHT, BAY_LENGTH, NO_BAYS, BAY_LEN_DIV, BAY_HEIGHT_DIV, GAP_TRUSS, TRUSS_DIV, TRUSS_CENTRE_HEIGHT):
+    Model.clear()
+    Boundary.BeamEndRelease.releases = []   # midas-civil 1.7.5: Model.clear() misses end releases
+
+    # Model.units('KIPS','FT') is sent to CIVIL NX on CREATE (it needs the MAPI connection)
+    #--------------- M A T E R I A L ------------------
+    Material.STEEL('Frame','ASTM(S)','A36')
+
+    #--------------- S E C T I O N ------------------
+    Section.DB('W16x67','H','AISC','W16x67',id=1)
+    Section.DB('W14x90','H','AISC','W14x90',id=2)
+    Section.DB('W18x65','H','AISC','W18x65',id=3)
+    Section.DB('W4x13','H','AISC','W4x13',id=4)
+    Section.DB('WT7x24','T','AISC','WT7x24',id=5)
+    Section.DB('WT4x9','T','AISC','WT4x9',id=6)
+    Section.DB('L4x4x5/16','L','AISC','L4x4x5/16',id=7)
+
+
+    #--------------- G E O M E T R Y ------------------
+    for i in range(NO_BAYS+1):
+        Element.Beam.SDL([i*BAY_LENGTH,0,0],[0,0,1],BAY_HEIGHT-GAP_TRUSS,sect=1,angle=0)
+        Element.Beam.SDL([i*BAY_LENGTH,0,BAY_HEIGHT-GAP_TRUSS],[0,0,1],GAP_TRUSS,sect=1,angle=0)
+
+        Element.Beam.SDL([i*BAY_LENGTH,2*BAY_WIDTH,0],[0,0,1],BAY_HEIGHT,BAY_HEIGHT_DIV,sect=1,angle=0)
+        Element.Beam.SDL([i*BAY_LENGTH,0,BAY_HEIGHT],[0,1,0],BAY_WIDTH,TRUSS_DIV,sect=5,group='HorzPTrussL')
+        Element.Beam.SDL([i*BAY_LENGTH,2*BAY_WIDTH,BAY_HEIGHT],[0,-1,0],BAY_WIDTH,TRUSS_DIV,sect=5,group='HorzPTrussR')
+        Element.Beam.SE([i*BAY_LENGTH,0,BAY_HEIGHT],[i*BAY_LENGTH,BAY_WIDTH,BAY_HEIGHT+TRUSS_CENTRE_HEIGHT],TRUSS_DIV,group='InclinePTrussL',sect=5)
+        Element.Beam.SE([i*BAY_LENGTH,2*BAY_WIDTH,BAY_HEIGHT],[i*BAY_LENGTH,BAY_WIDTH,BAY_HEIGHT+TRUSS_CENTRE_HEIGHT],TRUSS_DIV,group='InclinePTrussR',sect=5)
+        Element.Truss.SE([i*BAY_LENGTH,BAY_WIDTH,BAY_HEIGHT],[i*BAY_LENGTH,BAY_WIDTH,BAY_HEIGHT+TRUSS_CENTRE_HEIGHT],sect=6)
+
+
+    for i in range(NO_BAYS+1):
+        if i in [0,NO_BAYS]:
+            Element.Beam.SDL([i*BAY_LENGTH,BAY_WIDTH,0],[0,0,1],BAY_HEIGHT,BAY_HEIGHT_DIV,sect=2,angle=90)
+
+            Element.Truss.SE([i*BAY_LENGTH,0,BAY_HEIGHT],[i*BAY_LENGTH,BAY_WIDTH,0],sect=7)
+            Element.Truss.SE([i*BAY_LENGTH,0,0],[i*BAY_LENGTH,BAY_WIDTH,BAY_HEIGHT],sect=7)
+        else:
+            Element.Beam.SDL([i*BAY_LENGTH,BAY_WIDTH,0],[0,0,1],(BAY_HEIGHT_DIV-1)*BAY_HEIGHT/BAY_HEIGHT_DIV,BAY_HEIGHT_DIV-1,sect=2,angle=90)
+
+    HorzPTrussLNodeIDs = nodesInGroup('HorzPTrussL')
+    HorzPTrussRNodeIDs = nodesInGroup('HorzPTrussR')
+
+    InclinePTrussLNodeIDs = nodesInGroup('InclinePTrussL')
+    InclinePTrussRNodeIDs = nodesInGroup('InclinePTrussR')
+
+    for i in range(NO_BAYS+1):
+        for j in range(TRUSS_DIV-1):
+            Element.Truss(InclinePTrussLNodeIDs[1+j+i*(TRUSS_DIV+1)],HorzPTrussLNodeIDs[1+j+i*(TRUSS_DIV+1)],sect=6)
+            Element.Truss(InclinePTrussRNodeIDs[1+j+i*(TRUSS_DIV+1)],HorzPTrussRNodeIDs[1+j+i*(TRUSS_DIV+1)],sect=6)
+            Element.Truss(InclinePTrussLNodeIDs[1+j+i*(TRUSS_DIV+1)],HorzPTrussLNodeIDs[2+j+i*(TRUSS_DIV+1)],sect=6)
+            Element.Truss(InclinePTrussRNodeIDs[1+j+i*(TRUSS_DIV+1)],HorzPTrussRNodeIDs[2+j+i*(TRUSS_DIV+1)],sect=6)
+
+    for i in range(NO_BAYS):
+        Element.Beam.SDL([i*BAY_LENGTH,BAY_WIDTH,BAY_HEIGHT+TRUSS_CENTRE_HEIGHT],[1,0,0],BAY_LENGTH,sect=1)
+        # Side TRUSS
+        Element.Beam.SDL([i*BAY_LENGTH,0,BAY_HEIGHT],[1,0,0],BAY_LENGTH,TRUSS_DIV,group='TopSideTruss',sect=4)
+        Element.Beam.SDL([i*BAY_LENGTH,0,BAY_HEIGHT-GAP_TRUSS],[1,0,0],0.5*BAY_LENGTH/TRUSS_DIV,group='BotSideTruss',sect=4)
+        Element.Beam.SDL(Element.lastLoc,[1,0,0],BAY_LENGTH-BAY_LENGTH/TRUSS_DIV,TRUSS_DIV-1,group='BotSideTruss',sect=4)
+        Element.Beam.SDL(Element.lastLoc,[1,0,0],0.5*BAY_LENGTH/TRUSS_DIV,group='BotSideTruss',sect=4)
+
+        #BRACING
+        if i in [0,NO_BAYS-1]:
+            Element.Truss.SE([i*BAY_LENGTH,2*BAY_WIDTH,BAY_HEIGHT],[(i+1)*BAY_LENGTH,2*BAY_WIDTH,0],sect=7)
+            Element.Truss.SE([(i+1)*BAY_LENGTH,2*BAY_WIDTH,BAY_HEIGHT],[i*BAY_LENGTH,2*BAY_WIDTH,0],sect=7)
+            Element.Truss.SE([(i)*BAY_LENGTH,0,BAY_HEIGHT],[(i+1)*BAY_LENGTH,BAY_WIDTH,BAY_HEIGHT+TRUSS_CENTRE_HEIGHT],sect=7)
+            Element.Truss.SE([(i+1)*BAY_LENGTH,0,BAY_HEIGHT],[(i)*BAY_LENGTH,BAY_WIDTH,BAY_HEIGHT+TRUSS_CENTRE_HEIGHT],sect=7)
+            Element.Truss.SE([(i)*BAY_LENGTH,2*BAY_WIDTH,BAY_HEIGHT],[(i+1)*BAY_LENGTH,BAY_WIDTH,BAY_HEIGHT+TRUSS_CENTRE_HEIGHT],sect=7)
+            Element.Truss.SE([(i+1)*BAY_LENGTH,2*BAY_WIDTH,BAY_HEIGHT],[(i)*BAY_LENGTH,BAY_WIDTH,BAY_HEIGHT+TRUSS_CENTRE_HEIGHT],sect=7)
+
+        Element.Beam.SDL([i*BAY_LENGTH,2*BAY_WIDTH,BAY_HEIGHT],[1,0,0],BAY_LENGTH,sect=1)
+
+        for j in range(BAY_HEIGHT_DIV-1):
+            Element.Beam.SDL([i*BAY_LENGTH,2*BAY_WIDTH,(j+1)*BAY_HEIGHT/BAY_HEIGHT_DIV],[1,0,0],BAY_LENGTH,3,group='MezOuter',sect=3)
+            Element.Beam.SDL([i*BAY_LENGTH,BAY_WIDTH,(j+1)*BAY_HEIGHT/BAY_HEIGHT_DIV],[1,0,0],BAY_LENGTH,3,group='MezInner',sect=3)
+
+
+    TopSideTrussNodeIDs = nodesInGroup('TopSideTruss')
+    BotSideTrussNodeIDs = nodesInGroup('BotSideTruss')
+    MezOuterNodeIDs = nodesInGroup('MezOuter')
+    MezInnerNodeIDs = nodesInGroup('MezInner')
+
+
+    for i in range(len(MezOuterNodeIDs)):
+        Element.Beam(MezOuterNodeIDs[i],MezInnerNodeIDs[i],sect=3)
+
+    for i in range(NO_BAYS):
+        for j in range(TRUSS_DIV):
+            Element.Truss(TopSideTrussNodeIDs[j+i*(TRUSS_DIV)],BotSideTrussNodeIDs[1+j+i*(TRUSS_DIV+1)],sect=6)
+            Element.Truss(TopSideTrussNodeIDs[1+j+i*(TRUSS_DIV)],BotSideTrussNodeIDs[1+j+i*(TRUSS_DIV+1)],sect=6)
+
+
+    #--------------- S U P P O R T ------------------
+
+    bottomNodeIDs = Model.Select.Box([0,0,0],[NO_BAYS*BAY_LENGTH,2*BAY_WIDTH,0])
+    Boundary.Support(bottomNodeIDs,'fix')
+
+    #--------------- L O A D I N G ------------------
+
+    Load.SW('Self Weight')
+
+    fronNodeIDs = Model.Select.Box([0,0,0],[0,2*BAY_WIDTH,BAY_HEIGHT+TRUSS_CENTRE_HEIGHT])
+    Load.Nodal(fronNodeIDs,'Wind Load Y','',FY = 5)
+
+    SideElements = Model.Select.Box([0,2*BAY_WIDTH,0],[NO_BAYS*BAY_LENGTH,2*BAY_WIDTH,BAY_HEIGHT],'ELEM')
+    SideElementIDs = [elm.ID for elm in SideElements if elm.TYPE=='BEAM']
+    Load.Beam(SideElementIDs,'Wind Load X','',0.1,'GX')
+
+
+# =====================================================================
+#  Glue for the web page
+# =====================================================================
+def build_json(*args):
+    """Build with midas-civil; return the model geometry for the 3D view."""
+    try:
+        build_model(*[int(a) for a in args])
+    except Exception as exc:                                    # noqa: BLE001
+        return _json.dumps({"error": repr(exc)})
+    return _json.dumps({
+        "nodes": [[n.ID, n.X, n.Y, n.Z] for n in Node.nodes],
+        "elements": [[e.ID, e.NODE[0], e.NODE[1], e.SECT] for e in Element.elements],
+        "supports": [s.NODE for s in Boundary.Support.sups],
+    })
+
+
+class _Resp:
+    def __init__(self, status, text):
+        self.status_code, self.text = status, text
+    def json(self):
+        try:
+            return _json.loads(self.text) if self.text else {}
+        except ValueError:
+            return {}
+
+
+class _BrowserSession:
+    """Stand-in for midas-civil's requests.Session: sends with the browser's XMLHttpRequest.
+    midas-civil keeps its whole flow (connection check, 404/401 handling, chunking)."""
+    def __init__(self):
+        self.reset()
+    def reset(self):
+        self.last_status, self.network_errors, self.sent = None, [], 0
+    def _send(self, method, url, headers=None, body=None):
+        from js import XMLHttpRequest
+        self.sent += 1
+        xhr = XMLHttpRequest.new()
+        try:
+            xhr.open(method, url, False)                        # synchronous, as requests is
+            for k, v in (headers or {}).items():
+                xhr.setRequestHeader(k, v)
+            xhr.send(_json.dumps(body) if body is not None else None)
+            status, text = int(xhr.status), str(xhr.responseText or "")
+        except Exception as exc:                                # noqa: BLE001  (CORS / offline)
+            self.network_errors.append(f"{method} {url}: {exc}")
+            status, text = 0, ""
+        self.last_status = status
+        return _Resp(status, text)
+    def get(self, url, headers=None, **kw):    return self._send("GET", url, headers)
+    def delete(self, url, headers=None, **kw): return self._send("DELETE", url, headers)
+    def put(self, url, headers=None, json=None, **kw):  return self._send("PUT", url, headers, json)
+    def post(self, url, headers=None, json=None, **kw): return self._send("POST", url, headers, json)
+
+
+_session = _BrowserSession()
+_mapi._sumit_req = _session
+_ANSI = re.compile(r"\x1b\[[0-9;]*m")
+
+
+def create_json(key, base):
+    """Run midas-civil's own Model.create() against CIVIL NX."""
+    _session.reset()
+    MAPI_KEY(key)
+    _mapi.MAPI_KEY.count = 1            # redo midas-civil's connection check on every CREATE
+    out = io.StringIO()
+    old = sys.stdout, sys.stderr
+    sys.stdout = sys.stderr = out
+    status, detail = "ok", ""
+    try:
+        if base:
+            MAPI_BASEURL(base)
+        else:
+            MAPI_BASEURL.autoURL()
+        Model.units('KIPS','FT')
+        Model.create()
+    except SystemExit:                  # midas-civil exits on 404 / 401 / no base URL
+        status = "exit"
+    except Exception as exc:            # noqa: BLE001
+        status, detail = "error", repr(exc)
+    finally:
+        sys.stdout, sys.stderr = old
+    log = _ANSI.sub("", out.getvalue())
+    warnings = [ln.strip() for ln in log.splitlines() if "Error observed" in ln or ln.strip().startswith("Error :")]
+    return _json.dumps({
+        "status": status, "detail": detail, "last_status": _session.last_status,
+        "network_errors": _session.network_errors, "requests": _session.sent,
+        "base": _mapi.MAPI_BASEURL.baseURL, "warnings": warnings, "log": log[-4000:],
+        "nodes": len(Node.nodes), "elements": len(Element.elements),
+    })
+  </script>
+
+  <script>
+// ==FIGURE START==
+// ---- Plotly figure, matching midas-civil's Model.goFigure(bNodeID=False, bElementID=False) ----
+function bridgeFigure(m) {
+  const X = m.nodes.map((n) => n.X), Y = m.nodes.map((n) => n.Y), Z = m.nodes.map((n) => n.Z);
+  const min = (a) => a.reduce((p, q) => Math.min(p, q)), max = (a) => a.reduce((p, q) => Math.max(p, q));
+  const x1 = min(X) - 1, x2 = max(X) + 1, y1 = min(Y) - 1, y2 = max(Y) + 1, z1 = min(Z) - 0.001, z2 = max(Z);
+  const minDim = Math.min(x2 - x1, y2 - y1);
+  const nLineX = Math.trunc(((x2 - x1) / minDim) * 10), nLineY = Math.trunc(((y2 - y1) / minDim) * 10);
+  const lin = (a, b, n) => Array.from({ length: n }, (_, i) => (n === 1 ? a : a + (b - a) * i / (n - 1)));
+  const gx = [], gy = [], gz = [];
+  for (const x of lin(x1, x2, nLineX)) { gx.push(x, x, null); gy.push(y1, y2, null); gz.push(z1, z1, null); }
+  for (const y of lin(y1, y2, nLineY)) { gx.push(x1, x2, null); gy.push(y, y, null); gz.push(z1, z1, null); }
+
+  const traces = [
+    { type: "scatter3d", mode: "lines", x: gx, y: gy, z: gz, line: { color: "lightgray", width: 2 }, hoverinfo: "skip", showlegend: false },
+    { type: "scatter3d", mode: "markers", x: [x1, x1, x1, x1, x2, x2, x2, x2], y: [y1, y2, y1, y2, y1, y2, y1, y2],
+      z: [z1, z1, z2, z2, z1, z1, z2, z2], hoverinfo: "skip", marker: { size: 0, opacity: 0, color: "blue" } },
+  ];
+  const COL = { 1: "#0BAEEE", 2: "#3D5AFF", 3: "#8344F8", 4: "#D858FF", 5: "#3FBE50", 6: "#CC4848" };
+  const bySect = new Map();
+  for (const e of m.elements) {
+    if (!bySect.has(e.SECT)) bySect.set(e.SECT, { x: [], y: [], z: [] });
+    const t = bySect.get(e.SECT), a = m.nodes[e.NODE[0] - 1], b = m.nodes[e.NODE[1] - 1];
+    t.x.push(a.X, b.X, null); t.y.push(a.Y, b.Y, null); t.z.push(a.Z, b.Z, null);
+  }
+  for (const [sect, t] of bySect) {
+    traces.push({ type: "scatter3d", mode: "lines", ...t, line: { color: COL[sect % 7] || "red", width: 4 }, hoverinfo: "skip", showlegend: false });
+  }
+  traces.push({ type: "scatter3d", mode: "markers", x: X, y: Y, z: Z, hoverinfo: "skip",
+    marker: { size: 4, opacity: 1, color: "#1296e2", symbol: "circle" } });
+  const sn = m.supports.map((s) => m.nodes[s.node - 1]);
+  traces.push({ type: "scatter3d", mode: "markers", x: sn.map((n) => n.X), y: sn.map((n) => n.Y), z: sn.map((n) => n.Z),
+    hoverinfo: "skip", marker: { size: 5, opacity: 1, color: "#87ce03", symbol: "diamond" } });
+
+  const layout = {
+    margin: { l: 0, r: 0, t: 0, b: 0 }, showlegend: false, height: 450,
+    paper_bgcolor: "rgba(0,0,0,0)",
+    scene: { aspectmode: "data", xaxis: { visible: false }, yaxis: { visible: false }, zaxis: { visible: false },
+      camera: { projection: { type: "orthographic" }, eye: { x: -1.5, y: -1.5, z: 1.25 } } },
+  };
+  return { traces, layout };
+}
+// ==FIGURE END==
+
+  </script>
+
+  <script>
+  (function () {
+    "use strict";
+    const $ = (id) => document.getElementById(id);
+    const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
+
+    // ---------------- widgets (same labels / ranges / defaults as output.py) ----------------
+    const state = {};
+
+    function numberInput(key, min, max, value, step) {
+      state[key] = value;
+      const host = $("w-" + key);
+      host.innerHTML =
+        '<div class="field"><label class="lbl" for="in-' + key + '">' + key + '</label>' +
+        '<input id="in-' + key + '" type="number" inputmode="numeric" />' +
+        '<button type="button" class="stepbtn" aria-label="Decrease ' + key + '">&minus;</button>' +
+        '<button type="button" class="stepbtn" aria-label="Increase ' + key + '">+</button></div>';
+      const input = host.querySelector("input");
+      const [dec, inc] = host.querySelectorAll("button");
+      const set = (v) => {
+        if (!Number.isFinite(v)) v = state[key];
+        v = Math.min(max, Math.max(min, Math.round(v)));
+        input.value = v; dec.disabled = v <= min; inc.disabled = v >= max;
+        if (v !== state[key]) { state[key] = v; changed(); }
+      };
+      input.addEventListener("change", () => set(parseFloat(input.value)));
+      input.addEventListener("keydown", (ev) => { if (ev.key === "Enter") input.blur(); });
+      dec.addEventListener("click", () => set(state[key] - step));
+      inc.addEventListener("click", () => set(state[key] + step));
+      input.value = value; dec.disabled = value <= min; inc.disabled = value >= max;
+    }
+
+    function slider(key, min, max, value, step) {
+      state[key] = value;
+      const host = $("w-" + key);
+      host.innerHTML =
+        '<div class="field range"><label class="lbl" for="in-' + key + '">' + key + '</label>' +
+        '<input id="in-' + key + '" type="range" min="' + min + '" max="' + max + '" step="' + step + '" ' +
+        'title="' + min + ' – ' + max + '" />' +
+        '<span class="val mono" aria-hidden="true"></span></div>';
+      const input = host.querySelector("input"), val = host.querySelector(".val");
+      const paint = () => {
+        const v = Number(input.value), pct = ((v - min) / (max - min)) * 100;
+        input.style.background = "linear-gradient(to right, var(--primary) 0%, var(--primary) " + pct +
+          "%, var(--track) " + pct + "%, var(--track) 100%)";
+        val.textContent = v;
+      };
+      input.value = value; paint();
+      input.addEventListener("input", () => {
+        paint();
+        const v = Number(input.value);
+        if (v !== state[key]) { state[key] = v; changed(); }
+      });
+    }
+
+    numberInput("BAY_WIDTH", 10, 60, 32, 1);
+    numberInput("BAY_HEIGHT", 15, 60, 30, 1);
+    numberInput("BAY_LENGTH", 10, 60, 26, 1);
+    slider("NO_BAYS", 2, 10, 4, 1);
+    numberInput("BAY_LEN_DIV", 1, 5, 3, 1);
+    numberInput("BAY_HEIGHT_DIV", 2, 6, 3, 1);
+    numberInput("GAP_TRUSS", 1, 10, 3, 1);
+    numberInput("TRUSS_DIV", 2, 10, 5, 1);
+    numberInput("TRUSS_CENTRE_HEIGHT", 1, 15, 5, 1);
+
+
+    // ---------------- lazy background loading: Plotly (JS) + Pyodide → SciPy → midas-civil ----------------
+    const PLOTLY_SRCS = [
+      "https://cdn.jsdelivr.net/npm/plotly.js-gl3d-dist-min@2.35.2/plotly-gl3d.min.js",
+      "https://cdn.plot.ly/plotly-2.35.2.min.js",
+    ];
+    const PYODIDE_URL = "https://cdn.jsdelivr.net/pyodide/v0.27.7/full/";
+    const MIDAS_VERSION = "1.7.5";   // the version this page was tested with
+
+    const lib = { plotly: "loading", scipy: "loading", midas: "loading" };
+    const libError = { plotly: "", scipy: "", midas: "" };
+    const LIB_LABEL = { plotly: "Plotly", scipy: "SciPy", midas: "midas-civil" };
+    let py = null;
+
+    // Loading steps shown in the 3D panel. Weights ≈ download size, for the progress bar.
+    const STEPS = [
+      { k: "plotly", label: "3D viewer (Plotly)", w: 10 },
+      { k: "python", label: "Python runtime (Pyodide)", w: 30 },
+      { k: "scipy",  label: "NumPy + SciPy", w: 35 },
+      { k: "midas",  label: "midas-civil library", w: 20 },
+      { k: "model",  label: "Frame model", w: 5 },
+    ];
+    const step = {};
+    for (const s of STEPS) step[s.k] = { state: "pending", p: 0, detail: "" };
+
+    function renderLoader() {
+      const total = STEPS.reduce((a, s) => a + s.w, 0);
+      const done = STEPS.reduce((a, s) => a + s.w * (step[s.k].state === "done" ? 1 : step[s.k].p), 0);
+      const pct = Math.min(100, Math.round((done / total) * 100));
+      $("progress-fill").style.width = pct + "%";
+      $("progress").setAttribute("aria-valuenow", pct);
+      $("loader-pct").textContent = pct + "%";
+      $("steps").innerHTML = STEPS.map((s) => {
+        const st = step[s.k];
+        return '<li class="' + st.state + '"><span class="ico"></span><span>' + esc(s.label) +
+          (st.detail && st.state === "active" ? ' <span class="detail">— ' + esc(st.detail) + '</span>' : "") + '</span></li>';
+      }).join("");
+    }
+    function setStep(k, state, detail) {
+      step[k].state = state;
+      if (state === "done") step[k].p = 1;
+      if (detail !== undefined) step[k].detail = detail;
+      renderLoader();
+    }
+    // creep active steps forward so the bar keeps moving during long downloads
+    const creep = setInterval(() => {
+      let any = false;
+      for (const s of STEPS) if (step[s.k].state === "active") { step[s.k].p += (0.9 - step[s.k].p) * 0.03; any = true; }
+      if (any) renderLoader();
+    }, 150);
+
+    function showBadges() {               // status lives in the 3D panel; only error details are shown
+      $("load-errors").innerHTML = Object.keys(lib).filter((k) => lib[k] === "error").map((k) =>
+        '<details class="exp"><summary>' + LIB_LABEL[k] + ' install/import error</summary><div class="body">' +
+        '<pre class="code">' + esc(libError[k]) + '</pre></div></details>').join("");
+    }
+    function setLib(k, s, err) { lib[k] = s; if (err) libError[k] = err; showBadges(); rebuild(); draw(); }
+
+    function loadScript(src) {
+      return new Promise((ok, fail) => {
+        const s = document.createElement("script");
+        s.src = src; s.async = true; s.onload = ok;
+        s.onerror = () => fail(new Error("Could not load " + src));
+        document.head.appendChild(s);
+      });
+    }
+
+    async function loadPlotly() {
+      setStep("plotly", "active");
+      for (const src of PLOTLY_SRCS) {
+        try { await loadScript(src); setStep("plotly", "done"); setLib("plotly", "ready"); return; }
+        catch (e) { libError.plotly += e.message + "\n"; }
+      }
+      setStep("plotly", "error");
+      setLib("plotly", "error");
+    }
+
+    async function loadMidas() {
+      let at = "python";
+      try {
+        setStep("python", "active");
+        await loadScript(PYODIDE_URL + "pyodide.js");
+        py = await loadPyodide({ indexURL: PYODIDE_URL });
+        setStep("python", "done");
+        at = "scipy"; setStep("scipy", "active");
+        await py.loadPackage(["micropip", "numpy", "scipy"], {
+          messageCallback: (m) => { if (/^Loading /.test(m)) setStep("scipy", "active", m.replace(/^Loading /, "")); },
+        });
+        setStep("scipy", "done");
+        setLib("scipy", "ready");
+      } catch (e) {
+        setStep(at, "error", String(e && e.message || e));
+        setLib("scipy", "error", String(e && e.message || e));
+        setLib("midas", "error", "Needs Python (Pyodide) and SciPy, which did not load.");
+        return;
+      }
+      try {
+        at = "midas"; setStep("midas", "active", "requests, colorama, tqdm");
+        await py.runPythonAsync(
+          "import micropip\n" +
+          "await micropip.install(['requests', 'colorama', 'tqdm'])\n");
+        setStep("midas", "active", "midas-civil " + MIDAS_VERSION);
+        await py.runPythonAsync(
+          "import micropip\n" +
+          "await micropip.install('midas-civil==" + MIDAS_VERSION + "', deps=False)\n" +
+          "import tqdm; tqdm.tqdm.monitor_interval = 0   # no background threads in the browser\n");
+        setStep("midas", "done");
+        at = "model"; setStep("model", "active");
+        await py.runPythonAsync($("midas-model").textContent);   // your model code + glue
+        setStep("model", "done");
+        setLib("midas", "ready");
+      } catch (e) {
+        py = null;
+        setStep(at, "error", String(e && e.message || e));
+        setLib("midas", "error", String(e && e.message || e));
+      }
+    }
+
+    // ---------------- model + figure (all from midas-civil) ----------------
+    let model = null, modelError = "", plotted = false;
+
+    function rebuild() {
+      model = null; modelError = "";
+      if (lib.midas === "ready" && py) {
+        let r;
+        try {
+          r = JSON.parse(py.globals.get("build_json")(state.BAY_WIDTH, state.BAY_HEIGHT,
+            state.BAY_LENGTH, state.NO_BAYS, state.BAY_LEN_DIV, state.BAY_HEIGHT_DIV,
+            state.GAP_TRUSS, state.TRUSS_DIV, state.TRUSS_CENTRE_HEIGHT));
+        } catch (e) { r = { error: String(e && e.message || e) }; }
+        if (r.error) modelError = r.error;
+        else model = {
+          nodes: r.nodes.map(([ID, X, Y, Z]) => ({ ID, X, Y, Z })),
+          elements: r.elements.map(([ID, a, b, SECT]) => ({ ID, NODE: [a, b], SECT })),
+          supports: r.supports.map((node) => ({ node })),
+        };
+      }
+      const ready = lib.midas === "ready";
+      $("create").disabled = !(ready && model && !busy);
+      $("create-note").classList.toggle("hidden", ready && !!model);
+      $("create-note").textContent = lib.midas === "error"
+        ? "CREATE needs midas-civil, which could not load (see the 3D panel)."
+        : !ready ? "CREATE unlocks once midas-civil loads."
+        : "CREATE is disabled because the frame could not be built with these inputs.";
+    }
+
+    function showPanel(which) {          // "loader" | "plot" | "error"
+      $("loader").classList.toggle("hidden", which !== "loader");
+      $("plot").classList.toggle("hidden", which !== "plot");
+      $("plot-error").classList.toggle("hidden", which !== "error");
+    }
+
+    function draw() {
+      const err = $("plot-error");
+      if (lib.plotly === "error" || lib.midas === "error") {
+        // keep the step list visible with the failing step marked; details are in the badges
+        $("loader-title").textContent = "Could not load everything needed for the 3D model";
+        $("loader-hint").textContent = "Error details:";
+        $("loader").classList.add("failed");
+        return showPanel("loader");
+      }
+      if (lib.plotly !== "ready" || lib.midas !== "ready") return showPanel("loader");
+      clearInterval(creep);
+      if (!model) {
+        err.innerHTML = '<div class="alert err">The frame could not be built with these inputs.</div>' +
+          '<pre class="code">' + esc(modelError) + '</pre>';
+        return showPanel("error");
+      }
+      showPanel("plot");
+      const plot = $("plot");
+      const fig = bridgeFigure(model);
+      fig.layout.uirevision = "keep";   // keep the camera when inputs change
+      delete fig.layout.height; fig.layout.autosize = true;   // fill the 3D area
+      const config = { displayModeBar: false, responsive: true };
+      if (!plotted) { Plotly.newPlot(plot, fig.traces, fig.layout, config); plotted = true; }
+      else Plotly.react(plot, fig.traces, fig.layout, config);
+    }
+
+    let frame = 0;
+    function changed() {
+      if (!busy) $("messages").innerHTML = "";   // like a Streamlit rerun, old messages clear
+      if (frame) return;                         // one rebuild per animation frame while dragging
+      frame = requestAnimationFrame(() => { frame = 0; rebuild(); draw(); });
+    }
+
+    // ---------------- CREATE: midas-civil's own Model.create() ----------------
+    let busy = false;
+
+    function msg(kind, html) {
+      const d = document.createElement("div");
+      if (kind === "code") d.innerHTML = '<pre class="code">' + esc(html) + '</pre>';
+      else if (kind === "spin") { d.className = "spin"; d.textContent = html; }
+      else if (kind === "caption") { d.className = "caption"; d.textContent = html; }
+      else if (kind === "log") d.innerHTML = '<details class="exp"><summary>midas-civil output</summary><div class="body">' +
+        '<pre class="code">' + esc(html) + '</pre></div></details>';
+      else { d.className = "alert " + kind; d.innerHTML = html; }
+      $("messages").appendChild(d);
+      return d;
+    }
+    const paint = () => new Promise((r) => requestAnimationFrame(() => setTimeout(r, 30)));
+
+    $("create").addEventListener("click", async () => {
+      if (busy || !model || lib.midas !== "ready") return;
+      $("messages").innerHTML = "";
+      const key = $("mapi-key").value.trim();
+      const base = $("base-url").value.trim().replace(/\/+$/, "");
+      if (!key) { msg("warn", "Enter your MAPI-Key first."); return; }
+
+      busy = true; $("create").disabled = true;
+      const spinner = msg("spin", "Sending model to CIVIL NX…");
+      await paint();                             // let the spinner show before the (synchronous) requests
+      let r;
+      try { r = JSON.parse(py.globals.get("create_json")(key, base)); }
+      catch (e) { r = { status: "error", detail: String(e && e.message || e), network_errors: [], warnings: [], log: "" }; }
+      spinner.remove();
+
+      if (r.network_errors && r.network_errors.length) {
+        msg("err", "Request failed — in the browser this is almost always a CORS block.");
+        msg("code", r.network_errors[0]);
+      } else if (r.status === "exit" && !base && r.requests <= 5) {
+        msg("err", "Could not find the base URL for this key. Enter it manually (Apps &gt; API Settings in CIVIL NX).");
+      } else if (r.status === "exit" && r.last_status === 404) {
+        msg("err", "CIVIL NX model is not connected. Click <strong>Apps &gt; Connect</strong> in CIVIL NX, and make sure the MAPI-Key matches the one in CIVIL NX.");
+      } else if (r.status === "exit" && r.last_status === 401) {
+        msg("err", "The MAPI-Key is invalid. Refresh the MAPI-Key in CIVIL NX and try again.");
+      } else if (r.status !== "ok") {
+        msg("err", "midas-civil stopped while creating the model.");
+        if (r.detail) msg("code", r.detail);
+      } else {
+        msg("ok", "Model sent to CIVIL NX.");
+      }
+      busy = false;
+      rebuild();
+    });
+
+    // ---------------- start ----------------
+    showBadges();
+    renderLoader();
+    rebuild();
+    draw();
+
+    const splash = $("splash");
+    requestAnimationFrame(() => {
+      splash.classList.add("hide");
+      setTimeout(() => splash.remove(), 600);
+      loadPlotly();
+      loadMidas();
+    });
+  })();
+  </script>
+</body>
+</html>
